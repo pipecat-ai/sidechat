@@ -34,6 +34,10 @@ print(a.respond, model.decide(a))  # 0.99 respond
 For `agent-1x`, `load(f"{path}/agent-1x", threads=1)`, call `model.prepare(request)` as soon as
 the previous line ends, and `model.answer(request)` when the person stops.
 
+Give your speech-to-text service the agent's name as a keyterm (Deepgram's `keyterm`): an unusual
+name is otherwise often misheard ("Olly" as "Oli"), and a request that names the agent is then
+missed. On real recorded requests this took named requests answered from 13% to 74%.
+
 `decide` turns the probabilities into `respond`, `wait` (speak only if nobody else does) or `ignore`, at
 thresholds chosen on dev data. In Pipecat, `sidechat.integrations.pipecat_classifier.SidechatClassifier`
 answers the same `yes_no` questions as `JevClassifier`, and encodes the next history in the

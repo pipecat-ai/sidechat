@@ -3,6 +3,20 @@
 Newest first. `date · id · who · decision · why · reversible?`. "Agent default" means the agent
 chose it and Jon has not yet confirmed. Open questions are at the bottom.
 
+- 2026-11-19 · SD-24 · agent default · Pass the agent's name (and any aliases) to the
+  speech-to-text service as a keyterm; do not add other spellings of the name as aliases at runtime.
+  · exp-058: Deepgram's keyterm took named requests answered as heard from 13% to 74% (default
+  build) and 7% to 59% (`agent-1x`), and put the name into 4 of 2,705 requests that never said it.
+  Spellings as aliases helped only the 32M, a little, and cost named requests and false answers
+  elsewhere. · Reversible: `sidechat/names.py` stays for measurement.
+
+- 2026-11-19 · SD-23 · Jon · No real calls can be recorded ("we have to work with what we can
+  find"). Phase 6 uses found real speech instead: AMI's headset audio through Deepgram for item 15,
+  and SLURP's recordings of people speaking to an assistant, spliced into AMI meetings, for
+  requests to the agent in real speech. SLURP's audio is CC BY-NC 4.0 (its text is CC BY 4.0): Jon
+  allows it for testing only, never training, and its audio and converted rows stay out of git and
+  off the Hub. · Jon: "Yes, test only". · Reversible: drop the SLURP sets.
+
 - 2026-11-19 · SD-22 · Jon (delegated) · Release rc0.2 on `pipecat-ai/sidechat`: round 3's 150M
   stays the default at the repo root, unchanged, so Pipecat's pinned download is unaffected, and
   the two-tower 32M student (`side-r6ttr3t-ettin-32m-s0`, fp32) ships as an opt-in `agent-1x/`

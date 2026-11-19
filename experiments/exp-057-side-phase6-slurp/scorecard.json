@@ -1,0 +1,361 @@
+{
+ "exp": "exp-057-side-phase6-slurp",
+ "test": "slurp",
+ "stt": {
+  "stt": {
+   "service": "Deepgram",
+   "url": "https://api.deepgram.com/v1/listen",
+   "params": {
+    "model": "nova-3",
+    "language": "en",
+    "punctuate": "true",
+    "smart_format": "true"
+   }
+  },
+  "text": {
+   "url": "https://raw.githubusercontent.com/pswietojanski/slurp/8eb16545762be97ace75334109d73824217311f1/dataset/slurp/test.jsonl",
+   "licence": "CC BY 4.0"
+  },
+  "audio": {
+   "url": "https://zenodo.org/api/records/4274930/files/slurp_real.tar.gz/content",
+   "licence": "CC BY-NC 4.0",
+   "use": "test only (SD-23)"
+  },
+  "utterances": 2974,
+  "with_headset": 2766,
+  "heard": 2766,
+  "failed": 0,
+  "empty": 1,
+  "named": 61,
+  "word_error_rate": 0.1415,
+  "minutes": 132.7,
+  "built_at": "2026-11-19T21:39:37+00:00"
+ },
+ "table": {
+  "Default build (round 3, 150M)": {
+   "named": 61,
+   "unnamed": 2704,
+   "written": {
+    "named_answered": {
+     "value": 0.8525,
+     "k": 52,
+     "n": 61,
+     "ci95": [
+      0.7428,
+      0.9204
+     ]
+    },
+    "unnamed_answered": {
+     "value": 0.0018,
+     "k": 5,
+     "n": 2704,
+     "ci95": [
+      0.0008,
+      0.0043
+     ]
+    },
+    "unnamed_held": {
+     "value": 0.1816,
+     "k": 491,
+     "n": 2704,
+     "ci95": [
+      0.1675,
+      0.1966
+     ]
+    },
+    "unnamed_missed": {
+     "value": 0.8166,
+     "k": 2208,
+     "n": 2704,
+     "ci95": [
+      0.8015,
+      0.8307
+     ]
+    }
+   },
+   "heard": {
+    "named_answered": {
+     "value": 0.1311,
+     "k": 8,
+     "n": 61,
+     "ci95": [
+      0.068,
+      0.238
+     ]
+    },
+    "unnamed_answered": {
+     "value": 0.003,
+     "k": 8,
+     "n": 2704,
+     "ci95": [
+      0.0015,
+      0.0058
+     ]
+    },
+    "unnamed_held": {
+     "value": 0.1668,
+     "k": 451,
+     "n": 2704,
+     "ci95": [
+      0.1532,
+      0.1813
+     ]
+    },
+    "unnamed_missed": {
+     "value": 0.8303,
+     "k": 2245,
+     "n": 2704,
+     "ci95": [
+      0.8156,
+      0.8439
+     ]
+    }
+   },
+   "named_gap": {
+    "n": 61,
+    "a_right": 52,
+    "b_right": 8,
+    "only_a": 45,
+    "only_b": 1,
+    "diff": -0.7213,
+    "ci95": [
+     -0.8427,
+     -0.6
+    ],
+    "worse_beyond_noise": true,
+    "better_beyond_noise": false
+   },
+   "unnamed_handled_gap": {
+    "n": 2704,
+    "a_right": 496,
+    "b_right": 459,
+    "only_a": 93,
+    "only_b": 56,
+    "diff": -0.0137,
+    "ci95": [
+     -0.0225,
+     -0.0049
+    ],
+    "worse_beyond_noise": true,
+    "better_beyond_noise": false
+   }
+  },
+  "agent-1x build (32M)": {
+   "named": 61,
+   "unnamed": 2704,
+   "written": {
+    "named_answered": {
+     "value": 0.6393,
+     "k": 39,
+     "n": 61,
+     "ci95": [
+      0.5139,
+      0.7483
+     ]
+    },
+    "unnamed_answered": {
+     "value": 0.0,
+     "k": 0,
+     "n": 2704,
+     "ci95": [
+      0.0,
+      0.0014
+     ]
+    },
+    "unnamed_held": {
+     "value": 0.0303,
+     "k": 82,
+     "n": 2704,
+     "ci95": [
+      0.0245,
+      0.0375
+     ]
+    },
+    "unnamed_missed": {
+     "value": 0.9697,
+     "k": 2622,
+     "n": 2704,
+     "ci95": [
+      0.9625,
+      0.9755
+     ]
+    }
+   },
+   "heard": {
+    "named_answered": {
+     "value": 0.0656,
+     "k": 4,
+     "n": 61,
+     "ci95": [
+      0.0258,
+      0.1568
+     ]
+    },
+    "unnamed_answered": {
+     "value": 0.0004,
+     "k": 1,
+     "n": 2704,
+     "ci95": [
+      0.0001,
+      0.0021
+     ]
+    },
+    "unnamed_held": {
+     "value": 0.0355,
+     "k": 96,
+     "n": 2704,
+     "ci95": [
+      0.0292,
+      0.0432
+     ]
+    },
+    "unnamed_missed": {
+     "value": 0.9641,
+     "k": 2607,
+     "n": 2704,
+     "ci95": [
+      0.9564,
+      0.9705
+     ]
+    }
+   },
+   "named_gap": {
+    "n": 61,
+    "a_right": 39,
+    "b_right": 4,
+    "only_a": 35,
+    "only_b": 0,
+    "diff": -0.5738,
+    "ci95": [
+     -0.6979,
+     -0.4497
+    ],
+    "worse_beyond_noise": true,
+    "better_beyond_noise": false
+   },
+   "unnamed_handled_gap": {
+    "n": 2704,
+    "a_right": 82,
+    "b_right": 97,
+    "only_a": 22,
+    "only_b": 37,
+    "diff": 0.0055,
+    "ci95": [
+     -0.0,
+     0.0111
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "Jev": {
+   "named": 61,
+   "unnamed": 2704,
+   "written": {
+    "named_answered": {
+     "value": 1.0,
+     "k": 61,
+     "n": 61,
+     "ci95": [
+      0.9408,
+      1.0
+     ]
+    },
+    "unnamed_answered": {
+     "value": 0.0011,
+     "k": 3,
+     "n": 2704,
+     "ci95": [
+      0.0004,
+      0.0033
+     ]
+    },
+    "unnamed_held": {
+     "value": 0.9016,
+     "k": 2438,
+     "n": 2704,
+     "ci95": [
+      0.8898,
+      0.9123
+     ]
+    },
+    "unnamed_missed": {
+     "value": 0.0973,
+     "k": 263,
+     "n": 2704,
+     "ci95": [
+      0.0867,
+      0.109
+     ]
+    }
+   },
+   "heard": {
+    "named_answered": {
+     "value": 0.4918,
+     "k": 30,
+     "n": 61,
+     "ci95": [
+      0.3706,
+      0.614
+     ]
+    },
+    "unnamed_answered": {
+     "value": 0.0004,
+     "k": 1,
+     "n": 2704,
+     "ci95": [
+      0.0001,
+      0.0021
+     ]
+    },
+    "unnamed_held": {
+     "value": 0.8232,
+     "k": 2226,
+     "n": 2704,
+     "ci95": [
+      0.8084,
+      0.8371
+     ]
+    },
+    "unnamed_missed": {
+     "value": 0.1764,
+     "k": 477,
+     "n": 2704,
+     "ci95": [
+      0.1625,
+      0.1912
+     ]
+    }
+   },
+   "named_gap": {
+    "n": 61,
+    "a_right": 61,
+    "b_right": 30,
+    "only_a": 31,
+    "only_b": 0,
+    "diff": -0.5082,
+    "ci95": [
+     -0.6337,
+     -0.3827
+    ],
+    "worse_beyond_noise": true,
+    "better_beyond_noise": false
+   },
+   "unnamed_handled_gap": {
+    "n": 2704,
+    "a_right": 2441,
+    "b_right": 2227,
+    "only_a": 251,
+    "only_b": 37,
+    "diff": -0.0791,
+    "ci95": [
+     -0.0911,
+     -0.0672
+    ],
+    "worse_beyond_noise": true,
+    "better_beyond_noise": false
+   }
+  }
+ },
+ "finished_at": "2026-11-19T21:41:18+00:00"
+}

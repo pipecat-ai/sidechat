@@ -1,0 +1,24 @@
+{
+ "exp": "exp-056-side-phase6-stt",
+ "app": "waystone-side-phase6",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T21:20:06+00:00",
+ "args": {
+  "steps": "stt,jev,score",
+  "jev_cap_usd": 3.0
+ },
+ "steps": {
+  "stt": {
+   "state": "done",
+   "dialogue_acts": 26622,
+   "empty_transcripts": 4869,
+   "word_error_rate": 0.2565
+  },
+  "jev": "done",
+  "side-r3-ettin-150m-s0": "done",
+  "side-r6ttr3t-ettin-32m-s0": "done"
+ },
+ "updated_at": "2026-11-19T21:29:58+00:00",
+ "elapsed_s": 592
+}

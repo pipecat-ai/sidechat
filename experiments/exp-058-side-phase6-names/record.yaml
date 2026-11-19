@@ -1,0 +1,36 @@
+experiment_id: exp-058-side-phase6-names
+status: done (2026-11-19); actual about $2.10
+track: sidechat (phase 6, the agent's name as heard)
+what: >
+  exp-057 found that speech-to-text rarely writes an unusual agent name as configured (Deepgram
+  wrote "Olly" 5 times in 61) and that both builds then miss named requests (13% and 7% answered as
+  heard). Two fixes that need no retraining, measured together. (1) Deepgram's keyterm prompting:
+  SLURP's recordings heard again with keyterm=Olly (set slurp-stt-keyterm), and Jev on them. (2)
+  Other spellings of the agent's name added as aliases at runtime (sidechat/names.py): spelling
+  rules only (-y/-ie/-i/-ee/-ey, doubled or single consonants, -a/-ah, ph/f), never picked from a
+  test, and never the lower-cased name. Both builds scored plain and with spellings on SLURP
+  (written, heard, heard with the keyterm), Duplex-MPE, the Ambient Bench, the pilot, the demo lines
+  and the gen-0.2 and gen-0.4 tests (which hold name-as-a-word and sound-alike lines), so any new
+  false answers show. AMI is left out: its agent, Atlas, gets no spellings. SLURP's audio stays test
+  only (SD-23).
+forecast block:
+  campaign: exp-058-side-phase6-names
+  decision it enables: whether to turn on name spellings and the keyterm by default in the runtime and the Pipecat adapter
+  token forecast: none
+  external forecast: Deepgram, about 133 minutes (about $0.60, cap $3); Jev, about 2,766 requests (about $0.10, cap $3)
+  Modal forecast: one CPU container for about 15 min, four H100 scoring passes of about 8 min, one Jev container
+  retry cap: 0
+  spend cap: $8 in all
+  stop condition: summary in R2
+  approved by Jon on: 2026-11-19 ("Yes, start it", to the name-matching fix)
+forecast_usd: about $3.50
+step experiments: exp-058-side-phase6-names-stt, exp-058-side-phase6-names-jev
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.phase6::run --exp exp-058-side-phase6-names --test names
+results: uv run python -m sidechat.pipeline.results exp-058-side-phase6-names
+actual_usd: about $2.10 (Deepgram $0.57, Jev about $0.01 with 204 new requests, Modal about $1.50)
+result:
+  keyterm: "Deepgram wrote Olly in 48 of 61 named requests (5 without); inserted it into 4 of 2,705 unnamed ones. Named answered as heard: default 13.1% -> 73.8%, agent-1x 6.6% -> 59.0%, Jev 49.2% -> 73.8%"
+  spellings: "small and mixed: agent-1x heard named 6.6% -> 18.0% (59.0% -> 65.6% with the keyterm), default no gain; Duplex-MPE named answered 98.7% -> 97.3% for agent-1x and a few more answers to lines for others. Left off"
+  report: reports/2026-11-19-side-phase6-names.md

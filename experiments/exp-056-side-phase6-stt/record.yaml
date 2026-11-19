@@ -1,0 +1,35 @@
+experiment_id: exp-056-side-phase6-stt
+status: done (2026-11-19); actual about $5.50
+track: sidechat (phase 6, real speech)
+what: >
+  Scorecard item 15 from found data, since no real calls can be recorded (Jon, 2026-11-19: "we have
+  to work with what we can find"). AMI's per-speaker headset audio (edinburghcstr/ami, ihm, CC BY
+  4.0) for the 22 labelled meetings and the silence test's meetings, through Deepgram nova-3 with
+  punctuation and formatting. Each word goes to the AMI dialogue act of the same speaker that holds
+  its midpoint, so lines keep AMI's boundaries and human labels; acts heard as nothing are left out.
+  Then Jev, round 3 (default build) and rc0.2's agent-1x build on the transcribed lines, compared
+  with the same lines as written. Every AMI line is for people, so this measures whether real
+  transcription errors make a system answer or hold for people's talk. Lines for the agent in real
+  speech are not covered: SLURP's recordings are CC BY-NC (only its text is CC BY), Jon's call.
+forecast block:
+  campaign: exp-056-side-phase6-stt
+  decision it enables: whether item 15 is met, and whether the agent-1x build holds up on real speech
+  token forecast: none
+  external forecast: Deepgram, about 1,300 minutes of meeting speech at about $0.0043 a minute (about $6, cap $15); Jev, about 18,500 requests (about $0.65, cap $3)
+  Modal forecast: one CPU container for 1 to 2 h (14 GB of audio read, 38 meetings kept), two short H100 scoring passes, one Jev container
+  retry cap: 0 for the transcription (it resumes by meeting from R2 if run again)
+  spend cap: $20 in all
+  stop condition: summary in R2
+  approved by Jon on: 2026-11-19 (phase 6 with found data)
+forecast_usd: about $9
+step experiments: exp-056-side-phase6-stt-stt, exp-056-side-phase6-stt-jev
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.phase6::run --exp exp-056-side-phase6-stt
+results: uv run python -m sidechat.pipeline.results exp-056-side-phase6-stt
+actual_usd: about $5.50 (Deepgram $4.05, Jev $0.56, Modal about $1)
+result:
+  item_15: "met by both builds: gap -0.02 points (default) and 0.00 (agent-1x) on 8,202 AMI labelled lines; Jev holds 13.5-15.1% either way"
+  stt: "26,622 dialogue acts in 34 meetings, 941 minutes, word error rate 25.7%, 4,869 heard as nothing (left out), 0 failed requests"
+  silence_test: "answered outright as heard: default 0, agent-1x 1, Jev 2 of 8,577"
+  report: reports/2026-11-19-side-phase6-real-speech.md

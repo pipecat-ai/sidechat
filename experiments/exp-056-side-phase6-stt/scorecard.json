@@ -1,0 +1,745 @@
+{
+ "exp": "exp-056-side-phase6-stt",
+ "stt": {
+  "stt": {
+   "service": "Deepgram",
+   "url": "https://api.deepgram.com/v1/listen",
+   "params": {
+    "model": "nova-3",
+    "language": "en",
+    "punctuate": "true",
+    "smart_format": "true"
+   }
+  },
+  "audio": {
+   "repo": "edinburghcstr/ami",
+   "revision": "46f28f2503e2ec48f8867a84eef356c70476beab",
+   "config": "ihm",
+   "licence": "CC BY 4.0"
+  },
+  "labels": {
+   "repo": "ACloudCenter/ami-addressee",
+   "revision": "4bab33cda7800e616f429da1be956f9ff4075511"
+  },
+  "meetings": {
+   "labelled": [
+    "ES2002a",
+    "ES2002c",
+    "ES2002d",
+    "ES2008a",
+    "ES2008b",
+    "ES2009c",
+    "ES2009d",
+    "IS1000a",
+    "IS1001a",
+    "IS1001b",
+    "IS1001c",
+    "IS1003b",
+    "IS1003d",
+    "IS1005a",
+    "IS1006b",
+    "IS1006d",
+    "IS1008a",
+    "IS1008b",
+    "IS1008c",
+    "IS1008d",
+    "TS3005a",
+    "TS3005b"
+   ],
+   "silence_test": [
+    "ES2012a",
+    "ES2012b",
+    "ES2012c",
+    "ES2012d",
+    "IB4003",
+    "IS1002b",
+    "IS1002c",
+    "IS1002d",
+    "TS3012a",
+    "TS3012b",
+    "TS3012c",
+    "TS3012d"
+   ]
+  },
+  "no_audio": [],
+  "speaker_match": {
+   "ES2002a": {
+    "B": "FEE005",
+    "D": "MEE008",
+    "A": "MEE006",
+    "C": "MEE007"
+   },
+   "ES2002c": {
+    "A": "MEE006",
+    "D": "MEE008",
+    "B": "FEE005",
+    "C": "MEE007"
+   },
+   "ES2002d": {
+    "B": "FEE005",
+    "A": "MEE006",
+    "D": "MEE007",
+    "C": "MEE008"
+   },
+   "ES2008a": {
+    "D": "FEE032",
+    "A": "FEE029",
+    "B": "FEE030",
+    "C": "MEE031"
+   },
+   "ES2008b": {
+    "A": "FEE029",
+    "C": "MEE031",
+    "B": "FEE030",
+    "D": "FEE032"
+   },
+   "ES2009c": {
+    "D": "FEE036",
+    "A": "MEE033",
+    "B": "MEE034",
+    "C": "MEE035"
+   },
+   "ES2009d": {
+    "D": "FEE036",
+    "C": "MEE035",
+    "A": "MEE033",
+    "B": "MEE034"
+   },
+   "IS1000a": {
+    "C": "MIO050",
+    "D": "MIO016",
+    "B": "MIO082",
+    "A": "FIE081"
+   },
+   "IS1001a": {
+    "B": "MIO012",
+    "A": "MIO043",
+    "C": "MIO020",
+    "D": "FIO074"
+   },
+   "IS1001b": {
+    "C": "MIO020",
+    "A": "MIO043",
+    "B": "MIO012",
+    "D": "FIO074"
+   },
+   "IS1001c": {
+    "A": "MIO043",
+    "C": "MIO012",
+    "B": "MIO020",
+    "D": "FIO074"
+   },
+   "IS1003b": {
+    "C": "FIO017",
+    "A": "MIO023",
+    "B": "MIO005",
+    "D": "MIO035"
+   },
+   "IS1003d": {
+    "B": "MIO005",
+    "D": "MIO023",
+    "C": "MIO035",
+    "A": "FIO017"
+   },
+   "IS1005a": {
+    "B": "MIO077",
+    "A": "MIO055",
+    "D": "MIE002",
+    "C": "MIO076"
+   },
+   "IS1006b": {
+    "A": "FIO041",
+    "D": "MIO008",
+    "B": "MIO040",
+    "C": "MIO078"
+   },
+   "IS1006d": {
+    "A": "FIO041",
+    "D": "MIO008",
+    "B": "MIO040",
+    "C": "MIO078"
+   },
+   "IS1008a": {
+    "C": "FIE073",
+    "A": "MIO086",
+    "B": "FIE038",
+    "D": "MIE085"
+   },
+   "IS1008b": {
+    "A": "MIO086",
+    "C": "FIE038",
+    "B": "FIE073",
+    "D": "MIE085"
+   },
+   "IS1008c": {
+    "A": "MIO086",
+    "C": "FIE073",
+    "B": "FIE038",
+    "D": "MIE085"
+   },
+   "IS1008d": {
+    "B": "FIE073",
+    "A": "MIO086",
+    "C": "FIE038",
+    "D": "MIE085"
+   },
+   "TS3005a": {
+    "A": "MTD017PM",
+    "C": "MTD018ID",
+    "B": "FTD019UID",
+    "D": "MTD020ME"
+   },
+   "TS3005b": {
+    "A": "MTD017PM",
+    "C": "MTD018ID",
+    "B": "FTD019UID",
+    "D": "MTD020ME"
+   },
+   "ES2012a": {
+    "A": "MEE045",
+    "D": "MEE048",
+    "C": "FEE047",
+    "B": "FEE046"
+   },
+   "ES2012b": {
+    "A": "MEE045",
+    "C": "FEE047",
+    "D": "MEE048",
+    "B": "FEE046"
+   },
+   "ES2012c": {
+    "A": "MEE045",
+    "B": "FEE046",
+    "C": "FEE047",
+    "D": "MEE048"
+   },
+   "ES2012d": {
+    "A": "MEE045",
+    "B": "FEE046",
+    "C": "FEE047",
+    "D": "MEE048"
+   },
+   "IB4003": {
+    "D": "MIO039",
+    "C": "FIE037",
+    "A": "MIO036",
+    "B": "MIO094"
+   },
+   "IS1002b": {
+    "A": "MIE080",
+    "B": "MIE029",
+    "D": "MIE083",
+    "C": "MIO026"
+   },
+   "IS1002c": {
+    "A": "MIE080",
+    "D": "MIE083",
+    "C": "MIO026",
+    "B": "MIE029"
+   },
+   "IS1002d": {
+    "A": "MIE080",
+    "D": "MIE083",
+    "B": "MIE029",
+    "C": "MIO026"
+   },
+   "TS3012a": {
+    "A": "MTD045PM",
+    "B": "MTD047UID",
+    "D": "MTD048ME",
+    "C": "MTD046ID"
+   },
+   "TS3012b": {
+    "A": "MTD045PM",
+    "B": "MTD047UID",
+    "D": "MTD048ME",
+    "C": "MTD046ID"
+   },
+   "TS3012c": {
+    "C": "MTD046ID",
+    "D": "MTD048ME",
+    "A": "MTD045PM",
+    "B": "MTD047UID"
+   },
+   "TS3012d": {
+    "A": "MTD045PM",
+    "B": "MTD047UID",
+    "D": "MTD048ME",
+    "C": "MTD046ID"
+   }
+  },
+  "dialogue_acts": 26622,
+  "empty_transcripts": 4869,
+  "word_error_rate": 0.2565,
+  "minutes_heard_this_run": 940.7,
+  "failed_requests_this_run": 0,
+  "built_at": "2026-11-19T21:26:23+00:00"
+ },
+ "table": {
+  "AMI labelled meetings": {
+   "Default build (round 3, 150M)": {
+    "n": 8202,
+    "written": {
+     "quiet": {
+      "value": 0.9988,
+      "k": 8192,
+      "n": 8202,
+      "ci95": [
+       0.9978,
+       0.9993
+      ]
+     },
+     "answered": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8202,
+      "ci95": [
+       0.0,
+       0.0005
+      ]
+     },
+     "held": {
+      "value": 0.0012,
+      "k": 10,
+      "n": 8202,
+      "ci95": [
+       0.0007,
+       0.0022
+      ]
+     }
+    },
+    "heard": {
+     "quiet": {
+      "value": 0.9985,
+      "k": 8190,
+      "n": 8202,
+      "ci95": [
+       0.9974,
+       0.9992
+      ]
+     },
+     "answered": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8202,
+      "ci95": [
+       0.0,
+       0.0005
+      ]
+     },
+     "held": {
+      "value": 0.0015,
+      "k": 12,
+      "n": 8202,
+      "ci95": [
+       0.0008,
+       0.0026
+      ]
+     }
+    },
+    "gap": {
+     "n": 8202,
+     "a_right": 8192,
+     "b_right": 8190,
+     "only_a": 4,
+     "only_b": 2,
+     "diff": -0.0002,
+     "ci95": [
+      -0.0008,
+      0.0003
+     ],
+     "worse_beyond_noise": false,
+     "better_beyond_noise": false
+    }
+   },
+   "agent-1x build (32M)": {
+    "n": 8202,
+    "written": {
+     "quiet": {
+      "value": 0.9999,
+      "k": 8201,
+      "n": 8202,
+      "ci95": [
+       0.9993,
+       1.0
+      ]
+     },
+     "answered": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8202,
+      "ci95": [
+       0.0,
+       0.0005
+      ]
+     },
+     "held": {
+      "value": 0.0001,
+      "k": 1,
+      "n": 8202,
+      "ci95": [
+       0.0,
+       0.0007
+      ]
+     }
+    },
+    "heard": {
+     "quiet": {
+      "value": 0.9999,
+      "k": 8201,
+      "n": 8202,
+      "ci95": [
+       0.9993,
+       1.0
+      ]
+     },
+     "answered": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8202,
+      "ci95": [
+       0.0,
+       0.0005
+      ]
+     },
+     "held": {
+      "value": 0.0001,
+      "k": 1,
+      "n": 8202,
+      "ci95": [
+       0.0,
+       0.0007
+      ]
+     }
+    },
+    "gap": {
+     "n": 8202,
+     "a_right": 8201,
+     "b_right": 8201,
+     "only_a": 0,
+     "only_b": 0,
+     "diff": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "worse_beyond_noise": false,
+     "better_beyond_noise": false
+    }
+   },
+   "Jev": {
+    "n": 8202,
+    "written": {
+     "quiet": {
+      "value": 0.8486,
+      "k": 6960,
+      "n": 8202,
+      "ci95": [
+       0.8407,
+       0.8562
+      ]
+     },
+     "answered": {
+      "value": 0.0001,
+      "k": 1,
+      "n": 8202,
+      "ci95": [
+       0.0,
+       0.0007
+      ]
+     },
+     "held": {
+      "value": 0.1513,
+      "k": 1241,
+      "n": 8202,
+      "ci95": [
+       0.1437,
+       0.1592
+      ]
+     }
+    },
+    "heard": {
+     "quiet": {
+      "value": 0.8652,
+      "k": 7096,
+      "n": 8202,
+      "ci95": [
+       0.8576,
+       0.8724
+      ]
+     },
+     "answered": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8202,
+      "ci95": [
+       0.0,
+       0.0005
+      ]
+     },
+     "held": {
+      "value": 0.1348,
+      "k": 1106,
+      "n": 8202,
+      "ci95": [
+       0.1276,
+       0.1424
+      ]
+     }
+    },
+    "gap": {
+     "n": 8202,
+     "a_right": 6960,
+     "b_right": 7096,
+     "only_a": 240,
+     "only_b": 376,
+     "diff": 0.0166,
+     "ci95": [
+      0.0107,
+      0.0225
+     ],
+     "worse_beyond_noise": false,
+     "better_beyond_noise": true
+    }
+   }
+  },
+  "AMI silence test": {
+   "Default build (round 3, 150M)": {
+    "n": 8577,
+    "written": {
+     "quiet": {
+      "value": 0.9987,
+      "k": 8566,
+      "n": 8577,
+      "ci95": [
+       0.9977,
+       0.9993
+      ]
+     },
+     "answered": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8577,
+      "ci95": [
+       0.0,
+       0.0004
+      ]
+     },
+     "held": {
+      "value": 0.0013,
+      "k": 11,
+      "n": 8577,
+      "ci95": [
+       0.0007,
+       0.0023
+      ]
+     }
+    },
+    "heard": {
+     "quiet": {
+      "value": 0.9992,
+      "k": 8570,
+      "n": 8577,
+      "ci95": [
+       0.9983,
+       0.9996
+      ]
+     },
+     "answered": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8577,
+      "ci95": [
+       0.0,
+       0.0004
+      ]
+     },
+     "held": {
+      "value": 0.0008,
+      "k": 7,
+      "n": 8577,
+      "ci95": [
+       0.0004,
+       0.0017
+      ]
+     }
+    },
+    "gap": {
+     "n": 8577,
+     "a_right": 8566,
+     "b_right": 8570,
+     "only_a": 2,
+     "only_b": 6,
+     "diff": 0.0005,
+     "ci95": [
+      -0.0002,
+      0.0011
+     ],
+     "worse_beyond_noise": false,
+     "better_beyond_noise": false
+    }
+   },
+   "agent-1x build (32M)": {
+    "n": 8577,
+    "written": {
+     "quiet": {
+      "value": 1.0,
+      "k": 8577,
+      "n": 8577,
+      "ci95": [
+       0.9996,
+       1.0
+      ]
+     },
+     "answered": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8577,
+      "ci95": [
+       0.0,
+       0.0004
+      ]
+     },
+     "held": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8577,
+      "ci95": [
+       0.0,
+       0.0004
+      ]
+     }
+    },
+    "heard": {
+     "quiet": {
+      "value": 0.9999,
+      "k": 8576,
+      "n": 8577,
+      "ci95": [
+       0.9993,
+       1.0
+      ]
+     },
+     "answered": {
+      "value": 0.0001,
+      "k": 1,
+      "n": 8577,
+      "ci95": [
+       0.0,
+       0.0007
+      ]
+     },
+     "held": {
+      "value": 0.0,
+      "k": 0,
+      "n": 8577,
+      "ci95": [
+       0.0,
+       0.0004
+      ]
+     }
+    },
+    "gap": {
+     "n": 8577,
+     "a_right": 8577,
+     "b_right": 8576,
+     "only_a": 1,
+     "only_b": 0,
+     "diff": -0.0001,
+     "ci95": [
+      -0.0003,
+      0.0001
+     ],
+     "worse_beyond_noise": false,
+     "better_beyond_noise": false
+    }
+   },
+   "Jev": {
+    "n": 8577,
+    "written": {
+     "quiet": {
+      "value": 0.8852,
+      "k": 7592,
+      "n": 8577,
+      "ci95": [
+       0.8782,
+       0.8917
+      ]
+     },
+     "answered": {
+      "value": 0.0001,
+      "k": 1,
+      "n": 8577,
+      "ci95": [
+       0.0,
+       0.0007
+      ]
+     },
+     "held": {
+      "value": 0.1147,
+      "k": 984,
+      "n": 8577,
+      "ci95": [
+       0.1082,
+       0.1216
+      ]
+     }
+    },
+    "heard": {
+     "quiet": {
+      "value": 0.8902,
+      "k": 7635,
+      "n": 8577,
+      "ci95": [
+       0.8834,
+       0.8966
+      ]
+     },
+     "answered": {
+      "value": 0.0002,
+      "k": 2,
+      "n": 8577,
+      "ci95": [
+       0.0001,
+       0.0008
+      ]
+     },
+     "held": {
+      "value": 0.1096,
+      "k": 940,
+      "n": 8577,
+      "ci95": [
+       0.1032,
+       0.1164
+      ]
+     }
+    },
+    "gap": {
+     "n": 8577,
+     "a_right": 7592,
+     "b_right": 7635,
+     "only_a": 203,
+     "only_b": 246,
+     "diff": 0.005,
+     "ci95": [
+      0.0002,
+      0.0099
+     ],
+     "worse_beyond_noise": false,
+     "better_beyond_noise": true
+    }
+   }
+  }
+ },
+ "verdict": {
+  "Default build (round 3, 150M)": {
+   "met": true,
+   "why": "gap -0.02 points (bar: no worse than -3); left alone as heard 99.85%, Jev 86.52%"
+  },
+  "agent-1x build (32M)": {
+   "met": true,
+   "why": "gap +0.00 points (bar: no worse than -3); left alone as heard 99.99%, Jev 86.52%"
+  }
+ },
+ "finished_at": "2026-11-19T21:29:57+00:00"
+}

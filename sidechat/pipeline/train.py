@@ -418,6 +418,56 @@ def score(run_id: str, corpus: str, test_corpus: str = "", extra_sets: str = "")
 
 
 @app.function(
+    image=image, gpu="H100", cpu=8.0, memory=65536, timeout=2 * 3600, secrets=_secrets(), volumes={"/cache": hf_cache}
+)
+def score_sets(run_id: str, sets: str, names: str = "") -> dict:
+    """Score a trained model on more sets (comma-separated `build_rows` names) at the thresholds its
+    own scoring chose, without scoring everything again. Predictions go where `score` puts them;
+    the cards go to predictions/<run_id>/sets/<rows_id>.json. `names` "variants" first adds other
+    spellings of the agent's name as aliases (`sidechat/names.py`) and keeps everything under
+    predictions/<run_id>/variants/ instead; "plain" scores without them under .../plain/."""
+    from sidechat import names as N
+    from sidechat.lib import r2
+    from sidechat.sources import build
+    from sidechat.train import evaluate as E
+    from sidechat.train import model as M
+
+    s3 = r2.client()
+    card = r2.get_json(s3, f"{r2.PREFIX}/predictions/{run_id}/scorecard.json") or {}
+    t = card.get("thresholds")
+    if not t:
+        raise ValueError(f"{run_id} has no stored thresholds: score it first")
+    net, tok, config = _load(s3, run_id, "cuda")
+    out = {}
+    for which in [x.strip() for x in sets.split(",") if x.strip()]:
+        rows, manifest, _ = build.build_rows(which)
+        rows_id = manifest["rows_id"]
+        where = f"{r2.PREFIX}/predictions/{run_id}"
+        if names == "variants":
+            rows = [N.row_with_variants(r) for r in rows]
+            where += "/variants"
+        elif names == "plain":  # the same, without variants, kept apart from the stored predictions
+            where += "/plain"
+        elif names:
+            raise ValueError(f"unknown names option {names!r}")
+        preds = M.predict(net, tok, rows, config["max_len"], "cuda", config["temperatures"], spec=config)
+        r2.put_jsonl(s3, f"{where}/{rows_id}.jsonl", preds)
+        jev = {
+            x["row_id"]: x for x in r2.get_jsonl(s3, f"{r2.PREFIX}/baselines/jev-demo-0.1/scores/{rows_id}.jsonl") or []
+        }
+        by_id = {p["row_id"]: p for p in preds}
+        entry = {"manifest": manifest, **E.set_card(rows, by_id, t, jev or None)}
+        if any(r["tags"].get("kind") for r in rows):
+            entry["by_kind"] = E.sliced(rows, by_id, t, "kind", jev or None, min_n=1)
+        if rows and "event" in rows[0]["tags"]:
+            ce = [{**r, "tags": {**r["tags"], "ce": r["tags"]["condition"] + "/" + r["tags"]["event"]}} for r in rows]
+            entry["by_condition_event"] = E.sliced(ce, by_id, t, "ce", jev or None)
+        r2.put_json(s3, f"{where}/sets/{rows_id}.json", entry)
+        out[rows_id] = {"rows": len(rows)}
+    return out
+
+
+@app.function(
     name="train_run",
     image=image,
     cpu=2.0,

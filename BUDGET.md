@@ -71,6 +71,9 @@ estimates from run time, not read from billing.
 - 2026-11-19 · exp-052, exp-053 · The round 3 students again: seed 1, and teacher share 0.5 · about $18 · about $26
 - 2026-11-19 · exp-054-side-publish-rc0.2 · rc0.2 to the Hub: the agent-1x build and its rows · under $0.50 · under $0.05
 - 2026-11-19 · exp-055-side-round7 · Student round 2 for agent-1x: people-only histories, 4 students, exports, timing · about $25 · about $19
+- 2026-11-19 · exp-056-side-phase6-stt · AMI's headset audio through Deepgram; Jev and two models on what was heard · about $9 · about $5.50
+- 2026-11-19 · exp-057-side-phase6-slurp · SLURP's recorded requests in AMI meetings, written and heard; Jev and two models · about $3 · about $1.80
+- 2026-11-19 · exp-058-side-phase6-names · The agent's name as heard: Deepgram keyterm, name spellings as aliases, both builds on every set · about $3.50 · about $2.10
 
 Note for Phase 3: member c costs 6 to 7 times member a, because its provider cached almost none of
 the shared prompt (about 7% of input tokens against 95% for a and b). At the plan's ~5,500
@@ -78,4 +81,4 @@ committee lines that is about $100 for c alone. Its batch API is half price.
 
 ## Total
 
-About $310 spent of the $1,000 cap. Nothing in flight.
+About $319 spent of the $1,000 cap. Nothing in flight.

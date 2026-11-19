@@ -1,0 +1,990 @@
+{
+ "exp": "exp-058-side-phase6-names",
+ "test": "names",
+ "keyterm_stt": {
+  "stt": {
+   "service": "Deepgram",
+   "url": "https://api.deepgram.com/v1/listen",
+   "params": {
+    "model": "nova-3",
+    "language": "en",
+    "punctuate": "true",
+    "smart_format": "true",
+    "keyterm": "Olly"
+   }
+  },
+  "text": {
+   "url": "https://raw.githubusercontent.com/pswietojanski/slurp/8eb16545762be97ace75334109d73824217311f1/dataset/slurp/test.jsonl",
+   "licence": "CC BY 4.0"
+  },
+  "audio": {
+   "url": "https://zenodo.org/api/records/4274930/files/slurp_real.tar.gz/content",
+   "licence": "CC BY-NC 4.0",
+   "use": "test only (SD-23)"
+  },
+  "utterances": 2974,
+  "with_headset": 2766,
+  "heard": 2766,
+  "failed": 0,
+  "empty": 0,
+  "named": 61,
+  "word_error_rate": 0.1405,
+  "minutes": 132.7,
+  "built_at": "2026-11-19T22:26:46+00:00"
+ },
+ "table": {
+  "Default build (round 3, 150M), plain": {
+   "ambient-bench-0.1 right": {
+    "value": 0.9872,
+    "k": 15591,
+    "n": 15793,
+    "ci95": [
+     0.9853,
+     0.9888
+    ]
+   },
+   "ambient-bench-0.1 for others, answered outright": {
+    "value": 0.0021,
+    "k": 33,
+    "n": 15793,
+    "ci95": [
+     0.0015,
+     0.0029
+    ]
+   },
+   "demo-lines-0.1 right": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "demo-lines-0.1 for others, answered outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 26,
+    "ci95": [
+     0.0,
+     0.1287
+    ]
+   },
+   "Duplex-MPE right": {
+    "value": 0.9667,
+    "k": 50592,
+    "n": 52336,
+    "ci95": [
+     0.9651,
+     0.9682
+    ]
+   },
+   "Duplex-MPE for others, answered outright": {
+    "value": 0.0022,
+    "k": 97,
+    "n": 44528,
+    "ci95": [
+     0.0018,
+     0.0027
+    ]
+   },
+   "Duplex-MPE named request answered": {
+    "value": 0.995,
+    "k": 1990,
+    "n": 2000,
+    "ci95": [
+     0.9908,
+     0.9973
+    ]
+   },
+   "Duplex-MPE name mentioned, answered outright (N1)": {
+    "value": 0.0028,
+    "k": 17,
+    "n": 6080,
+    "ci95": [
+     0.0017,
+     0.0045
+    ]
+   },
+   "gen-0.2.test@anonymous right": {
+    "value": 0.9877,
+    "k": 15959,
+    "n": 16158,
+    "ci95": [
+     0.9859,
+     0.9893
+    ]
+   },
+   "gen-0.2.test@anonymous: misheard name answered": {
+    "value": 1.0,
+    "k": 63,
+    "n": 63,
+    "ci95": [
+     0.9425,
+     1.0
+    ]
+   },
+   "gen-0.2.test@anonymous: name as a word / sound-alike left alone": {
+    "value": 0.9476,
+    "k": 199,
+    "n": 210,
+    "ci95": [
+     0.9087,
+     0.9705
+    ]
+   },
+   "gen-0.4.test@anonymous right": {
+    "value": 0.9666,
+    "k": 10038,
+    "n": 10385,
+    "ci95": [
+     0.963,
+     0.9699
+    ]
+   },
+   "gen-0.4.test@anonymous: misheard name answered": {
+    "value": 1.0,
+    "k": 37,
+    "n": 37,
+    "ci95": [
+     0.9059,
+     1.0
+    ]
+   },
+   "gen-0.4.test@anonymous: name as a word / sound-alike left alone": {
+    "value": 0.9579,
+    "k": 91,
+    "n": 95,
+    "ci95": [
+     0.8967,
+     0.9835
+    ]
+   },
+   "pilot-0.4@anonymous right": {
+    "value": 0.8741,
+    "k": 236,
+    "n": 270,
+    "ci95": [
+     0.8292,
+     0.9085
+    ]
+   },
+   "pilot-0.4@anonymous for others, answered outright": {
+    "value": 0.0429,
+    "k": 7,
+    "n": 163,
+    "ci95": [
+     0.021,
+     0.086
+    ]
+   },
+   "slurp-in-ami-0.1: named answered now": {
+    "value": 0.8525,
+    "k": 52,
+    "n": 61,
+    "ci95": [
+     0.7428,
+     0.9204
+    ]
+   },
+   "slurp-in-ami-0.1: unnamed held": {
+    "value": 0.1815,
+    "k": 491,
+    "n": 2705,
+    "ci95": [
+     0.1674,
+     0.1965
+    ]
+   },
+   "slurp-in-ami-stt-0.1: named answered now": {
+    "value": 0.1311,
+    "k": 8,
+    "n": 61,
+    "ci95": [
+     0.068,
+     0.238
+    ]
+   },
+   "slurp-in-ami-stt-0.1: unnamed held": {
+    "value": 0.1668,
+    "k": 451,
+    "n": 2704,
+    "ci95": [
+     0.1532,
+     0.1813
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: named answered now": {
+    "value": 0.7377,
+    "k": 45,
+    "n": 61,
+    "ci95": [
+     0.6156,
+     0.8316
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: unnamed held": {
+    "value": 0.1656,
+    "k": 448,
+    "n": 2705,
+    "ci95": [
+     0.1521,
+     0.1801
+    ]
+   }
+  },
+  "Jev": {
+   "ambient-bench-0.1 right": {
+    "value": 0.8535,
+    "k": 13479,
+    "n": 15793,
+    "ci95": [
+     0.8479,
+     0.8589
+    ]
+   },
+   "ambient-bench-0.1 for others, answered outright": {
+    "value": 0.0008,
+    "k": 13,
+    "n": 15793,
+    "ci95": [
+     0.0005,
+     0.0014
+    ]
+   },
+   "demo-lines-0.1 right": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "demo-lines-0.1 for others, answered outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 26,
+    "ci95": [
+     0.0,
+     0.1287
+    ]
+   },
+   "Duplex-MPE right": {
+    "value": 0.8311,
+    "k": 43495,
+    "n": 52336,
+    "ci95": [
+     0.8278,
+     0.8343
+    ]
+   },
+   "Duplex-MPE for others, answered outright": {
+    "value": 0.0041,
+    "k": 182,
+    "n": 44528,
+    "ci95": [
+     0.0035,
+     0.0047
+    ]
+   },
+   "Duplex-MPE named request answered": {
+    "value": 0.9915,
+    "k": 1983,
+    "n": 2000,
+    "ci95": [
+     0.9864,
+     0.9947
+    ]
+   },
+   "Duplex-MPE name mentioned, answered outright (N1)": {
+    "value": 0.0,
+    "k": 0,
+    "n": 6080,
+    "ci95": [
+     0.0,
+     0.0006
+    ]
+   },
+   "gen-0.2.test@anonymous right": null,
+   "gen-0.2.test@anonymous: misheard name answered": null,
+   "gen-0.2.test@anonymous: name as a word / sound-alike left alone": null,
+   "gen-0.4.test@anonymous right": null,
+   "gen-0.4.test@anonymous: misheard name answered": null,
+   "gen-0.4.test@anonymous: name as a word / sound-alike left alone": null,
+   "pilot-0.4@anonymous right": {
+    "value": 0.7778,
+    "k": 210,
+    "n": 270,
+    "ci95": [
+     0.7245,
+     0.8233
+    ]
+   },
+   "pilot-0.4@anonymous for others, answered outright": {
+    "value": 0.0184,
+    "k": 3,
+    "n": 163,
+    "ci95": [
+     0.0063,
+     0.0527
+    ]
+   },
+   "slurp-in-ami-0.1: named answered now": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61,
+    "ci95": [
+     0.9408,
+     1.0
+    ]
+   },
+   "slurp-in-ami-0.1: unnamed held": {
+    "value": 0.9013,
+    "k": 2438,
+    "n": 2705,
+    "ci95": [
+     0.8895,
+     0.912
+    ]
+   },
+   "slurp-in-ami-stt-0.1: named answered now": {
+    "value": 0.4918,
+    "k": 30,
+    "n": 61,
+    "ci95": [
+     0.3706,
+     0.614
+    ]
+   },
+   "slurp-in-ami-stt-0.1: unnamed held": {
+    "value": 0.8232,
+    "k": 2226,
+    "n": 2704,
+    "ci95": [
+     0.8084,
+     0.8371
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: named answered now": {
+    "value": 0.7377,
+    "k": 45,
+    "n": 61,
+    "ci95": [
+     0.6156,
+     0.8316
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: unnamed held": {
+    "value": 0.8207,
+    "k": 2220,
+    "n": 2705,
+    "ci95": [
+     0.8058,
+     0.8347
+    ]
+   }
+  },
+  "Default build (round 3, 150M), variants": {
+   "ambient-bench-0.1 right": {
+    "value": 0.9868,
+    "k": 15585,
+    "n": 15793,
+    "ci95": [
+     0.9849,
+     0.9885
+    ]
+   },
+   "ambient-bench-0.1 for others, answered outright": {
+    "value": 0.002,
+    "k": 31,
+    "n": 15793,
+    "ci95": [
+     0.0014,
+     0.0028
+    ]
+   },
+   "demo-lines-0.1 right": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "demo-lines-0.1 for others, answered outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 26,
+    "ci95": [
+     0.0,
+     0.1287
+    ]
+   },
+   "Duplex-MPE right": {
+    "value": 0.9655,
+    "k": 50533,
+    "n": 52336,
+    "ci95": [
+     0.964,
+     0.9671
+    ]
+   },
+   "Duplex-MPE for others, answered outright": {
+    "value": 0.0027,
+    "k": 119,
+    "n": 44528,
+    "ci95": [
+     0.0022,
+     0.0032
+    ]
+   },
+   "Duplex-MPE named request answered": {
+    "value": 0.992,
+    "k": 1984,
+    "n": 2000,
+    "ci95": [
+     0.987,
+     0.9951
+    ]
+   },
+   "Duplex-MPE name mentioned, answered outright (N1)": {
+    "value": 0.003,
+    "k": 18,
+    "n": 6080,
+    "ci95": [
+     0.0019,
+     0.0047
+    ]
+   },
+   "gen-0.2.test@anonymous right": {
+    "value": 0.9879,
+    "k": 15963,
+    "n": 16158,
+    "ci95": [
+     0.9861,
+     0.9895
+    ]
+   },
+   "gen-0.2.test@anonymous: misheard name answered": {
+    "value": 1.0,
+    "k": 63,
+    "n": 63,
+    "ci95": [
+     0.9425,
+     1.0
+    ]
+   },
+   "gen-0.2.test@anonymous: name as a word / sound-alike left alone": {
+    "value": 0.9476,
+    "k": 199,
+    "n": 210,
+    "ci95": [
+     0.9087,
+     0.9705
+    ]
+   },
+   "gen-0.4.test@anonymous right": {
+    "value": 0.9669,
+    "k": 10041,
+    "n": 10385,
+    "ci95": [
+     0.9633,
+     0.9701
+    ]
+   },
+   "gen-0.4.test@anonymous: misheard name answered": {
+    "value": 1.0,
+    "k": 37,
+    "n": 37,
+    "ci95": [
+     0.9059,
+     1.0
+    ]
+   },
+   "gen-0.4.test@anonymous: name as a word / sound-alike left alone": {
+    "value": 0.9579,
+    "k": 91,
+    "n": 95,
+    "ci95": [
+     0.8967,
+     0.9835
+    ]
+   },
+   "pilot-0.4@anonymous right": {
+    "value": 0.8741,
+    "k": 236,
+    "n": 270,
+    "ci95": [
+     0.8292,
+     0.9085
+    ]
+   },
+   "pilot-0.4@anonymous for others, answered outright": {
+    "value": 0.0429,
+    "k": 7,
+    "n": 163,
+    "ci95": [
+     0.021,
+     0.086
+    ]
+   },
+   "slurp-in-ami-0.1: named answered now": {
+    "value": 0.9016,
+    "k": 55,
+    "n": 61,
+    "ci95": [
+     0.8016,
+     0.9541
+    ]
+   },
+   "slurp-in-ami-0.1: unnamed held": {
+    "value": 0.1948,
+    "k": 527,
+    "n": 2705,
+    "ci95": [
+     0.1803,
+     0.2102
+    ]
+   },
+   "slurp-in-ami-stt-0.1: named answered now": {
+    "value": 0.1148,
+    "k": 7,
+    "n": 61,
+    "ci95": [
+     0.0567,
+     0.2184
+    ]
+   },
+   "slurp-in-ami-stt-0.1: unnamed held": {
+    "value": 0.1794,
+    "k": 485,
+    "n": 2704,
+    "ci95": [
+     0.1654,
+     0.1943
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: named answered now": {
+    "value": 0.7377,
+    "k": 45,
+    "n": 61,
+    "ci95": [
+     0.6156,
+     0.8316
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: unnamed held": {
+    "value": 0.1782,
+    "k": 482,
+    "n": 2705,
+    "ci95": [
+     0.1642,
+     0.1931
+    ]
+   }
+  },
+  "agent-1x build (32M), plain": {
+   "ambient-bench-0.1 right": {
+    "value": 0.9844,
+    "k": 15546,
+    "n": 15793,
+    "ci95": [
+     0.9823,
+     0.9862
+    ]
+   },
+   "ambient-bench-0.1 for others, answered outright": {
+    "value": 0.0059,
+    "k": 93,
+    "n": 15793,
+    "ci95": [
+     0.0048,
+     0.0072
+    ]
+   },
+   "demo-lines-0.1 right": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "demo-lines-0.1 for others, answered outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 26,
+    "ci95": [
+     0.0,
+     0.1287
+    ]
+   },
+   "Duplex-MPE right": {
+    "value": 0.9563,
+    "k": 50050,
+    "n": 52336,
+    "ci95": [
+     0.9545,
+     0.958
+    ]
+   },
+   "Duplex-MPE for others, answered outright": {
+    "value": 0.0026,
+    "k": 115,
+    "n": 44528,
+    "ci95": [
+     0.0022,
+     0.0031
+    ]
+   },
+   "Duplex-MPE named request answered": {
+    "value": 0.9865,
+    "k": 1973,
+    "n": 2000,
+    "ci95": [
+     0.9804,
+     0.9907
+    ]
+   },
+   "Duplex-MPE name mentioned, answered outright (N1)": {
+    "value": 0.0069,
+    "k": 42,
+    "n": 6080,
+    "ci95": [
+     0.0051,
+     0.0093
+    ]
+   },
+   "gen-0.2.test@anonymous right": {
+    "value": 0.9858,
+    "k": 15929,
+    "n": 16158,
+    "ci95": [
+     0.9839,
+     0.9875
+    ]
+   },
+   "gen-0.2.test@anonymous: misheard name answered": {
+    "value": 0.9841,
+    "k": 62,
+    "n": 63,
+    "ci95": [
+     0.9154,
+     0.9972
+    ]
+   },
+   "gen-0.2.test@anonymous: name as a word / sound-alike left alone": {
+    "value": 0.9571,
+    "k": 201,
+    "n": 210,
+    "ci95": [
+     0.9206,
+     0.9773
+    ]
+   },
+   "gen-0.4.test@anonymous right": {
+    "value": 0.9775,
+    "k": 10151,
+    "n": 10385,
+    "ci95": [
+     0.9744,
+     0.9802
+    ]
+   },
+   "gen-0.4.test@anonymous: misheard name answered": {
+    "value": 1.0,
+    "k": 37,
+    "n": 37,
+    "ci95": [
+     0.9059,
+     1.0
+    ]
+   },
+   "gen-0.4.test@anonymous: name as a word / sound-alike left alone": {
+    "value": 0.9579,
+    "k": 91,
+    "n": 95,
+    "ci95": [
+     0.8967,
+     0.9835
+    ]
+   },
+   "pilot-0.4@anonymous right": {
+    "value": 0.8741,
+    "k": 236,
+    "n": 270,
+    "ci95": [
+     0.8292,
+     0.9085
+    ]
+   },
+   "pilot-0.4@anonymous for others, answered outright": {
+    "value": 0.0307,
+    "k": 5,
+    "n": 163,
+    "ci95": [
+     0.0132,
+     0.0698
+    ]
+   },
+   "slurp-in-ami-0.1: named answered now": {
+    "value": 0.6393,
+    "k": 39,
+    "n": 61,
+    "ci95": [
+     0.5139,
+     0.7483
+    ]
+   },
+   "slurp-in-ami-0.1: unnamed held": {
+    "value": 0.0303,
+    "k": 82,
+    "n": 2705,
+    "ci95": [
+     0.0245,
+     0.0375
+    ]
+   },
+   "slurp-in-ami-stt-0.1: named answered now": {
+    "value": 0.0656,
+    "k": 4,
+    "n": 61,
+    "ci95": [
+     0.0258,
+     0.1568
+    ]
+   },
+   "slurp-in-ami-stt-0.1: unnamed held": {
+    "value": 0.0355,
+    "k": 96,
+    "n": 2704,
+    "ci95": [
+     0.0292,
+     0.0432
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: named answered now": {
+    "value": 0.5902,
+    "k": 36,
+    "n": 61,
+    "ci95": [
+     0.465,
+     0.7046
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: unnamed held": {
+    "value": 0.0366,
+    "k": 99,
+    "n": 2705,
+    "ci95": [
+     0.0302,
+     0.0444
+    ]
+   }
+  },
+  "agent-1x build (32M), variants": {
+   "ambient-bench-0.1 right": {
+    "value": 0.9821,
+    "k": 15510,
+    "n": 15793,
+    "ci95": [
+     0.9799,
+     0.984
+    ]
+   },
+   "ambient-bench-0.1 for others, answered outright": {
+    "value": 0.0072,
+    "k": 113,
+    "n": 15793,
+    "ci95": [
+     0.006,
+     0.0086
+    ]
+   },
+   "demo-lines-0.1 right": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "demo-lines-0.1 for others, answered outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 26,
+    "ci95": [
+     0.0,
+     0.1287
+    ]
+   },
+   "Duplex-MPE right": {
+    "value": 0.9559,
+    "k": 50029,
+    "n": 52336,
+    "ci95": [
+     0.9541,
+     0.9576
+    ]
+   },
+   "Duplex-MPE for others, answered outright": {
+    "value": 0.0031,
+    "k": 139,
+    "n": 44528,
+    "ci95": [
+     0.0026,
+     0.0037
+    ]
+   },
+   "Duplex-MPE named request answered": {
+    "value": 0.973,
+    "k": 1946,
+    "n": 2000,
+    "ci95": [
+     0.9649,
+     0.9792
+    ]
+   },
+   "Duplex-MPE name mentioned, answered outright (N1)": {
+    "value": 0.0072,
+    "k": 44,
+    "n": 6080,
+    "ci95": [
+     0.0054,
+     0.0097
+    ]
+   },
+   "gen-0.2.test@anonymous right": {
+    "value": 0.9861,
+    "k": 15934,
+    "n": 16158,
+    "ci95": [
+     0.9842,
+     0.9878
+    ]
+   },
+   "gen-0.2.test@anonymous: misheard name answered": {
+    "value": 0.9841,
+    "k": 62,
+    "n": 63,
+    "ci95": [
+     0.9154,
+     0.9972
+    ]
+   },
+   "gen-0.2.test@anonymous: name as a word / sound-alike left alone": {
+    "value": 0.9571,
+    "k": 201,
+    "n": 210,
+    "ci95": [
+     0.9206,
+     0.9773
+    ]
+   },
+   "gen-0.4.test@anonymous right": {
+    "value": 0.9773,
+    "k": 10149,
+    "n": 10385,
+    "ci95": [
+     0.9742,
+     0.98
+    ]
+   },
+   "gen-0.4.test@anonymous: misheard name answered": {
+    "value": 1.0,
+    "k": 37,
+    "n": 37,
+    "ci95": [
+     0.9059,
+     1.0
+    ]
+   },
+   "gen-0.4.test@anonymous: name as a word / sound-alike left alone": {
+    "value": 0.9579,
+    "k": 91,
+    "n": 95,
+    "ci95": [
+     0.8967,
+     0.9835
+    ]
+   },
+   "pilot-0.4@anonymous right": {
+    "value": 0.8704,
+    "k": 235,
+    "n": 270,
+    "ci95": [
+     0.8251,
+     0.9053
+    ]
+   },
+   "pilot-0.4@anonymous for others, answered outright": {
+    "value": 0.0368,
+    "k": 6,
+    "n": 163,
+    "ci95": [
+     0.017,
+     0.078
+    ]
+   },
+   "slurp-in-ami-0.1: named answered now": {
+    "value": 0.6557,
+    "k": 40,
+    "n": 61,
+    "ci95": [
+     0.5305,
+     0.7625
+    ]
+   },
+   "slurp-in-ami-0.1: unnamed held": {
+    "value": 0.037,
+    "k": 100,
+    "n": 2705,
+    "ci95": [
+     0.0305,
+     0.0448
+    ]
+   },
+   "slurp-in-ami-stt-0.1: named answered now": {
+    "value": 0.1803,
+    "k": 11,
+    "n": 61,
+    "ci95": [
+     0.1038,
+     0.2947
+    ]
+   },
+   "slurp-in-ami-stt-0.1: unnamed held": {
+    "value": 0.0414,
+    "k": 112,
+    "n": 2704,
+    "ci95": [
+     0.0345,
+     0.0496
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: named answered now": {
+    "value": 0.6557,
+    "k": 40,
+    "n": 61,
+    "ci95": [
+     0.5305,
+     0.7625
+    ]
+   },
+   "slurp-in-ami-stt-keyterm-0.1: unnamed held": {
+    "value": 0.0421,
+    "k": 114,
+    "n": 2705,
+    "ci95": [
+     0.0352,
+     0.0504
+    ]
+   }
+  }
+ },
+ "finished_at": "2026-11-19T22:32:11+00:00"
+}

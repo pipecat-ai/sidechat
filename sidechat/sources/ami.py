@@ -24,6 +24,11 @@ FILES = {"all": "data/records_all.jsonl"}
 LICENCE = "CC BY 4.0"
 USE = "test only for now"
 AGENT = Agent(name="Atlas", role="AI assistant in the meeting")
+# The same lines as transcribed from AMI's headset audio by a real speech-to-text service
+# (`sidechat/pipeline/stt_ami.py`). A line or earlier turn whose transcript came back empty is
+# dropped, as a live pipeline would never pass it on.
+STT_SET = "ami-addressee-stt-0.1"
+STT_PREFIX = "stt/ami-deepgram-nova-3"  # under runs/side in R2: transcripts.jsonl and manifest.json
 
 
 def _clean(text: str) -> str:
@@ -31,7 +36,12 @@ def _clean(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def convert(records: list[dict]) -> list[dict]:
+def with_stt(records: list[dict], stt: dict[str, str]) -> list[dict]:
+    """The records with each dialogue act's text replaced by its transcript (empty if none)."""
+    return [{**r, "text": stt.get(r["da_id"], "")} for r in records]
+
+
+def convert(records: list[dict], set_name: str = SET) -> list[dict]:
     by_meeting: dict[str, list[dict]] = defaultdict(list)
     for r in records:
         if r.get("text") and r["text"].strip():
@@ -56,8 +66,8 @@ def convert(records: list[dict]) -> list[dict]:
                 source="human",
             )
             rec = SidechatRecord(
-                row_id=f"{SET}/{r['da_id']}",
-                set=SET,
+                row_id=f"{set_name}/{r['da_id']}",
+                set=set_name,
                 conv_id=meeting,
                 turn_index=i,
                 request=SidechatRequest(
@@ -86,6 +96,7 @@ def convert(records: list[dict]) -> list[dict]:
 # labelled set.
 
 SILENT_SET = "ami-silent-0.1"
+SILENT_STT_SET = "ami-silent-stt-0.1"
 SILENT_USE = "train, dev and test by meeting series; the 22 labelled meetings are never trained on"
 # Share of each dialogue act kept for train and dev: all suggestions, offers and reactions (where
 # bare instructions between people are), fewer statements, very few stalls and fragments.
@@ -115,11 +126,12 @@ def silent_split(series_id: str) -> str:
     return "train" if h < 70 else "dev" if h < 80 else "test"
 
 
-def convert_silent(records: list[dict], agent_names: list[str]) -> list[dict]:
+def convert_silent(records: list[dict], agent_names: list[str], set_name: str = "") -> list[dict]:
     """Rows from the unlabelled meetings, split by series. Train and dev get a training agent name
     drawn per meeting; test uses this set's usual agent, Atlas."""
     import random
 
+    set_name = set_name or SILENT_SET
     labelled = {series(r["meeting_id"]) for r in records if r.get("labeled")}
     by_meeting: dict[str, list[dict]] = defaultdict(list)
     for r in records:
@@ -140,8 +152,8 @@ def convert_silent(records: list[dict], agent_names: list[str]) -> list[dict]:
                 continue
             label = SidechatLabel(to="group", intent="other", expect="ignore", respond=0.0, source="ami-silent")
             rec = SidechatRecord(
-                row_id=f"{SILENT_SET}/{r['da_id']}",
-                set=SILENT_SET,
+                row_id=f"{set_name}/{r['da_id']}",
+                set=set_name,
                 conv_id=meeting,
                 turn_index=i,
                 request=SidechatRequest(

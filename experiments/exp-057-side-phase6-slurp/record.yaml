@@ -1,0 +1,35 @@
+experiment_id: exp-057-side-phase6-slurp
+status: done (2026-11-19); actual about $1.80
+track: sidechat (phase 6, real speech)
+what: >
+  Requests to the agent in real speech. SLURP's test-split requests with a close-talk headset
+  recording (2,766 of 2,974; 84 say the assistant's name, "Olly"), heard by Deepgram with the same
+  settings as exp-056, each said at a seeded point in an AMI silence-test meeting by one of its
+  speakers (sidechat/sources/slurp.py). The agent is Olly and has not spoken. Two sets share the
+  splices: as written (SLURP's text, AMI's transcripts) and as heard (Deepgram's text of both). Jev,
+  round 3 and rc0.2's agent-1x build on both. Labels follow guide 0.4: named requests are for the
+  agent; unnamed ones are open requests the agent should hold for. SLURP's audio is CC BY-NC 4.0:
+  test only, never trained on, nothing in git or on the Hub (SD-23).
+forecast block:
+  campaign: exp-057-side-phase6-slurp
+  decision it enables: how each system treats named and unnamed requests in real speech, and whether speech-to-text costs the named ones (the name misheard)
+  token forecast: none
+  external forecast: Deepgram, about 2,766 recordings of about 3 s (about 140 minutes, about $0.60, cap $5); Jev, about 5,500 requests (about $0.20, cap $3)
+  Modal forecast: one CPU container for about 30 min (a 3.9 GB archive read once), two short H100 scoring passes, one Jev container
+  retry cap: 0
+  spend cap: $10 in all
+  stop condition: summary in R2
+  approved by Jon on: 2026-11-19 ("Yes, test only", to SLURP's CC BY-NC recordings for testing)
+forecast_usd: about $3
+step experiments: exp-057-side-phase6-slurp-stt, exp-057-side-phase6-slurp-jev
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.phase6::run --exp exp-057-side-phase6-slurp --test slurp
+  --wait-for exp-056-side-phase6-stt-stt
+results: uv run python -m sidechat.pipeline.results exp-057-side-phase6-slurp
+actual_usd: about $1.80 (Deepgram $0.57, Jev $0.19, Modal about $1)
+result:
+  named_requests_answered: "written / heard: default 85.2% / 13.1%, agent-1x 63.9% / 6.6%, Jev 100% / 49.2% (61 lines)"
+  unnamed_requests_held: "written / heard: default 18.2% / 16.7%, agent-1x 3.0% / 3.5%, Jev 90.2% / 82.3% (2,704 lines); both builds miss 82-97%"
+  why_named_fall: "Deepgram wrote the name as Olly in 5 of 61 (Oli 21, Ollie 6, Ali 3); the agent's own name is matched exactly and case-sensitively"
+  report: reports/2026-11-19-side-phase6-real-speech.md

@@ -66,6 +66,7 @@ app = modal.App(APP_NAME)
 
 
 @app.function(
+    name="baseline_run",
     image=image,
     cpu=2.0,
     memory=4096,

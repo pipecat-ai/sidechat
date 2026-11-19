@@ -1,0 +1,24 @@
+{
+ "exp": "exp-057-side-phase6-slurp",
+ "app": "waystone-side-phase6",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T21:25:36+00:00",
+ "args": {
+  "steps": "stt,jev,score",
+  "jev_cap_usd": 3.0,
+  "test": "slurp",
+  "wait_for": "exp-056-side-phase6-stt-stt"
+ },
+ "steps": {
+  "stt": {
+   "state": "done",
+   "heard": 2766
+  },
+  "jev": "done",
+  "side-r3-ettin-150m-s0": "done",
+  "side-r6ttr3t-ettin-32m-s0": "done"
+ },
+ "updated_at": "2026-11-19T21:41:19+00:00",
+ "elapsed_s": 943
+}

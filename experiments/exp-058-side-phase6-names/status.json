@@ -1,0 +1,42 @@
+{
+ "exp": "exp-058-side-phase6-names",
+ "app": "waystone-side-phase6",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T21:50:03+00:00",
+ "args": {
+  "steps": "stt,jev,score",
+  "jev_cap_usd": 3.0,
+  "test": "names",
+  "wait_for": ""
+ },
+ "steps": {
+  "stt": {
+   "state": "done",
+   "heard": 2766
+  },
+  "jev": {
+   "state": "done",
+   "results": "runs/side/results/exp-058-side-phase6-names-jev",
+   "usage": {
+    "model": "jev-1.13.0",
+    "requests": 2766,
+    "reused": 2562,
+    "asked": 204,
+    "failed": 0,
+    "input_tokens": 164124,
+    "output_tokens": 7548,
+    "usd_per_m_input": 0.042,
+    "started_at": "2026-11-19T22:27:36+00:00",
+    "usd_estimate": 0.007,
+    "finished_at": "2026-11-19T22:27:39+00:00"
+   }
+  },
+  "side-r3-ettin-150m-s0 plain": "done",
+  "side-r3-ettin-150m-s0 variants": "done",
+  "side-r6ttr3t-ettin-32m-s0 plain": "done",
+  "side-r6ttr3t-ettin-32m-s0 variants": "done"
+ },
+ "updated_at": "2026-11-19T22:32:12+00:00",
+ "elapsed_s": 2529
+}

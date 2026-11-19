@@ -13,9 +13,21 @@ from collections import Counter
 from datetime import UTC, datetime
 
 from sidechat.schema import SCHEMA_VERSION
-from sidechat.sources import ambient_bench, ami, duplex_mpe, suites
+from sidechat.sources import ambient_bench, ami, duplex_mpe, slurp, suites
 
-SETS = ("demo", "pilot", "ambient", "duplex", "ami")
+SETS = (
+    "demo",
+    "pilot",
+    "ambient",
+    "duplex",
+    "ami",
+    "ami-silent",
+    "ami-stt",
+    "ami-silent-stt",
+    "slurp",
+    "slurp-stt",
+    "slurp-stt-keyterm",
+)
 
 
 def _sha256(path: str) -> str:
@@ -93,6 +105,63 @@ def build_rows(which: str, limit: int = 0) -> tuple[list[dict], dict, dict]:
             "corpus_rows_sha256": manifest_in.get("rows_sha256"),
             "guide": manifest_in.get("guide"),
             "use": "per split",
+        }
+    elif which in ("slurp", "slurp-stt", "slurp-stt-keyterm"):
+        # SLURP's requests said in AMI's silence-test meetings (`sidechat/sources/slurp.py`). Test only.
+        from sidechat.lib import r2
+
+        s3 = r2.client()
+        prefix = slurp.STT_KEYTERM_PREFIX if which == "slurp-stt-keyterm" else slurp.STT_PREFIX
+        smf = r2.get_json(s3, f"{r2.PREFIX}/{prefix}/manifest.json")
+        amf = r2.get_json(s3, f"{r2.PREFIX}/{ami.STT_PREFIX}/manifest.json")
+        if not smf or not amf:
+            raise ValueError("no SLURP or AMI transcripts in R2 yet: run sidechat.pipeline.phase6 first")
+        rows = slurp.convert(
+            r2.get_jsonl(s3, f"{r2.PREFIX}/{prefix}/transcripts.jsonl") or [],
+            r2.get_jsonl(s3, f"{r2.PREFIX}/{ami.STT_PREFIX}/transcripts.jsonl") or [],
+            heard=which != "slurp",
+            set_name=slurp.STT_KEYTERM_SET if which == "slurp-stt-keyterm" else "",
+        )
+        source = {
+            "kind": "splice: SLURP requests in AMI meetings",
+            "slurp": {"text": smf.get("text"), "audio": smf.get("audio"), "stt": smf.get("stt")},
+            "ami": {"labels": amf.get("labels"), "audio": amf.get("audio")},
+            "licence": slurp.LICENCE,
+            "use": slurp.USE,
+        }
+    elif which in ("ami-stt",) or which.startswith("ami-silent-stt"):
+        # AMI's lines as a real speech-to-text service heard them (`sidechat/pipeline/stt_ami.py`).
+        from sidechat.gen import world
+        from sidechat.lib import r2
+
+        s3 = r2.client()
+        stt_manifest = r2.get_json(s3, f"{r2.PREFIX}/{ami.STT_PREFIX}/manifest.json")
+        if not stt_manifest:
+            raise ValueError("no AMI transcripts in R2 yet: run sidechat.pipeline.stt_ami first")
+        stt = {x["da_id"]: x["stt"] for x in r2.get_jsonl(s3, f"{r2.PREFIX}/{ami.STT_PREFIX}/transcripts.jsonl") or []}
+        local = _fetch(ami.REPO, ami.REVISION, ami.FILES["all"])
+        records = ami.with_stt([json.loads(x) for x in pathlib.Path(local).read_text().splitlines() if x.strip()], stt)
+        if which == "ami-stt":
+            rows = ami.convert(records, ami.STT_SET)
+        else:
+            _, _, splits = which.partition(":")
+            names = sorted(n for n in world.AGENTS if n not in world.HELDOUT_AGENTS)
+            rows = ami.convert_silent(records, names, ami.SILENT_STT_SET)
+            if splits:
+                rows = [r for r in rows if r["tags"]["split"] in set(splits.split("+"))]
+            rows = [
+                {**r, "set": f"{ami.SILENT_STT_SET}.{splits.replace('+', '-')}" if splits else r["set"]} for r in rows
+            ]
+        source = {
+            "kind": "Hugging Face dataset, transcribed",
+            "repo": ami.REPO,
+            "revision": ami.REVISION,
+            "files": {ami.FILES["all"]: _sha256(local)},
+            "transcripts": f"{r2.PREFIX}/{ami.STT_PREFIX}/transcripts.jsonl",
+            "stt": stt_manifest.get("stt"),
+            "audio": stt_manifest.get("audio"),
+            "licence": ami.LICENCE,
+            "use": "test only",
         }
     elif which == "ami":
         local = _fetch(ami.REPO, ami.REVISION, ami.FILES["all"])
