@@ -133,8 +133,11 @@ def train(
     ctx_len: int = 320,
     line_len: int = 96,
     drop_kinds: str = "",
+    people_only: float = 0.0,
 ) -> dict:
-    """`drop_kinds` (comma-separated) leaves those generated kinds out of training and dev.
+    """`people_only` is the chance that a training line whose history has the agent's turns loses
+    them (`conditions.people_only`); those lines take the teacher's probabilities as their whole target.
+    `drop_kinds` (comma-separated) leaves those generated kinds out of training and dev.
     `arch` "twotower" trains the two-tower model (history and line encoded apart, `ctx_len` and
     `line_len` tokens). `text_turns` > 0 trains on the short input (at most that many earlier turns, fitted to
     `max_len`). `teacher` names a trained run to distil from: each batch's targets become
@@ -153,6 +156,8 @@ def train(
     from sidechat.train import features
     from sidechat.train import model as M
 
+    if people_only and not teacher:
+        raise ValueError("people_only needs a teacher: those lines have no label of their own")
     t0 = time.time()
     torch.manual_seed(seed)
     rng = random.Random(seed)
@@ -197,7 +202,8 @@ def train(
         tnet.eval()
 
     def distil(part: list[dict], b: dict) -> None:
-        """Blend the teacher's probabilities on these lines into the batch's targets."""
+        """Blend the teacher's probabilities on these lines into the batch's targets (all of the
+        target for a people-only line)."""
         t = tcfg["temperatures"]
         with torch.no_grad():
             tb = M.make_batch(ttok, part, tcfg, device)
@@ -206,9 +212,12 @@ def train(
             pi = torch.softmax(li.float() / t["intent"], -1)
             pr = torch.sigmoid(lr_.float() / t["respond"])
             pu = torch.sigmoid(lu.float() / t["unclear"])
-        b["t_intent"] = alpha * pi + (1 - alpha) * b["t_intent"]
-        b["t_respond"] = alpha * pr + (1 - alpha) * b["t_respond"]
-        b["t_unclear"] = alpha * pu + (1 - alpha) * b["t_unclear"]
+        a = torch.tensor(
+            [1.0 if r["tags"].get("people_only") else alpha for r in part], dtype=torch.float32, device=device
+        )
+        b["t_intent"] = a[:, None] * pi + (1 - a[:, None]) * b["t_intent"]
+        b["t_respond"] = a * pr + (1 - a) * b["t_respond"]
+        b["t_unclear"] = a * pu + (1 - a) * b["t_unclear"]
 
     def dev_loss() -> float:
         net.eval()
@@ -233,6 +242,13 @@ def train(
         running = 0.0
         for i in range(0, len(order), batch):
             part = [M.augment(train_rows[j], rng) for j in order[i : i + batch]]
+            if people_only:  # draws nothing otherwise, so earlier runs replay
+                part = [
+                    conditions.people_only(r)
+                    if rng.random() < people_only and any(t.get("agent") for t in r["request"]["history"])
+                    else r
+                    for r in part
+                ]
             b = M.make_batch(tok, part, spec, device)
             if tnet is not None:
                 distil(part, b)
@@ -290,6 +306,7 @@ def train(
         "seed": seed,
         "text_turns": text_turns,
         "drop_kinds": sorted(drop) or None,
+        "people_only": people_only or None,
         "teacher": teacher or None,
         "alpha": alpha if teacher else None,
     }
@@ -428,6 +445,7 @@ def run(
     ctx_len: int = 320,
     line_len: int = 96,
     drop_kinds: str = "",
+    people_only: float = 0.0,
 ) -> dict:
     """Train one model per encoder in parallel, then score each. `score_only` rescores models
     already trained under these run ids (after a change to scoring). `text_turns`, `max_len`,
@@ -465,6 +483,7 @@ def run(
             "ctx_len": ctx_len,
             "line_len": line_len,
             "drop_kinds": drop_kinds,
+            "people_only": people_only,
         },
     }
 
@@ -497,6 +516,7 @@ def run(
                     ctx_len=ctx_len,
                     line_len=line_len,
                     drop_kinds=drop_kinds,
+                    people_only=people_only,
                 )
                 for e in names
             }

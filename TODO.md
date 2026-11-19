@@ -1,6 +1,6 @@
 # Where things stand
 
-Updated 2026-11-19, after release rc0.2 (phase 7, part 2). Earlier: 03:40 UTC, the end of the overnight run. Jon asked for autonomous work through the phases within $1,000
+Updated 2026-11-19, after student round 2 (phase 5, part 2). Earlier: 03:40 UTC, the end of the overnight run. Jon asked for autonomous work through the phases within $1,000
 (SD-17), to have a model to test in the morning. Read the latest note in [notes/](notes/) first,
 then this, then [DECISIONS.md](DECISIONS.md). How to try a model: [TESTING.md](TESTING.md).
 
@@ -13,6 +13,7 @@ then this, then [DECISIONS.md](DECISIONS.md). How to try a model: [TESTING.md](T
 | 2 | Guide 0.3 (anonymous speakers), the conversation generator, gen-pilot (8,426 lines), committee check of generated labels (95.3%), AMI test set, gen-0.1 | [phase-2-corpus.md](notes/phase-2-corpus.md) |
 | 4 | Five training rounds. The pick, `side-r3-ettin-150m-s0`, meets 12 of 16 scorecard items: 99.0% right on the main test (Jev 80.7%), answers 0.2% of Duplex-MPE's lines for others outright (Jev 0.4%), none on the AMI silence test (Jev 5 of 10,434), 47/48 demo lines. Exported, in `models/`, runs in the demo's gate at 11 ms a line | [phase-4-models.md](notes/phase-4-models.md) |
 | 5 | Round 6 (gen-0.4, committee 98.8%) did not beat round 3. Two-tower distilled students fit agent-1x (10 to 15 ms a line, Jev 56 to 163 ms) but lose unnamed requests; none passes every gate | [phase-5-round6.md](notes/phase-5-round6.md) |
+| 5, part 2 | Student round 2 (exp-055): people-only histories taught by round 3; unnamed requests 11.2–13.4% (rc0.2 student 10.7%), pilot down 1.5–2.6 points. No student passes | [phase-5-students-round2.md](notes/phase-5-students-round2.md) |
 | 7, part 2 | Release rc0.2 on `pipecat-ai/sidechat` (tag `rc0.2`, commit `08c9b8c`): round 3's 150M at the root, unchanged, and the two-tower 32M as `agent-1x/` (10 to 15 ms a line on agent-1x; answers 10.7% of unnamed requests, Jev 26.6%). The label for unnamed requests stays (SD-21) | [phase-7-release-rc0.2.md](notes/phase-7-release-rc0.2.md) |
 | 7, part 1 | Pipecat module `pipecat.models.labs.side_chat` (gate, listener, classifier, model), downloading `pipecat-ai/sidechat` at commit `c9b59be`, on pipecat branch `jpt/sidechat`; parity with this repo's runtime on 6,544 lines; a Labs docs page on pipecat-docs branch `jpt/labs-sidechat`. Neither committed | [phase-7-pipecat.md](notes/phase-7-pipecat.md) |
 
@@ -28,9 +29,10 @@ then this, then [DECISIONS.md](DECISIONS.md). How to try a model: [TESTING.md](T
 - **Try it on a real call**: `examples/labs/labs-sidechat-group-conversation.py` in the pipecat
   checkout, with two or three people.
 - **rc0.2 is out** with an opt-in `agent-1x/` build. Its gap is unnamed requests (item 5). The
-  label is not the cause (SD-21): the small models read those lines as said to a person. Next
-  student round: lines whose addressee only the context settles, scored by the teacher, the
-  checkpoint picked on a named-request dev slice, two seeds ([phase-7-release-rc0.2.md](notes/phase-7-release-rc0.2.md)).
+  label is not the cause (SD-21): the small models read those lines as said to a person.
+- **Student round 2 did not help** (exp-055, [phase-5-students-round2.md](notes/phase-5-students-round2.md)):
+  people-only histories moved unnamed requests from 10.7% to 11.2–13.4% and cost the pilot 1.5–2.6
+  points. No student passes; rc0.2 stays as released. Stop student rounds on item 5 for now.
 - **Pipecat** downloads the root build pinned at `c9b59be`; rc0.2's root files are identical, so
   nothing changes there. Running `agent-1x/` in Pipecat needs a two-tower port and the tokenizer
   truncation fix (exp-036).

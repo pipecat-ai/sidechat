@@ -1,0 +1,42 @@
+experiment_id: exp-055-side-round7
+status: done (2026-11-19); actual about $19
+track: sidechat (agent-1x students)
+what: >
+  Student round 2 for agent-1x, aimed at unnamed requests (item 5). Every model reads Duplex-MPE's
+  unnamed requests as said to a person or to the agent (SD-21); round 3 answers 38.8% of them, the
+  rc0.2 student 10.7%. The students copy round 3 on full transcripts but never see a transcript of
+  the people's side only. So a share of training lines lose the agent's turns
+  (conditions.people_only) and take round 3's probabilities as their whole target. Two-tower
+  Ettin-32M, the rc0.2 student's corpus and settings otherwise (alpha 0.8, 3 epochs), people-only
+  share 0.25 and 0.5, seeds 0 and 1; exports; timing on agent-1x and agent-2x beside Jev and the
+  rc0.2 student; a summary and gate (sidechat/pipeline/round7.py). Disclosed: the augmentation
+  copies a property of Duplex-MPE's format that its card states (the assistant's replies are not
+  in the manifests), so part of any Duplex-MPE gain is that match; the pilot, AMI and the
+  generated test are checks it does not target. No checkpoint picking: every past student's best
+  epoch was its last. No new generation: the generator already makes these kinds and the students
+  get them right on our own test.
+forecast block:
+  campaign: exp-055-side-round7
+  decision it enables: whether an agent-1x build can answer unnamed requests at least as often as Jev, for rc0.3
+  token forecast: none
+  Modal forecast: 4 H100 training runs of about 1.2 h each in parallel, 4 scoring passes, 4 CPU exports, one latency job
+  retry cap: 1 per training run
+  spend cap: $40
+  stop condition: summary in R2; nothing is published
+  approved by Jon on: 2026-11-19 ("Yes, start it", to the next student round aimed at unnamed requests)
+forecast_usd: about $25
+step experiments: >
+  exp-055-side-round7-train-r7po25-s0, -train-r7po25-s1, -train-r7po50-s0, -train-r7po50-s1,
+  -export-<run>, -latency
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round7::run --exp exp-055-side-round7
+results: uv run python -m sidechat.pipeline.results exp-055-side-round7
+actual_usd: about $19 (4 H100 runs of about 66 min with scoring, 4 CPU exports, one latency job; 89 min end to end)
+result:
+  verdict: "no student passes; people-only histories did not help"
+  unnamed_requests_answered: "11.2% to 13.4% (rc0.2 student 10.7%, round 3 38.8%, Jev 26.6%)"
+  pilot: "84.8% to 85.9% (round 3 and rc0.2 student 87.4%)"
+  named_requests: "95.2% to 99.2%"
+  speed: "13 to 17 ms a line on agent-1x with the history encoded ahead; Jev 152 ms in the same container"
+  report: reports/2026-11-19-side-round7-students.md

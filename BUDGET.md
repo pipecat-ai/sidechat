@@ -70,6 +70,7 @@ estimates from run time, not read from billing.
 - 2026-11-19 · exp-051-side-students-r3 · Two-tower students taught by round 3, exports, timing · about $9 · about $13.50
 - 2026-11-19 · exp-052, exp-053 · The round 3 students again: seed 1, and teacher share 0.5 · about $18 · about $26
 - 2026-11-19 · exp-054-side-publish-rc0.2 · rc0.2 to the Hub: the agent-1x build and its rows · under $0.50 · under $0.05
+- 2026-11-19 · exp-055-side-round7 · Student round 2 for agent-1x: people-only histories, 4 students, exports, timing · about $25 · about $19
 
 Note for Phase 3: member c costs 6 to 7 times member a, because its provider cached almost none of
 the shared prompt (about 7% of input tokens against 95% for a and b). At the plan's ~5,500
@@ -77,4 +78,4 @@ committee lines that is about $100 for c alone. Its batch API is half price.
 
 ## Total
 
-About $291 spent of the $1,000 cap. Nothing in flight.
+About $310 spent of the $1,000 cap. Nothing in flight.

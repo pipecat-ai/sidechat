@@ -62,3 +62,15 @@ def apply(row: dict, condition: str) -> dict:
         "label": label,
         "tags": {**row["tags"], "condition": condition},
     }
+
+
+def people_only(row: dict) -> dict:
+    """A training view, not a scoring condition: the row as a transcript of the people's side only.
+    The agent's turns leave the history, and whether the line was said over the agent is no longer
+    known. The kind's label assumes the agent's turns are visible, so such a row is trained on the
+    teacher's probabilities alone (`train(people_only=...)`)."""
+    req = dict(row["request"])
+    req["history"] = [t for t in req["history"] if not t.get("agent")]
+    if req.get("facts"):
+        req["facts"] = {**req["facts"], "over_agent": None}
+    return {**row, "request": req, "tags": {**row["tags"], "people_only": "1"}}

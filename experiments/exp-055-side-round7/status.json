@@ -1,0 +1,178 @@
+{
+ "exp": "exp-055-side-round7",
+ "app": "waystone-side-round7",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T18:41:56+00:00",
+ "args": {
+  "steps": "students,export,latency",
+  "shares": "0.25,0.5",
+  "seeds": "0,1",
+  "encoder": "ettin-32m"
+ },
+ "steps": {
+  "students": {
+   "side-r7po25-ettin-32m-s0": "done",
+   "side-r7po25-ettin-32m-s1": "done",
+   "side-r7po50-ettin-32m-s0": "done",
+   "side-r7po50-ettin-32m-s1": "done"
+  },
+  "export": {
+   "side-r7po25-ettin-32m-s0": {
+    "size_mb": 259.2,
+    "optimized": {
+     "fused": {
+      "context": {
+       "Gelu": 10,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      },
+      "line": {
+       "Gelu": 12,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 6e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 8.01,
+       "p95_ms": 11.34
+      },
+      "1_threads": {
+       "p50_ms": 14.07,
+       "p95_ms": 18.98
+      },
+      "cold_1_threads": {
+       "p50_ms": 54.73,
+       "p95_ms": 82.32
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   },
+   "side-r7po25-ettin-32m-s1": {
+    "size_mb": 259.2,
+    "optimized": {
+     "fused": {
+      "context": {
+       "Gelu": 10,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      },
+      "line": {
+       "Gelu": 12,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 7e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 9.22,
+       "p95_ms": 14.21
+      },
+      "1_threads": {
+       "p50_ms": 14.9,
+       "p95_ms": 18.2
+      },
+      "cold_1_threads": {
+       "p50_ms": 53.49,
+       "p95_ms": 79.92
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   },
+   "side-r7po50-ettin-32m-s0": {
+    "size_mb": 259.2,
+    "optimized": {
+     "fused": {
+      "context": {
+       "Gelu": 10,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      },
+      "line": {
+       "Gelu": 12,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 6e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 7.04,
+       "p95_ms": 8.81
+      },
+      "1_threads": {
+       "p50_ms": 13.49,
+       "p95_ms": 16.74
+      },
+      "cold_1_threads": {
+       "p50_ms": 45.87,
+       "p95_ms": 65.47
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   },
+   "side-r7po50-ettin-32m-s1": {
+    "size_mb": 259.2,
+    "optimized": {
+     "fused": {
+      "context": {
+       "Gelu": 10,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      },
+      "line": {
+       "Gelu": 12,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 5e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 9.5,
+       "p95_ms": 13.4
+      },
+      "1_threads": {
+       "p50_ms": 14.53,
+       "p95_ms": 18.84
+      },
+      "cold_1_threads": {
+       "p50_ms": 53.85,
+       "p95_ms": 79.48
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   }
+  },
+  "latency": "done"
+ },
+ "updated_at": "2026-11-19T20:10:41+00:00",
+ "elapsed_s": 5324
+}

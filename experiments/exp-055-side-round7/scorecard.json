@@ -1,0 +1,791 @@
+{
+ "exp": "exp-055-side-round7",
+ "teacher": "side-r3-ettin-150m-s0",
+ "models": {
+  "side-r3-ettin-150m-s0": {
+   "generated": {
+    "value": 0.9895,
+    "k": 21009,
+    "n": 21233,
+    "ci95": [
+     0.988,
+     0.9907
+    ]
+   },
+   "duplex": {
+    "value": 0.9667,
+    "k": 50592,
+    "n": 52336,
+    "ci95": [
+     0.9651,
+     0.9682
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0022,
+    "k": 97,
+    "n": 44528,
+    "ci95": [
+     0.0018,
+     0.0027
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0086,
+    "k": 382,
+    "n": 44528,
+    "ci95": [
+     0.0078,
+     0.0095
+    ]
+   },
+   "explicit_t": {
+    "value": 0.995,
+    "k": 1990,
+    "n": 2000,
+    "ci95": [
+     0.9908,
+     0.9973
+    ]
+   },
+   "implicit_t": {
+    "value": 0.3875,
+    "k": 775,
+    "n": 2000,
+    "ci95": [
+     0.3664,
+     0.409
+    ]
+   },
+   "implicit_held": {
+    "value": 0.1325,
+    "k": 265,
+    "n": 2000,
+    "ci95": [
+     0.1183,
+     0.1481
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9872,
+    "k": 15591,
+    "n": 15793,
+    "ci95": [
+     0.9853,
+     0.9888
+    ]
+   },
+   "ami": {
+    "value": 0.9989,
+    "k": 8865,
+    "n": 8875,
+    "ci95": [
+     0.9979,
+     0.9994
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8741,
+    "k": 236,
+    "n": 270,
+    "ci95": [
+     0.8292,
+     0.9085
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   }
+  },
+  "side-r6ttr3t-ettin-32m-s0": {
+   "generated": {
+    "value": 0.9849,
+    "k": 20913,
+    "n": 21233,
+    "ci95": [
+     0.9832,
+     0.9865
+    ]
+   },
+   "duplex": {
+    "value": 0.9563,
+    "k": 50050,
+    "n": 52336,
+    "ci95": [
+     0.9545,
+     0.958
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0026,
+    "k": 115,
+    "n": 44528,
+    "ci95": [
+     0.0022,
+     0.0031
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0079,
+    "k": 352,
+    "n": 44528,
+    "ci95": [
+     0.0071,
+     0.0088
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9865,
+    "k": 1973,
+    "n": 2000,
+    "ci95": [
+     0.9804,
+     0.9907
+    ]
+   },
+   "implicit_t": {
+    "value": 0.107,
+    "k": 214,
+    "n": 2000,
+    "ci95": [
+     0.0942,
+     0.1213
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0745,
+    "k": 149,
+    "n": 2000,
+    "ci95": [
+     0.0638,
+     0.0868
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9844,
+    "k": 15546,
+    "n": 15793,
+    "ci95": [
+     0.9823,
+     0.9862
+    ]
+   },
+   "ami": {
+    "value": 0.9999,
+    "k": 8874,
+    "n": 8875,
+    "ci95": [
+     0.9994,
+     1.0
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8741,
+    "k": 236,
+    "n": 270,
+    "ci95": [
+     0.8292,
+     0.9085
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   }
+  },
+  "side-r7po25-ettin-32m-s0": {
+   "generated": {
+    "value": 0.9861,
+    "k": 20938,
+    "n": 21233,
+    "ci95": [
+     0.9844,
+     0.9876
+    ]
+   },
+   "duplex": {
+    "value": 0.9547,
+    "k": 49967,
+    "n": 52336,
+    "ci95": [
+     0.9529,
+     0.9565
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0044,
+    "k": 195,
+    "n": 44528,
+    "ci95": [
+     0.0038,
+     0.005
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0095,
+    "k": 422,
+    "n": 44528,
+    "ci95": [
+     0.0086,
+     0.0104
+    ]
+   },
+   "explicit_t": {
+    "value": 0.99,
+    "k": 1980,
+    "n": 2000,
+    "ci95": [
+     0.9846,
+     0.9935
+    ]
+   },
+   "implicit_t": {
+    "value": 0.134,
+    "k": 268,
+    "n": 2000,
+    "ci95": [
+     0.1198,
+     0.1496
+    ]
+   },
+   "implicit_held": {
+    "value": 0.078,
+    "k": 156,
+    "n": 2000,
+    "ci95": [
+     0.067,
+     0.0906
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9804,
+    "k": 15484,
+    "n": 15793,
+    "ci95": [
+     0.9782,
+     0.9825
+    ]
+   },
+   "ami": {
+    "value": 1.0,
+    "k": 8875,
+    "n": 8875,
+    "ci95": [
+     0.9996,
+     1.0
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8556,
+    "k": 231,
+    "n": 270,
+    "ci95": [
+     0.8086,
+     0.8925
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   }
+  },
+  "side-r7po25-ettin-32m-s1": {
+   "generated": {
+    "value": 0.9849,
+    "k": 20912,
+    "n": 21233,
+    "ci95": [
+     0.9832,
+     0.9864
+    ]
+   },
+   "duplex": {
+    "value": 0.955,
+    "k": 49981,
+    "n": 52336,
+    "ci95": [
+     0.9532,
+     0.9567
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.002,
+    "k": 91,
+    "n": 44528,
+    "ci95": [
+     0.0017,
+     0.0025
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0081,
+    "k": 362,
+    "n": 44528,
+    "ci95": [
+     0.0073,
+     0.009
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9515,
+    "k": 1903,
+    "n": 2000,
+    "ci95": [
+     0.9412,
+     0.9601
+    ]
+   },
+   "implicit_t": {
+    "value": 0.1115,
+    "k": 223,
+    "n": 2000,
+    "ci95": [
+     0.0984,
+     0.126
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0585,
+    "k": 117,
+    "n": 2000,
+    "ci95": [
+     0.049,
+     0.0697
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9851,
+    "k": 15558,
+    "n": 15793,
+    "ci95": [
+     0.9831,
+     0.9869
+    ]
+   },
+   "ami": {
+    "value": 1.0,
+    "k": 8875,
+    "n": 8875,
+    "ci95": [
+     0.9996,
+     1.0
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8481,
+    "k": 229,
+    "n": 270,
+    "ci95": [
+     0.8005,
+     0.8861
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   }
+  },
+  "side-r7po50-ettin-32m-s0": {
+   "generated": {
+    "value": 0.9864,
+    "k": 20945,
+    "n": 21233,
+    "ci95": [
+     0.9848,
+     0.9879
+    ]
+   },
+   "duplex": {
+    "value": 0.955,
+    "k": 49980,
+    "n": 52336,
+    "ci95": [
+     0.9532,
+     0.9567
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0043,
+    "k": 192,
+    "n": 44528,
+    "ci95": [
+     0.0037,
+     0.005
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0085,
+    "k": 377,
+    "n": 44528,
+    "ci95": [
+     0.0077,
+     0.0094
+    ]
+   },
+   "explicit_t": {
+    "value": 0.991,
+    "k": 1982,
+    "n": 2000,
+    "ci95": [
+     0.9858,
+     0.9943
+    ]
+   },
+   "implicit_t": {
+    "value": 0.1165,
+    "k": 233,
+    "n": 2000,
+    "ci95": [
+     0.1032,
+     0.1313
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0905,
+    "k": 181,
+    "n": 2000,
+    "ci95": [
+     0.0787,
+     0.1039
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9851,
+    "k": 15557,
+    "n": 15793,
+    "ci95": [
+     0.983,
+     0.9868
+    ]
+   },
+   "ami": {
+    "value": 0.9998,
+    "k": 8873,
+    "n": 8875,
+    "ci95": [
+     0.9992,
+     0.9999
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8593,
+    "k": 232,
+    "n": 270,
+    "ci95": [
+     0.8127,
+     0.8957
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   }
+  },
+  "side-r7po50-ettin-32m-s1": {
+   "generated": {
+    "value": 0.9855,
+    "k": 20926,
+    "n": 21233,
+    "ci95": [
+     0.9838,
+     0.9871
+    ]
+   },
+   "duplex": {
+    "value": 0.9569,
+    "k": 50080,
+    "n": 52336,
+    "ci95": [
+     0.9551,
+     0.9586
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0024,
+    "k": 109,
+    "n": 44528,
+    "ci95": [
+     0.002,
+     0.003
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0084,
+    "k": 376,
+    "n": 44528,
+    "ci95": [
+     0.0076,
+     0.0093
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9915,
+    "k": 1983,
+    "n": 2000,
+    "ci95": [
+     0.9864,
+     0.9947
+    ]
+   },
+   "implicit_t": {
+    "value": 0.1325,
+    "k": 265,
+    "n": 2000,
+    "ci95": [
+     0.1183,
+     0.1481
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0955,
+    "k": 191,
+    "n": 2000,
+    "ci95": [
+     0.0834,
+     0.1092
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9821,
+    "k": 15510,
+    "n": 15793,
+    "ci95": [
+     0.9799,
+     0.984
+    ]
+   },
+   "ami": {
+    "value": 1.0,
+    "k": 8875,
+    "n": 8875,
+    "ci95": [
+     0.9996,
+     1.0
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8593,
+    "k": 232,
+    "n": 270,
+    "ci95": [
+     0.8127,
+     0.8957
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   }
+  }
+ },
+ "speed": {
+  "side-r6ttr3t-ettin-32m-s0": {
+   "build": "fp32",
+   "memory": "488",
+   "short": "14",
+   "full": "16",
+   "cold": "112",
+   "full_ms": 15.8
+  },
+  "side-r7po25-ettin-32m-s0": {
+   "build": "fp32",
+   "memory": "489",
+   "short": "14",
+   "full": "17",
+   "cold": "118",
+   "full_ms": 16.7
+  },
+  "side-r7po25-ettin-32m-s1": {
+   "build": "fp32",
+   "memory": "488",
+   "short": "12",
+   "full": "13",
+   "cold": "110",
+   "full_ms": 12.7
+  },
+  "side-r7po50-ettin-32m-s0": {
+   "build": "fp32",
+   "memory": "490",
+   "short": "14",
+   "full": "15",
+   "cold": "111",
+   "full_ms": 15.4
+  },
+  "side-r7po50-ettin-32m-s1": {
+   "build": "fp32",
+   "memory": "489",
+   "short": "15",
+   "full": "17",
+   "cold": "120",
+   "full_ms": 17.2
+  },
+  "jev": {
+   "build": "API",
+   "full": "152",
+   "short": "144"
+  }
+ },
+ "gate": {
+  "side-r6ttr3t-ettin-32m-s0": {
+   "ships": false,
+   "why": "**fails:** Duplex-MPE -1.0 points against the teacher; AMI +0.1 points against the teacher; pilot +0.0 points against the teacher; named requests -0.8 points against the teacher; **fails:** unnamed requests 10.7% answered (Jev 26.6%); full history 16 ms on agent-1x (Jev 152)"
+  },
+  "side-r7po25-ettin-32m-s0": {
+   "ships": false,
+   "why": "**fails:** Duplex-MPE -1.2 points against the teacher; AMI +0.1 points against the teacher; **fails:** pilot -1.8 points against the teacher; named requests -0.5 points against the teacher; **fails:** unnamed requests 13.4% answered (Jev 26.6%); full history 17 ms on agent-1x (Jev 152)"
+  },
+  "side-r7po25-ettin-32m-s1": {
+   "ships": false,
+   "why": "**fails:** Duplex-MPE -1.2 points against the teacher; AMI +0.1 points against the teacher; **fails:** pilot -2.6 points against the teacher; **fails:** named requests -4.3 points against the teacher; **fails:** unnamed requests 11.2% answered (Jev 26.6%); full history 13 ms on agent-1x (Jev 152)"
+  },
+  "side-r7po50-ettin-32m-s0": {
+   "ships": false,
+   "why": "**fails:** Duplex-MPE -1.2 points against the teacher; AMI +0.1 points against the teacher; **fails:** pilot -1.5 points against the teacher; named requests -0.4 points against the teacher; **fails:** unnamed requests 11.7% answered (Jev 26.6%); full history 15 ms on agent-1x (Jev 152)"
+  },
+  "side-r7po50-ettin-32m-s1": {
+   "ships": false,
+   "why": "Duplex-MPE -1.0 points against the teacher; AMI +0.1 points against the teacher; **fails:** pilot -1.5 points against the teacher; named requests -0.3 points against the teacher; **fails:** unnamed requests 13.2% answered (Jev 26.6%); full history 17 ms on agent-1x (Jev 152)"
+  }
+ },
+ "notes": [],
+ "finished_at": "2026-11-19T20:10:40+00:00"
+}
