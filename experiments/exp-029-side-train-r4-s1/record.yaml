@@ -1,0 +1,25 @@
+experiment_id: exp-029-side-train-r4-s1
+status: done (2026-11-19); actual about $4
+track: sidechat (Phase 4, round 4)
+what: >
+  Round 4's Ettin-150M again with seed 1 (exp-028 is seed 0), everything else the same. Shows how
+  much Duplex-MPE implicit T moves between runs (round 3: 68M 20.3%, 150M 38.8%). The pick between
+  seeds is made on dev, never on a benchmark.
+forecast block:
+  campaign: exp-029-side-train-r4-s1
+  decision it enables: which round 4 seed to ship, and how noisy the unnamed-request slice is
+  token forecast: none
+  Modal forecast: one H100 for 30 to 40 minutes, then scoring at about 10 minutes
+  retry cap: 1
+  spend cap: $15
+  stop condition: report in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $4
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-029-side-train-r4-s1 --corpus gen-0.1,gen-pilot,gen-0.2,gen-0.3,ami-silent --encoders ettin-150m --epochs 2 --seed 1 --tag r4 --test-corpus gen-0.1,gen-pilot --extra-sets corpus:gen-0.2:test@anonymous,corpus:gen-0.3:test@anonymous
+results: uv run python -m sidechat.pipeline.results exp-029-side-train-r4-s1
+actual_usd: about $4
+result:
+  ettin-150m: "generated test 99.1%; pilot 87.8%; demo 47/48; Duplex-MPE 95.2%, answers 0.8% outright; Ambient 98.9%; AMI 99.9% and 99.9%; implicit T 28.1%"
+  learned: "round 4 does not beat round 3: gen-0.3's even-call requests after quiet openings did not bring back unnamed requests, and the two 150M seeds differ by 6 points on implicit T and 0.2 points on outright answers, so single runs of these slices are noisy. Next: the same corpus without the AMI rows (round 5)."

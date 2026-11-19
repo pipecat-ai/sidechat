@@ -1,0 +1,73 @@
+{
+ "gen_id": "gen-0.1",
+ "rows": 113262,
+ "conversations": 8095,
+ "rows_sha256": "3d19824092abe4ff775f0b95e3eb8b924eabf4ceec9281e932aa6de5560808c1",
+ "seed": 2,
+ "counts": {
+  "o": 4000,
+  "a": 1700,
+  "c": 1700,
+  "b": 700
+ },
+ "writers_env": {
+  "o": "WRITER_O_MODEL",
+  "a": "WRITER_A_MODEL",
+  "c": "WRITER_C_MODEL",
+  "b": "WRITER_B_MODEL"
+ },
+ "heldout_writer": "b",
+ "guide": "sidechat-guide-0.3",
+ "by_split": {
+  "train": 84304,
+  "dev": 8398,
+  "test": 20560
+ },
+ "by_writer": {
+  "o": 55883,
+  "a": 23706,
+  "c": 23845,
+  "b": 9828
+ },
+ "by_expect": {
+  "ignore": 60270,
+  "respond": 34631,
+  "wait": 13254,
+  "None": 5107
+ },
+ "brief_ok": {
+  "1": 110631,
+  "0": 2631
+ },
+ "usage": {
+  "o": {
+   "conversations": 3995,
+   "planned": 4000,
+   "input": 2822842,
+   "output": 2397907,
+   "usd": 2.11
+  },
+  "a": {
+   "conversations": 1700,
+   "planned": 1700,
+   "input": 1190423,
+   "output": 651266,
+   "usd": 4.45
+  },
+  "c": {
+   "conversations": 1700,
+   "planned": 1700,
+   "input": 1609232,
+   "output": 2631032,
+   "usd": 22.15
+  },
+  "b": {
+   "conversations": 700,
+   "planned": 700,
+   "input": 890105,
+   "output": 494847,
+   "usd": 13.46
+  }
+ },
+ "built_at": "2026-11-19T00:16:23+00:00"
+}

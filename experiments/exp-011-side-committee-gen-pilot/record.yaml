@@ -1,0 +1,28 @@
+experiment_id: exp-011-side-committee-gen-pilot
+status: done (2026-11-18); actual about $12.27
+track: sidechat (Phase 2 to 3: the independent check of generated labels)
+what: >
+  The committee (a, b, c, guide 0.3) labels 450 lines sampled from gen-pilot's dev and test
+  splits, blind. Their labels come from the planner's kinds, never from the committee, so
+  agreement here is the honest measure of how good the construction labels are.
+forecast block:
+  campaign: exp-011-side-committee-gen-pilot
+  decision it enables: whether the generated labels are good enough to train on, and which kinds are not
+  token forecast: 450 lines x 3 members at exp-007's rate
+  Modal forecast: one CPU container for about 5 minutes
+  retry cap: 2
+  spend cap: $25
+  stop condition: scorecard.json and report.md in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $13
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.label::run --exp exp-011-side-committee-gen-pilot --sets corpus:gen-pilot:dev+test:450 --spend-cap-usd 25
+results: uv run python -m sidechat.pipeline.results exp-011-side-committee-gen-pilot
+actual_usd: about $12.27 (a $1.46, b $2.69, c $8.09)
+result:
+  agreement: "committee majority agrees with the generated (construction) label on 95.3% (410/430) of gen-pilot dev and test lines"
+  by_decision: "ignore 97.9% (228/233), respond 99.3% (142/143), wait 74.1% (40/54)"
+  members: "a 93.0%, b 94.9%, c 96.0%"
+  reading: "wait lines are where they differ: follow-ups and challenges to the agent's answer by someone else, which the committee often calls respond. These stay wait (a 0.5 target), the even call SD-12 asks for"
+  verdict: generated labels are good enough to train on

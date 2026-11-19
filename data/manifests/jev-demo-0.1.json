@@ -1,0 +1,31 @@
+{
+ "baseline_id": "jev-demo-0.1",
+ "model": "jev-1.13.0",
+ "prompt_sha": "476c554866d6",
+ "demo": {
+  "repo": "daily-audience",
+  "commit": "73171de",
+  "pipecat": "1.16.0"
+ },
+ "thresholds": {
+  "respond": 0.8,
+  "question": 0.5
+ },
+ "last_run": {
+  "exp": "exp-020-side-jev-ami-silent",
+  "model": "jev-1.13.0",
+  "requests": 10433,
+  "reused": 0,
+  "asked": 10433,
+  "failed": 0,
+  "input_tokens": 8209027,
+  "output_tokens": 386021,
+  "usd_per_m_input": 0.042,
+  "started_at": "2026-11-19T00:51:00+00:00",
+  "usd_estimate": 0.345,
+  "finished_at": "2026-11-19T00:53:45+00:00"
+ },
+ "sets": [
+  "ami-silent-0.1.test"
+ ]
+}

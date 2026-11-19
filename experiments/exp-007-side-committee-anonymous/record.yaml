@@ -1,0 +1,28 @@
+experiment_id: exp-007-side-committee-anonymous
+status: done (2026-11-18); actual about $8.12
+track: sidechat (Phase 2 step 1, SD-14)
+what: >
+  The committee (members a, b and c) labels pilot-0.4 with anonymous speaker labels ("Speaker 1",
+  no list of people) under labelling guide 0.3, which adds how to read anonymous labels (prompt hash
+  cd131e750b0b). Compared with exp-005 (named speakers, guide 0.2: 99.2%), it shows whether the
+  committee's agreement with the guide holds when names are gone.
+forecast block:
+  campaign: exp-007-side-committee-anonymous
+  decision it enables: whether the committee can label the anonymous condition, the headline one
+  token forecast: as exp-004
+  Modal forecast: one CPU container for about 4 minutes
+  retry cap: 2
+  spend cap: $20
+  stop condition: scorecard.json and report.md in R2
+  approved by Jon on: 2026-11-18 ("Start Phase 2")
+forecast_usd: about $8
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.label::run --exp exp-007-side-committee-anonymous --sets pilot-0.4@anonymous --spend-cap-usd 20
+results: uv run python -m sidechat.pipeline.results exp-007-side-committee-anonymous
+actual_usd: about $8.12 (a $0.87, b $1.72, c $5.51)
+result:
+  majority_decision: "98.9% (262/265) agree with guide 0.3 on pilot-0.4@anonymous (named, guide 0.2: 99.2%)"
+  members_decision: "a 96.2%, b 98.5%, c 98.5%"
+  disagreements: "game-09/12 (split before too), panel-26/9, panel-26/11"
+  verdict: the committee labels the anonymous condition as well as the named one

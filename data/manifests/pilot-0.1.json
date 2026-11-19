@@ -1,0 +1,32 @@
+{
+ "rows_id": "pilot-0.1",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-18T21:41:48+00:00",
+ "source": {
+  "kind": "hand-written suite",
+  "file": "data/suites/pilot-0.1.yaml",
+  "sha256": "ecd362c71c819ceaa8e4d355e94d53a0b0ffa3b530d391a64db2f9378f7be473",
+  "about": "Hand-written pilot covering the plan's kinds of line; draft labels by one author",
+  "label_source": "author",
+  "use": "test"
+ },
+ "limit": null,
+ "rows": 283,
+ "conversations": 29,
+ "by_expect": {
+  "ignore": 157,
+  "respond": 79,
+  "wait": 17,
+  "None": 30
+ },
+ "by_to": {
+  "person": 95,
+  "group": 69,
+  "agent": 88,
+  "unknown": 10,
+  "nobody": 17,
+  "device": 4
+ },
+ "sha256": "7d4d798e128b1cf52c7e7a2fc4f1693d90bd88bebb135568c2f94afb0a8ecd77",
+ "r2_key": "runs/side/rows/pilot-0.1/rows.jsonl"
+}

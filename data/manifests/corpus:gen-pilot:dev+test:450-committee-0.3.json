@@ -1,0 +1,66 @@
+{
+ "label_id": "corpus:gen-pilot:dev+test:450-committee-0.3",
+ "guide": "sidechat-guide-0.3",
+ "prompt_sha": "cd131e750b0b",
+ "members": [
+  "a",
+  "b",
+  "c"
+ ],
+ "member_model_env": {
+  "a": "LABELLER_A_MODEL",
+  "b": "LABELLER_B_MODEL",
+  "c": "LABELLER_C_MODEL"
+ },
+ "member_model_sha": {
+  "a": "495a09eb2c",
+  "b": "005912bee6",
+  "c": "06dfe89ec3"
+ },
+ "effort": "low",
+ "sets": [
+  "corpus:gen-pilot:dev+test:450"
+ ],
+ "rows": 450,
+ "labels_sha256": "1dd62025f874e53059ca31c6e6fe591d139db33d750a851b0bb0185de28f4940",
+ "exp": "exp-011-side-committee-gen-pilot",
+ "usage": {
+  "a": {
+   "answered": 450,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 2050769,
+   "cached": 1945540,
+   "cache_write": 0,
+   "output": 27691,
+   "errors": [],
+   "usd": 1.46
+  },
+  "b": {
+   "answered": 450,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 3089718,
+   "cached": 2907918,
+   "cache_write": 52632,
+   "output": 37534,
+   "errors": [],
+   "usd": 2.694
+  },
+  "c": {
+   "answered": 450,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 2264210,
+   "cached": 533308,
+   "cache_write": 0,
+   "output": 31666,
+   "errors": [],
+   "usd": 8.09
+  }
+ },
+ "built_at": "2026-11-18T23:53:31+00:00"
+}

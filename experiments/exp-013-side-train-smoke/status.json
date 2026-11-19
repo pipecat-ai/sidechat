@@ -1,0 +1,36 @@
+{
+ "exp": "exp-013-side-train-smoke",
+ "app": "waystone-side-train",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-18T23:55:54+00:00",
+ "args": {
+  "corpus": "gen-pilot",
+  "encoders": "ettin-32m",
+  "epochs": 1,
+  "seed": 0,
+  "tag": "smoke"
+ },
+ "updated_at": "2026-11-18T23:58:30+00:00",
+ "elapsed_s": 156,
+ "trained": {
+  "ettin-32m": {
+   "best_epoch": 1,
+   "history": [
+    {
+     "epoch": 1,
+     "train_loss": 1.8176,
+     "dev_loss": 1.2168,
+     "secs": 14
+    }
+   ],
+   "temperatures": {
+    "intent": 0.85,
+    "respond": 0.95,
+    "unclear": 1.2
+   },
+   "secs": 22,
+   "error": null
+  }
+ }
+}

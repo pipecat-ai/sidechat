@@ -1,0 +1,31 @@
+experiment_id: exp-033-side-latency-cloud
+status: done (2026-11-19); actual about $0.20 (two runs: the first passed the model path after --rounds and every Sidechat variant failed at argparse)
+track: sidechat (size and latency)
+what: >
+  exp-032's latency bench on Modal containers with Pipecat Cloud's agent profiles as hard limits:
+  agent-1x (0.5 vCPU, 1 GiB, where the demo deploys), agent-2x (1 vCPU, 2 GiB) and agent-3x
+  (1.5 vCPU, 3 GiB). Each variant runs alone in its own container: side-r3-ettin-150m-s0 fp32 and
+  int8, side-r1-ettin-68m-s0 fp32, and the 32M smoke model for speed only, each at 1 and 2 threads,
+  plus Jev from the same data centre. Same demo gate, same lines, same timing as exp-032.
+forecast block:
+  campaign: exp-033-side-latency-cloud
+  decision it enables: whether Sidechat fits and is fast enough on the demo's agent-1x, and if not,
+    which profile or model size does
+  token forecast: Jev, about 140 requests per profile, about 420 in all
+  Modal forecast: 27 CPU containers of 0.5 to 1.5 cores for 2 to 5 minutes each, one small
+    orchestrator, one image build
+  retry cap: 1
+  spend cap: $2
+  stop condition: report in R2
+  approved by Jon on: 2026-11-19 ("Yes, measure it", in chat)
+forecast_usd: under $0.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.latency::run --exp exp-033-side-latency-cloud
+results: uv run python -m sidechat.pipeline.results exp-033-side-latency-cloud
+actual_usd: about $0.20
+result:
+  report: reports/2026-11-19-side-latency.md (cloud section)
+  agent-1x: "150M int8 1 thread 103 / 532 ms (short / full window); fp32 910 MB at the edge of 1 GiB, p99 21 s; Jev 53 / 56 ms"
+  agent-2x: "150M fp32 1 thread 66 / 253 ms, int8 51 / 271; 68M 33 / 116; Jev 144 / 149"
+  learned: "on cloud CPUs the 150M model is slower than Jev with a full window, fp32 does not fit agent-1x, and a second ONNX thread hurts below 1.5 vCPU. Speed needs a smaller model or a shorter context, not more threads."

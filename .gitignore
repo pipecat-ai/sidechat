@@ -1,0 +1,18 @@
+.env
+audience-data/
+.venv/
+__pycache__/
+*.pyc
+data/external/
+data/rows/
+data/scores/
+.pytest_cache/
+.ruff_cache/
+models/
+
+# Kept out of the public repo: raw dataset samples from the Hub survey (some are test-only data),
+# and the copy of Audience's private code (see notes; nothing imports it).
+research/hf-survey/*.json
+vendor/
+CLAUDE.md
+.claude/

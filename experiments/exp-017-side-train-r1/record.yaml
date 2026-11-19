@@ -1,0 +1,31 @@
+experiment_id: exp-017-side-train-r1
+status: done (2026-11-19); actual about $3
+track: sidechat (Phase 4, first models)
+what: >
+  Round 1: Ettin-32M, 68M and 150M, each on one H100, trained 3 epochs on gen-0.1 and gen-pilot
+  (lines with a safe label), input sidechat-input-0.2. Each example is redrawn every epoch in a
+  speaker-label condition (anonymous 60%, named 25%, none 15%), sometimes as speech-to-text text,
+  sometimes with a shorter history. Best epoch by dev loss (anonymous), temperatures fitted on dev,
+  thresholds chosen on dev with at most 1% of stay-quiet lines answered. Then scored on the
+  generated test (3 conditions), pilot-0.4 (named, anonymous), the demo lines, Duplex-MPE,
+  Ambient Bench and AMI, beside Jev on the same lines.
+forecast block:
+  campaign: exp-017-side-train-r1
+  decision it enables: which size to export, and what round 2 must fix
+  token forecast: none
+  Modal forecast: three H100s for 15 to 45 minutes each, then three for scoring at about 10 minutes
+  retry cap: 1
+  spend cap: $40
+  stop condition: report in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $15
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-017-side-train-r1 --corpus gen-0.1,gen-pilot --encoders ettin-32m,ettin-68m,ettin-150m --epochs 3 --tag r1
+results: uv run python -m sidechat.pipeline.results exp-017-side-train-r1
+actual_usd: about $3 (H100 1,662 s training, about 870 s scoring)
+result:
+  ettin-32m: "generated test anonymous 98.0%; Duplex-MPE 95.1%; Ambient 95.6%; AMI 96.0% (answers 1.8% of lines for people outright); pilot 83.4%; demo 46/48"
+  ettin-68m: "generated test anonymous 98.5% (Jev 80.7% on its 2,860); Duplex-MPE 96.7% (Jev 83.1%), answers 0.8% of lines for others outright (Jev 0.4%); Ambient 96.7% (Jev 85.4%); AMI 97.8% (Jev 85.2%), answers 0.8% outright (Jev 0.01%); pilot anonymous 83.4% (Jev 77.4%); demo 46/48 (Jev 47/48); implicit T 61.0% (Jev 26.6%)"
+  ettin-150m: "generated test anonymous 98.5%; Duplex-MPE 96.6%; Ambient 96.4%; AMI 97.0%; pilot anonymous 85.7%; demo 45/48; implicit T 57.6%"
+  learned: "every size is best at epoch 2 of 3 and overconfident (temperatures 1.2 to 1.45). Beats Jev beyond noise on every large set, but answers outright 0.8 to 1.9% of real or benchmark lines meant for others, against Jev's 0.0 to 0.4%: bare instructions between people in AMI meetings, opening lines with no history. Misses answers to the agent given after a quick check with someone else."

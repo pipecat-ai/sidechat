@@ -1,0 +1,29 @@
+experiment_id: exp-028-side-train-r4
+status: done (2026-11-19); actual about $7
+track: sidechat (Phase 4, round 4)
+what: >
+  Round 4: Ettin-68M and 150M, seed 0, 2 epochs, on gen-0.1, gen-pilot, gen-0.2 (unsettled
+  instructions filtered, as round 3), gen-0.3 (even-call requests after quiet openings; no bare
+  instructions where the agent leads or controls things) and the AMI silent training series.
+  Guide 0.4 labels, disfluency augmentation, thresholds with the real-speech bar. Scored on round
+  1's generated test, plus gen-0.2's and gen-0.3's tests (anonymous). Aimed at Duplex-MPE implicit
+  T (round 3 150M 38.8%, round 1 61%) without losing round 3's gains.
+forecast block:
+  campaign: exp-028-side-train-r4
+  decision it enables: the model for Jon's morning test
+  token forecast: none
+  Modal forecast: one H100 per model for 30 to 40 minutes, then scoring at about 10 minutes
+  retry cap: 1
+  spend cap: $20
+  stop condition: report in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $7
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-028-side-train-r4 --corpus gen-0.1,gen-pilot,gen-0.2,gen-0.3,ami-silent --encoders ettin-68m,ettin-150m --epochs 2 --seed 0 --tag r4 --test-corpus gen-0.1,gen-pilot --extra-sets corpus:gen-0.2:test@anonymous,corpus:gen-0.3:test@anonymous
+results: uv run python -m sidechat.pipeline.results exp-028-side-train-r4
+actual_usd: about $7
+result:
+  ettin-68m: "generated test 99.0%; pilot 86.7%; demo 47/48; Duplex-MPE 95.2%, answers 0.4% outright; Ambient 98.1%; AMI 100.0% and 100.0%; implicit T 17.1%"
+  ettin-150m: "generated test 99.0%; pilot 87.4%; demo 47/48; Duplex-MPE 95.6%, answers 1.0% outright; Ambient 98.5%; AMI 99.9% and 99.9%; implicit T 34.5%"
+  learned: "round 4 does not beat round 3: gen-0.3's even-call requests after quiet openings did not bring back unnamed requests, and the two 150M seeds differ by 6 points on implicit T and 0.2 points on outright answers, so single runs of these slices are noisy. Next: the same corpus without the AMI rows (round 5)."

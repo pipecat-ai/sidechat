@@ -1,0 +1,24 @@
+experiment_id: exp-016-side-jev-gen-test
+status: done (2026-11-19); actual about $0.20
+track: sidechat (scorecard item 1, the main test)
+what: >
+  Jev, asked as the demo asks it, on 3,000 lines sampled from gen-0.1's test split, named and
+  anonymous. The training run's scoring pairs these with Sidechat line by line.
+forecast block:
+  campaign: exp-016-side-jev-gen-test
+  decision it enables: Jev's number on the main test
+  token forecast: 6,000 requests x about 900 input tokens = 5.4M tokens
+  Modal forecast: one CPU container for about 3 minutes
+  retry cap: 2
+  spend cap: $5
+  stop condition: scorecard.json and report.md in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $0.25
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.baseline::run --exp exp-016-side-jev-gen-test --sets corpus:gen-0.1:test:3000,corpus:gen-0.1:test:3000@anonymous
+results: uv run python -m sidechat.pipeline.results exp-016-side-jev-gen-test
+actual_usd: about $0.20 (4,791,608 input tokens)
+result:
+  named: "decision right 81.2% (2,332/2,871); for others answers now 1.7%, holds 18.3%; for the agent answers now 79.8%, missed 6.3%"
+  anonymous: "80.7% (2,316/2,871); for others answers now 1.4%, holds 18.8%; for the agent answers now 77.5%, missed 6.9%"

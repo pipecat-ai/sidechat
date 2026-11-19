@@ -1,0 +1,42 @@
+{
+ "exp": "exp-016-side-jev-gen-test",
+ "app": "waystone-side-baseline",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T00:17:00+00:00",
+ "args": {
+  "sets": "corpus:gen-0.1:test:3000,corpus:gen-0.1:test:3000@anonymous",
+  "baseline_id": "jev-demo-0.1",
+  "jev_model": "jev-1.13.0",
+  "concurrency": 12,
+  "spend_cap_usd": 5.0,
+  "limit": 0
+ },
+ "updated_at": "2026-11-19T00:19:52+00:00",
+ "elapsed_s": 171,
+ "sets": {
+  "gen-0.1.test3000": 3000,
+  "gen-0.1.test3000@anonymous": 3000
+ },
+ "jev": {
+  "model": "jev-1.13.0",
+  "requests": 5999,
+  "reused": 0,
+  "asked": 5999,
+  "failed": 0,
+  "input_tokens": 4791608,
+  "output_tokens": 221963,
+  "usd_per_m_input": 0.042,
+  "started_at": "2026-11-19T00:18:14+00:00",
+  "usd_estimate": 0.201,
+  "finished_at": "2026-11-19T00:19:48+00:00",
+  "answered": 5999
+ },
+ "forecast": {
+  "input_tokens_per_request": 764.4,
+  "requests_to_ask": 5999,
+  "input_tokens": 4585676,
+  "usd": 0.19,
+  "spend_cap_usd": 5.0
+ }
+}

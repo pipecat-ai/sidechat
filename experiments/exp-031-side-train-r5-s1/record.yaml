@@ -1,0 +1,29 @@
+experiment_id: exp-031-side-train-r5-s1
+status: done (2026-11-19); actual about $4
+track: sidechat (Phase 4, round 5)
+what: >
+  Round 5, an ablation: round 4's corpus without the AMI training rows (gen-0.1, gen-pilot, gen-0.2
+  filtered, gen-0.3), Ettin-150M, seed 1 (exp-030 is seed 0). Round 1
+  (no AMI, no quiet data) answered 58 to 61% of Duplex-MPE's unnamed requests; rounds 2 to 4 (with
+  AMI) 20 to 39%. Real meetings are full of "can you ..." between people, all labelled stay quiet.
+  If unnamed requests come back without losing the quiet-keeping (now carried by gen-0.2 and
+  gen-0.3's people-only stretches), this is the better model. The AMI dev series still set the
+  real-speech bar on thresholds, and the AMI tests still score it.
+forecast block:
+  campaign: exp-031-side-train-r5-s1
+  decision it enables: whether AMI rows belong in training; possibly the model for the morning
+  token forecast: none
+  Modal forecast: one H100 for about 35 minutes, then scoring at about 10 minutes
+  retry cap: 1
+  spend cap: $15
+  stop condition: report in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $4
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-031-side-train-r5-s1 --corpus gen-0.1,gen-pilot,gen-0.2,gen-0.3 --encoders ettin-150m --epochs 2 --seed 1 --tag r5 --test-corpus gen-0.1,gen-pilot --extra-sets corpus:gen-0.2:test@anonymous,corpus:gen-0.3:test@anonymous
+results: uv run python -m sidechat.pipeline.results exp-031-side-train-r5-s1
+actual_usd: about $4
+result:
+  ettin-150m: "Duplex-MPE 95.8%, answers 0.6% outright, implicit T 36.0%; Ambient 96.0%, answers 1.6% outright; AMI labelled 98.9%; AMI silent 99.1% (2.8 per 1,000 outright); pilot 86.7%; demo 47/48"
+  learned: "without the AMI rows, unnamed requests partly come back (47% and 36% over two seeds, round 3 38.8%) but outright answers on Ambient and real meetings rise (1.6%, 2 to 3 per 1,000). AMI is what keeps the model quiet on real speech. An offline average of round 3 and round 5 seed 0 (stored predictions, no cost) lands near round 3 (Duplex 0.1% outright, implicit T 39.2%), not worth two models per line. Round 3's 150M stays the pick."

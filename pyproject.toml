@@ -1,0 +1,37 @@
+[project]
+name = "pipecat-sidechat"
+version = "0.0.1"
+description = "A small text classifier that tells a voice agent in a group conversation whether a line was for it."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.40",
+    "modal>=1.6.1",
+    "numpy>=2.0",
+    "onnxruntime>=1.20",
+    "pydantic>=2.9",
+    "pyyaml>=6.0",
+    "tokenizers>=0.21",
+]
+
+[dependency-groups]
+dev = [
+    "anthropic==2.10.0",
+    "httpx==0.28.1",
+    "pytest>=8.0",
+    "ruff>=0.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sidechat"]
+
+[tool.ruff]
+line-length = 120
+extend-exclude = ["vendor"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

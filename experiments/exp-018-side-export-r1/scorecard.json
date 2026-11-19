@@ -1,0 +1,245 @@
+{
+ "run_id": "side-r1-ettin-68m-s0",
+ "size_mb": 274.2,
+ "parity": {
+  "rows": 283,
+  "max_prob_diff": 6e-06,
+  "decisions_same": 283
+ },
+ "latency_modal_cpu": {
+  "4_threads": {
+   "p50_ms": 52.66,
+   "p95_ms": 82.22
+  },
+  "1_threads": {
+   "p50_ms": 131.65,
+   "p95_ms": 206.78
+  }
+ },
+ "thresholds": {
+  "respond": 0.6,
+  "wait": 0.45,
+  "open": 0.8,
+  "dev_right": 8549,
+  "dev_n": 8654,
+  "dev_wrong_now": 11,
+  "dev_quiet": 4821,
+  "max_wrong_now": 0.01
+ },
+ "int8": {
+  "size_mb": 69.2,
+  "thresholds": {
+   "respond": 0.98,
+   "wait": 0.2,
+   "open": 0.2,
+   "dev_right": 4821,
+   "dev_n": 8654,
+   "dev_wrong_now": 0,
+   "dev_quiet": 4821,
+   "max_wrong_now": 0.01
+  },
+  "parity_vs_fp32_torch": {
+   "rows": 283,
+   "max_prob_diff": 0.995173,
+   "decisions_same": 161
+  },
+  "latency_modal_cpu": {
+   "4_threads": {
+    "p50_ms": 40.82,
+    "p95_ms": 64.92
+   },
+   "1_threads": {
+    "p50_ms": 76.14,
+    "p95_ms": 118.84
+   }
+  },
+  "dev_anonymous": {
+   "int8": {
+    "n": 9002,
+    "decision_right": {
+     "value": 0.5571,
+     "k": 4821,
+     "n": 8654,
+     "ci95": [
+      0.5466,
+      0.5675
+     ]
+    },
+    "quiet_kept": {
+     "value": 1.0,
+     "k": 4821,
+     "n": 4821,
+     "ci95": [
+      0.9992,
+      1.0
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0,
+     "k": 0,
+     "n": 4821,
+     "ci95": [
+      0.0,
+      0.0008
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0,
+     "k": 0,
+     "n": 4821,
+     "ci95": [
+      0.0,
+      0.0008
+     ]
+    },
+    "answered_now": {
+     "value": 0.0,
+     "k": 0,
+     "n": 2772,
+     "ci95": [
+      0.0,
+      0.0014
+     ]
+    },
+    "held_instead": {
+     "value": 0.0,
+     "k": 0,
+     "n": 2772,
+     "ci95": [
+      0.0,
+      0.0014
+     ]
+    },
+    "missed": {
+     "value": 1.0,
+     "k": 2772,
+     "n": 2772,
+     "ci95": [
+      0.9986,
+      1.0
+     ]
+    },
+    "open_held": {
+     "value": 0.0,
+     "k": 0,
+     "n": 1061,
+     "ci95": [
+      0.0,
+      0.0036
+     ]
+    },
+    "open_answered_now": {
+     "value": 0.0,
+     "k": 0,
+     "n": 1061,
+     "ci95": [
+      0.0,
+      0.0036
+     ]
+    },
+    "open_ignored": {
+     "value": 1.0,
+     "k": 1061,
+     "n": 1061,
+     "ci95": [
+      0.9964,
+      1.0
+     ]
+    }
+   },
+   "fp32": {
+    "n": 9002,
+    "decision_right": {
+     "value": 0.9879,
+     "k": 8549,
+     "n": 8654,
+     "ci95": [
+      0.9853,
+      0.99
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9932,
+     "k": 4788,
+     "n": 4821,
+     "ci95": [
+      0.9904,
+      0.9951
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0023,
+     "k": 11,
+     "n": 4821,
+     "ci95": [
+      0.0013,
+      0.0041
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0046,
+     "k": 22,
+     "n": 4821,
+     "ci95": [
+      0.003,
+      0.0069
+     ]
+    },
+    "answered_now": {
+     "value": 0.9885,
+     "k": 2740,
+     "n": 2772,
+     "ci95": [
+      0.9837,
+      0.9918
+     ]
+    },
+    "held_instead": {
+     "value": 0.0054,
+     "k": 15,
+     "n": 2772,
+     "ci95": [
+      0.0033,
+      0.0089
+     ]
+    },
+    "missed": {
+     "value": 0.0061,
+     "k": 17,
+     "n": 2772,
+     "ci95": [
+      0.0038,
+      0.0098
+     ]
+    },
+    "open_held": {
+     "value": 0.9623,
+     "k": 1021,
+     "n": 1061,
+     "ci95": [
+      0.9491,
+      0.9722
+     ]
+    },
+    "open_answered_now": {
+     "value": 0.0217,
+     "k": 23,
+     "n": 1061,
+     "ci95": [
+      0.0145,
+      0.0323
+     ]
+    },
+    "open_ignored": {
+     "value": 0.016,
+     "k": 17,
+     "n": 1061,
+     "ci95": [
+      0.01,
+      0.0255
+     ]
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,914 @@
+{
+ "meta": {
+  "exp": "exp-024-side-committee-gen-0.2",
+  "label_id": "corpus:gen-0.2:dev+test:60:answer_after_aside-committee-0.4",
+  "sets": [
+   "corpus:gen-0.2:dev+test:60:answer_after_aside",
+   "corpus:gen-0.2:dev+test:300:imperative_to_person+steps_to_people+host_to_group+thanks_named+stop_named+farewell_named"
+  ],
+  "guide": "sidechat-guide-0.4",
+  "prompt_sha": "5b71303e8551",
+  "members": [
+   "a",
+   "b",
+   "c"
+  ],
+  "usage": {
+   "a": {
+    "answered": 360,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1735208,
+    "cached": 1676889,
+    "cache_write": 0,
+    "output": 22939,
+    "errors": [],
+    "usd": 1.184
+   },
+   "b": {
+    "answered": 360,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 2599420,
+    "cached": 2460128,
+    "cache_write": 55912,
+    "output": 32386,
+    "errors": [],
+    "usd": 2.245
+   },
+   "c": {
+    "answered": 360,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1908081,
+    "cached": 181276,
+    "cache_write": 0,
+    "output": 26344,
+    "errors": [],
+    "usd": 7.615
+   }
+  },
+  "limit": null,
+  "finished_at": "2026-11-19T01:27:27+00:00"
+ },
+ "rows": 360,
+ "definite": 360,
+ "graded": 0,
+ "target": 0.9,
+ "majority": {
+  "decision": {
+   "value": 0.9583,
+   "k": 345,
+   "n": 360,
+   "ci95": [
+    0.9324,
+    0.9746
+   ]
+  },
+  "no_decision_majority": 5,
+  "intent": {
+   "value": 0.9583,
+   "k": 345,
+   "n": 360,
+   "ci95": [
+    0.9324,
+    0.9746
+   ]
+  },
+  "unanimous": {
+   "value": 0.9389,
+   "k": 338,
+   "n": 360,
+   "ci95": [
+    0.9092,
+    0.9593
+   ]
+  }
+ },
+ "meets_target": true,
+ "members": {
+  "a": {
+   "answered": {
+    "value": 1.0,
+    "k": 360,
+    "n": 360,
+    "ci95": [
+     0.9894,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9472,
+    "k": 341,
+    "n": 360,
+    "ci95": [
+     0.919,
+     0.966
+    ]
+   },
+   "intent": {
+    "value": 0.9472,
+    "k": 341,
+    "n": 360,
+    "ci95": [
+     0.919,
+     0.966
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9611,
+    "k": 346,
+    "n": 360,
+    "ci95": [
+     0.9358,
+     0.9767
+    ]
+   },
+   "rule": {
+    "value": 0.9306,
+    "k": 335,
+    "n": 360,
+    "ci95": [
+     0.8995,
+     0.9525
+    ]
+   },
+   "speak_mean_abs_diff": 0.189
+  },
+  "b": {
+   "answered": {
+    "value": 1.0,
+    "k": 360,
+    "n": 360,
+    "ci95": [
+     0.9894,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9444,
+    "k": 340,
+    "n": 360,
+    "ci95": [
+     0.9158,
+     0.9638
+    ]
+   },
+   "intent": {
+    "value": 0.9472,
+    "k": 341,
+    "n": 360,
+    "ci95": [
+     0.919,
+     0.966
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9889,
+    "k": 356,
+    "n": 360,
+    "ci95": [
+     0.9718,
+     0.9957
+    ]
+   },
+   "rule": {
+    "value": 0.9861,
+    "k": 355,
+    "n": 360,
+    "ci95": [
+     0.9679,
+     0.9941
+    ]
+   },
+   "speak_mean_abs_diff": 0.133
+  },
+  "c": {
+   "answered": {
+    "value": 1.0,
+    "k": 360,
+    "n": 360,
+    "ci95": [
+     0.9894,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9778,
+    "k": 352,
+    "n": 360,
+    "ci95": [
+     0.9568,
+     0.9887
+    ]
+   },
+   "intent": {
+    "value": 0.9806,
+    "k": 353,
+    "n": 360,
+    "ci95": [
+     0.9604,
+     0.9906
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9889,
+    "k": 356,
+    "n": 360,
+    "ci95": [
+     0.9718,
+     0.9957
+    ]
+   },
+   "rule": {
+    "value": 0.975,
+    "k": 351,
+    "n": 360,
+    "ci95": [
+     0.9532,
+     0.9868
+    ]
+   },
+   "speak_mean_abs_diff": 0.067
+  }
+ },
+ "pairs": {
+  "a-b": {
+   "value": 0.95,
+   "k": 342,
+   "n": 360,
+   "ci95": [
+    0.9224,
+    0.9681
+   ]
+  },
+  "a-c": {
+   "value": 0.9583,
+   "k": 345,
+   "n": 360,
+   "ci95": [
+    0.9324,
+    0.9746
+   ]
+  },
+  "b-c": {
+   "value": 0.9556,
+   "k": 344,
+   "n": 360,
+   "ci95": [
+    0.929,
+    0.9725
+   ]
+  }
+ },
+ "by_rule": {
+  "G7": {
+   "value": 0.9442,
+   "k": 237,
+   "n": 251,
+   "ci95": [
+    0.9086,
+    0.9665
+   ]
+  },
+  "G6": {
+   "value": 0.9833,
+   "k": 59,
+   "n": 60,
+   "ci95": [
+    0.9114,
+    0.9971
+   ]
+  },
+  "G2": {
+   "value": 1.0,
+   "k": 49,
+   "n": 49,
+   "ci95": [
+    0.9273,
+    1.0
+   ]
+  }
+ },
+ "by_expect": {
+  "ignore": {
+   "value": 0.9442,
+   "k": 237,
+   "n": 251,
+   "ci95": [
+    0.9086,
+    0.9665
+   ]
+  },
+  "respond": {
+   "value": 0.9908,
+   "k": 108,
+   "n": 109,
+   "ci95": [
+    0.9499,
+    0.9984
+   ]
+  }
+ },
+ "by_kind": {
+  "imperative_to_person": {
+   "value": 0.9023,
+   "k": 120,
+   "n": 133,
+   "ci95": [
+    0.8399,
+    0.942
+   ]
+  },
+  "steps_to_people": {
+   "value": 0.9836,
+   "k": 60,
+   "n": 61,
+   "ci95": [
+    0.9128,
+    0.9971
+   ]
+  },
+  "answer_after_aside": {
+   "value": 0.9833,
+   "k": 59,
+   "n": 60,
+   "ci95": [
+    0.9114,
+    0.9971
+   ]
+  },
+  "host_to_group": {
+   "value": 1.0,
+   "k": 57,
+   "n": 57,
+   "ci95": [
+    0.9369,
+    1.0
+   ]
+  },
+  "stop_named": {
+   "value": 1.0,
+   "k": 24,
+   "n": 24,
+   "ci95": [
+    0.862,
+    1.0
+   ]
+  },
+  "thanks_named": {
+   "value": 1.0,
+   "k": 18,
+   "n": 18,
+   "ci95": [
+    0.8241,
+    1.0
+   ]
+  },
+  "farewell_named": {
+   "value": 1.0,
+   "k": 7,
+   "n": 7,
+   "ci95": [
+    0.6457,
+    1.0
+   ]
+  }
+ },
+ "disagreements": [
+  {
+   "id": "o03-03509/14",
+   "speaker": "Grace",
+   "text": "It's at fifteen percent right now.",
+   "before": [
+    "Grace: Fatima, did you see the error spike on your end?",
+    "Fatima: Yeah, it was pretty massive, honestly."
+   ],
+   "kind": "answer_after_aside",
+   "rule": "G6",
+   "guide": "respond",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Grace supplies a percentage to the group rather than answering Bea’s question about which feature she meant."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 2,
+     "rule": "G6",
+     "reason": "Grace has turned to Fatima about the error spike. This statement doesn't answer Bea's question about which feature, so it reads as context for Fatima."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Grace is stating the rollout percentage to the people after turning away from Bea's clarifying question to talk with Fatima."
+    }
+   }
+  },
+  {
+   "id": "a03-01673/11",
+   "speaker": "Marta",
+   "text": "Move on to the next slide.",
+   "before": [
+    "Marta: Oh, wow, I totally would have said Sydney.",
+    "Eli: Ada's hints are actually really helpful, you know."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ada is running the quiz, so the instruction to advance is directed at Ada."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ada runs the quiz and no person is presenting, so moving to the next slide carries on the quiz business it leads."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Advancing slides is a bare instruction only a person presenting can carry out, not the quiz-running voice tutor."
+    }
+   }
+  },
+  {
+   "id": "a03-02679/9",
+   "speaker": "Cal",
+   "text": "Go to the next slide.",
+   "before": [
+    "Cal: Orion mentioned earlier that we can change roles anytime.",
+    "Sue: I like how Orion explains things without making them complicated."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Cal asks Orion to advance to the next step of the onboarding session it guides."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "A bare request to advance slides with no named addressee; nothing shows who is presenting, and the onboarding guide might control the slides, so it is unsettled."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Nobody is called and the addressee of the slide request is unsettled between Sue and the AI onboarding guide."
+    }
+   }
+  },
+  {
+   "id": "c03-00234/16",
+   "speaker": "Connor",
+   "text": "Pull up the condo links.",
+   "before": [
+    "Connor: Great, I'll put down the deposit once we're all confirmed.",
+    "Petra: Noa, you're the only one we're waiting on for the dates."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Connor is asking Nova to pull up the links for the condos it found."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "A bare request with no addressee that the agent could do (it found the condos), but the talk has turned to the people, so the addressee is unsettled."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Only the agent holds the condo results it found earlier, so the command to pull up those links is for the agent."
+    }
+   }
+  },
+  {
+   "id": "c03-00577/3",
+   "speaker": "Leila",
+   "text": "Pull up the Grafana dashboard.",
+   "before": [
+    "Joy: Wei, did you see if the latest deploy finished rolling out to all the pods?",
+    "Wei: Yeah, it finished around two, you know, right before the alerts started firing."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Leila doesn't specify who should open the dashboard, and either the assistant or someone on the call could do it."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "A bare request with no name, during talk between people, that the agent might be able to do but could equally be meant for a person, so the addressee is unsettled."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Opening a Grafana dashboard on screen is a bare instruction for one of the engineers on their own machine, not a task for the call assistant."
+    }
+   }
+  },
+  {
+   "id": "o03-01659/11",
+   "speaker": "Karen",
+   "text": "Write that down for me.",
+   "before": [
+    "Karen: Sofia, are you taking any supplements?",
+    "Sofia: Just magnesium, I think."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Recording Sofia’s supplement is part of the agent’s clinic intake role."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "An unaddressed request to record Sofia's supplement answer is an intake task the agent could do, but Karen calls no one and it could be for a person."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Nobody is called and the agent has not spoken yet, so this bare command to record intake details could be meant for Sofia or for the intake assistant."
+    }
+   }
+  },
+  {
+   "id": "o03-01815/12",
+   "speaker": "Jack",
+   "text": "Turn that song down.",
+   "before": [
+    "Tess: You guys look exhausted, I’m barely keeping my eyes open.",
+    "Tess: You should probably drink some water, you look thirsty."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Either Gus or another passenger could lower the music, and Jack doesn't specify whom he's asking."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "A bare request to lower the music, with no one named, is something an in-car assistant could do, but a person could also do it, so the addressee is unsettled."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "The command to turn down the music has no settled addressee and could be carried out by either the in-car assistant or a passenger."
+    }
+   }
+  },
+  {
+   "id": "o03-02460/1",
+   "speaker": "Mateo",
+   "text": "Next slide.",
+   "before": [
+    "Sofia: Just tap the icon, then hit start to begin."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Mateo asks to advance the quiz, and Kai is running it."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "A bare instruction with no addressee that the quiz-running agent might control, but Sofia may be the one operating the slides, so it is unsettled."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Mateo is giving a bare instruction to Sofia, who is presenting and explaining steps on slides."
+    }
+   }
+  },
+  {
+   "id": "o03-03104/9",
+   "speaker": "Oskar",
+   "text": "Click next.",
+   "before": [
+    "Ben: True, but the political stuff was just as big.",
+    "Tariq: Should we try the hard questions first?"
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Max runs the quiz, and Oskar is asking to advance it without addressing anyone else."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "A bare instruction to advance the quiz could be for whoever is at the screen or for the agent running the quiz, and nothing settles which."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "This is a bare physical UI instruction ('Click next') directed at whichever person is operating the screen, not the voice agent."
+    }
+   }
+  },
+  {
+   "id": "o03-03767/0",
+   "speaker": "Lars",
+   "text": "Next slide.",
+   "before": [],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Orion runs the quiz, so Lars’s request to advance to the next slide is directed at it."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "With no prior context, 'next slide' could be for a presenting person or for the quiz-running tutor, who may control the slides, so the addressee is unsettled."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Moving to the next slide is a bare instruction for a person presenting, not part of the quiz tutor's role."
+    }
+   }
+  },
+  {
+   "id": "o03-03920/8",
+   "speaker": "Grace",
+   "text": "Move on to the next slide.",
+   "before": [
+    "Malik: Okay, anyone have questions before we dive in?",
+    "Malik: It just confirmed we have ten minutes left."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Sage is running the quiz, and Grace asks to advance it without addressing anyone else."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "A bare instruction with no name; slides are not clearly controlled by the agent or a presenter, so the addressee is unsettled."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Moving on to the next slide is a bare instruction that only a person presenting slides can carry out."
+    }
+   }
+  },
+  {
+   "id": "o03-03941/18",
+   "speaker": "Paul",
+   "text": "Move to the next slide.",
+   "before": [
+    "Paul: Thanks for clarifying that detail.",
+    "Ngozi: I keep mixing up the e and i..."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Indy runs the quiz, and Paul is asking it to advance to the next slide."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Indy runs the quiz and no person is presenting, so a bare request to advance the slide carries on the session business it leads."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Moving to the next slide is a bare instruction that only a person presenting can carry out."
+    }
+   }
+  },
+  {
+   "id": "o03-04977/13",
+   "speaker": "Mira",
+   "text": "Show me the diagram again.",
+   "before": [
+    "Amy: Eli, did you save the notes from last week?",
+    "Eli: Yep, they’re in the shared folder."
+   ],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "The tutor or a group member could show the diagram, and Mira does not specify whom she is asking."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Mira's request names no one, and the talk has moved on from her exchange with Dash; the diagram could be the group's own drawing or something the tutor could show."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Mira asks to see a diagram again without naming anyone, which could be directed at a study partner or at the AI tutor."
+    }
+   }
+  },
+  {
+   "id": "o03-05335/0",
+   "speaker": "Ruth",
+   "text": "Turn the key left, then slide the latch up.",
+   "before": [],
+   "kind": "steps_to_people",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ruth gives an in-game action for Frankie, the game master, to resolve."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "With no earlier lines, this unnamed imperative could be a player's move for the game master or an instruction to another player, and nothing settles which."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game session as game master, and this line states an in-game action without calling anyone else."
+    }
+   }
+  },
+  {
+   "id": "o03-05873/0",
+   "speaker": "Alice",
+   "text": "Next slide, please.",
+   "before": [],
+   "kind": "imperative_to_person",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Atlas runs the quiz, so Alice’s request to advance the slide is directed to it."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "A bare request to advance the slide with no addressee and no prior context; the agent running the quiz might control the slides, but so might a person, so it stays unsettled."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Moving to the next slide is a bare instruction for the person presenting, not part of the quiz tutor's role."
+    }
+   }
+  }
+ ],
+ "graded_lines": []
+}

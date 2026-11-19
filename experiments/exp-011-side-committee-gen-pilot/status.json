@@ -1,0 +1,65 @@
+{
+ "exp": "exp-011-side-committee-gen-pilot",
+ "app": "waystone-side-label",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-18T23:43:03+00:00",
+ "args": {
+  "sets": "corpus:gen-pilot:dev+test:450",
+  "label_id": "corpus:gen-pilot:dev+test:450-committee-0.3",
+  "members": "a,b,c",
+  "concurrency": 8,
+  "spend_cap_usd": 25.0,
+  "limit": 0
+ },
+ "updated_at": "2026-11-18T23:53:32+00:00",
+ "elapsed_s": 630,
+ "sets": {
+  "gen-pilot.dev-test450": 450
+ },
+ "progress": {
+  "a": {
+   "answered": 450,
+   "reused": 0,
+   "failed": 0,
+   "usd": 1.460137999999998,
+   "of": 450
+  },
+  "b": {
+   "answered": 450,
+   "reused": 0,
+   "failed": 0,
+   "usd": 2.693679199999999,
+   "of": 450
+  },
+  "c": {
+   "answered": 450,
+   "reused": 0,
+   "failed": 0,
+   "usd": 8.090236000000006,
+   "of": 450
+  }
+ },
+ "usd": 12.244,
+ "forecast": {
+  "usd": 22.41,
+  "by_member": {
+   "a": 2.63,
+   "b": 11.46,
+   "c": 8.32
+  },
+  "spend_cap_usd": 25.0
+ },
+ "headline": {
+  "majority_decision": {
+   "value": 0.9535,
+   "k": 410,
+   "n": 430,
+   "ci95": [
+    0.9293,
+    0.9697
+   ]
+  },
+  "meets_target": true
+ }
+}

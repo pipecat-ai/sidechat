@@ -1,0 +1,27 @@
+experiment_id: exp-034-side-publish
+status: done (2026-11-19); actual under $0.10
+track: sidechat (release)
+what: >
+  Publish side-r3-ettin-150m-s0 to the Hugging Face Hub as pipecat-ai/sidechat (created private):
+  the ONNX export (fp32 and int8), tokenizer and config, the model card (hf/README.md), and the
+  rows it was trained on (train and dev), rebuilt by the training job's own code and checked
+  against the run's train_rows. Test-only sets are never part of training, so never uploaded.
+forecast block:
+  campaign: exp-034-side-publish
+  decision it enables: Jon can try and share the model from the Hub
+  token forecast: none
+  Modal forecast: one 4-core CPU container for 15 to 40 minutes (rows, then about 1.2 GB uploaded)
+  retry cap: 1
+  spend cap: $2
+  stop condition: commit on the Hub, report in R2
+  approved by Jon on: 2026-11-19 (asked in chat to publish the weights and training data)
+forecast_usd: under $0.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.publish::run --exp exp-034-side-publish --run-id side-r3-ettin-150m-s0
+results: uv run python -m sidechat.pipeline.results exp-034-side-publish
+actual_usd: under $0.10
+result:
+  hub: "pipecat-ai/sidechat, private, commit c9b59bebf7e17993df3f55a9a81813bdccd80c7b"
+  rows: "train 235,069 (gen-0.1 83,732, gen-pilot 6,263, gen-0.2 129,798, AMI silent 15,276), the run's own count; dev 25,631"
+  learned: "the export on the Hub has the same sha256 as the local copy the card's example was tried on"

@@ -1,0 +1,26 @@
+{
+ "run_id": "side-smoke-ettin-32m-s0",
+ "size_mb": 128.6,
+ "parity": {
+  "rows": 283,
+  "max_prob_diff": 6e-06,
+  "decisions_same": 283
+ },
+ "latency_modal_cpu": {
+  "4_threads": {
+   "p50_ms": 20.79,
+   "p95_ms": 34.87
+  },
+  "1_threads": {
+   "p50_ms": 43.32,
+   "p95_ms": 67.85
+  }
+ },
+ "thresholds": {
+  "respond": 0.6,
+  "wait": 0.55,
+  "open": 0.5,
+  "dev_right": 519,
+  "dev_n": 633
+ }
+}

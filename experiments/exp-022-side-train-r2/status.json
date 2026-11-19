@@ -1,0 +1,69 @@
+{
+ "exp": "exp-022-side-train-r2",
+ "app": "waystone-side-train",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T01:12:39+00:00",
+ "args": {
+  "corpus": "gen-0.1,gen-pilot,gen-0.2,ami-silent",
+  "encoders": "ettin-68m,ettin-150m",
+  "epochs": 2,
+  "seed": 0,
+  "tag": "r2",
+  "test_corpus": "gen-0.1,gen-pilot",
+  "extra_sets": "corpus:gen-0.2:test@anonymous",
+  "score_only": false
+ },
+ "updated_at": "2026-11-19T01:42:17+00:00",
+ "elapsed_s": 1777,
+ "trained": {
+  "ettin-68m": {
+   "best_epoch": 2,
+   "history": [
+    {
+     "epoch": 1,
+     "train_loss": 0.4454,
+     "dev_loss": 0.2276,
+     "secs": 618
+    },
+    {
+     "epoch": 2,
+     "train_loss": 0.2632,
+     "dev_loss": 0.2078,
+     "secs": 1188
+    }
+   ],
+   "temperatures": {
+    "intent": 1.45,
+    "respond": 1.4,
+    "unclear": 1.35
+   },
+   "secs": 1206,
+   "error": null
+  },
+  "ettin-150m": {
+   "best_epoch": 2,
+   "history": [
+    {
+     "epoch": 1,
+     "train_loss": 0.4285,
+     "dev_loss": 0.2139,
+     "secs": 716
+    },
+    {
+     "epoch": 2,
+     "train_loss": 0.255,
+     "dev_loss": 0.2038,
+     "secs": 1366
+    }
+   ],
+   "temperatures": {
+    "intent": 1.35,
+    "respond": 1.35,
+    "unclear": 1.25
+   },
+   "secs": 1417,
+   "error": null
+  }
+ }
+}

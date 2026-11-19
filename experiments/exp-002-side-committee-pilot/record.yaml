@@ -1,0 +1,39 @@
+experiment_id: exp-002-side-committee-pilot
+status: done (2026-11-18); actual about $6.86 (committee $6.84 estimated from tokens, Modal about $0.02)
+track: sidechat (Phase 1, PLAN.md sections 6 and 9)
+what: >
+  The labelling committee (members a, b and c, one model family each, at low reasoning effort,
+  model ids in .env only per SD-09) labels the 283 lines of pilot-0.2 blind, under labelling guide
+  0.1 (contracts/sidechat-guide-0.1.md, prompt hash 0fa7e0d30b2b). Each member's answers, the
+  majority vote and agreement with the guide's labels go to R2 under label set
+  pilot-0.2-committee-0.1. Phase 1 target: the majority agrees with the guide's decision on at
+  least 90% of the 265 lines that have a definite decision.
+trial: >
+  exp-002-side-committee-trial ran the same job on the first 2 conversations (17 lines): every
+  member answered every line, no fallback, about $0.64; majority agreed with the guide on 14 of 16.
+  Both disagreements were kinds assigned against the guide's own rules, not committee errors.
+forecast block:
+  campaign: exp-002-side-committee-pilot
+  decision it enables: whether guide 0.1 is clear enough for a committee to apply, and what guide 0.2 must fix
+  token forecast: about 283 lines x 3 members at about 3,700 input tokens each (3,000 cached after the first), about 100 output tokens each
+  Modal forecast: one CPU container for 5 to 10 minutes
+  retry cap: 2 automatic retries; a retry resumes from stored answers
+  spend cap: $25, enforced in the job after a 12-line preflight per member
+  stop condition: scorecard.json and report.md in R2; or the job stops itself (over cap, a member refused, more than 15% of a member's lines failing)
+  approved by Jon on: 2026-11-18 ("Start phase 1"; PLAN.md prices labels at about $200 for the project)
+forecast_usd: about $11 (trial rate, $0.038 per line across the three members)
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.label::run --exp exp-002-side-committee-pilot --sets pilot-0.2
+results: uv run python -m sidechat.pipeline.results exp-002-side-committee-pilot
+r2:
+  rows: runs/side/rows/pilot-0.2/
+  labels: runs/side/labels/pilot-0.2-committee-0.1/
+  results: runs/side/results/exp-002-side-committee-pilot/
+actual_usd: about $6.86 (a $0.77, b $1.32, c $4.75; c's input was barely cached)
+result:
+  lines: "283, all answered by every member, 0 failed, 0 fallbacks, 163 s"
+  majority_decision: "95.9% (254/265; 92.7 to 97.7) agree with guide 0.1; target 90% met"
+  members_decision: "a 92.8%, b 96.6%, c 94.7%"
+  disagreements: "11: 9 kinds assigned against the guide's own rules (follow-ups by someone other than the agent's partner, questions inside an exchange with a person, questions about the people, a dismissal, a challenge to the agent's answer); 2 guide gaps (a request only the agent can carry out; a comment that asks nothing)"
+  verdict: guide 0.1 is clear enough for a committee; guide 0.2 fixes the 2 gaps, pilot-0.3 corrects the 9 kinds

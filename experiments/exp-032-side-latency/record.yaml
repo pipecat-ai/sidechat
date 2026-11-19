@@ -1,0 +1,28 @@
+experiment_id: exp-032-side-latency
+status: done (2026-11-19); actual under $0.01
+track: sidechat (size and latency)
+what: >
+  Size and per-line latency of side-r3-ettin-150m-s0 (fp32 and int8, 1, 2 and 4 threads) beside
+  Jev, each asked through the daily-audience demo's own gate (AddressingMonitor.classify) and timed
+  by its classifier_ms. Two shapes: the demo's 33 sample lines as written, and the same lines after
+  a full 8-line history (the demo's window). Runs on this Mac, because latency is measured where the
+  bot runs; it takes a few minutes, so it is not a Modal job.
+forecast block:
+  campaign: exp-032-side-latency
+  decision it enables: whether Sidechat can replace Jev in the demo on latency and footprint
+  token forecast: Jev, 2 rounds of 66 lines plus warm-up, about 140 requests
+  Modal forecast: none
+  retry cap: 1
+  spend cap: $1
+  stop condition: numbers printed
+  approved by Jon on: 2026-11-19 (asked for the benchmark in chat)
+forecast_usd: under $0.01
+command: >
+  set -a; . ./.env; set +a;
+  PYTHONPATH=. ~/Sites/daily-audience/server/.venv/bin/python scripts/bench_latency.py ...
+actual_usd: under $0.01
+result:
+  report: reports/2026-11-19-side-latency.md
+  sidechat: "fp32, 2 threads (the adapter's default): demo lines p50 9.8 ms, full 8-line window p50 43.5 ms, about 1.0 GB resident; int8, 4 threads: 6.7 and 28.9 ms, about 0.7 GB"
+  jev: "p50 165 to 172 ms, p90 about 220 ms, p99 about 310 ms from this Mac; about 16 MB in the bot"
+  learned: "on this Mac Sidechat is 16 to 25 times faster than Jev's network round trip on a bare line and 3 to 6 times with a full window; its time grows with the history (a full window costs 3 to 5 times a bare line) where Jev's barely moves. The demo deploys on agent-1x (0.5 vCPU, 1 GB): fp32 does not fit that memory beside the bot, and latency on half an x86 core is not measured yet."

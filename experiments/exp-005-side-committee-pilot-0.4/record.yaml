@@ -1,0 +1,31 @@
+experiment_id: exp-005-side-committee-pilot-0.4
+status: done (2026-11-18); actual about $0.01 (all 849 answers reused)
+track: sidechat (Phase 1)
+what: >
+  Re-score of the committee's guide 0.2 answers (exp-004, prompt hash 8b6452d7cbd5) against
+  pilot-0.4, which corrects three more kinds where guide 0.2's own text decides. The lines and the
+  prompt are unchanged, so every answer is reused from R2 and no labeller is called. This is the
+  agreement figure Phase 1 reports, with the caveat that 13 of the pilot's kinds were corrected
+  after seeing committee answers.
+forecast block:
+  campaign: exp-005-side-committee-pilot-0.4
+  decision it enables: the final Phase 1 agreement figure for guide 0.2
+  token forecast: none (all answers reused)
+  Modal forecast: one CPU container for under a minute
+  retry cap: 2
+  spend cap: $1
+  stop condition: scorecard.json and report.md in R2
+  approved by Jon on: 2026-11-18 ("Start phase 1")
+forecast_usd: about $0.01
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.label::run --exp exp-005-side-committee-pilot-0.4 --sets pilot-0.4 --spend-cap-usd 1
+results: uv run python -m sidechat.pipeline.results exp-005-side-committee-pilot-0.4
+actual_usd: about $0.01
+result:
+  majority_decision: "99.2% (263/265; 97.3 to 99.8) agree with guide 0.2 on pilot-0.4"
+  by_decision: "ignore 98.8% (161/163), respond 100% (76/76), wait 100% (26/26)"
+  members_decision: "a 95.5% (253/265), b 99.2% (263/265), c 98.9% (262/265)"
+  unanimous: "90.5% of lines (256/283) get the same decision and intent from all three"
+  remaining: "game-09/12 (no majority: respond / wait / ignore) and meeting-21/11 (majority wait, guide ignore)"
+  caveat: "13 of pilot-0.4's kinds were corrected after seeing committee answers; the independent check is the first generated dev set"

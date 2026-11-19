@@ -1,0 +1,19 @@
+{
+ "exp": "exp-021-side-rescore-r1",
+ "app": "waystone-side-train",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T00:53:31+00:00",
+ "args": {
+  "corpus": "gen-0.1,gen-pilot",
+  "encoders": "ettin-32m,ettin-68m,ettin-150m",
+  "epochs": 3,
+  "seed": 0,
+  "tag": "r1",
+  "test_corpus": "",
+  "extra_sets": "",
+  "score_only": true
+ },
+ "updated_at": "2026-11-19T00:58:11+00:00",
+ "elapsed_s": 281
+}

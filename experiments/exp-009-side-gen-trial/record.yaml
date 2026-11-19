@@ -1,0 +1,24 @@
+experiment_id: exp-009-side-gen-trial
+status: done (2026-11-18); actual about $0.61
+track: sidechat (Phase 2, the generated corpus)
+what: >
+  First run of the conversation generator: 8 conversations from each writer (o open weights on an
+  H100, a and c APIs, b API test-only), planned by sidechat/gen/planner.py, labelled from each
+  line's kind under guide 0.3. Read by hand before any larger run.
+forecast block:
+  campaign: exp-009-side-gen-trial
+  decision it enables: whether the writers keep to their briefs well enough to scale up
+  token forecast: 24 API conversations at about 2,500 input and 2,000 output tokens
+  Modal forecast: one H100 for about 10 minutes (image build and model load dominate), CPU containers
+  retry cap: 1 on the driver, 2 on the API writers
+  spend cap: $10
+  stop condition: rows and sample in R2
+  approved by Jon on: 2026-11-18 (SD-17, overnight within $1,000)
+forecast_usd: about $2
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.generate::run --exp exp-009-side-gen-trial --gen-id gen-trial --counts o:8,a:8,c:8,b:8 --spend-cap-usd 10
+results: uv run python -m sidechat.pipeline.results exp-009-side-gen-trial
+actual_usd: about $0.61
+result:
+  trial: "32 conversations, 454 lines, 443 keep to their brief; found person-to-person kinds right after the agent asks (fixed in the planner)"

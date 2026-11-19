@@ -1,0 +1,253 @@
+{
+ "run_id": "side-r3-ettin-150m-s0",
+ "size_mb": 598.3,
+ "parity": {
+  "rows": 283,
+  "max_prob_diff": 7e-06,
+  "decisions_same": 283
+ },
+ "latency_modal_cpu": {
+  "4_threads": {
+   "p50_ms": 106.31,
+   "p95_ms": 153.98
+  },
+  "1_threads": {
+   "p50_ms": 247.39,
+   "p95_ms": 375.07
+  }
+ },
+ "thresholds": {
+  "respond": 0.6,
+  "wait": 0.4,
+  "open": 0.3,
+  "dev_right": 20625,
+  "dev_n": 20841,
+  "dev_wrong_now": 30,
+  "dev_quiet": 12767,
+  "max_wrong_now": 0.01,
+  "real_wrong_now": 0,
+  "real_quiet": 4186,
+  "max_wrong_now_real": 0.004
+ },
+ "int8": {
+  "size_mb": 267.2,
+  "thresholds": {
+   "respond": 0.55,
+   "wait": 0.4,
+   "open": 0.3,
+   "dev_right": 20544,
+   "dev_n": 20841,
+   "dev_wrong_now": 33,
+   "dev_quiet": 12767,
+   "max_wrong_now": 0.01,
+   "real_wrong_now": 0,
+   "real_quiet": 4186,
+   "max_wrong_now_real": 0.004
+  },
+  "parity_vs_fp32_torch": {
+   "rows": 283,
+   "max_prob_diff": 0.896356,
+   "decisions_same": 269
+  },
+  "latency_modal_cpu": {
+   "4_threads": {
+    "p50_ms": 63.35,
+    "p95_ms": 104.18
+   },
+   "1_threads": {
+    "p50_ms": 86.26,
+    "p95_ms": 137.0
+   }
+  },
+  "dev_anonymous": {
+   "int8": {
+    "n": 21445,
+    "decision_right": {
+     "value": 0.9857,
+     "k": 20544,
+     "n": 20841,
+     "ci95": [
+      0.984,
+      0.9873
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9942,
+     "k": 12693,
+     "n": 12767,
+     "ci95": [
+      0.9927,
+      0.9954
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0026,
+     "k": 33,
+     "n": 12767,
+     "ci95": [
+      0.0018,
+      0.0036
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0032,
+     "k": 41,
+     "n": 12767,
+     "ci95": [
+      0.0024,
+      0.0044
+     ]
+    },
+    "answered_now": {
+     "value": 0.9861,
+     "k": 5816,
+     "n": 5898,
+     "ci95": [
+      0.9828,
+      0.9888
+     ]
+    },
+    "held_instead": {
+     "value": 0.0058,
+     "k": 34,
+     "n": 5898,
+     "ci95": [
+      0.0041,
+      0.008
+     ]
+    },
+    "missed": {
+     "value": 0.0081,
+     "k": 48,
+     "n": 5898,
+     "ci95": [
+      0.0061,
+      0.0108
+     ]
+    },
+    "open_held": {
+     "value": 0.9352,
+     "k": 2035,
+     "n": 2176,
+     "ci95": [
+      0.9241,
+      0.9448
+     ]
+    },
+    "open_answered_now": {
+     "value": 0.0423,
+     "k": 92,
+     "n": 2176,
+     "ci95": [
+      0.0346,
+      0.0516
+     ]
+    },
+    "open_ignored": {
+     "value": 0.0225,
+     "k": 49,
+     "n": 2176,
+     "ci95": [
+      0.0171,
+      0.0296
+     ]
+    }
+   },
+   "fp32": {
+    "n": 21445,
+    "decision_right": {
+     "value": 0.9896,
+     "k": 20625,
+     "n": 20841,
+     "ci95": [
+      0.9882,
+      0.9909
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9937,
+     "k": 12687,
+     "n": 12767,
+     "ci95": [
+      0.9922,
+      0.995
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0023,
+     "k": 30,
+     "n": 12767,
+     "ci95": [
+      0.0016,
+      0.0034
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0039,
+     "k": 50,
+     "n": 12767,
+     "ci95": [
+      0.003,
+      0.0052
+     ]
+    },
+    "answered_now": {
+     "value": 0.9888,
+     "k": 5832,
+     "n": 5898,
+     "ci95": [
+      0.9858,
+      0.9912
+     ]
+    },
+    "held_instead": {
+     "value": 0.0064,
+     "k": 38,
+     "n": 5898,
+     "ci95": [
+      0.0047,
+      0.0088
+     ]
+    },
+    "missed": {
+     "value": 0.0047,
+     "k": 28,
+     "n": 5898,
+     "ci95": [
+      0.0033,
+      0.0069
+     ]
+    },
+    "open_held": {
+     "value": 0.9678,
+     "k": 2106,
+     "n": 2176,
+     "ci95": [
+      0.9596,
+      0.9745
+     ]
+    },
+    "open_answered_now": {
+     "value": 0.0216,
+     "k": 47,
+     "n": 2176,
+     "ci95": [
+      0.0163,
+      0.0286
+     ]
+    },
+    "open_ignored": {
+     "value": 0.0106,
+     "k": 23,
+     "n": 2176,
+     "ci95": [
+      0.0071,
+      0.0158
+     ]
+    }
+   }
+  },
+  "shipped": true,
+  "error": null
+ }
+}

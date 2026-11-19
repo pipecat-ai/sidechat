@@ -1,0 +1,66 @@
+{
+ "label_id": "pilot-0.4-committee-0.2",
+ "guide": "sidechat-guide-0.2",
+ "prompt_sha": "8b6452d7cbd5",
+ "members": [
+  "a",
+  "b",
+  "c"
+ ],
+ "member_model_env": {
+  "a": "LABELLER_A_MODEL",
+  "b": "LABELLER_B_MODEL",
+  "c": "LABELLER_C_MODEL"
+ },
+ "member_model_sha": {
+  "a": "495a09eb2c",
+  "b": "005912bee6",
+  "c": "06dfe89ec3"
+ },
+ "effort": "low",
+ "sets": [
+  "pilot-0.4"
+ ],
+ "rows": 283,
+ "labels_sha256": "8ee2f9acfbc22addcb606e81a4d375f60318760955df68a218ad75d624d4e0df",
+ "exp": "exp-005-side-committee-pilot-0.4",
+ "usage": {
+  "a": {
+   "answered": 283,
+   "reused": 283,
+   "failed": 0,
+   "fallback": 0,
+   "input": 0,
+   "cached": 0,
+   "cache_write": 0,
+   "output": 0,
+   "errors": [],
+   "usd": 0.0
+  },
+  "b": {
+   "answered": 283,
+   "reused": 283,
+   "failed": 0,
+   "fallback": 0,
+   "input": 0,
+   "cached": 0,
+   "cache_write": 0,
+   "output": 0,
+   "errors": [],
+   "usd": 0.0
+  },
+  "c": {
+   "answered": 283,
+   "reused": 283,
+   "failed": 0,
+   "fallback": 0,
+   "input": 0,
+   "cached": 0,
+   "cache_write": 0,
+   "output": 0,
+   "errors": [],
+   "usd": 0.0
+  }
+ },
+ "built_at": "2026-11-18T22:43:14+00:00"
+}

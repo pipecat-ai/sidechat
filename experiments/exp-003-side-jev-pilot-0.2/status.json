@@ -1,0 +1,34 @@
+{
+ "exp": "exp-003-side-jev-pilot-0.2",
+ "app": "waystone-side-baseline",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-18T22:31:04+00:00",
+ "args": {
+  "sets": "demo,pilot-0.2",
+  "baseline_id": "jev-demo-0.1",
+  "jev_model": "jev-1.13.0",
+  "concurrency": 12,
+  "spend_cap_usd": 5.0,
+  "limit": 0
+ },
+ "updated_at": "2026-11-18T22:31:55+00:00",
+ "elapsed_s": 50,
+ "sets": {
+  "demo-lines-0.1": 52,
+  "pilot-0.2": 283
+ },
+ "jev": {
+  "model": "jev-1.13.0",
+  "requests": 333,
+  "reused": 333,
+  "asked": 0,
+  "failed": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "usd_per_m_input": 0.042,
+  "started_at": "2026-11-18T22:31:52+00:00",
+  "answered": 333
+ },
+ "forecast": null
+}

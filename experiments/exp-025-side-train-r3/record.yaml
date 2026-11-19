@@ -1,0 +1,28 @@
+experiment_id: exp-025-side-train-r3
+status: done (2026-11-19); actual about $5
+track: sidechat (Phase 4, round 2)
+what: >
+  Round 3: round 2 (exp-022) exactly, except that bare instructions and steps between people
+  written in sessions the agent runs or where it controls things are left out of training and
+  scoring (1,218 + 475 gen-0.2 lines). The committee read many of those as for the agent or an
+  even call (exp-024: imperative_to_person 90.2% agreement, the misses all in such settings).
+  Run beside round 2 so the filter's effect is measured alone.
+forecast block:
+  campaign: exp-025-side-train-r3
+  decision it enables: whether the filter helps; the model for Jon's morning test
+  token forecast: none
+  Modal forecast: two H100s for 20 to 35 minutes each, then two for scoring at about 8 minutes
+  retry cap: 1
+  spend cap: $30
+  stop condition: report in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $6
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-025-side-train-r3 --corpus gen-0.1,gen-pilot,gen-0.2,ami-silent --encoders ettin-68m,ettin-150m --epochs 2 --tag r3 --test-corpus gen-0.1,gen-pilot --extra-sets corpus:gen-0.2:test@anonymous
+results: uv run python -m sidechat.pipeline.results exp-025-side-train-r3
+actual_usd: about $5
+result:
+  ettin-68m: "generated test 98.9%; pilot 85.2%; demo 48/48; Duplex-MPE 95.5%, answers 0.3% outright; Ambient 98.6%; AMI 100.0% and 100.0%; implicit T 20.3% (no recovery)"
+  ettin-150m: "generated test 99.0%; pilot anonymous 87.4% (Jev 77.8%); demo 47/48; Duplex-MPE 96.7% (Jev 83.1%), answers 0.2% outright (Jev 0.4%), holds 0.9% (Jev 16.0%); Ambient 98.7% (Jev 85.4%); AMI labelled 99.9% and AMI silent 99.9%, no outright answers (Jev 1 and 5); N1 95.4% (Jev 86.7%); implicit T 38.8% (round 2 30.9%, round 1 57.6%, Jev 26.6%)"
+  learned: "filtering the unsettled instructions helps the larger model; unnamed requests to an agent absent from the history are still under-answered. side-r3-ettin-150m-s0 is better than round 1 on every set except implicit T, and still beats Jev there."

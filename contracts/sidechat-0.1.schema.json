@@ -1,0 +1,342 @@
+{
+ "$id": "sidechat-0.1",
+ "record": {
+  "$defs": {
+   "Agent": {
+    "description": "The agent's card: what people call it.",
+    "properties": {
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "aliases": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Aliases",
+      "type": "array"
+     },
+     "role": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Role"
+     }
+    },
+    "required": [
+     "name"
+    ],
+    "title": "Agent",
+    "type": "object"
+   },
+   "Facts": {
+    "description": "Optional facts the application may know. Unknown is None.",
+    "properties": {
+     "alone": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Alone"
+     },
+     "over_agent": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Over Agent"
+     }
+    },
+    "title": "Facts",
+    "type": "object"
+   },
+   "SidechatLabel": {
+    "description": "What is known about one utterance. Fields a source cannot supply stay None.",
+    "properties": {
+     "to": {
+      "enum": [
+       "agent",
+       "person",
+       "group",
+       "device",
+       "nobody",
+       "unknown"
+      ],
+      "title": "To",
+      "type": "string"
+     },
+     "to_people": {
+      "items": {
+       "type": "string"
+      },
+      "title": "To People",
+      "type": "array"
+     },
+     "intent": {
+      "anyOf": [
+       {
+        "enum": [
+         "direct",
+         "indirect",
+         "open",
+         "about",
+         "other"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Intent"
+     },
+     "expect": {
+      "anyOf": [
+       {
+        "enum": [
+         "respond",
+         "wait",
+         "ignore"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Expect"
+     },
+     "respond": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Respond"
+     },
+     "unclear": {
+      "default": false,
+      "title": "Unclear",
+      "type": "boolean"
+     },
+     "source": {
+      "title": "Source",
+      "type": "string"
+     }
+    },
+    "required": [
+     "to",
+     "source"
+    ],
+    "title": "SidechatLabel",
+    "type": "object"
+   },
+   "SidechatRequest": {
+    "description": "One line to judge, with what came before it.\n\n`speaker` and each turn's speaker are whatever the diarizer gives: a name, or more often an\nanonymous label such as \"Speaker 1\" that nobody says aloud. People's names are weak evidence;\nthe agent's own name is the reliable one (DECISIONS.md SD-14). The model reads the history as\nroles relative to `speaker` (`sidechat/context.py`), so names and labels work the same.",
+    "properties": {
+     "agent": {
+      "$ref": "#/$defs/Agent"
+     },
+     "text": {
+      "title": "Text",
+      "type": "string"
+     },
+     "speaker": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Speaker"
+     },
+     "history": {
+      "items": {
+       "$ref": "#/$defs/Turn"
+      },
+      "title": "History",
+      "type": "array"
+     },
+     "people": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "People"
+     },
+     "facts": {
+      "anyOf": [
+       {
+        "$ref": "#/$defs/Facts"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null
+     }
+    },
+    "required": [
+     "agent",
+     "text"
+    ],
+    "title": "SidechatRequest",
+    "type": "object"
+   },
+   "Turn": {
+    "description": "One earlier utterance.",
+    "properties": {
+     "speaker": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Speaker"
+     },
+     "text": {
+      "title": "Text",
+      "type": "string"
+     },
+     "agent": {
+      "default": false,
+      "title": "Agent",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "text"
+    ],
+    "title": "Turn",
+    "type": "object"
+   }
+  },
+  "properties": {
+   "schema_version": {
+    "const": "sidechat-0.1",
+    "default": "sidechat-0.1",
+    "title": "Schema Version",
+    "type": "string"
+   },
+   "row_id": {
+    "title": "Row Id",
+    "type": "string"
+   },
+   "set": {
+    "title": "Set",
+    "type": "string"
+   },
+   "conv_id": {
+    "title": "Conv Id",
+    "type": "string"
+   },
+   "turn_index": {
+    "title": "Turn Index",
+    "type": "integer"
+   },
+   "request": {
+    "$ref": "#/$defs/SidechatRequest"
+   },
+   "label": {
+    "$ref": "#/$defs/SidechatLabel"
+   },
+   "tags": {
+    "additionalProperties": {
+     "type": "string"
+    },
+    "title": "Tags",
+    "type": "object"
+   }
+  },
+  "required": [
+   "row_id",
+   "set",
+   "conv_id",
+   "turn_index",
+   "request",
+   "label"
+  ],
+  "title": "SidechatRecord",
+  "type": "object"
+ },
+ "answer": {
+  "description": "The model's answer. Every number is a probability.",
+  "properties": {
+   "intent": {
+    "additionalProperties": {
+     "type": "number"
+    },
+    "propertyNames": {
+     "enum": [
+      "direct",
+      "indirect",
+      "open",
+      "about",
+      "other"
+     ]
+    },
+    "title": "Intent",
+    "type": "object"
+   },
+   "respond": {
+    "title": "Respond",
+    "type": "number"
+   },
+   "unclear": {
+    "default": 0.0,
+    "title": "Unclear",
+    "type": "number"
+   },
+   "people": {
+    "additionalProperties": {
+     "type": "number"
+    },
+    "title": "People",
+    "type": "object"
+   }
+  },
+  "required": [
+   "intent",
+   "respond"
+  ],
+  "title": "SidechatAnswer",
+  "type": "object"
+ }
+}

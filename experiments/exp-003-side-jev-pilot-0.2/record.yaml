@@ -1,0 +1,22 @@
+experiment_id: exp-003-side-jev-pilot-0.2
+status: done (2026-11-18); actual about $0.01 (Modal only, every answer reused)
+track: sidechat (Phase 1)
+what: >
+  Jev's stored answers (baseline jev-demo-0.1) re-scored against pilot-0.2's guide 0.1 labels and the demo lines. No new requests.
+forecast block:
+  campaign: exp-003-side-jev-pilot-0.2
+  decision it enables: Jev's numbers on the relabelled pilot
+  token forecast: none
+  Modal forecast: one CPU container for under a minute
+  retry cap: 2
+  spend cap: $5 (the baseline job's default)
+  stop condition: scorecard.json and report.md in R2
+  approved by Jon on: 2026-11-18 ("Start phase 1")
+forecast_usd: about $0.01
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.baseline::run --exp exp-003-side-jev-pilot-0.2 --sets demo,pilot-0.2
+results: uv run python -m sidechat.pipeline.results exp-003-side-jev-pilot-0.2
+actual_usd: about $0.01
+result:
+  pilot_0_2: "decision right 81.5% (216/265); for others answers now 1.3%, holds 15.7%; for the agent answers now 73.4%"

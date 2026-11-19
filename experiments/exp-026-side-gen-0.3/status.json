@@ -1,0 +1,54 @@
+{
+ "exp": "exp-026-side-gen-0.3",
+ "app": "waystone-side-generate",
+ "state": "done",
+ "stage": "done",
+ "gen_id": "gen-0.3",
+ "started_at": "2026-11-19T01:44:36+00:00",
+ "args": {
+  "gen_id": "gen-0.3",
+  "counts": "o:5000,a:3000,c:1000",
+  "seed": 4,
+  "spend_cap_usd": 50.0,
+  "boost": "",
+  "quiet": "0.04,0.35",
+  "o_shards": 2,
+  "after_quiet": 0.6
+ },
+ "planned": {
+  "o": 5000,
+  "a": 3000,
+  "c": 1000
+ },
+ "updated_at": "2026-11-19T02:07:22+00:00",
+ "elapsed_s": 1367,
+ "writers": [
+  {
+   "writer": "o",
+   "written": 2495,
+   "failed": 5,
+   "gpu_s": 1252
+  },
+  {
+   "writer": "o",
+   "written": 2498,
+   "failed": 2,
+   "gpu_s": 1222
+  },
+  {
+   "writer": "a",
+   "written": 3000,
+   "failed": 0,
+   "usd": 7.440767999999996
+  },
+  {
+   "writer": "c",
+   "written": 1000,
+   "failed": 0,
+   "usd": 12.427261500000002
+  }
+ ],
+ "rows": 125897,
+ "conversations": 8993,
+ "usd": 22.58
+}

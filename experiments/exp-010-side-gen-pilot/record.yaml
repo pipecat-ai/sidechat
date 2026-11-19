@@ -1,0 +1,24 @@
+experiment_id: exp-010-side-gen-pilot
+status: done (2026-11-18); actual about $3.49
+track: sidechat (Phase 2)
+what: >
+  The generator's pilot: 600 conversations (o 300, a 120, c 120, b 60 test only) with the planner
+  fixed after exp-009 (no person-to-person kinds right after the agent asks or answers). Its dev
+  and test lines are then checked by the committee (exp-011) before the full run.
+forecast block:
+  campaign: exp-010-side-gen-pilot
+  decision it enables: whether to scale the generator to the full corpus
+  token forecast: 300 API conversations at exp-009's rates (a $0.003, c $0.015, b $0.021 each)
+  Modal forecast: one H100 for about 15 minutes, CPU containers
+  retry cap: 1 on the driver, 2 on the API writers
+  spend cap: $25
+  stop condition: rows and sample in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $5
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.generate::run --exp exp-010-side-gen-pilot --gen-id gen-pilot --counts o:300,a:120,c:120,b:60 --spend-cap-usd 25
+results: uv run python -m sidechat.pipeline.results exp-010-side-gen-pilot
+actual_usd: about $3.49
+result:
+  corpus: "gen-pilot: 599 conversations, 8,426 lines; 97.7% keep to their brief"

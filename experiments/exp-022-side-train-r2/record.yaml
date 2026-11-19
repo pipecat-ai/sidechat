@@ -1,0 +1,28 @@
+experiment_id: exp-022-side-train-r2
+status: done (2026-11-19); actual about $5
+track: sidechat (Phase 4, round 2)
+what: >
+  Round 2: Ettin-68M and 150M, 2 epochs (round 1's best epoch for every size), on gen-0.1,
+  gen-pilot, gen-0.2 and the AMI silent training series (SD-19), with labels from guide 0.4
+  (SD-18) and disfluency augmentation. Thresholds on dev with the real-speech bar (SD-20). Scored
+  on the same generated test as round 1 (gen-0.1 and gen-pilot) so the rounds compare line for
+  line, plus gen-0.2's test (anonymous) and the AMI silent test.
+forecast block:
+  campaign: exp-022-side-train-r2
+  decision it enables: the model for Jon's morning test
+  token forecast: none
+  Modal forecast: two H100s for 20 to 35 minutes each, then two for scoring at about 8 minutes
+  retry cap: 1
+  spend cap: $30
+  stop condition: report in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $6
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-022-side-train-r2 --corpus gen-0.1,gen-pilot,gen-0.2,ami-silent --encoders ettin-68m,ettin-150m --epochs 2 --tag r2 --test-corpus gen-0.1,gen-pilot --extra-sets corpus:gen-0.2:test@anonymous
+results: uv run python -m sidechat.pipeline.results exp-022-side-train-r2
+actual_usd: about $5
+result:
+  ettin-68m: "best epoch 2 (dev loss 0.208); generated test anonymous 98.8% (round 1 97.6% under the same labels); pilot anonymous 85.2%; demo 47/48 (Jev 47/48); Ambient 98.6%, answers 0.4% outright; AMI labelled 100.0% (0 outright); AMI silent 100.0% (0 outright, Jev 5); Duplex-MPE 95.3%, answers 0.4% outright (item 2 met) BUT implicit T 23.0% (round 1 61.0%, Jev 26.6%): agent lines missed 17.9%"
+  ettin-150m: "generated test 98.9%; pilot 86.3%; demo 47/48; Ambient 98.8%; AMI 99.9%; Duplex-MPE 95.5%, answers 0.6% outright; implicit T 30.9%"
+  learned: "the stay-quiet data (AMI, quiet stretches, bare instructions) fixed outright answers to people's lines, but taught that an unnamed request with no agent in the history is for people: Duplex implicit T median respond 0.80 in round 1, 0.06 in round 2. 42% of the bare instructions were in sessions the agent runs or controls (exp-024), which is part of it. Round 3 filters those; gen-0.3 adds even-call requests after quiet openings."

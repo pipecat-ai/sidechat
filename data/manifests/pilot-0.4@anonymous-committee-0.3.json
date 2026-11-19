@@ -1,0 +1,66 @@
+{
+ "label_id": "pilot-0.4@anonymous-committee-0.3",
+ "guide": "sidechat-guide-0.3",
+ "prompt_sha": "cd131e750b0b",
+ "members": [
+  "a",
+  "b",
+  "c"
+ ],
+ "member_model_env": {
+  "a": "LABELLER_A_MODEL",
+  "b": "LABELLER_B_MODEL",
+  "c": "LABELLER_C_MODEL"
+ },
+ "member_model_sha": {
+  "a": "495a09eb2c",
+  "b": "005912bee6",
+  "c": "06dfe89ec3"
+ },
+ "effort": "low",
+ "sets": [
+  "pilot-0.4@anonymous"
+ ],
+ "rows": 283,
+ "labels_sha256": "683811d646f741cdc10bb90d2b8e066dc0812595daebe0798c69cd3f75452a7e",
+ "exp": "exp-007-side-committee-anonymous",
+ "usage": {
+  "a": {
+   "answered": 283,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 1275406,
+   "cached": 1232904,
+   "cache_write": 0,
+   "output": 17298,
+   "errors": [],
+   "usd": 0.874
+  },
+  "b": {
+   "answered": 283,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 1919954,
+   "cached": 1809225,
+   "cache_write": 52632,
+   "output": 24858,
+   "errors": [],
+   "usd": 1.716
+  },
+  "c": {
+   "answered": 283,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 1408884,
+   "cached": 176582,
+   "cache_write": 0,
+   "output": 20229,
+   "errors": [],
+   "usd": 5.51
+  }
+ },
+ "built_at": "2026-11-18T23:17:21+00:00"
+}

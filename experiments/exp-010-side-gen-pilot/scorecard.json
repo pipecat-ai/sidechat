@@ -1,0 +1,73 @@
+{
+ "gen_id": "gen-pilot",
+ "rows": 8426,
+ "conversations": 599,
+ "rows_sha256": "e67e415e5a033f903ee28b8968d489af1ac851ee94a7fcef7a8a90237c646998",
+ "seed": 1,
+ "counts": {
+  "o": 300,
+  "a": 120,
+  "c": 120,
+  "b": 60
+ },
+ "writers_env": {
+  "o": "WRITER_O_MODEL",
+  "a": "WRITER_A_MODEL",
+  "c": "WRITER_C_MODEL",
+  "b": "WRITER_B_MODEL"
+ },
+ "heldout_writer": "b",
+ "guide": "sidechat-guide-0.3",
+ "by_split": {
+  "train": 6302,
+  "test": 1466,
+  "dev": 658
+ },
+ "by_writer": {
+  "o": 4220,
+  "a": 1651,
+  "c": 1715,
+  "b": 840
+ },
+ "by_expect": {
+  "respond": 2562,
+  "ignore": 4485,
+  "wait": 1001,
+  "None": 378
+ },
+ "brief_ok": {
+  "1": 8230,
+  "0": 196
+ },
+ "usage": {
+  "o": {
+   "conversations": 299,
+   "planned": 300,
+   "input": 212778,
+   "output": 179601,
+   "usd": 0.39
+  },
+  "a": {
+   "conversations": 120,
+   "planned": 120,
+   "input": 82660,
+   "output": 44881,
+   "usd": 0.31
+  },
+  "c": {
+   "conversations": 120,
+   "planned": 120,
+   "input": 115259,
+   "output": 192641,
+   "usd": 1.62
+  },
+  "b": {
+   "conversations": 60,
+   "planned": 60,
+   "input": 76726,
+   "output": 42915,
+   "usd": 1.17
+  }
+ },
+ "built_at": "2026-11-18T23:40:34+00:00"
+}

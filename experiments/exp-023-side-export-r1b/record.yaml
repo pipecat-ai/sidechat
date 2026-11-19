@@ -1,0 +1,26 @@
+experiment_id: exp-023-side-export-r1b
+status: done (2026-11-19); actual about $0.10
+track: sidechat (Phase 4)
+what: >
+  Re-export of side-r1-ettin-68m-s0 after exp-018's int8 build failed (largest probability
+  difference 0.995, dev 55.7% right against 98.8%): int8 now quantizes weights per channel and only
+  matrix products with a constant side, and ships only if it keeps 95% of parity decisions and
+  comes within 1 point of fp32 on dev. Otherwise the stale int8 file is removed from R2.
+forecast block:
+  campaign: exp-023-side-export-r1b
+  decision it enables: whether an int8 build is worth shipping; a clean fallback export
+  token forecast: none
+  Modal forecast: one 8-CPU container for 15 to 30 minutes
+  retry cap: 1
+  spend cap: $2
+  stop condition: export in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $0.30
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.export::run --exp exp-023-side-export-r1b --run-id side-r1-ettin-68m-s0
+results: uv run python -m sidechat.pipeline.results exp-023-side-export-r1b
+actual_usd: about $0.10
+result:
+  fp32: "the same as exp-018: 274.2 MB, same decision as PyTorch on 283/283; config now carries the real-speech bar (4 of 4,186 AMI dev lines answered outright)"
+  int8: "not shipped: per-channel weights on constant-side products only still gives the same decision on 161/283 (largest probability difference 1.0). The stale int8 file was removed from R2. Left for later: static quantization with calibration, or keeping attention and the heads in fp32."

@@ -1,0 +1,225 @@
+# The daily-audience demo's own lines, with the outcome the demo's author expects for each.
+#
+# Sources, all in ~/Sites/daily-audience at commit 73171de:
+#   server/scripts/try_addressing.py   33 sample lines, the last 18 grouped as "said to the bot"
+#                                      and "said about the bot"
+#   server/evals/scenarios/*.yaml      the lines the eval suite speaks (the `alone` scenarios are
+#                                      left out: with one person on the call the gate never asks)
+#   README.md                          the table of what the bot does
+#
+# A line is "?" where the demo states no expectation for it. Bot replies marked (illustrative) are
+# written here to give a follow-up its context; the demo's bot would say something similar.
+suite: demo-lines-0.1
+about: The demo's own sample and eval lines with the outcomes its author expects
+label_source: demo
+use: test
+agent: {name: Atlas, role: AI assistant on the call}
+conversations:
+  # --- try_addressing.py, in file order ------------------------------------------------------
+  - id: try-01
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Sam, did you get a chance to look at the Q3 numbers?", "P:Sam", question_to_named_person]
+  - id: try-02
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "I think we should ship on Friday.", G, statement]
+      - [Sam, "Yeah, that makes sense.", "P:Jon", reply_to_person]
+  - id: try-04
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "What do you think, Sam?", "P:Sam", question_to_named_person]
+  - id: try-05
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "What's the population of Tokyo?", O, open_question]
+  - id: try-06
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Does anyone know when the next release is?", O, open_question]
+  - id: try-07
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Can you look up the weather in Paris for me?", "?", unclear_you]
+  - id: try-08
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Can the assistant summarize what we just discussed?", I, role_request]
+  - id: try-09
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, what's the capital of Australia?"]
+      - [Atlas, "It's Canberra."]
+      - [Jon, "And how many people live there?", D, follow_up]
+  - id: try-10
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, how tall is the Eiffel Tower?"]
+      - [Atlas, "About 330 meters."]
+      - [Sam, "Thanks!", "?", thanks]
+  - id: try-11
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, how tall is the Eiffel Tower?"]
+      - [Atlas, "About 330 meters."]
+      - [Sam, "Wow, taller than I thought. Jon, have you ever been?", "P:Jon", you_to_person_after_agent]
+  - id: try-12
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "How tall is the Eiffel Tower?"]
+      - [Sam, "No idea."]
+      - [Jon, "Hmm, me neither.", "P:Sam", reply_to_person]
+  - id: try-13
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "Could you send me that file after the call?", "?", unclear_you]
+  - id: try-14
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Sam, are you free on Thursday?"]
+      - [Sam, "Thursday works. What time?", "P:Jon", reply_to_person]
+  - id: try-15
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Is it just me or is the audio a bit choppy?", "?", remark_to_group]
+  # "Saying the name to the bot..."
+  - id: try-16
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Hey Atlas, what time is it in London?", D, name_first]
+  - id: try-17
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, what's the capital of France?", D, name_first]
+  - id: try-18
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "What do you think, Atlas?", D, name_last]
+  - id: try-19
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, can you summarize what we decided?", D, name_first]
+  - id: try-20
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "I'm not sure about that one. Atlas, what is the capital of Japan?", D, name_mid]
+  - id: try-21
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, how tall is the Eiffel Tower?"]
+      - [Atlas, "About 330 meters."]
+      - [Jon, "Thanks, Atlas.", D, thanks_named]
+  - id: try-22
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "Atlas?", D, name_alone]
+  - id: try-23
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Okay Atlas, that's enough.", D, stop_named]
+  # "...and saying it about the bot, to someone else."
+  - id: try-24
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "I asked Atlas about that yesterday and it had no clue.", A, about_reported]
+  - id: try-25
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas got that wrong last time.", A, about_judged]
+  - id: try-26
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "Jon, did you hear what Atlas said?", "A:Jon", about_to_named_person]
+  - id: try-27
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "I don't think Atlas can help with that.", A, about_judged]
+  - id: try-28
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "The bot's name is Atlas.", A, about_stated]
+  - id: try-29
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Should we ask Atlas?", A, about_hypothetical]
+  - id: try-30
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "Let's see if Atlas knows.", A, about_hypothetical]
+  - id: try-31
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Sam, can you add Atlas to tomorrow's meeting?", "A:Sam", about_to_named_person]
+  - id: try-32
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "Atlas is pretty fast today.", A, about_judged]
+  - id: try-33
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "We named it Atlas after the mountains.", A, about_stated]
+
+  # --- server/evals/scenarios ----------------------------------------------------------------
+  - id: eval-between-people-statements
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "I think we should ship the release on Friday.", G, statement]
+      - [Sam, "Yeah, that gives us two more days of testing.", "P:Jon", reply_to_person]
+  - id: eval-between-people-question-for-a-person
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Sam, can you send me the notes after this?", "P:Sam", question_to_named_person]
+      - [Sam, "Sure, I'll send them over tonight.", "P:Jon", reply_to_person]
+  - id: eval-name-opens-with-name
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, what is the capital of France?", D, name_first]
+  - id: eval-name-mid-sentence
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "I'm not sure about that one. Atlas, what is the capital of Japan?", D, name_mid]
+  - id: eval-name-pause-after-name
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, what is the capital of Italy?", D, name_first]
+  - id: eval-name-talked-about
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "I asked Atlas about that yesterday and it had no clue.", A, about_reported]
+  - id: eval-name-mentioned-to-someone
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Sam, did you hear what Atlas said earlier about the budget?", "A:Sam", about_to_named_person]
+  - id: eval-addressed-the-assistant
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Can the assistant tell us what the capital of Spain is?", I, role_request]
+  - id: eval-addressed-follow-up
+    people: [Jon, Sam]
+    turns:
+      - [Sam, "Atlas, what is the capital of Australia?", D, name_first]
+      - [Atlas, "The capital of Australia is Canberra."]  # (illustrative)
+      - [Sam, "And roughly how many people live there?", D, follow_up]
+  - id: eval-open-question
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Does anyone know how tall the Eiffel Tower is?", O, open_question]
+      - [Sam, "I think it's about three hundred meters.", "P:Jon", reply_to_person]
+  - id: eval-interrupted-aside
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, tell me a story about a lighthouse keeper, in five sentences.", D, name_first]
+      - [Atlas, "Old Tom kept the lighthouse at Gull Point for forty years."]  # (illustrative) cut off here
+      - [Sam, "Jon, did you watch the game last night? It went to extra time.", "P:Jon", aside_over_agent]
+  - id: eval-interrupted-asked-over-it
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, tell me a story about a lighthouse keeper, in five sentences."]
+      - [Atlas, "Old Tom kept the lighthouse at Gull Point for forty years."]  # (illustrative) cut off here
+      - [Jon, "Atlas, stop there. What is the capital of Spain?", D, name_first_over_agent]
+  - id: eval-context-who-said-what
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "I think we should ship the release on Friday."]
+      - [Sam, "I'd rather wait until Tuesday.", "P:Jon", reply_to_person]
+      - [Jon, "Atlas, which day did Sam suggest?", D, name_first]

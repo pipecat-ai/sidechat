@@ -1,0 +1,1760 @@
+{
+ "meta": {
+  "exp": "exp-004-side-committee-guide-0.2",
+  "label_id": "pilot-0.3-committee-0.2",
+  "sets": [
+   "pilot-0.3"
+  ],
+  "guide": "sidechat-guide-0.2",
+  "prompt_sha": "8b6452d7cbd5",
+  "members": [
+   "a",
+   "b",
+   "c"
+  ],
+  "usage": {
+   "a": {
+    "answered": 283,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1213111,
+    "cached": 1160361,
+    "cache_write": 0,
+    "output": 17574,
+    "errors": [],
+    "usd": 0.861
+   },
+   "b": {
+    "answered": 283,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1832611,
+    "cached": 1726175,
+    "cache_write": 50216,
+    "output": 24752,
+    "errors": [],
+    "usd": 1.661
+   },
+   "c": {
+    "answered": 283,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1345397,
+    "cached": 93719,
+    "cache_write": 0,
+    "output": 19764,
+    "errors": [],
+    "usd": 5.496
+   }
+  },
+  "limit": null,
+  "finished_at": "2026-11-18T22:41:20+00:00"
+ },
+ "rows": 283,
+ "definite": 265,
+ "graded": 18,
+ "target": 0.9,
+ "majority": {
+  "decision": {
+   "value": 0.9811,
+   "k": 260,
+   "n": 265,
+   "ci95": [
+    0.9566,
+    0.9919
+   ]
+  },
+  "no_decision_majority": 1,
+  "intent": {
+   "value": 0.9852,
+   "k": 267,
+   "n": 271,
+   "ci95": [
+    0.9627,
+    0.9942
+   ]
+  },
+  "unanimous": {
+   "value": 0.9046,
+   "k": 256,
+   "n": 283,
+   "ci95": [
+    0.8647,
+    0.9336
+   ]
+  }
+ },
+ "meets_target": true,
+ "members": {
+  "a": {
+   "answered": {
+    "value": 1.0,
+    "k": 283,
+    "n": 283,
+    "ci95": [
+     0.9866,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9434,
+    "k": 250,
+    "n": 265,
+    "ci95": [
+     0.9087,
+     0.9654
+    ]
+   },
+   "intent": {
+    "value": 0.9557,
+    "k": 259,
+    "n": 271,
+    "ci95": [
+     0.9242,
+     0.9745
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9775,
+    "k": 261,
+    "n": 267,
+    "ci95": [
+     0.9518,
+     0.9897
+    ]
+   },
+   "rule": {
+    "value": 0.8304,
+    "k": 235,
+    "n": 283,
+    "ci95": [
+     0.7823,
+     0.8696
+    ]
+   },
+   "speak_mean_abs_diff": 0.163
+  },
+  "b": {
+   "answered": {
+    "value": 1.0,
+    "k": 283,
+    "n": 283,
+    "ci95": [
+     0.9866,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9811,
+    "k": 260,
+    "n": 265,
+    "ci95": [
+     0.9566,
+     0.9919
+    ]
+   },
+   "intent": {
+    "value": 0.9889,
+    "k": 268,
+    "n": 271,
+    "ci95": [
+     0.968,
+     0.9962
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9925,
+    "k": 265,
+    "n": 267,
+    "ci95": [
+     0.9731,
+     0.9979
+    ]
+   },
+   "rule": {
+    "value": 0.8657,
+    "k": 245,
+    "n": 283,
+    "ci95": [
+     0.8211,
+     0.9006
+    ]
+   },
+   "speak_mean_abs_diff": 0.049
+  },
+  "c": {
+   "answered": {
+    "value": 1.0,
+    "k": 283,
+    "n": 283,
+    "ci95": [
+     0.9866,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9849,
+    "k": 261,
+    "n": 265,
+    "ci95": [
+     0.9618,
+     0.9941
+    ]
+   },
+   "intent": {
+    "value": 0.9815,
+    "k": 266,
+    "n": 271,
+    "ci95": [
+     0.9575,
+     0.9921
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9888,
+    "k": 264,
+    "n": 267,
+    "ci95": [
+     0.9675,
+     0.9962
+    ]
+   },
+   "rule": {
+    "value": 0.8693,
+    "k": 246,
+    "n": 283,
+    "ci95": [
+     0.825,
+     0.9036
+    ]
+   },
+   "speak_mean_abs_diff": 0.049
+  }
+ },
+ "pairs": {
+  "a-b": {
+   "value": 0.9435,
+   "k": 267,
+   "n": 283,
+   "ci95": [
+    0.9101,
+    0.9649
+   ]
+  },
+  "a-c": {
+   "value": 0.9435,
+   "k": 267,
+   "n": 283,
+   "ci95": [
+    0.9101,
+    0.9649
+   ]
+  },
+  "b-c": {
+   "value": 0.9682,
+   "k": 274,
+   "n": 283,
+   "ci95": [
+    0.9407,
+    0.9832
+   ]
+  }
+ },
+ "by_rule": {
+  "G7": {
+   "value": 0.9828,
+   "k": 114,
+   "n": 116,
+   "ci95": [
+    0.9393,
+    0.9953
+   ]
+  },
+  "G6": {
+   "value": 0.9423,
+   "k": 49,
+   "n": 52,
+   "ci95": [
+    0.8436,
+    0.9802
+   ]
+  },
+  "G2": {
+   "value": 1.0,
+   "k": 43,
+   "n": 43,
+   "ci95": [
+    0.918,
+    1.0
+   ]
+  },
+  "G3": {
+   "value": 1.0,
+   "k": 27,
+   "n": 27,
+   "ci95": [
+    0.8754,
+    1.0
+   ]
+  },
+  "G4": {
+   "value": 1.0,
+   "k": 15,
+   "n": 15,
+   "ci95": [
+    0.7961,
+    1.0
+   ]
+  },
+  "G5": {
+   "value": 1.0,
+   "k": 7,
+   "n": 7,
+   "ci95": [
+    0.6457,
+    1.0
+   ]
+  },
+  "G1": {
+   "value": 1.0,
+   "k": 4,
+   "n": 4,
+   "ci95": [
+    0.5101,
+    1.0
+   ]
+  },
+  "G8": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  }
+ },
+ "by_expect": {
+  "ignore": {
+   "value": 0.9877,
+   "k": 161,
+   "n": 163,
+   "ci95": [
+    0.9564,
+    0.9966
+   ]
+  },
+  "respond": {
+   "value": 0.9867,
+   "k": 74,
+   "n": 75,
+   "ci95": [
+    0.9283,
+    0.9976
+   ]
+  },
+  "wait": {
+   "value": 0.9259,
+   "k": 25,
+   "n": 27,
+   "ci95": [
+    0.7663,
+    0.9794
+   ]
+  }
+ },
+ "by_kind": {
+  "reply_to_person": {
+   "value": 1.0,
+   "k": 54,
+   "n": 54,
+   "ci95": [
+    0.9336,
+    1.0
+   ]
+  },
+  "name_first": {
+   "value": 1.0,
+   "k": 24,
+   "n": 24,
+   "ci95": [
+    0.862,
+    1.0
+   ]
+  },
+  "question_to_named_person": {
+   "value": 1.0,
+   "k": 17,
+   "n": 17,
+   "ci95": [
+    0.8157,
+    1.0
+   ]
+  },
+  "statement": {
+   "value": 1.0,
+   "k": 10,
+   "n": 10,
+   "ci95": [
+    0.7225,
+    1.0
+   ]
+  },
+  "backchannel": {
+   "value": 1.0,
+   "k": 9,
+   "n": 9,
+   "ci95": [
+    0.7008,
+    1.0
+   ]
+  },
+  "unclear_after_agent": {
+   "value": 0.8889,
+   "k": 8,
+   "n": 9,
+   "ci95": [
+    0.565,
+    0.9801
+   ]
+  },
+  "answer_to_agent_question": {
+   "value": 1.0,
+   "k": 8,
+   "n": 8,
+   "ci95": [
+    0.6756,
+    1.0
+   ]
+  },
+  "you_to_person_after_agent": {
+   "value": 1.0,
+   "k": 7,
+   "n": 7,
+   "ci95": [
+    0.6457,
+    1.0
+   ]
+  },
+  "follow_up": {
+   "value": 1.0,
+   "k": 6,
+   "n": 6,
+   "ci95": [
+    0.6097,
+    1.0
+   ]
+  },
+  "name_word_sense": {
+   "value": 1.0,
+   "k": 6,
+   "n": 6,
+   "ci95": [
+    0.6097,
+    1.0
+   ]
+  },
+  "open_factual": {
+   "value": 1.0,
+   "k": 6,
+   "n": 6,
+   "ci95": [
+    0.6097,
+    1.0
+   ]
+  },
+  "people_after_agent": {
+   "value": 1.0,
+   "k": 6,
+   "n": 6,
+   "ci95": [
+    0.6097,
+    1.0
+   ]
+  },
+  "group_question_not_for_agent": {
+   "value": 1.0,
+   "k": 5,
+   "n": 5,
+   "ci95": [
+    0.5655,
+    1.0
+   ]
+  },
+  "named_after_aside": {
+   "value": 1.0,
+   "k": 5,
+   "n": 5,
+   "ci95": [
+    0.5655,
+    1.0
+   ]
+  },
+  "about_judged": {
+   "value": 1.0,
+   "k": 4,
+   "n": 4,
+   "ci95": [
+    0.5101,
+    1.0
+   ]
+  },
+  "other_device": {
+   "value": 1.0,
+   "k": 4,
+   "n": 4,
+   "ci95": [
+    0.5101,
+    1.0
+   ]
+  },
+  "thinking_aloud": {
+   "value": 0.75,
+   "k": 3,
+   "n": 4,
+   "ci95": [
+    0.3006,
+    0.9544
+   ]
+  },
+  "unclear_you": {
+   "value": 1.0,
+   "k": 4,
+   "n": 4,
+   "ci95": [
+    0.5101,
+    1.0
+   ]
+  },
+  "about_to_named_person": {
+   "value": 1.0,
+   "k": 3,
+   "n": 3,
+   "ci95": [
+    0.4385,
+    1.0
+   ]
+  },
+  "continuing_with_person": {
+   "value": 1.0,
+   "k": 3,
+   "n": 3,
+   "ci95": [
+    0.4385,
+    1.0
+   ]
+  },
+  "follow_up_by_other": {
+   "value": 0.6667,
+   "k": 2,
+   "n": 3,
+   "ci95": [
+    0.2077,
+    0.9385
+   ]
+  },
+  "off_call": {
+   "value": 1.0,
+   "k": 3,
+   "n": 3,
+   "ci95": [
+    0.4385,
+    1.0
+   ]
+  },
+  "statement_to_named_person": {
+   "value": 1.0,
+   "k": 3,
+   "n": 3,
+   "ci95": [
+    0.4385,
+    1.0
+   ]
+  },
+  "to_named_person_after_agent": {
+   "value": 1.0,
+   "k": 3,
+   "n": 3,
+   "ci95": [
+    0.4385,
+    1.0
+   ]
+  },
+  "wake_phrase": {
+   "value": 1.0,
+   "k": 3,
+   "n": 3,
+   "ci95": [
+    0.4385,
+    1.0
+   ]
+  },
+  "you_after_invite": {
+   "value": 1.0,
+   "k": 3,
+   "n": 3,
+   "ci95": [
+    0.4385,
+    1.0
+   ]
+  },
+  "about_hypothetical": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "about_pronoun": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "about_reported": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "action_to_game_master": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "addressed_by_exclusion": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "command_no_name": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "name_alone": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "name_last": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "never_mind": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "open_question": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "open_request": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "question_only_agent_can_answer": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "reply_then_request": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "request_after_summon": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "role_address": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "role_request": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "table_talk": {
+   "value": 0.5,
+   "k": 1,
+   "n": 2,
+   "ci95": [
+    0.0945,
+    0.9055
+   ]
+  },
+  "about_question": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "about_question_to_group": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "about_quoted": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "alias_false_match": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "answer_to_relayed_question": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "aside_over_agent": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "correction": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "name_mid": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "name_misheard": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "name_slip_corrected": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "only_agent_can_do": {
+   "value": 0.0,
+   "k": 0,
+   "n": 1,
+   "ci95": [
+    0.0,
+    0.7935
+   ]
+  },
+  "opener_to_agent": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "proposal_to_group": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "request_to_people": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "resume_no_name": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "similar_name_person": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "statement_of_need": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "unclear_you_person_task": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "you_to_person": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  }
+ },
+ "disagreements": [
+  {
+   "id": "kitchen-05/13",
+   "speaker": "Ella",
+   "text": "Okay, stop the timer, I'm draining it now.",
+   "before": [
+    "Ella: Max is always right about food.",
+    "Karen: Max was wrong about the rice last week."
+   ],
+   "kind": "only_agent_can_do",
+   "rule": "G6",
+   "guide": "respond",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Ella doesn't name an addressee, and nothing establishes whether Max or someone else controls the timer."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Ella asks for the timer to be stopped without naming anyone, and nothing shown says Max set that timer, so the request could be for Max or for a person."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "It is an unaddressed request to stop a timer whose owner is unknown, which either the smart speaker or a person in the kitchen could carry out."
+    }
+   }
+  },
+  {
+   "id": "class-07/6",
+   "speaker": "Amy",
+   "text": "Oh, so the two is the two strips?",
+   "before": [
+    "Chloe: Sage, can you explain why the power rule works?",
+    "agent: Sure. Think of x squared as the area of a square with side x. If the side grows by a tiny amount, the area grows by two thin strips, each x long."
+   ],
+   "kind": "follow_up_by_other",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chloe asked on Amy’s behalf, and Amy follows up on Sage’s explanation to check her understanding."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chloe asked Sage on Amy's behalf, so Amy's check on the agent's explanation continues her own exchange with the tutor."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chloe asked Sage on Amy's behalf, so Amy's follow-up question continues the exchange with the agent."
+    }
+   }
+  },
+  {
+   "id": "game-09/12",
+   "speaker": "Finn",
+   "text": "Who's the smallest?",
+   "before": [
+    "Finn: Rook, is there another way round?",
+    "agent: There's a narrow window above, big enough for one of you."
+   ],
+   "kind": "table_talk",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Finn follows up on Rook’s answer about the narrow window by asking which character is smallest."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "other",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Finn's follow-up to Rook's answer may be for the game master, who knows the characters, or for the other players, and nothing settles which."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Finn turns from the game master to ask the other players about their characters so they can decide who climbs through."
+    }
+   }
+  },
+  {
+   "id": "corrections-20/10",
+   "speaker": "Nina",
+   "text": "Not that low.",
+   "before": [
+    "Leo: Echo, play some jazz, low volume.",
+    "agent: Playing jazz."
+   ],
+   "kind": "unclear_after_agent",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Nina is asking Echo to raise the volume of the jazz it just started playing."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Volume of the jazz the agent is playing is something only the agent controls, and Nina's own earlier request was for quiet music, so this correction is for the agent."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Nina comments on the volume of the music Echo just started on Leo's command, which could be directed at Echo to adjust it or at Leo to tell Echo to raise it."
+    }
+   }
+  },
+  {
+   "id": "meeting-21/11",
+   "speaker": "Jack",
+   "text": "Hmm, what was the name of that other place, the one by the canal...",
+   "before": [
+    "Ruth: That's tight. We've got eighty on the list.",
+    "Olu: Right."
+   ],
+   "kind": "thinking_aloud",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Jack asks the room to recall a venue name without addressing anyone in particular."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Jack is thinking aloud about a venue the people discussed, which only they would know, and the agent is not in play."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Jack asks an open question about a venue name that either the people in the room or the assistant could answer."
+    }
+   }
+  }
+ ],
+ "graded_lines": [
+  {
+   "id": "planning-02/4",
+   "speaker": "Lena",
+   "text": "Atlas would know, it's got the board.",
+   "before": [
+    "Lena: Does anyone remember what we shipped last sprint?",
+    "Maya: Not off the top of my head."
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Lena indirectly invites Atlas to answer the open question by pointing out that it has the board."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Lena mentions Atlas without calling it, inviting it to answer her open question about last sprint, so either decision is reasonable."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Lena mentions Atlas to the group as an invitation for the agent to answer the open question."
+    }
+   }
+  },
+  {
+   "id": "support-04/11",
+   "speaker": "Raj",
+   "text": "Brilliant. Thanks for your help.",
+   "before": [
+    "agent: No outage is reported for your postcode.",
+    "Anita: Okay, it's back on. Solid green."
+   ],
+   "kind": "thanks",
+   "rule": "G6",
+   "guide": null,
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Raj closes his support exchange by thanking Nova for its help."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Raj thanks the support agent, which leads the session and just helped him, so this closes the exchange and a short reply is optional."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Raj thanks the support agent directly as a conclusion to the troubleshooting session it was leading."
+    }
+   }
+  },
+  {
+   "id": "kitchen-05/7",
+   "speaker": "Karen",
+   "text": "No idea. Ask Max.",
+   "before": [
+    "Ella: Pasta.",
+    "Paul: How long does chicken take to defrost in the microwave?"
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Karen suggests Paul ask Max rather than addressing Max herself."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Karen invites Paul to ask Max, an invitation for the agent to answer, so either decision is reasonable."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Karen replies to Paul's question by suggesting he ask Max, which is an invitation for the agent to answer."
+    }
+   }
+  },
+  {
+   "id": "car-06/12",
+   "speaker": "Leo",
+   "text": "Okay, thanks.",
+   "before": [
+    "Leo: Echo, how long till we're there?",
+    "agent: Forty minutes with current traffic."
+   ],
+   "kind": "thanks",
+   "rule": "G6",
+   "guide": null,
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "direct",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Leo thanks Echo for answering his question but makes no further request."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "direct",
+     "speak": 2,
+     "rule": "G6",
+     "reason": "Leo's bare acknowledgement closes his exchange with Echo without naming it, so no reply is needed."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Leo is closing his exchange with Echo by thanking it for the answer, so a reply is optional."
+    }
+   }
+  },
+  {
+   "id": "podcast-08/8",
+   "speaker": "Tess",
+   "text": "A week if your kitchen's warm. Juno might have the science on that.",
+   "before": [
+    "Tess: Impatience. People bake before the starter's ready.",
+    "Marco: How long does a starter take, roughly?"
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Tess mentions Juno in the third person, inviting it to explain the science without directly addressing it."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Tess answers Marco and then invites Juno to add the science, which is an invitation rather than a direct call."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Tess answers Marco's question and invites the agent to weigh in by mentioning it in the third person."
+    }
+   }
+  },
+  {
+   "id": "about-12/11",
+   "speaker": "Jill",
+   "text": "Maybe Atlas can tell us which quarter it thinks we're in.",
+   "before": [
+    "Omar: Wes, can you forward me what Atlas sent you?",
+    "Wes: Yep, after this."
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Jill mentions Atlas in the third person and leaves it open for the agent to answer."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Jill mentions Atlas without calling it, in a way that invites it to answer, though the tone is a joke about its earlier mistake, so speaking is an even call."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Jill mentions Atlas to the group in a way that invites it to answer what quarter it thinks it is."
+    }
+   }
+  },
+  {
+   "id": "roles-13/10",
+   "speaker": "Grace",
+   "text": "I think so. Ask it.",
+   "before": [
+    "Grace: My assistant used to do all of this by hand, you know.",
+    "Hugo: Is the bot recording this?"
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Grace tells Hugo to ask the bot rather than addressing it herself."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Grace invites Hugo to ask the agent, an invitation for the agent to answer, so either decision is reasonable."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Grace replies to Hugo and invites him to ask the agent ('Ask it'), which is an invitation for the agent to answer."
+    }
+   }
+  },
+  {
+   "id": "interrupt-15/11",
+   "speaker": "Sam",
+   "text": "No! Okay. That's enough, Atlas, thanks.",
+   "before": [
+    "Sam: Wait, the fourteenth?",
+    "Jon: Yeah, we moved it. Didn't I tell you?"
+   ],
+   "kind": "stop_named",
+   "rule": "G2",
+   "guide": null,
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Sam addresses Atlas by name and closes the exchange with “that’s enough.”"
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Sam calls Atlas by name to close the exchange with thanks after its help, so a short reply is optional."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Sam directly addresses Atlas by name to close the exchange with 'that's enough' and 'thanks', making a reply optional and ignoring appropriate."
+    }
+   }
+  },
+  {
+   "id": "dismiss-16/2",
+   "speaker": "Paul",
+   "text": "Thanks, Max.",
+   "before": [
+    "Paul: Max, what's the weather tomorrow?",
+    "agent: Tomorrow will be dry, with a high of fourteen."
+   ],
+   "kind": "thanks_named",
+   "rule": "G2",
+   "guide": null,
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Paul addresses Max by name to thank it, closing the exchange."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Paul calls Max by name to thank it after help, closing the exchange; a reply is optional."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Paul calls the agent by name to thank it and close the exchange."
+    }
+   }
+  },
+  {
+   "id": "dismiss-16/10",
+   "speaker": "Paul",
+   "text": "Okay Max, that's enough for now.",
+   "before": [
+    "Karen: Remind me to call the dentist at ten.",
+    "agent: I'll remind you at ten."
+   ],
+   "kind": "stop_named",
+   "rule": "G2",
+   "guide": null,
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Paul addresses Max by name and tells it to stop for now."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Paul calls Max by name to close the exchange with 'that's enough', a stop-type closing where a reply is optional."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Paul calls the agent by name and closes the exchange with 'that's enough', telling it to stop."
+    }
+   }
+  },
+  {
+   "id": "devices-17/12",
+   "speaker": "Lily",
+   "text": "Goodnight Juno!",
+   "before": [
+    "Lily: Juno is funny.",
+    "Ana: Lily, say goodnight to Juno."
+   ],
+   "kind": "farewell_named",
+   "rule": "G2",
+   "guide": null,
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Lily addresses Juno by name to say goodnight, so a brief reply is optional."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Lily calls Juno by name to say goodnight, a closing where a short reply is optional and a goodbye merits one."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Lily addresses Juno by name to say goodnight, closing the interaction."
+    }
+   }
+  },
+  {
+   "id": "relay-19/4",
+   "speaker": "Pat",
+   "text": "Could someone ask the assistant to add me to that?",
+   "before": [
+    "Lou: Book it, please.",
+    "agent: Booked for four."
+   ],
+   "kind": "relayed_invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Pat asks someone in the group to pass along a request for Atlas to add Pat to the booking."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Pat asks the group to pass a request to the assistant, so either decision is reasonable."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Pat asks someone in the group to pass a request to the assistant."
+    }
+   }
+  },
+  {
+   "id": "relay-19/7",
+   "speaker": "Pat",
+   "text": "Cheers.",
+   "before": [
+    "Kim: Atlas, add Pat to the four o'clock.",
+    "agent: Pat's added."
+   ],
+   "kind": "thanks",
+   "rule": "G6",
+   "guide": null,
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Pat thanks Atlas immediately after it confirms completing the request Kim relayed on Pat’s behalf."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Pat thanks the agent right after it added him at his request, closing that exchange, so a short reply is optional."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Pat could be thanking Atlas for adding them or thanking Kim for relaying the request, so the addressee is unsettled."
+    }
+   }
+  },
+  {
+   "id": "sales-25/1",
+   "speaker": "Dana",
+   "text": "We do. Nova can walk you through the details.",
+   "before": [
+    "Chris: Do you integrate with Salesforce?"
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Dana is answering Chris and indirectly inviting Nova to explain the integration."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Dana answers Chris and invites Nova to give the details, an invitation that makes either decision reasonable."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Dana replies to Chris ('you') while mentioning Nova in a way that invites the agent to answer."
+    }
+   }
+  },
+  {
+   "id": "sales-25/7",
+   "speaker": "Chris",
+   "text": "I'd want to see what the assistant makes of our data volume.",
+   "before": [
+    "Chris: Dana, is two-way on the roadmap?",
+    "Dana: It's planned for next quarter."
+   ],
+   "kind": "indirect_wish",
+   "rule": "G4",
+   "guide": null,
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "about",
+     "speak": 1,
+     "rule": "G4",
+     "reason": "Chris expresses interest in the assistant’s assessment without asking it to act now."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Chris mentions the assistant without calling it, expressing a wish that reads as an invitation for it to weigh in, so either decision is reasonable."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "about",
+     "speak": 1,
+     "rule": "G4",
+     "reason": "Chris is speaking to Dana about testing the assistant later without requesting it to act or answer now."
+    }
+   }
+  },
+  {
+   "id": "sales-25/8",
+   "speaker": "Dana",
+   "text": "Go ahead and ask it.",
+   "before": [
+    "Dana: It's planned for next quarter.",
+    "Chris: I'd want to see what the assistant makes of our data volume."
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Dana invites Chris to ask Nova rather than asking Nova to answer now."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Dana invites Chris to ask the assistant, which is an invitation for the agent to answer, so either decision is reasonable."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Dana invites Chris to ask the agent, referring to it as 'it'."
+    }
+   }
+  },
+  {
+   "id": "homework-28/9",
+   "speaker": "Karen",
+   "text": "Ask it what seven eights are.",
+   "before": [
+    "Karen: It's clever, isn't it.",
+    "Ella: It gets maths wrong sometimes."
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Karen asks Ella to relay the multiplication question to Sage."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Karen tells Ella to ask the agent a question, an invitation for the agent to answer, so either decision is reasonable."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Karen tells Ella to pass a specific maths question to the agent ('it')."
+    }
+   }
+  },
+  {
+   "id": "incident-29/14",
+   "speaker": "Omar",
+   "text": "Thanks, Atlas, that's handy.",
+   "before": [
+    "Ines: Atlas, draft a timeline from five thirty onwards.",
+    "agent: Drafting now."
+   ],
+   "kind": "thanks_named",
+   "rule": "G2",
+   "guide": null,
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Omar addresses Atlas by name to thank it, so a brief acknowledgment is optional."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Omar calls Atlas by name to thank it, closing the exchange, so a short reply is optional."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G2",
+     "reason": "Omar calls Atlas by name to thank it after it starts helping, closing the exchange where a reply is optional."
+    }
+   }
+  }
+ ]
+}

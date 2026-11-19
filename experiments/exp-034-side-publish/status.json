@@ -1,0 +1,49 @@
+{
+ "exp": "exp-034-side-publish",
+ "app": "waystone-side-publish",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T08:40:12+00:00",
+ "args": {
+  "run_id": "side-r3-ettin-150m-s0",
+  "repo": "pipecat-ai/sidechat",
+  "private": true
+ },
+ "updated_at": "2026-11-19T08:41:42+00:00",
+ "elapsed_s": 90,
+ "rows": {
+  "train": {
+   "rows": 235069,
+   "by_set": {
+    "gen-0.1": 83732,
+    "gen-pilot": 6263,
+    "gen-0.2": 129798,
+    "ami-silent-0.1": 15276
+   },
+   "by_respond": {
+    "0.0": 143613,
+    "1.0": 55098,
+    "0.75": 5519,
+    "0.5": 29275,
+    "0.25": 1564
+   }
+  },
+  "dev": {
+   "rows": 25631,
+   "by_set": {
+    "gen-0.1": 8346,
+    "gen-pilot": 656,
+    "gen-0.2": 12443,
+    "ami-silent-0.1": 4186
+   },
+   "by_respond": {
+    "0.0": 16809,
+    "0.5": 2780,
+    "1.0": 5372,
+    "0.75": 526,
+    "0.25": 144
+   }
+  }
+ },
+ "commit": "c9b59bebf7e17993df3f55a9a81813bdccd80c7b"
+}

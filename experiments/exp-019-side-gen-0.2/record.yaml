@@ -1,0 +1,32 @@
+experiment_id: exp-019-side-gen-0.2
+status: done (2026-11-19); actual about $32
+track: sidechat (Phase 4, round 2)
+what: >
+  Corpus gen-0.2 under guide 0.4: o 6,000 (on two H100s), a 4,000, c 1,500 conversations, seed 3,
+  no b (test-only writer; gen-0.1 already holds its test lines). New against gen-0.1: bare
+  instructions between people (imperative_to_person), steps explained to people, the meeting's
+  host running it, an answer to the agent's question after a quick check with a named person
+  (answer_after_aside), and quiet stretches (8% of conversations never involve the agent, 25% open
+  with 3 to 8 lines of people among themselves). Aimed at round 1's failures: outright answers
+  to instructions between people on real meetings (AMI) and opening lines, and missed answers
+  after a side check (pilot).
+forecast block:
+  campaign: exp-019-side-gen-0.2
+  decision it enables: round 2's training corpus
+  token forecast: gen-0.1's rates per conversation (exp-012) x 6,000 / 4,000 / 1,500
+  Modal forecast: two H100s for about 30 minutes, CPU containers for the API writers
+  retry cap: 1 on the driver, 2 on the API writers
+  spend cap: $80
+  stop condition: rows in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $34 (o $3, a $10.5, c $19.5, CPU $1)
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.generate::run --exp exp-019-side-gen-0.2 --gen-id gen-0.2 --counts o:6000,a:4000,c:1500 --seed 3 --spend-cap-usd 80 --quiet 0.08,0.25 --o-shards 2
+results: uv run python -m sidechat.pipeline.results exp-019-side-gen-0.2
+actual_usd: about $32 (o $3.01 on two H100s, a $9.95, c $18.75, CPU about $0.50)
+result:
+  corpus: "11,490 conversations, 161,038 labelled lines, 1,481 s"
+  splits: "{'train': 131779, 'dev': 12643, 'test': 16616}"
+  labels: "{'ignore': 101562, 'respond': 39799, 'wait': 15139, 'None': 4538}"
+  brief_ok: "{'1': 157875, '0': 3163}"

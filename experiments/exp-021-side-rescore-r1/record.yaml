@@ -1,0 +1,28 @@
+experiment_id: exp-021-side-rescore-r1
+status: done (2026-11-19); actual about $0.60
+track: sidechat (Phase 4, round 2 baseline)
+what: >
+  Round 1's three models rescored, no training, under round 2's scoring: labels from guide 0.4
+  (named thanks, stop and goodbye now answered), thresholds chosen on dev with a second bar
+  (answer at most 0.4% of AMI dev-series lines outright, SD-20), and the AMI silent test added.
+  Shows what the thresholds alone fix, and is round 2's like-for-like baseline. Overwrites each
+  run's predictions in R2 (exp-017's report and scorecard keep round 1's numbers).
+forecast block:
+  campaign: exp-021-side-rescore-r1
+  decision it enables: whether round 2's gains come from data or from thresholds
+  token forecast: none
+  Modal forecast: three H100s for about 6 minutes each
+  retry cap: 1
+  spend cap: $5
+  stop condition: report in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $1.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-021-side-rescore-r1 --corpus gen-0.1,gen-pilot --encoders ettin-32m,ettin-68m,ettin-150m --tag r1 --score-only
+results: uv run python -m sidechat.pipeline.results exp-021-side-rescore-r1
+actual_usd: about $0.60 (three H100s for about 4 minutes each)
+result:
+  ettin-68m: "the real-speech bar does not bind (AMI dev series answered outright 0.4% or less at 0.6), thresholds unchanged; AMI silent test 98.5% right, answers 0.5% outright (Jev 0.05%), holds 1.0% (Jev 9.9%). Generated test answers-now for the agent drops to 95.8% only because guide 0.4 now expects named thanks, stop and goodbye to be answered."
+  ettin-150m: "the bar raises answer-now to 0.85: Duplex-MPE answers outright 0.4% (Jev 0.4%), AMI 0.5%, but answers-now on the agent's lines in the generated test falls to 89.3% (98.6% before) and the demo to 43/48"
+  learned: "thresholds alone cannot meet item 2 without losing the agent's own lines; the data has to fix it (round 2). The two AMI dev series are easier than the labelled meetings."

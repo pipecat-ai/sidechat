@@ -1,0 +1,19 @@
+{
+ "exp": "exp-033-side-latency-cloud",
+ "app": "waystone-side-latency",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T08:34:17+00:00",
+ "args": {
+  "run_ids": "side-r3-ettin-150m-s0,side-r1-ettin-68m-s0,side-smoke-ettin-32m-s0",
+  "profiles": "agent-1x,agent-2x,agent-3x",
+  "threads": "1,2",
+  "rounds": 3,
+  "jev": true
+ },
+ "variants": 27,
+ "updated_at": "2026-11-19T08:39:36+00:00",
+ "elapsed_s": 319,
+ "done": 27,
+ "failed": 6
+}

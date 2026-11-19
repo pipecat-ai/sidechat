@@ -1,0 +1,23 @@
+experiment_id: exp-013-side-train-smoke
+status: done (2026-11-19); actual about $0.60
+track: sidechat (Phase 4, first models)
+what: >
+  Smoke test of the training and scoring jobs: Ettin-32M, 1 epoch, 3,000 training lines from
+  gen-pilot, then scoring on every set. Checks the whole path before the real run.
+forecast block:
+  campaign: exp-013-side-train-smoke
+  decision it enables: whether the training run can start
+  token forecast: none
+  Modal forecast: two H100 containers for about 10 minutes each
+  retry cap: 1
+  spend cap: $5
+  stop condition: report in R2, or a failure to fix
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $1.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-013-side-train-smoke --corpus gen-pilot --encoders ettin-32m --epochs 1 --train-cap 3000 --tag smoke
+results: uv run python -m sidechat.pipeline.results exp-013-side-train-smoke
+actual_usd: about $0.60
+result:
+  smoke: "pipeline works end to end; 3,000 lines, 1 epoch: Duplex-MPE 93.3% right (Jev 83.1%), Ambient 94.7% (Jev 85.4%); too many outright answers on lines for others, so thresholds are now chosen with at most 1% of stay-quiet dev lines answered"

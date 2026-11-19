@@ -1,0 +1,26 @@
+experiment_id: exp-018-side-export-r1
+status: done (2026-11-19); actual about $0.30; int8 build failed, superseded by exp-023
+track: sidechat (Phase 4, first models)
+what: >
+  Export of the round-1 pick, side-r1-ettin-68m-s0, to ONNX (fp32 and a dynamic int8 build with its
+  own thresholds chosen on the same dev lines), parity through sidechat/runtime.py, CPU latency.
+  Why 68M: best of the three on AMI real speech (97.8%), level with 150M on Duplex-MPE (96.7 against
+  96.6), 46/48 on the demo lines (150M 45/48), and half 150M's cost per line.
+forecast block:
+  campaign: exp-018-side-export-r1
+  decision it enables: a model for Jon to try in the morning
+  token forecast: none
+  Modal forecast: one 8-CPU container for 15 to 30 minutes
+  retry cap: 1
+  spend cap: $2
+  stop condition: export in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $0.30
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.export::run --exp exp-018-side-export-r1 --run-id side-r1-ettin-68m-s0
+results: uv run python -m sidechat.pipeline.results exp-018-side-export-r1
+actual_usd: about $0.30
+result:
+  fp32: "274.2 MB; largest probability difference from PyTorch 6e-06, same decision on 283/283; Modal CPU 52.7 ms median, 82.2 ms p95 on 4 threads"
+  int8: "failed: 69.2 MB but largest probability difference 0.995, same decision on 161/283, dev 55.7% right against fp32 98.8%. Plain dynamic quantization of every MatMul (attention scores included) breaks this encoder."

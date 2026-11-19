@@ -1,0 +1,45 @@
+{
+ "exp": "exp-031-side-train-r5-s1",
+ "app": "waystone-side-train",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T02:48:50+00:00",
+ "args": {
+  "corpus": "gen-0.1,gen-pilot,gen-0.2,gen-0.3",
+  "encoders": "ettin-150m",
+  "epochs": 2,
+  "seed": 1,
+  "tag": "r5",
+  "test_corpus": "gen-0.1,gen-pilot",
+  "extra_sets": "corpus:gen-0.2:test@anonymous,corpus:gen-0.3:test@anonymous",
+  "score_only": false
+ },
+ "updated_at": "2026-11-19T03:22:24+00:00",
+ "elapsed_s": 2014,
+ "trained": {
+  "ettin-150m": {
+   "best_epoch": 2,
+   "history": [
+    {
+     "epoch": 1,
+     "train_loss": 0.4272,
+     "dev_loss": 0.2867,
+     "secs": 776
+    },
+    {
+     "epoch": 2,
+     "train_loss": 0.2666,
+     "dev_loss": 0.285,
+     "secs": 1501
+    }
+   ],
+   "temperatures": {
+    "intent": 1.55,
+    "respond": 1.6,
+    "unclear": 1.6
+   },
+   "secs": 1537,
+   "error": null
+  }
+ }
+}

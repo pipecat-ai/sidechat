@@ -1,0 +1,32 @@
+{
+ "rows_id": "pilot-0.2",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-18T22:31:06+00:00",
+ "source": {
+  "kind": "hand-written suite",
+  "file": "data/suites/pilot-0.2.yaml",
+  "sha256": "5fbf5193c2f92004f2867b61677d7e0407255cc8975e5740947c733c6f885d29",
+  "about": "The pilot conversations labelled by guide 0.1 from each line's kind",
+  "label_source": "author",
+  "use": "test"
+ },
+ "limit": null,
+ "rows": 283,
+ "conversations": 29,
+ "by_expect": {
+  "ignore": 159,
+  "respond": 79,
+  "wait": 27,
+  "None": 18
+ },
+ "by_to": {
+  "person": 95,
+  "group": 68,
+  "agent": 88,
+  "unknown": 12,
+  "nobody": 16,
+  "device": 4
+ },
+ "sha256": "9b6e6bb2b7285136b0301b52bcbb73ad172dddb09a77a6355a943b27f29a1a35",
+ "r2_key": "runs/side/rows/pilot-0.2/rows.jsonl"
+}

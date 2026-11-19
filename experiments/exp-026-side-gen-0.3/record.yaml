@@ -1,0 +1,31 @@
+experiment_id: exp-026-side-gen-0.3
+status: done (2026-11-19); actual about $23
+track: sidechat (Phase 4, round 4 data)
+what: >
+  Corpus gen-0.3 under guide 0.4: o 5,000 (two H100s), a 3,000, c 1,000 conversations, seed 4.
+  Against gen-0.2: bare instructions and steps between people are no longer planned where the
+  agent runs the session or controls things (exp-024); fewer conversations never involve the agent
+  (4%, was 8%) and more open with people among themselves (35%, was 25%), and 60% of those openings
+  end with a request the agent could do, put to nobody in particular (an even call). Aimed at round
+  2's regression: unnamed requests to an agent that has not spoken yet scored near 0 (Duplex-MPE
+  implicit T 23%, round 1 61%).
+forecast block:
+  campaign: exp-026-side-gen-0.3
+  decision it enables: round 4's training corpus
+  token forecast: gen-0.2's rates per conversation (exp-019) x 5,000 / 3,000 / 1,000
+  Modal forecast: two H100s for about 25 minutes, CPU containers for the API writers
+  retry cap: 1 on the driver, 2 on the API writers
+  spend cap: $50
+  stop condition: rows in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $23 (o $2.5, a $7.5, c $12.5, CPU $0.50)
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.generate::run --exp exp-026-side-gen-0.3 --gen-id gen-0.3 --counts o:5000,a:3000,c:1000 --seed 4 --spend-cap-usd 50 --quiet 0.04,0.35 --o-shards 2 --after-quiet 0.6
+results: uv run python -m sidechat.pipeline.results exp-026-side-gen-0.3
+actual_usd: about $23 (o $2.71 on two H100s, a $7.44, c $12.43, CPU about $0.40)
+result:
+  corpus: "8,993 conversations, 125,897 labelled lines, 1,367 s"
+  splits: "{'train': 103427, 'dev': 9667, 'test': 12803}"
+  labels: "{'ignore': 78250, 'respond': 30540, 'wait': 13489, 'None': 3618}"
+  brief_ok: "{'1': 123440, '0': 2457}"

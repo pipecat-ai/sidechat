@@ -1,0 +1,25 @@
+experiment_id: exp-027-side-export-r3
+status: done (2026-11-19); actual about $0.40
+track: sidechat (Phase 4)
+what: >
+  Export of side-r3-ettin-150m-s0, the best model so far: better than round 1 on every set but
+  Duplex-MPE implicit T (38.8% against 61%; Jev 26.6%), and the first to meet item 2 (answers
+  0.2% of Duplex-MPE's lines for others outright). fp32, with the int8 attempt gated.
+forecast block:
+  campaign: exp-027-side-export-r3
+  decision it enables: the model for Jon's morning test
+  token forecast: none
+  Modal forecast: one 8-CPU container for 20 to 40 minutes
+  retry cap: 1
+  spend cap: $2
+  stop condition: export in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $0.30
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.export::run --exp exp-027-side-export-r3 --run-id side-r3-ettin-150m-s0
+results: uv run python -m sidechat.pipeline.results exp-027-side-export-r3
+actual_usd: about $0.40
+result:
+  fp32: "598.3 MB; largest probability difference from PyTorch 7e-06, same decision on 283/283; Modal CPU 106 ms median (this Mac: 7 to 14 ms a line, 11 ms mean through the demo's gate)"
+  int8: "shipped: 267.2 MB; same decision as PyTorch on 269/283; dev 98.6% right against fp32 99.0%, its own thresholds (answer at 0.55); this Mac 8.7 ms mean through the demo's gate, one decision of 33 different from fp32"

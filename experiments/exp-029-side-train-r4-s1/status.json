@@ -1,0 +1,45 @@
+{
+ "exp": "exp-029-side-train-r4-s1",
+ "app": "waystone-side-train",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T02:07:50+00:00",
+ "args": {
+  "corpus": "gen-0.1,gen-pilot,gen-0.2,gen-0.3,ami-silent",
+  "encoders": "ettin-150m",
+  "epochs": 2,
+  "seed": 1,
+  "tag": "r4",
+  "test_corpus": "gen-0.1,gen-pilot",
+  "extra_sets": "corpus:gen-0.2:test@anonymous,corpus:gen-0.3:test@anonymous",
+  "score_only": false
+ },
+ "updated_at": "2026-11-19T02:47:40+00:00",
+ "elapsed_s": 2390,
+ "trained": {
+  "ettin-150m": {
+   "best_epoch": 2,
+   "history": [
+    {
+     "epoch": 1,
+     "train_loss": 0.4177,
+     "dev_loss": 0.2583,
+     "secs": 993
+    },
+    {
+     "epoch": 2,
+     "train_loss": 0.2585,
+     "dev_loss": 0.2321,
+     "secs": 1927
+    }
+   ],
+   "temperatures": {
+    "intent": 1.5,
+    "respond": 1.45,
+    "unclear": 1.45
+   },
+   "secs": 1964,
+   "error": null
+  }
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "exp": "exp-000-side-trial",
+ "app": "waystone-side-baseline",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-18T21:36:28+00:00",
+ "args": {
+  "sets": "demo,ambient,duplex",
+  "baseline_id": "trial-0",
+  "jev_model": "jev-1.13.0",
+  "concurrency": 12,
+  "spend_cap_usd": 5.0,
+  "limit": 3
+ },
+ "updated_at": "2026-11-18T21:36:39+00:00",
+ "elapsed_s": 11,
+ "sets": {
+  "demo-lines-0.1": 4,
+  "ambient-bench-0.1": 22,
+  "duplex-mpe-0.1": 80
+ },
+ "jev": {
+  "model": "jev-1.13.0",
+  "requests": 88,
+  "reused": 0,
+  "asked": 88,
+  "failed": 0,
+  "input_tokens": 71879,
+  "output_tokens": 3256,
+  "usd_per_m_input": 0.042,
+  "started_at": "2026-11-18T21:36:35+00:00",
+  "usd_estimate": 0.003,
+  "finished_at": "2026-11-18T21:36:36+00:00",
+  "answered": 88
+ },
+ "forecast": {
+  "input_tokens_per_request": 816.8,
+  "requests_to_ask": 88,
+  "input_tokens": 71879,
+  "usd": 0.0,
+  "spend_cap_usd": 5.0
+ }
+}

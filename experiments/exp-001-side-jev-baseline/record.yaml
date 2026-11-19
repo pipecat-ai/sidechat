@@ -1,0 +1,38 @@
+experiment_id: exp-001-side-jev-baseline
+status: done (2026-11-18); actual about $2.08 (Jev $2.03 at the recorded price, Modal about $0.05 estimated)
+track: sidechat (Phase 0, PLAN.md section 9)
+what: >
+  Jev (jev-1.13.0), asked with the daily-audience demo's two questions, state and thresholds
+  (commit 73171de), on every Phase 0 set: the demo's own lines (demo-lines-0.1, 52), the
+  hand-written pilot (pilot-0.1, 283), Social AI Ambient Bench (16,222 messages) and Duplex-MPE
+  (52,364 turns). Beside it on the same lines: a rule that answers whenever the agent's name is
+  said. Rows, answers, scorecard and report all go to R2. Answers are stored under baseline id
+  jev-demo-0.1 and reused by later runs.
+forecast block:
+  campaign: exp-001-side-jev-baseline
+  decision it enables: how hard the bar is. Where Jev is already near perfect, and where a purpose-built model has room
+  token forecast: about 57,400 distinct requests at about 817 input tokens each (measured in exp-000) = about 47M input tokens
+  Modal forecast: one CPU container (2 cores, 4 GB) for 10 to 20 minutes
+  retry cap: 2 automatic retries; a retry resumes from stored answers
+  spend cap: $5, enforced in the job from the first 150 answers' token count
+  stop condition: scorecard.json and report.md in R2; or the job stops itself (over cap, key refused, more than 2% of requests failing)
+  approved by Jon on: 2026-11-18 ("Start Phase 0"; PLAN.md budget line "Jev baseline scoring < $5")
+forecast_usd: about $2.00 (Jev about $1.97 at the recorded $0.042 per million input tokens, Modal about $0.05)
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.baseline::run --exp exp-001-side-jev-baseline --sets demo,pilot,ambient,duplex
+results: uv run python -m sidechat.pipeline.results exp-001-side-jev-baseline --report reports/2026-11-18-side-jev-baseline.md
+r2:
+  rows: runs/side/rows/{demo-lines-0.1,pilot-0.1,ambient-bench-0.1,duplex-mpe-0.1}/
+  answers: runs/side/baselines/jev-demo-0.1/
+  results: runs/side/results/exp-001-side-jev-baseline/
+actual_usd: about $2.08 (48,333,777 input tokens = $2.03 at the recorded $0.042 per million; one 2-core container for 980 s, about $0.05 estimated)
+report: reports/2026-11-18-side-jev-baseline.md
+result:
+  requests: "57,434 distinct, all answered, 0 failed, 980 s"
+  demo_lines: "decision right 97.9% (47/48); name-only rule 60.4%"
+  pilot: "decision right 81.8% (207/253); for the agent answers now 73.4% (58/79), ignored 13.9%; for others answers now 0.6% (1/157), holds 15.3%"
+  duplex_mpe: "named request answered now 99.2% (1,983/2,000), the same request unnamed 26.6% (531/2,000), difference -72.6 points (-74.6 to -70.6); for others answers now 0.4% (182/44,528), holds 16.0%; AUROC 0.988, calibration error 0.073"
+  ambient_bench: "SILENT lines: answers now 0.1% (13/15,793), holds 14.6%; scenario pass rate 72.8% strict, 20.1% lenient"
+  latency_from_modal: "median 150 ms, p95 about 220 ms, at 12 requests at a time"
+  verdict: Jev is near perfect when the agent is named and seldom answers at once when it is not; it holds on about one line in six meant for someone else

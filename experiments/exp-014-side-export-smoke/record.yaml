@@ -1,0 +1,9 @@
+experiment_id: exp-014-side-export-smoke
+status: done (2026-11-19); actual about $0.05
+track: sidechat (Phase 7 path check)
+what: Export of the smoke model to ONNX, parity through sidechat/runtime.py, CPU latency.
+forecast_usd: about $0.05
+command: uv run modal run --detach -m sidechat.pipeline.export::run --exp exp-014-side-export-smoke --run-id side-smoke-ettin-32m-s0
+actual_usd: about $0.05
+result:
+  export: "128.6 MB; largest probability difference 6e-06; same decision on 283/283; Modal CPU 20.8 ms median, 34.9 ms p95 on 4 threads; on this Mac 2 to 4 ms a line"

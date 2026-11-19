@@ -1,0 +1,26 @@
+experiment_id: exp-008-side-jev-anonymous
+status: done (2026-11-18); actual about $0.02
+track: sidechat (Phase 2 step 1, scorecard item 13)
+what: >
+  Jev, asked exactly as the demo asks it, on pilot-0.4 with anonymous speaker labels. The demo's
+  state then says "People on the call: unknown" and names speakers "Speaker 1". Compared with
+  exp-006 (named) for scorecard item 13. 283 new requests.
+forecast block:
+  campaign: exp-008-side-jev-anonymous
+  decision it enables: Jev's number for the headline condition
+  token forecast: about 283 requests x 840 input tokens = 0.24M tokens
+  Modal forecast: one CPU container for about a minute
+  retry cap: 2
+  spend cap: $5
+  stop condition: scorecard.json and report.md in R2
+  approved by Jon on: 2026-11-18 ("Start Phase 2")
+forecast_usd: about $0.02
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.baseline::run --exp exp-008-side-jev-anonymous --sets pilot-0.4@anonymous
+results: uv run python -m sidechat.pipeline.results exp-008-side-jev-anonymous
+actual_usd: about $0.02 (207,696 input tokens)
+result:
+  anonymous: "decision right 77.4% (205/265); for others answers now 1.8%, holds 18.4%; for the agent answers now 68.4% (52/76), missed 13.2%"
+  named_for_comparison: "79.6% (211/265); for the agent answers now 75.0% (57/76) (exp-006)"
+  verdict: Jev loses about 2 points without names, mostly on lines for the agent

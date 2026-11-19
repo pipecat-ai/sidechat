@@ -1,0 +1,25 @@
+experiment_id: exp-020-side-jev-ami-silent
+status: done (2026-11-19); actual about $0.35
+track: sidechat (scorecard item 16)
+what: >
+  Jev, asked as the demo asks it, on the AMI silent test: 10,434 dialogue acts from the 4 held-out
+  series of AMI meetings without addressee labels (sidechat/sources/ami.py, SD-19). The agent sits
+  in and is never called, so every line is for people. Gives item 16 (answers per 1,000 lines) its
+  Jev number.
+forecast block:
+  campaign: exp-020-side-jev-ami-silent
+  decision it enables: item 16's bar
+  token forecast: exp-015's rate x 10,434 / 8,875
+  Modal forecast: CPU only
+  retry cap: 1
+  spend cap: $2
+  stop condition: scores in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $0.35
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.baseline::run --exp exp-020-side-jev-ami-silent --sets ami-silent:test
+results: uv run python -m sidechat.pipeline.results exp-020-side-jev-ami-silent
+actual_usd: about $0.35 (8,209,027 input tokens)
+result:
+  ami-silent: "decision right 90.0% (9,395/10,434); answers now 0.05% (5/10,434), 0.5 per 1,000 lines; holds 9.9% (1,034/10,434)"

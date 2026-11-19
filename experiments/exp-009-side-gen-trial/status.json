@@ -1,0 +1,51 @@
+{
+ "exp": "exp-009-side-gen-trial",
+ "app": "waystone-side-generate",
+ "state": "done",
+ "stage": "done",
+ "gen_id": "gen-trial",
+ "started_at": "2026-11-18T23:27:12+00:00",
+ "args": {
+  "gen_id": "gen-trial",
+  "counts": "o:8,a:8,c:8,b:8",
+  "seed": 1,
+  "spend_cap_usd": 10.0
+ },
+ "planned": {
+  "o": 8,
+  "a": 8,
+  "c": 8,
+  "b": 8
+ },
+ "updated_at": "2026-11-18T23:32:15+00:00",
+ "elapsed_s": 304,
+ "writers": [
+  {
+   "writer": "o",
+   "written": 8,
+   "failed": 0,
+   "gpu_s": 269
+  },
+  {
+   "writer": "a",
+   "written": 8,
+   "failed": 0,
+   "usd": 0.021032
+  },
+  {
+   "writer": "c",
+   "written": 8,
+   "failed": 0,
+   "usd": 0.1197075
+  },
+  {
+   "writer": "b",
+   "written": 8,
+   "failed": 0,
+   "usd": 0.167584
+  }
+ ],
+ "rows": 454,
+ "conversations": 32,
+ "usd": 0.61
+}

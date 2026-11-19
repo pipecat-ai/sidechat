@@ -1,0 +1,26 @@
+experiment_id: exp-012-side-gen-0.1
+status: done (2026-11-19); actual about $43 (writers $42.17 estimated from tokens and H100 time, Modal CPU about $0.50)
+track: sidechat (Phase 2: the full corpus)
+what: >
+  Corpus gen-0.1: about 8,100 conversations (o 4,000, a 1,700, c 1,700, b 700 test only),
+  seed 2, the same planner and writer prompt as gen-pilot (exp-010).
+forecast block:
+  campaign: exp-012-side-gen-0.1
+  decision it enables: the training corpus for the first models
+  token forecast: gen-pilot's rates x 13.5
+  Modal forecast: one H100 for about 40 minutes, CPU containers for the API writers
+  retry cap: 1 on the driver, 2 on the API writers
+  spend cap: $120
+  stop condition: rows in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $46
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.generate::run --exp exp-012-side-gen-0.1 --gen-id gen-0.1 --counts o:4000,a:1700,c:1700,b:700 --seed 2 --spend-cap-usd 120
+results: uv run python -m sidechat.pipeline.results exp-012-side-gen-0.1
+actual_usd: about $43 (o $2.11, a $4.45, c $22.15, b $13.46, plus CPU containers)
+result:
+  corpus: "8095 conversations, 113262 labelled lines, 2,000 s"
+  splits: "{'train': 84304, 'dev': 8398, 'test': 20560}"
+  labels: "{'ignore': 60270, 'respond': 34631, 'wait': 13254, 'None': 5107}"
+  brief_ok: "{'1': 110631, '0': 2631}"

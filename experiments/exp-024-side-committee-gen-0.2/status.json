@@ -1,0 +1,66 @@
+{
+ "exp": "exp-024-side-committee-gen-0.2",
+ "app": "waystone-side-label",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T01:16:33+00:00",
+ "args": {
+  "sets": "corpus:gen-0.2:dev+test:60:answer_after_aside,corpus:gen-0.2:dev+test:300:imperative_to_person+steps_to_people+host_to_group+thanks_named+stop_named+farewell_named",
+  "label_id": "corpus:gen-0.2:dev+test:60:answer_after_aside-committee-0.4",
+  "members": "a,b,c",
+  "concurrency": 8,
+  "spend_cap_usd": 20.0,
+  "limit": 0
+ },
+ "updated_at": "2026-11-19T01:27:27+00:00",
+ "elapsed_s": 654,
+ "sets": {
+  "gen-0.2.dev-test60-k8766a2": 60,
+  "gen-0.2.dev-test300-k13446d": 300
+ },
+ "progress": {
+  "a": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "usd": 1.1844725000000011,
+   "of": 360
+  },
+  "b": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "usd": 2.2448511999999985,
+   "of": 360
+  },
+  "c": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "usd": 7.615375999999995,
+   "of": 360
+  }
+ },
+ "usd": 11.045,
+ "forecast": {
+  "usd": 19.13,
+  "by_member": {
+   "a": 1.38,
+   "b": 9.63,
+   "c": 8.12
+  },
+  "spend_cap_usd": 20.0
+ },
+ "headline": {
+  "majority_decision": {
+   "value": 0.9583,
+   "k": 345,
+   "n": 360,
+   "ci95": [
+    0.9324,
+    0.9746
+   ]
+  },
+  "meets_target": true
+ }
+}

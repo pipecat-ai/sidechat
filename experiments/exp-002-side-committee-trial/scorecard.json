@@ -1,0 +1,537 @@
+{
+ "meta": {
+  "exp": "exp-002-side-committee-trial",
+  "label_id": "trial-committee-0",
+  "sets": [
+   "pilot-0.2"
+  ],
+  "guide": "sidechat-guide-0.1",
+  "prompt_sha": "0fa7e0d30b2b",
+  "members": [
+   "a",
+   "b",
+   "c"
+  ],
+  "usage": {
+   "a": {
+    "answered": 17,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 62327,
+    "cached": 53070,
+    "cache_write": 0,
+    "output": 1083,
+    "errors": [],
+    "usd": 0.056
+   },
+   "b": {
+    "answered": 17,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 94543,
+    "cached": 48267,
+    "cache_write": 42904,
+    "output": 1612,
+    "errors": [],
+    "usd": 0.28
+   },
+   "c": {
+    "answered": 17,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 69781,
+    "cached": 0,
+    "cache_write": 0,
+    "output": 1227,
+    "errors": [],
+    "usd": 0.304
+   }
+  },
+  "limit": 2,
+  "finished_at": "2026-11-18T22:29:39+00:00"
+ },
+ "rows": 17,
+ "definite": 16,
+ "graded": 1,
+ "target": 0.9,
+ "majority": {
+  "decision": {
+   "value": 0.875,
+   "k": 14,
+   "n": 16,
+   "ci95": [
+    0.6398,
+    0.965
+   ]
+  },
+  "no_decision_majority": 0,
+  "intent": {
+   "value": 0.9375,
+   "k": 15,
+   "n": 16,
+   "ci95": [
+    0.7167,
+    0.9889
+   ]
+  },
+  "unanimous": {
+   "value": 0.8235,
+   "k": 14,
+   "n": 17,
+   "ci95": [
+    0.5897,
+    0.9381
+   ]
+  }
+ },
+ "meets_target": false,
+ "members": {
+  "a": {
+   "answered": {
+    "value": 1.0,
+    "k": 17,
+    "n": 17,
+    "ci95": [
+     0.8157,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.875,
+    "k": 14,
+    "n": 16,
+    "ci95": [
+     0.6398,
+     0.965
+    ]
+   },
+   "intent": {
+    "value": 0.9375,
+    "k": 15,
+    "n": 16,
+    "ci95": [
+     0.7167,
+     0.9889
+    ]
+   },
+   "for_the_agent": {
+    "value": 1.0,
+    "k": 16,
+    "n": 16,
+    "ci95": [
+     0.8064,
+     1.0
+    ]
+   },
+   "rule": {
+    "value": 0.8824,
+    "k": 15,
+    "n": 17,
+    "ci95": [
+     0.6566,
+     0.9671
+    ]
+   },
+   "speak_mean_abs_diff": 0.235
+  },
+  "b": {
+   "answered": {
+    "value": 1.0,
+    "k": 17,
+    "n": 17,
+    "ci95": [
+     0.8157,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.875,
+    "k": 14,
+    "n": 16,
+    "ci95": [
+     0.6398,
+     0.965
+    ]
+   },
+   "intent": {
+    "value": 0.9375,
+    "k": 15,
+    "n": 16,
+    "ci95": [
+     0.7167,
+     0.9889
+    ]
+   },
+   "for_the_agent": {
+    "value": 1.0,
+    "k": 16,
+    "n": 16,
+    "ci95": [
+     0.8064,
+     1.0
+    ]
+   },
+   "rule": {
+    "value": 0.7647,
+    "k": 13,
+    "n": 17,
+    "ci95": [
+     0.5274,
+     0.9045
+    ]
+   },
+   "speak_mean_abs_diff": 0.235
+  },
+  "c": {
+   "answered": {
+    "value": 1.0,
+    "k": 17,
+    "n": 17,
+    "ci95": [
+     0.8157,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.875,
+    "k": 14,
+    "n": 16,
+    "ci95": [
+     0.6398,
+     0.965
+    ]
+   },
+   "intent": {
+    "value": 0.875,
+    "k": 14,
+    "n": 16,
+    "ci95": [
+     0.6398,
+     0.965
+    ]
+   },
+   "for_the_agent": {
+    "value": 1.0,
+    "k": 16,
+    "n": 16,
+    "ci95": [
+     0.8064,
+     1.0
+    ]
+   },
+   "rule": {
+    "value": 0.8824,
+    "k": 15,
+    "n": 17,
+    "ci95": [
+     0.6566,
+     0.9671
+    ]
+   },
+   "speak_mean_abs_diff": 0.235
+  }
+ },
+ "pairs": {
+  "a-b": {
+   "value": 1.0,
+   "k": 17,
+   "n": 17,
+   "ci95": [
+    0.8157,
+    1.0
+   ]
+  },
+  "a-c": {
+   "value": 0.9412,
+   "k": 16,
+   "n": 17,
+   "ci95": [
+    0.7302,
+    0.9895
+   ]
+  },
+  "b-c": {
+   "value": 0.9412,
+   "k": 16,
+   "n": 17,
+   "ci95": [
+    0.7302,
+    0.9895
+   ]
+  }
+ },
+ "by_rule": {
+  "G7": {
+   "value": 0.8,
+   "k": 8,
+   "n": 10,
+   "ci95": [
+    0.4902,
+    0.9433
+   ]
+  },
+  "G2": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "G3": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "G6": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  }
+ },
+ "by_expect": {
+  "ignore": {
+   "value": 0.9091,
+   "k": 10,
+   "n": 11,
+   "ci95": [
+    0.6226,
+    0.9838
+   ]
+  },
+  "respond": {
+   "value": 1.0,
+   "k": 3,
+   "n": 3,
+   "ci95": [
+    0.4385,
+    1.0
+   ]
+  },
+  "wait": {
+   "value": 0.5,
+   "k": 1,
+   "n": 2,
+   "ci95": [
+    0.0945,
+    0.9055
+   ]
+  }
+ },
+ "by_kind": {
+  "reply_to_person": {
+   "value": 1.0,
+   "k": 4,
+   "n": 4,
+   "ci95": [
+    0.5101,
+    1.0
+   ]
+  },
+  "people_after_agent": {
+   "value": 0.5,
+   "k": 1,
+   "n": 2,
+   "ci95": [
+    0.0945,
+    0.9055
+   ]
+  },
+  "question_to_named_person": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "statement": {
+   "value": 1.0,
+   "k": 2,
+   "n": 2,
+   "ci95": [
+    0.3424,
+    1.0
+   ]
+  },
+  "follow_up": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "group_question_not_for_agent": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "name_first": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "named_after_aside": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  },
+  "open_question": {
+   "value": 0.0,
+   "k": 0,
+   "n": 1,
+   "ci95": [
+    0.0,
+    0.7935
+   ]
+  },
+  "unclear_after_agent": {
+   "value": 1.0,
+   "k": 1,
+   "n": 1,
+   "ci95": [
+    0.2065,
+    1.0
+   ]
+  }
+ },
+ "disagreements": [
+  {
+   "id": "standup-01/7",
+   "speaker": "Sam",
+   "text": "Nine's a bit early for Priya.",
+   "before": [
+    "Jon: And put a reminder on it for tomorrow morning.",
+    "agent: Done. Reminder set for nine tomorrow."
+   ],
+   "kind": "people_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "other",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Sam is reacting to Atlas’s reminder time, but the comment could be for Atlas or the other people on the call."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "other",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Sam, not the agent's last partner, reacts to the agent's answer; it could be a remark to Jon or a nudge to the agent to change the time, and nothing settles which."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Someone other than the agent's last partner reacts to the time the agent set, which could be directed at the agent to change the reminder or at Jon and Priya."
+    }
+   }
+  },
+  {
+   "id": "planning-02/2",
+   "speaker": "Lena",
+   "text": "Does anyone remember what we shipped last sprint?",
+   "before": [
+    "Maya: So the big one is the billing migration. Tom, how many points did we say?",
+    "Tom: Thirteen, I think. Might be more."
+   ],
+   "kind": "open_question",
+   "rule": "G7",
+   "guide": "wait",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Lena is asking the team to recall what they shipped, not asking Atlas to look it up."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Lena is asking the team to recall their own past work, which is a question about the people themselves rather than a lookup for the agent."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Lena asks the group a question about what they did last sprint, which is about the people's own work rather than something a general AI assistant on the call would answer."
+    }
+   }
+  }
+ ],
+ "graded_lines": [
+  {
+   "id": "planning-02/4",
+   "speaker": "Lena",
+   "text": "Atlas would know, it's got the board.",
+   "before": [
+    "Lena: Does anyone remember what we shipped last sprint?",
+    "Maya: Not off the top of my head."
+   ],
+   "kind": "invite",
+   "rule": "G4",
+   "guide": null,
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Lena indirectly invites Atlas to answer the open sprint question by pointing out that it has the board."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Lena invites Atlas to answer by saying it would know, without calling it directly, so either decision is reasonable."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Lena mentions Atlas to the group as an invitation for the agent to answer what was shipped last sprint."
+    }
+   }
+  }
+ ]
+}

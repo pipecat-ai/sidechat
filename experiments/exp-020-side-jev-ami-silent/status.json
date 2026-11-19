@@ -1,0 +1,41 @@
+{
+ "exp": "exp-020-side-jev-ami-silent",
+ "app": "waystone-side-baseline",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T00:50:04+00:00",
+ "args": {
+  "sets": "ami-silent:test",
+  "baseline_id": "jev-demo-0.1",
+  "jev_model": "jev-1.13.0",
+  "concurrency": 12,
+  "spend_cap_usd": 5.0,
+  "limit": 0
+ },
+ "updated_at": "2026-11-19T00:53:48+00:00",
+ "elapsed_s": 223,
+ "sets": {
+  "ami-silent-0.1.test": 10434
+ },
+ "jev": {
+  "model": "jev-1.13.0",
+  "requests": 10433,
+  "reused": 0,
+  "asked": 10433,
+  "failed": 0,
+  "input_tokens": 8209027,
+  "output_tokens": 386021,
+  "usd_per_m_input": 0.042,
+  "started_at": "2026-11-19T00:51:00+00:00",
+  "usd_estimate": 0.345,
+  "finished_at": "2026-11-19T00:53:45+00:00",
+  "answered": 10433
+ },
+ "forecast": {
+  "input_tokens_per_request": 806.4,
+  "requests_to_ask": 10433,
+  "input_tokens": 8413380,
+  "usd": 0.35,
+  "spend_cap_usd": 5.0
+ }
+}

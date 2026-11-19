@@ -1,0 +1,28 @@
+experiment_id: exp-024-side-committee-gen-0.2
+status: done (2026-11-19); actual about $11
+track: sidechat (Phase 4, round 2: checking the new labels)
+what: >
+  The committee (a, b, c, guide 0.4) labels, blind, 360 gen-0.2 dev and test lines of the kinds
+  round 2 added or changed: 60 answers to the agent after a quick check with a named person, and
+  300 of bare instructions between people, steps explained to people, the meeting's host, and
+  named thanks, stop and goodbye (SD-18). Agreement with the construction labels says whether the
+  new kinds are labelled right, as exp-011 did for gen-pilot.
+forecast block:
+  campaign: exp-024-side-committee-gen-0.2
+  decision it enables: whether round 2's new kinds can be trusted, and whether SD-18 reads the way the committee does
+  token forecast: 360 lines x 3 members at exp-011's rate
+  Modal forecast: one CPU container for about 5 minutes
+  retry cap: 2
+  spend cap: $20
+  stop condition: scorecard.json and report.md in R2
+  approved by Jon on: 2026-11-18 (SD-17)
+forecast_usd: about $10
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.label::run --exp exp-024-side-committee-gen-0.2 --sets corpus:gen-0.2:dev+test:60:answer_after_aside,corpus:gen-0.2:dev+test:300:imperative_to_person+steps_to_people+host_to_group+thanks_named+stop_named+farewell_named --spend-cap-usd 20
+results: uv run python -m sidechat.pipeline.results exp-024-side-committee-gen-0.2
+actual_usd: about $11 (b $2.24, c $7.62, a about $1)
+result:
+  agreement: "committee majority agrees with the construction labels on 95.8% (345/360; 93.2 to 97.5)"
+  by_kind: "answer_after_aside 98.3% (59/60); named thanks, stop and goodbye 100% (49/49, SD-18 reads the way the committee does); steps_to_people 98.4% (60/61); host_to_group 100% (43/43); imperative_to_person 90.2% (120/133)"
+  reading: "every imperative_to_person miss is an instruction in a session the agent runs (a quiz, a game) or one it could carry out (music, a dashboard, a note): the committee calls them for the agent or an even call. 42% of gen-0.2's imperative_to_person lines are in such settings. Filtered from training (round 3) and no longer planned there."

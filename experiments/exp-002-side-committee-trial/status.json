@@ -1,0 +1,65 @@
+{
+ "exp": "exp-002-side-committee-trial",
+ "app": "waystone-side-label",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-18T22:29:16+00:00",
+ "args": {
+  "sets": "pilot-0.2",
+  "label_id": "trial-committee-0",
+  "members": "a,b,c",
+  "concurrency": 8,
+  "spend_cap_usd": 25.0,
+  "limit": 2
+ },
+ "updated_at": "2026-11-18T22:29:40+00:00",
+ "elapsed_s": 24,
+ "sets": {
+  "pilot-0.2": 17
+ },
+ "progress": {
+  "a": {
+   "answered": 17,
+   "reused": 0,
+   "failed": 0,
+   "usd": 0.055879000000000005,
+   "of": 17
+  },
+  "b": {
+   "answered": 17,
+   "reused": 0,
+   "failed": 0,
+   "usd": 0.27955480000000005,
+   "of": 17
+  },
+  "c": {
+   "answered": 17,
+   "reused": 0,
+   "failed": 0,
+   "usd": 0.30366400000000004,
+   "of": 17
+  }
+ },
+ "usd": 0.639,
+ "forecast": {
+  "usd": 0.72,
+  "by_member": {
+   "a": 0.06,
+   "b": 0.36,
+   "c": 0.3
+  },
+  "spend_cap_usd": 25.0
+ },
+ "headline": {
+  "majority_decision": {
+   "value": 0.875,
+   "k": 14,
+   "n": 16,
+   "ci95": [
+    0.6398,
+    0.965
+   ]
+  },
+  "meets_target": false
+ }
+}

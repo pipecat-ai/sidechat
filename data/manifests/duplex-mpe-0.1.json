@@ -1,0 +1,32 @@
+{
+ "rows_id": "duplex-mpe-0.1",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-18T21:41:58+00:00",
+ "source": {
+  "kind": "Hugging Face dataset",
+  "repo": "ChengqianMa/Duplex-MPE",
+  "revision": "6d5f59fab1237c14ee8229ea36f111b7423b0fe6",
+  "files": {
+   "manifests/explicit.json": "4db23f171e1eb967f67552036cbe2909efc65d605dbe3778e9d7ba791f689007",
+   "manifests/implicit.json": "19220dedd3f4f72f9bf0622cd176ce3bb63bd6f2b6bb958435ec192cd99a7128"
+  },
+  "licence": "CC BY 4.0",
+  "use": "held-out benchmark; never train on it"
+ },
+ "limit": null,
+ "rows": 52364,
+ "conversations": 2000,
+ "by_expect": {
+  "ignore": 44542,
+  "respond": 7822
+ },
+ "by_to": {
+  "person": 32838,
+  "agent": 7822,
+  "device": 5146,
+  "nobody": 6544,
+  "unknown": 14
+ },
+ "sha256": "e288785561c0ef0b99c0804d3868e9a843c4340942021b2a5e362d6568f17f8a",
+ "r2_key": "runs/side/rows/duplex-mpe-0.1/rows.jsonl"
+}
