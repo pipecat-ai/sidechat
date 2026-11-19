@@ -1,0 +1,26 @@
+experiment_id: exp-042-side-round6
+status: done (2026-11-19); actual about $38 (committee $10, round 6 $10, students $16, exports and latency $2)
+track: sidechat (Phase 5)
+what: >
+  One detached job (sidechat/pipeline/round6.py) that chains round 6 and the agent-1x students so
+  nothing waits on a person or this Mac: the committee on gen-0.4 (exp-037) beside round 6 seeds 0
+  and 1 (exp-038, exp-039); the teacher picked on dev; students distilled from it (exp-048,
+  exp-049); exports (exp-043 to exp-046); latency on agent-1x and agent-2x beside Jev (exp-047);
+  then a summary with the gate. Jon asked for work that runs while he is offline.
+forecast block:
+  campaign: exp-042-side-round6
+  decision it enables: the round 6 pick and whether a student fits agent-1x
+  token forecast: the committee only (exp-037)
+  Modal forecast: the steps' own forecasts, plus one 0.25-core container for up to 6 hours
+  retry cap: 0 on the driver (each step has its own)
+  spend cap: $60 for all steps
+  stop condition: summary in R2
+  approved by Jon on: 2026-11-19 ("Let's action round 6", the agent-1x plan, and "Are there things you can start that run on Modal")
+forecast_usd: about $36 in all (committee $9, round 6 $10, students $11, exports $3, latency $1, driver $0.10)
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round6::run --exp exp-042-side-round6
+results: uv run python -m sidechat.pipeline.results exp-042-side-round6
+actual_usd: about $38 (committee $10, round 6 $10, students $16, exports and latency $2)
+result:
+  summary: "round 6 does not beat round 3; teacher side-r6-ettin-150m-s1 (dev tie by one line); its students fail the gate on the pilot. Its exports and timing ran before the tokenizer fix and are superseded by exp-050"

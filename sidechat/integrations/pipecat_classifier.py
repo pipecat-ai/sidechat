@@ -20,7 +20,13 @@ earlier messages, the latest message):
                falls on the model's hold thresholds
 
 So the demo's gate makes Sidechat's decisions with no change to its thresholds. Any other question
-name raises `ClassifierError`. Inference runs on CPU in a worker thread, a few milliseconds a line.
+name raises `ClassifierError`. Inference runs on CPU in a worker thread, on one ONNX thread by
+default (a second was slower on every cloud profile under 1.5 vCPU, exp-033).
+
+With a two-tower model the history is encoded apart from the line. After each line the adapter
+starts encoding the history the next line will carry (this one included), in the background, so
+when the next person stops talking only their line is left to encode. `prepare_history` does the
+same for an integration that knows the history earlier (when the agent's own turn is logged).
 """
 
 from __future__ import annotations
@@ -38,7 +44,7 @@ from pipecat.classifiers.base_classifier import (
     YesNoResult,
 )
 
-from sidechat.runtime import load
+from sidechat.runtime import TwoTower, load
 from sidechat.schema import Agent, SidechatRequest, Turn
 
 PEOPLE_RE = re.compile(r"People on the call:\s*(.*?)\.\s")
@@ -60,14 +66,17 @@ class SidechatClassifier(BaseClassifier):
         bot_name: str,
         aliases: Sequence[str] = (),
         role: str | None = None,
-        threads: int = 2,
+        threads: int = 1,
         demo_respond: float = 0.8,
         demo_question: float = 0.5,
         int8: bool = False,
+        speculate: bool = True,
         **kwargs,
     ):
         super().__init__(**kwargs)
         self._model = load(model_dir, threads=threads, int8=int8)
+        self._speculate = speculate and isinstance(self._model, TwoTower)
+        self._ahead: asyncio.Task | None = None
         self._agent = Agent(name=bot_name, aliases=list(aliases), role=role or "AI assistant on the call")
         self._demo = (demo_respond, demo_question)
 
@@ -97,12 +106,21 @@ class SidechatClassifier(BaseClassifier):
             people=people,
         )
 
+    def prepare_history(self, earlier_messages: Sequence[Mapping[str, Any]]) -> None:
+        """Encode now the history the next line will carry (`{speaker, said}` dicts, oldest first).
+        Only a two-tower model has anything to do; the line is not needed."""
+        state = {"earlier_messages": list(earlier_messages), "latest_message": {"speaker": None, "said": ""}}
+        self._model.prepare(self._request(state))
+
     async def _ask(
         self, state: Any, questions: Mapping[str, ClassifierQuestion], inputs: Sequence[Any] = (), **_: Any
     ) -> tuple[dict[str, ClassifierResult], None]:
         # Text only: images, audio or files (`inputs` since Pipecat 1.16, `images` before) are ignored.
         req = self._request(state)
         answer = await asyncio.to_thread(self._model.answer, req)
+        if self._speculate:
+            after = [*(state.get("earlier_messages") or []), state["latest_message"]]
+            self._ahead = asyncio.create_task(asyncio.to_thread(self.prepare_history, after))
         t = self._model.thresholds
         respond_demo, question_demo = self._demo
         results: dict[str, ClassifierResult] = {}

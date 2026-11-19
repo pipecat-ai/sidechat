@@ -31,17 +31,93 @@ VOCATIVE_RE = re.compile(r"^\W*(?:hey |ok |okay |oh |so |right |well )?([A-Z][a-
 TRAILING_VOCATIVE_RE = re.compile(r",\s*([A-Z][a-z]+)\s*[?.!]*\s*$")
 
 
-def text(req: SidechatRequest) -> tuple[str, int]:
-    """The encoder's text, and where the line itself starts in it (a character offset)."""
+def _last(req: SidechatRequest, n: int) -> SidechatRequest:
+    """The request with only its last `n` earlier turns."""
+    if n >= len(req.history):
+        return req
+    return req.model_copy(update={"history": req.history[len(req.history) - n :]})
+
+
+def fitted(req: SidechatRequest, turns: int, max_len: int, count) -> tuple[str, int]:
+    """The text with at most `turns` earlier turns, dropping the oldest until `count(text)` tokens
+    fit in `max_len`, so the line and the agent's card are never cut. For the short-input models
+    (config `text_turns`); the rhythm numbers still read the whole history."""
+    keep = min(turns, len(req.history))
+    while True:
+        t, start = text(_last(req, keep))
+        if keep == 0 or count(t) <= max_len:
+            return t, start
+        keep -= 1
+
+
+def _card(req: SidechatRequest) -> str:
     a = req.agent
     card = f"agent: {a.name}"
     if a.aliases:
         card += f" | also: {', '.join(a.aliases)}"
     if a.role:
         card += f" | {a.role}"
-    body = context.render(req)
-    full = card + "\n" + body
+    return card
+
+
+def text(req: SidechatRequest, turns: int = 0) -> tuple[str, int]:
+    """The encoder's text, and where the line itself starts in it (a character offset). `turns`
+    keeps only the last so many earlier turns (0: all of them)."""
+    if turns:
+        req = _last(req, turns)
+    full = _card(req) + "\n" + context.render(req)
     return full, full.rfind(LINE_MARK)
+
+
+# --- two towers (sidechat-tt-0.1) ---------------------------------------------------------------
+# The history and the line are encoded apart, so the history's encoding can be made while the next
+# person is still talking and only the line is encoded when they stop. The history therefore cannot
+# depend on who speaks next: its people get fixed slots by first appearance ([p1], [p2], ...), and
+# the line carries its speaker's slot ([new] for someone not in the window). The rhythm numbers,
+# cheap to compute at the end, still read the turns relative to the speaker.
+
+TT_VERSION = "sidechat-tt-0.1"
+
+
+def _slots(req: SidechatRequest) -> dict[str, int]:
+    order: dict[str, int] = {}
+    for t in req.history:
+        if not t.agent and t.speaker is not None:
+            order.setdefault(t.speaker, len(order) + 1)
+    return order
+
+
+def context_text(req: SidechatRequest, turns: int | None = None) -> str:
+    """The history tower's text: the agent's card and the earlier turns (the last `turns` of them)."""
+    if turns is not None:
+        req = _last(req, turns)
+    order = _slots(req)
+    parts = []
+    for t in req.history:
+        tag = "agent" if t.agent else "unknown" if t.speaker is None else f"p{order[t.speaker]}"
+        parts.append(f"[{tag}] {t.text}")
+    return _card(req) + "\n" + ("\n".join(parts) if parts else "(start of the conversation)")
+
+
+def context_fitted(req: SidechatRequest, max_len: int, count) -> str:
+    """`context_text`, dropping the oldest turns until it fits `max_len` tokens."""
+    keep = len(req.history)
+    while True:
+        t = context_text(req, keep)
+        if keep == 0 or count(t) <= max_len:
+            return t
+        keep -= 1
+
+
+def line_text(req: SidechatRequest) -> str:
+    """The line tower's text: the agent's card and the line, tagged with its speaker's slot."""
+    order = _slots(req)
+    if req.speaker is None:
+        tag = "unknown"
+    else:
+        tag = f"p{order[req.speaker]}" if req.speaker in order else "new"
+    over = " (over the agent)" if req.facts and req.facts.over_agent else ""
+    return f"{_card(req)}\n{LINE_MARK}[{tag}]{over} {req.text}"
 
 
 def _calls(line: str, req: SidechatRequest) -> tuple[bool, bool, bool]:

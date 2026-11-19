@@ -1,0 +1,28 @@
+experiment_id: exp-039-side-train-r6-s1
+status: done (2026-11-19); actual about $5
+track: sidechat (Phase 5, round 6)
+what: >
+  Round 6: Ettin-150M, seed 1, 2 epochs, on round 3's corpus (gen-0.1, gen-pilot, gen-0.2 with the
+  unsettled instructions filtered, AMI silent training series) plus gen-0.4 (exp-035). Guide 0.4
+  labels, disfluency augmentation, thresholds with the real-speech bar. Scored on round 1's
+  generated test, gen-0.2's and gen-0.4's tests (anonymous) and every benchmark. Aimed at items 6,
+  7 and 9 without losing round 3's gains; two seeds because the small slices are noisy (round 4).
+  The better seed on dev becomes the teacher for the agent-1x students.
+forecast block:
+  campaign: exp-039-side-train-r6-s1
+  decision it enables: whether round 6 beats round 3, and the teacher for distillation
+  token forecast: none
+  Modal forecast: one H100 for 30 to 40 minutes, then scoring at about 10 minutes
+  retry cap: 1
+  spend cap: $15
+  stop condition: report in R2
+  approved by Jon on: 2026-11-19 ("Let's action round 6", in chat)
+forecast_usd: about $5
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-039-side-train-r6-s1 --corpus gen-0.1,gen-pilot,gen-0.2,gen-0.4,ami-silent --encoders ettin-150m --epochs 2 --seed 1 --tag r6 --test-corpus gen-0.1,gen-pilot --extra-sets corpus:gen-0.2:test@anonymous,corpus:gen-0.4:test@anonymous
+results: uv run python -m sidechat.pipeline.results exp-039-side-train-r6-s1
+actual_usd: about $5
+result:
+  ettin-150m: "generated test 99.06%; gen-0.4 test 98.85%; Duplex-MPE 95.79%, answers 0.20% outright, implicit T 22.8% (below Jev's 26.6%), N1 outright 0.35%; Ambient 98.39%; AMI 99.90%, AMI silent 0 outright; pilot 89.26%; demo 47/48; pilot G6 24/34; pilot even calls 21/26 in range (item 9 met). 12 of 16 items (not met: 5, 6, 7)"
+  learned: "round 6 does not beat round 3 (12 of 16, not met 6, 7, 9): the new data helped even calls (item 9, seed 1 met it) and a little the rhythm-only lines (pilot G6 22/34 to 24-25/34, inside the noise), but answers to lines that only mention the agent rose in both seeds (N1 0.28% to 0.35-0.54%), and the seeds differ by 15 points on implicit T. Dev tied the seeds to one line (28,666 vs 28,665 of 28,959); seed 1 became the teacher."

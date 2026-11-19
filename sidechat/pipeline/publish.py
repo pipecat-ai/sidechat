@@ -4,7 +4,9 @@ and the rows it was trained on (train and dev, rebuilt exactly as the training j
     set -a; . ./.env; set +a
     uv run modal run --detach -m sidechat.pipeline.publish::run --exp exp-034-side-publish --run-id side-r3-ettin-150m-s0
 
-The Hub repo is created private; make it public on the Hub when ready. Test-only sets (Duplex-MPE,
+`--subdir agent-1x` puts a second build in that folder (graphs, tokenizer, config, its own rows and
+MANIFEST.json) and leaves the root files as they are; the card is always the root README.md.
+`--tag rc0.2` tags the commit. The Hub repo is created private; make it public on the Hub when ready. Test-only sets (Duplex-MPE,
 the Ambient Bench, AMI's labelled and held-out meetings) are never part of training, so never
 uploaded. Writes runs/side/results/<exp>/: status.json, then scorecard.json (every file uploaded,
 with its sha256) and report.md.
@@ -43,7 +45,14 @@ app = modal.App(APP_NAME)
 
 
 @app.function(image=image, cpu=4.0, memory=16384, timeout=2 * 3600, secrets=_secrets(), volumes={"/cache": hf_cache})
-def run(exp: str, run_id: str = "side-r3-ettin-150m-s0", repo: str = "pipecat-ai/sidechat", private: bool = True) -> dict:
+def run(
+    exp: str,
+    run_id: str = "side-r3-ettin-150m-s0",
+    repo: str = "pipecat-ai/sidechat",
+    private: bool = True,
+    subdir: str = "",
+    tag: str = "",
+) -> dict:
     import collections
     import gzip
     import hashlib
@@ -67,7 +76,7 @@ def run(exp: str, run_id: str = "side-r3-ettin-150m-s0", repo: str = "pipecat-ai
         "state": "running",
         "stage": "starting",
         "started_at": datetime.now(UTC).isoformat(timespec="seconds"),
-        "args": {"run_id": run_id, "repo": repo, "private": private},
+        "args": {"run_id": run_id, "repo": repo, "private": private, "subdir": subdir, "tag": tag},
     }
 
     def save(**changes) -> None:
@@ -85,8 +94,9 @@ def run(exp: str, run_id: str = "side-r3-ettin-150m-s0", repo: str = "pipecat-ai
 
     try:
         cfg = r2.get_json(s3, f"models/side/{run_id}/config.json")
-        folder = pathlib.Path("/tmp/publish")
-        shutil.rmtree(folder, ignore_errors=True)
+        top = pathlib.Path("/tmp/publish")
+        shutil.rmtree(top, ignore_errors=True)
+        folder = top / subdir if subdir else top
         (folder / "data").mkdir(parents=True)
 
         # 1. The training rows, built by the training job's own code.
@@ -104,28 +114,71 @@ def run(exp: str, run_id: str = "side-r3-ettin-150m-s0", repo: str = "pipecat-ai
                 "by_respond": dict(collections.Counter(str(r["label"]["respond"]) for r in rows)),
             }
         if counts["train"]["rows"] != cfg.get("train_rows"):
-            raise RuntimeError(f"rebuilt {counts['train']['rows']} train rows, the run trained on {cfg.get('train_rows')}")
+            raise RuntimeError(
+                f"rebuilt {counts['train']['rows']} train rows, the run trained on {cfg.get('train_rows')}"
+            )
 
         # 2. The export and the card.
         save(stage="copying the export", rows=counts)
-        for name in ("model.onnx", "model-int8.onnx", "tokenizer.json", "config.json"):
-            s3.download_file(r2._bucket(), f"models/side/{run_id}/export/{name}", str(folder / name))
-        shutil.copy("/root/hf/README.md", folder / "README.md")
-        files = {p.relative_to(folder).as_posix(): {"bytes": p.stat().st_size, "sha256": sha(p)}
-                 for p in sorted(folder.rglob("*")) if p.is_file()}
-        (folder / "MANIFEST.json").write_text(json.dumps({"run_id": run_id, "files": files, "rows": counts}, indent=1) + "\n")
+        export = r2.get_json(s3, f"models/side/{run_id}/export/config.json")
+        graphs = ["context", "line"] if export.get("arch") == "twotower" else ["model"]
+        names = [f"{g}{p}.onnx" for g in graphs for p in ("", "-int8")] + ["tokenizer.json", "config.json"]
+        for name in names:
+            try:
+                s3.download_file(r2._bucket(), f"models/side/{run_id}/export/{name}", str(folder / name))
+            except Exception:
+                if name.endswith("-int8.onnx"):  # the int8 build is made only when it passes its gate
+                    continue
+                raise
+        if export.get("arch") == "twotower":
+            tok = json.loads((folder / "tokenizer.json").read_text())
+            if tok.get("truncation") or tok.get("padding"):
+                raise RuntimeError("a two-tower tokenizer.json must not carry truncation or padding (exp-036)")
+        shutil.copy("/root/hf/README.md", top / "README.md")
+        files = {
+            p.relative_to(folder).as_posix(): {"bytes": p.stat().st_size, "sha256": sha(p)}
+            for p in sorted(folder.rglob("*"))
+            if p.is_file()
+        }
+        (folder / "MANIFEST.json").write_text(
+            json.dumps({"run_id": run_id, "files": files, "rows": counts}, indent=1) + "\n"
+        )
 
         # 3. The Hub.
         save(stage=f"uploading to {repo}")
         api = HfApi(token=os.environ["HF_TOKEN"])
         api.create_repo(repo, repo_type="model", private=private, exist_ok=True)
-        commit = api.upload_folder(folder_path=str(folder), repo_id=repo, repo_type="model",
-                                   commit_message=f"{run_id}: ONNX export, model card and training rows")
-        card = {"exp": exp, "run_id": run_id, "repo": repo, "private": private, "commit": commit.oid,
-                "files": files, "rows": counts, "finished_at": datetime.now(UTC).isoformat(timespec="seconds")}
+        where = f"{subdir}/: " if subdir else ""
+        commit = api.upload_folder(
+            folder_path=str(top),
+            repo_id=repo,
+            repo_type="model",
+            commit_message=f"{where}{run_id}: ONNX export, model card and training rows",
+        )
+        if tag:
+            save(stage=f"tagging {tag}")
+            api.create_tag(repo, tag=tag, revision=commit.oid, tag_message=f"{tag}: {where}{run_id}")
+        card = {
+            "exp": exp,
+            "run_id": run_id,
+            "repo": repo,
+            "private": private,
+            "subdir": subdir,
+            "tag": tag,
+            "commit": commit.oid,
+            "files": files,
+            "rows": counts,
+            "finished_at": datetime.now(UTC).isoformat(timespec="seconds"),
+        }
         r2.put_json(s3, f"{out}/scorecard.json", card)
-        lines = [f"# {exp}: {run_id} to {repo}", "", f"Commit `{commit.oid}`, private: {private}.", "",
-                 "| File | Bytes | sha256 |", "|---|---|---|"]
+        lines = [
+            f"# {exp}: {run_id} to {repo}" + (f"/{subdir}" if subdir else ""),
+            "",
+            f"Commit `{commit.oid}`" + (f", tagged `{tag}`" if tag else "") + f", private: {private}.",
+            "",
+            "| File | Bytes | sha256 |",
+            "|---|---|---|",
+        ]
         lines += [f"| {k} | {v['bytes']:,} | `{v['sha256'][:16]}` |" for k, v in files.items()]
         lines += ["", f"Rows: train {counts['train']['rows']:,}, dev {counts['dev']['rows']:,}.", ""]
         r2.put_text(s3, f"{out}/report.md", "\n".join(lines))

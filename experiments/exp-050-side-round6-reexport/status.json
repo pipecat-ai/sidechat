@@ -1,0 +1,196 @@
+{
+ "exp": "exp-050-side-round6-reexport",
+ "app": "waystone-side-round6",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T12:09:34+00:00",
+ "args": {
+  "steps": "export,latency",
+  "teacher": "",
+  "min_agreement": 0.9
+ },
+ "steps": {
+  "teacher": "side-r6-ettin-150m-s1",
+  "export": {
+   "side-r6-ettin-150m-s1": {
+    "size_mb": 598.3,
+    "optimized": {
+     "fused": {
+      "model": {
+       "Gelu": 24,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 44
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 7e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 60.52,
+       "p95_ms": 86.12
+      },
+      "1_threads": {
+       "p50_ms": 178.24,
+       "p95_ms": 265.73
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   },
+   "side-r6tt-ettin-32m-s0": {
+    "size_mb": 259.2,
+    "optimized": {
+     "fused": {
+      "context": {
+       "Gelu": 10,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      },
+      "line": {
+       "Gelu": 12,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 5e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 6.97,
+       "p95_ms": 9.01
+      },
+      "1_threads": {
+       "p50_ms": 11.38,
+       "p95_ms": 14.62
+      },
+      "cold_1_threads": {
+       "p50_ms": 41.37,
+       "p95_ms": 61.52
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   },
+   "side-r6tt-ettin-68m-s0": {
+    "size_mb": 551.9,
+    "optimized": {
+     "fused": {
+      "context": {
+       "Gelu": 19,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 38
+      },
+      "line": {
+       "Gelu": 21,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 38
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 6e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 23.83,
+       "p95_ms": 32.07
+      },
+      "1_threads": {
+       "p50_ms": 41.32,
+       "p95_ms": 59.8
+      },
+      "cold_1_threads": {
+       "p50_ms": 173.78,
+       "p95_ms": 260.98
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   },
+   "side-r6s-ettin-32m-s0": {
+    "size_mb": 128.6,
+    "optimized": {
+     "fused": {
+      "model": {
+       "Gelu": 12,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 7e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 17.03,
+       "p95_ms": 24.9
+      },
+      "1_threads": {
+       "p50_ms": 33.35,
+       "p95_ms": 48.22
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   }
+  },
+  "latency": {
+   "state": "done",
+   "results": "runs/side/results/exp-047-side-latency-r6-b",
+   "failed": 0
+  }
+ },
+ "updated_at": "2026-11-19T13:29:40+00:00",
+ "elapsed_s": 4806,
+ "committee_by_kind": {
+  "follow_up_after_reaction": {
+   "value": 0.9833,
+   "k": 118,
+   "n": 120,
+   "ci95": [
+    0.9413,
+    0.9954
+   ]
+  },
+  "relay_agent_answer": {
+   "value": 0.9917,
+   "k": 119,
+   "n": 120,
+   "ci95": [
+    0.9543,
+    0.9985
+   ]
+  },
+  "command_no_name": {
+   "value": 0.9767,
+   "k": 42,
+   "n": 43,
+   "ci95": [
+    0.8794,
+    0.9959
+   ]
+  },
+  "reply_then_request": {
+   "value": 1.0,
+   "k": 47,
+   "n": 47,
+   "ci95": [
+    0.9244,
+    1.0
+   ]
+  }
+ }
+}

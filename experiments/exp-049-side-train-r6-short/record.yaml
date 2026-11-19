@@ -1,0 +1,22 @@
+experiment_id: exp-049-side-train-r6-short
+status: done (2026-11-19); actual about $4
+track: sidechat (Phase 5, agent-1x)
+what: >
+  The fallback student: one tower, Ettin-32M, at most 4 earlier lines fitted to 160 tokens,
+  distilled from round 6's teacher like exp-048, 3 epochs.
+forecast block:
+  campaign: exp-049-side-train-r6-short
+  decision it enables: whether the simpler short input is enough
+  token forecast: none
+  Modal forecast: one H100 for about 40 minutes, then scoring at about 10 minutes
+  retry cap: 1
+  spend cap: $10
+  stop condition: report in R2
+  approved by Jon on: 2026-11-19 (the agent-1x plan, in chat)
+forecast_usd: about $3
+command: started by exp-042 (train.run, encoders ettin-32m, text_turns 4, max_len 160, tag r6s)
+results: uv run python -m sidechat.pipeline.results exp-049-side-train-r6-short
+actual_usd: about $4
+result:
+  ettin-32m: "Duplex-MPE 95.31%, outright 0.49%, implicit T 13.8%, N1 outright 1.35%; Ambient 98.50%; AMI 99.93%; pilot 86.30% (teacher 89.26%)"
+  learned: "the short single-tower student fails the gate on the pilot (-3.0 points) and answers more lines that only mention the agent"

@@ -1,0 +1,26 @@
+experiment_id: exp-053-side-students-r3-a5
+status: done (2026-11-19); actual about $13
+track: sidechat (Phase 5, agent-1x)
+what: >
+  exp-051's two-tower students taught by side-r3-ettin-150m-s0 (Ettin-32M and 68M, 3 epochs, round
+  6's corpus plus gen-0.3), with seed 0, teacher share 0.5 instead of 0.8, so the labels weigh more. Run ids side-r6ttr3a5-ettin-{32m,68m}-s0. Asks whether more weight on the labels keeps named and unnamed requests (exp-051 students: items 4 and 5 not met). Exported with the tokenizer fix and
+  timed on agent-1x and agent-2x beside Jev, with the summary and gate.
+forecast block:
+  campaign: exp-053-side-students-r3-a5
+  decision it enables: a student that keeps items 4 and 5 for agent-1x
+  token forecast: Jev, about 140 requests
+  Modal forecast: two H100s for 50 to 95 minutes, two 8-core exports, about 6 small latency containers
+  retry cap: 1 on training
+  spend cap: $15
+  stop condition: summary in R2
+  approved by Jon on: 2026-11-19 (the agent-1x plan, and "when ... we're happy we've passed all the gates")
+forecast_usd: about $9
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round6::run --exp exp-053-side-students-r3-a5 --steps students,export,latency --teacher side-r3-ettin-150m-s0 --student-tag r3a5 --student-alpha 0.5 --suffix -r3a5 --no-short --no-export-teacher
+results: uv run python -m sidechat.pipeline.results exp-053-side-students-r3-a5
+actual_usd: about $13
+result:
+  ettin-32m: "Duplex-MPE 95.57% (-1.1), named 98.2%, unnamed 7.3%, N1 outright 0.20%; pilot 86.67% (-0.7); fp32 (int8 parity 228/283); agent-1x 15 ms full history, 117 ms cold"
+  ettin-68m: "Duplex-MPE 95.63% (-1.0), named 99.2%, unnamed 9.1%; pilot 85.93% (-1.5); fp32 (int8 parity 167/283); agent-1x 86 ms"
+  learned: "more weight on the labels (teacher share 0.5) does not keep unnamed requests: the labels call most of them even calls"

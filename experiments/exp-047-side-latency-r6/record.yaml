@@ -1,0 +1,19 @@
+experiment_id: exp-047-side-latency-r6
+status: planned (2026-11-19), started by exp-042
+track: sidechat (Phase 5, agent-1x)
+what: >
+  exp-033's harness on the round 6 teacher and the three students, fp32 and int8, one thread, on
+  agent-1x and agent-2x, beside Jev from the same profiles. Two-tower models are timed with the
+  history encoded first, untimed, as while the person talks; their cold time is shown too.
+forecast block:
+  campaign: exp-047-side-latency-r6
+  decision it enables: the speed half of the agent-1x gate
+  token forecast: Jev, about 280 requests
+  Modal forecast: about 18 small CPU containers for 3 to 8 minutes each
+  retry cap: 0
+  spend cap: $2
+  stop condition: report in R2
+  approved by Jon on: 2026-11-19 (the agent-1x plan, in chat)
+forecast_usd: about $0.40
+command: started by exp-042 (latency.run, profiles agent-1x,agent-2x, threads 1)
+results: uv run python -m sidechat.pipeline.results exp-047-side-latency-r6

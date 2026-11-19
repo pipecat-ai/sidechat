@@ -274,12 +274,16 @@ def run(
     quiet: str = "",
     o_shards: int = 1,
     after_quiet: float = 0.0,
+    add: str = "",
+    delayed: float = 0.0,
 ) -> dict:
     """Plan, write and label `counts` conversations per writer. `boost` raises kinds' weights, e.g.
     `follow_up_by_other:3,unclear_after_agent:3`, for a top-up corpus aimed at weak kinds. `quiet`
     is `<share never involving the agent>,<share opening with people only>` (gen-0.2: 0.08,0.25).
     `o_shards` splits the open-weights writer over that many GPUs. `after_quiet` is the chance a
-    quiet opening ends with a request the agent could do, put to nobody (gen-0.3: 0.6)."""
+    quiet opening ends with a request the agent could do, put to nobody (gen-0.3: 0.6). `add` gives
+    weights to kinds outside the default mix (`relay_agent_answer:2`), and `delayed` is the chance of
+    a follow-up to the agent after someone else's brief reaction (gen-0.4)."""
     import random
     import time
     import traceback
@@ -310,6 +314,8 @@ def run(
             "quiet": quiet,
             "o_shards": o_shards,
             "after_quiet": after_quiet,
+            "add": add,
+            "delayed": delayed,
         },
     }
 
@@ -323,13 +329,16 @@ def run(
         want = {w: int(n) for w, n in (x.split(":") for x in counts.split(",") if x)}
         boosts = {k: float(v) for k, v in (x.split(":") for x in boost.split(",") if x)}
         quiet_shares = tuple(float(x) for x in quiet.split(",")) if quiet else (0.0, 0.0)
+        added = {k: float(v) for k, v in (x.split(":") for x in add.split(",") if x)}
         plans = r2.get_jsonl(s3, f"{base}/plans.jsonl") or []
         have = Counter(p["writer"] for p in plans)
         for w, n in want.items():
             rng = random.Random(f"{seed}-{w}-{have[w]}")
             for k in range(have[w], n):
                 cast = world.make_cast(rng, test_only=(w == writers.HELDOUT_WRITER) or rng.random() < 0.06)
-                beats = planner.plan(rng, cast, boost=boosts, quiet=quiet_shares, after_quiet=after_quiet)
+                beats = planner.plan(
+                    rng, cast, boost=boosts, quiet=quiet_shares, after_quiet=after_quiet, add=added, delayed=delayed
+                )
                 plans.append(
                     {
                         "conv_id": f"{w}{seed:02d}-{k:05d}",

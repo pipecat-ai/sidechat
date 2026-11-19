@@ -22,20 +22,25 @@ def main() -> int:
     s3 = r2.client()
     folder = ROOT / "models" / run_id
     folder.mkdir(parents=True, exist_ok=True)
-    for name in ("model.onnx", "tokenizer.json", "config.json"):
+    config = r2.get_json(s3, f"models/side/{run_id}/export/config.json")
+    if config is None:
+        print(f"{run_id}: no export in R2 yet (config.json missing)")
+        return 1
+    graphs = ["context", "line"] if config.get("arch") == "twotower" else ["model"]
+    for name in [f"{g}.onnx" for g in graphs] + ["tokenizer.json", "config.json"]:
         data = r2.get_bytes(s3, f"models/side/{run_id}/export/{name}")
         if data is None:
             print(f"{run_id}: no export in R2 yet ({name} missing)")
             return 1
         (folder / name).write_bytes(data)
-    int8 = r2.get_bytes(s3, f"models/side/{run_id}/export/model-int8.onnx")
-    if int8 is not None:
-        (folder / "model-int8.onnx").write_bytes(int8)
-    print(
-        f"saved models/{run_id}/ ({(folder / 'model.onnx').stat().st_size / 1e6:.1f} MB"
-        + (f"; int8 build {len(int8) / 1e6:.1f} MB" if int8 is not None else "")
-        + ")"
-    )
+    int8 = 0
+    for g in graphs:
+        data = r2.get_bytes(s3, f"models/side/{run_id}/export/{g}-int8.onnx")
+        if data is not None:
+            (folder / f"{g}-int8.onnx").write_bytes(data)
+            int8 += len(data)
+    size = sum((folder / f"{g}.onnx").stat().st_size for g in graphs)
+    print(f"saved models/{run_id}/ ({size / 1e6:.1f} MB" + (f"; int8 build {int8 / 1e6:.1f} MB" if int8 else "") + ")")
     return 0
 
 

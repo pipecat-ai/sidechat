@@ -1,0 +1,56 @@
+{
+ "exp": "exp-035-side-gen-0.4",
+ "app": "waystone-side-generate",
+ "state": "done",
+ "stage": "done",
+ "gen_id": "gen-0.4",
+ "started_at": "2026-11-19T09:04:20+00:00",
+ "args": {
+  "gen_id": "gen-0.4",
+  "counts": "o:4000,a:2500,c:800",
+  "seed": 6,
+  "spend_cap_usd": 40.0,
+  "boost": "command_no_name:3,reply_then_request:2.5,correction:1.5,open_question:1.5,open_factual:1.5,open_request:2,unclear_you:1.5,unclear_after_agent:1.5,invite:1.5,about_reported:1.5,follow_up_by_other:1.6",
+  "quiet": "",
+  "o_shards": 2,
+  "after_quiet": 0.0,
+  "add": "relay_agent_answer:6",
+  "delayed": 0.2
+ },
+ "planned": {
+  "o": 4000,
+  "a": 2500,
+  "c": 800
+ },
+ "updated_at": "2026-11-19T09:23:28+00:00",
+ "elapsed_s": 1147,
+ "writers": [
+  {
+   "writer": "o",
+   "written": 1999,
+   "failed": 1,
+   "gpu_s": 1058
+  },
+  {
+   "writer": "o",
+   "written": 1997,
+   "failed": 3,
+   "gpu_s": 1053
+  },
+  {
+   "writer": "a",
+   "written": 2500,
+   "failed": 0,
+   "usd": 6.627466000000014
+  },
+  {
+   "writer": "c",
+   "written": 800,
+   "failed": 0,
+   "usd": 10.484806499999998
+  }
+ ],
+ "rows": 102443,
+ "conversations": 7296,
+ "usd": 19.43
+}

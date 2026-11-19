@@ -17,6 +17,8 @@ from sidechat.schema import SidechatLabel
 
 GUIDE_VERSION = "sidechat-guide-0.4"
 GUIDE_FILE = "contracts/sidechat-guide-0.4.md"
+# gen-0.4 added `follow_up_after_reaction` (G6) and `relay_agent_answer` (G4) under 0.4's rules as
+# written; no existing kind changed, so the version stays.
 # 0.3 added how to read anonymous speaker labels; no kind changed.
 # 0.2 added `follow_up_by_other` and `only_agent_can_do` and changed no existing kind, so a suite
 # labelled under 0.1 gets the same labels here.
@@ -108,6 +110,7 @@ KINDS: dict[str, KindRule] = {
     "about_reported": _k("G4", "group", "about", "ignore", 1, "reports an earlier exchange with the agent"),
     "about_stated": _k("G4", "group", "about", "ignore", 1, "states a fact about the agent"),
     "about_question_to_group": _k("G4", "group", "about", "ignore", 1, "asks the people about their use of the agent"),
+    "relay_agent_answer": _k("G4", "person", "about", "ignore", 1, "passes on to a person what the agent just said, naming it"),
     # G5: the name as an ordinary word
     "name_word_sense": _k("G5", "group", "other", "ignore", 1, "the agent's name used as an ordinary word"),
     "alias_false_match": _k("G5", "group", "other", "ignore", 1, "words that sound like the agent's name"),
@@ -117,6 +120,9 @@ KINDS: dict[str, KindRule] = {
         "G6", "agent", "direct", "respond", 5, "answers the agent's question after checking with someone else"
     ),
     "follow_up": _k("G6", "agent", "direct", "respond", 5, "a follow-up in the speaker's exchange with the agent"),
+    "follow_up_after_reaction": _k(
+        "G6", "agent", "direct", "respond", 5, "a follow-up in the speaker's exchange with the agent, after someone's brief reaction"
+    ),
     "correction": _k("G6", "agent", "direct", "respond", 5, "corrects what the agent just did"),
     "command_no_name": _k("G6", "agent", "direct", "respond", 5, "a command in the speaker's exchange with the agent"),
     "resume_no_name": _k("G6", "agent", "direct", "respond", 5, "asks the agent to carry on"),

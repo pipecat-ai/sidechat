@@ -1,0 +1,143 @@
+{
+ "exp": "exp-051-side-students-r3",
+ "app": "waystone-side-round6",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T11:48:46+00:00",
+ "args": {
+  "steps": "students,export,latency",
+  "teacher": "side-r3-ettin-150m-s0",
+  "min_agreement": 0.9
+ },
+ "steps": {
+  "teacher": "side-r3-ettin-150m-s0",
+  "students": {
+   "two towers": {
+    "state": "done"
+   }
+  },
+  "export": {
+   "side-r6ttr3t-ettin-32m-s0": {
+    "size_mb": 259.2,
+    "optimized": {
+     "fused": {
+      "context": {
+       "Gelu": 10,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      },
+      "line": {
+       "Gelu": 12,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 20
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 7e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 9.94,
+       "p95_ms": 13.15
+      },
+      "1_threads": {
+       "p50_ms": 14.49,
+       "p95_ms": 18.49
+      },
+      "cold_1_threads": {
+       "p50_ms": 54.29,
+       "p95_ms": 79.14
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   },
+   "side-r6ttr3t-ettin-68m-s0": {
+    "size_mb": 551.9,
+    "optimized": {
+     "fused": {
+      "context": {
+       "Gelu": 19,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 38
+      },
+      "line": {
+       "Gelu": 21,
+       "LayerNormalization": 1,
+       "SkipLayerNormalization": 38
+      }
+     },
+     "parity": {
+      "rows": 283,
+      "max_prob_diff": 6e-06,
+      "decisions_same": 283
+     },
+     "latency_modal_cpu": {
+      "4_threads": {
+       "p50_ms": 17.67,
+       "p95_ms": 22.68
+      },
+      "1_threads": {
+       "p50_ms": 30.77,
+       "p95_ms": 40.3
+      },
+      "cold_1_threads": {
+       "p50_ms": 130.27,
+       "p95_ms": 190.54
+      }
+     },
+     "shipped": false
+    },
+    "error": null
+   }
+  },
+  "latency": {
+   "state": "done",
+   "results": "runs/side/results/exp-047-side-latency-r6-r3t",
+   "failed": 0
+  }
+ },
+ "updated_at": "2026-11-19T14:09:55+00:00",
+ "elapsed_s": 8469,
+ "committee_by_kind": {
+  "follow_up_after_reaction": {
+   "value": 0.9833,
+   "k": 118,
+   "n": 120,
+   "ci95": [
+    0.9413,
+    0.9954
+   ]
+  },
+  "relay_agent_answer": {
+   "value": 0.9917,
+   "k": 119,
+   "n": 120,
+   "ci95": [
+    0.9543,
+    0.9985
+   ]
+  },
+  "command_no_name": {
+   "value": 0.9767,
+   "k": 42,
+   "n": 43,
+   "ci95": [
+    0.8794,
+    0.9959
+   ]
+  },
+  "reply_then_request": {
+   "value": 1.0,
+   "k": 47,
+   "n": 47,
+   "ci95": [
+    0.9244,
+    1.0
+   ]
+  }
+ }
+}

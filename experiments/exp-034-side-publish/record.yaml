@@ -22,6 +22,6 @@ command: >
 results: uv run python -m sidechat.pipeline.results exp-034-side-publish
 actual_usd: under $0.10
 result:
-  hub: "pipecat-ai/sidechat, private, commit c9b59bebf7e17993df3f55a9a81813bdccd80c7b"
+  hub: "pipecat-ai/sidechat, commit c9b59bebf7e17993df3f55a9a81813bdccd80c7b; created private, made public by Jon's word on 2026-11-19"
   rows: "train 235,069 (gen-0.1 83,732, gen-pilot 6,263, gen-0.2 129,798, AMI silent 15,276), the run's own count; dev 25,631"
   learned: "the export on the Hub has the same sha256 as the local copy the card's example was tried on"

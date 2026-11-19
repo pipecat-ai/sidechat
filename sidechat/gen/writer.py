@@ -92,6 +92,9 @@ BRIEFS: dict[str, str] = {
     "imperative_to_person": "tells {target} to do something only they can do with their own hands, screen or turn (move on to their own next slide, carry on talking, hold or pass something, try it again), as a short bare instruction with no name and no 'you'; never a lookup, a note, music or anything an assistant could do",
     "steps_to_people": "explains to the others how to do something, as a few plain instructions ('open it, then press ...'), without any name",
     "host_to_group": "runs the meeting for the others: asks if they have questions, moves on to the next item, or wraps up a part, without any name",
+    # gen-0.4
+    "follow_up_after_reaction": "after the other person's quick reaction, carries on with {agent}: a related question, request or short command about its answer to them, without its name; plainly for {agent}, not a reply to the reaction",
+    "relay_agent_answer": "tells {target} what {agent} just said or did, naming {agent} in the third person ('{agent} says ...', 'so {agent} reckons ...'); asks {agent} nothing",
 }
 
 AGENT_BRIEFS = {
@@ -228,6 +231,7 @@ MUST_MENTION = {
     "about_stated",
     "about_question_to_group",
     "about_to_named_person",
+    "relay_agent_answer",
 }
 MUST_NAME_TARGET = {
     "question_to_named_person",

@@ -1,0 +1,31 @@
+experiment_id: exp-054-side-publish-rc0.2
+status: done (2026-11-19); actual under $0.05
+track: sidechat (release)
+what: >
+  Release rc0.2 on pipecat-ai/sidechat (public). The root files (round 3's 150M) stay as they are,
+  so Pipecat's download pinned at c9b59be is unaffected. The two-tower 32M student
+  side-r6ttr3t-ettin-32m-s0 (fp32; no int8, which failed its gate) goes into agent-1x/ with its
+  tokenizer, config, MANIFEST.json and the rows it was trained on (train and dev), rebuilt by the
+  training job's own code and checked against the run's train_rows. The card (hf/README.md)
+  describes both builds. The commit is tagged rc0.2. Test-only sets are never uploaded.
+forecast block:
+  campaign: exp-054-side-publish-rc0.2
+  decision it enables: rc0.2 can be tried on agent-1x from the Hub
+  token forecast: none
+  Modal forecast: one 4-core CPU container for 20 to 50 minutes (421k rows, then about 0.4 GB uploaded)
+  retry cap: 1
+  spend cap: $2
+  stop condition: tagged commit on the Hub, report in R2
+  approved by Jon on: 2026-11-19 ("please push and ship this on hugging face, we can call this RC0.2")
+forecast_usd: under $0.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.publish::run --exp exp-054-side-publish-rc0.2
+  --run-id side-r6ttr3t-ettin-32m-s0 --subdir agent-1x --tag rc0.2 --no-private
+results: uv run python -m sidechat.pipeline.results exp-054-side-publish-rc0.2
+actual_usd: under $0.05
+result:
+  hub: "pipecat-ai/sidechat, commit 08c9b8ce0853f1a9d278bfbad9eeb14017858283, tag rc0.2; root files unchanged since c9b59be (same sha256)"
+  rows: "agent-1x/data: train 420,828 (the run's own count), dev 43,624"
+  checked: "rc0.2's agent-1x folder downloaded from the Hub loads as TwoTower and answers the card's example 0.99 respond"
+  took: "94 s on one CPU container"

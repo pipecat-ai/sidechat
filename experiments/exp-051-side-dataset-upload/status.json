@@ -1,0 +1,15 @@
+{
+ "exp": "exp-050-side-dataset-upload",
+ "app": "waystone-side-dataset",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T10:24:19+00:00",
+ "args": {
+  "dataset_id": "sidechat-gen-0.1",
+  "repo": "pipecat-ai/sidechat-gen"
+ },
+ "updated_at": "2026-11-19T10:24:31+00:00",
+ "elapsed_s": 12,
+ "commit": "f46ab3aec4835600614a81a605f5df07b3eea313",
+ "private": true
+}

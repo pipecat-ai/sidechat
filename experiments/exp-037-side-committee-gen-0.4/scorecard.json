@@ -1,0 +1,493 @@
+{
+ "meta": {
+  "exp": "exp-037-side-committee-gen-0.4",
+  "label_id": "corpus:gen-0.4:dev+test:120:follow_up_after_reaction-committee-0.4",
+  "sets": [
+   "corpus:gen-0.4:dev+test:120:follow_up_after_reaction",
+   "corpus:gen-0.4:dev+test:120:relay_agent_answer",
+   "corpus:gen-0.4:dev+test:90:command_no_name+reply_then_request"
+  ],
+  "guide": "sidechat-guide-0.4",
+  "prompt_sha": "5b71303e8551",
+  "members": [
+   "a",
+   "b",
+   "c"
+  ],
+  "usage": {
+   "a": {
+    "answered": 330,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1601227,
+    "cached": 1532088,
+    "cache_write": 0,
+    "output": 21017,
+    "errors": [],
+    "usd": 1.114
+   },
+   "b": {
+    "answered": 330,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 2398914,
+    "cached": 2250458,
+    "cache_write": 55912,
+    "output": 26859,
+    "errors": [],
+    "usd": 2.087
+   },
+   "c": {
+    "answered": 330,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1760558,
+    "cached": 201741,
+    "cache_write": 0,
+    "output": 23887,
+    "errors": [],
+    "usd": 6.915
+   }
+  },
+  "limit": null,
+  "finished_at": "2026-11-19T10:17:20+00:00"
+ },
+ "rows": 330,
+ "definite": 330,
+ "graded": 0,
+ "target": 0.9,
+ "majority": {
+  "decision": {
+   "value": 0.9879,
+   "k": 326,
+   "n": 330,
+   "ci95": [
+    0.9693,
+    0.9953
+   ]
+  },
+  "no_decision_majority": 1,
+  "intent": {
+   "value": 0.9939,
+   "k": 328,
+   "n": 330,
+   "ci95": [
+    0.9782,
+    0.9983
+   ]
+  },
+  "unanimous": {
+   "value": 0.9727,
+   "k": 321,
+   "n": 330,
+   "ci95": [
+    0.949,
+    0.9856
+   ]
+  }
+ },
+ "meets_target": true,
+ "members": {
+  "a": {
+   "answered": {
+    "value": 1.0,
+    "k": 330,
+    "n": 330,
+    "ci95": [
+     0.9885,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9939,
+    "k": 328,
+    "n": 330,
+    "ci95": [
+     0.9782,
+     0.9983
+    ]
+   },
+   "intent": {
+    "value": 0.9939,
+    "k": 328,
+    "n": 330,
+    "ci95": [
+     0.9782,
+     0.9983
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.997,
+    "k": 329,
+    "n": 330,
+    "ci95": [
+     0.983,
+     0.9995
+    ]
+   },
+   "rule": {
+    "value": 0.9303,
+    "k": 307,
+    "n": 330,
+    "ci95": [
+     0.8976,
+     0.9531
+    ]
+   },
+   "speak_mean_abs_diff": 0.018
+  },
+  "b": {
+   "answered": {
+    "value": 1.0,
+    "k": 330,
+    "n": 330,
+    "ci95": [
+     0.9885,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9818,
+    "k": 324,
+    "n": 330,
+    "ci95": [
+     0.9609,
+     0.9916
+    ]
+   },
+   "intent": {
+    "value": 0.9909,
+    "k": 327,
+    "n": 330,
+    "ci95": [
+     0.9736,
+     0.9969
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9848,
+    "k": 325,
+    "n": 330,
+    "ci95": [
+     0.965,
+     0.9935
+    ]
+   },
+   "rule": {
+    "value": 0.9242,
+    "k": 305,
+    "n": 330,
+    "ci95": [
+     0.8906,
+     0.9482
+    ]
+   },
+   "speak_mean_abs_diff": 0.048
+  },
+  "c": {
+   "answered": {
+    "value": 1.0,
+    "k": 330,
+    "n": 330,
+    "ci95": [
+     0.9885,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.9818,
+    "k": 324,
+    "n": 330,
+    "ci95": [
+     0.9609,
+     0.9916
+    ]
+   },
+   "intent": {
+    "value": 0.9879,
+    "k": 326,
+    "n": 330,
+    "ci95": [
+     0.9693,
+     0.9953
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9848,
+    "k": 325,
+    "n": 330,
+    "ci95": [
+     0.965,
+     0.9935
+    ]
+   },
+   "rule": {
+    "value": 0.9333,
+    "k": 308,
+    "n": 330,
+    "ci95": [
+     0.9011,
+     0.9556
+    ]
+   },
+   "speak_mean_abs_diff": 0.048
+  }
+ },
+ "pairs": {
+  "a-b": {
+   "value": 0.9818,
+   "k": 324,
+   "n": 330,
+   "ci95": [
+    0.9609,
+    0.9916
+   ]
+  },
+  "a-c": {
+   "value": 0.9818,
+   "k": 324,
+   "n": 330,
+   "ci95": [
+    0.9609,
+    0.9916
+   ]
+  },
+  "b-c": {
+   "value": 0.9848,
+   "k": 325,
+   "n": 330,
+   "ci95": [
+    0.965,
+    0.9935
+   ]
+  }
+ },
+ "by_rule": {
+  "G6": {
+   "value": 0.9857,
+   "k": 207,
+   "n": 210,
+   "ci95": [
+    0.9588,
+    0.9951
+   ]
+  },
+  "G4": {
+   "value": 0.9917,
+   "k": 119,
+   "n": 120,
+   "ci95": [
+    0.9543,
+    0.9985
+   ]
+  }
+ },
+ "by_expect": {
+  "respond": {
+   "value": 0.9857,
+   "k": 207,
+   "n": 210,
+   "ci95": [
+    0.9588,
+    0.9951
+   ]
+  },
+  "ignore": {
+   "value": 0.9917,
+   "k": 119,
+   "n": 120,
+   "ci95": [
+    0.9543,
+    0.9985
+   ]
+  }
+ },
+ "by_kind": {
+  "follow_up_after_reaction": {
+   "value": 0.9833,
+   "k": 118,
+   "n": 120,
+   "ci95": [
+    0.9413,
+    0.9954
+   ]
+  },
+  "relay_agent_answer": {
+   "value": 0.9917,
+   "k": 119,
+   "n": 120,
+   "ci95": [
+    0.9543,
+    0.9985
+   ]
+  },
+  "reply_then_request": {
+   "value": 1.0,
+   "k": 47,
+   "n": 47,
+   "ci95": [
+    0.9244,
+    1.0
+   ]
+  },
+  "command_no_name": {
+   "value": 0.9767,
+   "k": 42,
+   "n": 43,
+   "ci95": [
+    0.8794,
+    0.9959
+   ]
+  }
+ },
+ "disagreements": [
+  {
+   "id": "a06-01751/14",
+   "speaker": "Mira",
+   "text": "Check whether the rollback is ready to run.",
+   "before": [
+    "agent: In-flight requests may fail, but completed payments won't be reversed.",
+    "Mateo: Right."
+   ],
+   "kind": "follow_up_after_reaction",
+   "rule": "G6",
+   "guide": "respond",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Mira continues her rollback exchange with Nova, and Mateo’s brief acknowledgement doesn’t redirect it."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "A bare instruction to check rollback readiness is a task for the engineers handling the deploy (likely Noah), not something the agent controls."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Mira has been talking to Nova, so this could continue her exchange with the agent, or it could be an engineering instruction for Noah or Mateo."
+    }
+   }
+  },
+  {
+   "id": "o06-02979/10",
+   "speaker": "Theo",
+   "text": "Is there a trick to stopping the spread?",
+   "before": [
+    "agent: Mint and oregano are hardy. They spread quickly and tolerate neglect.",
+    "Yuki: Mint is definitely aggressive. I learned that the hard way."
+   ],
+   "kind": "follow_up_after_reaction",
+   "rule": "G6",
+   "guide": "respond",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Theo follows up on Dash’s answer to his own question by asking how to stop mint from spreading."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Theo's follow-up on mint could continue his exchange with Dash, but it comes right after Yuki's personal experience with mint, so it could equally be for Yuki."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Theo follows up on the topic of mint spreading, which could be directed at Yuki who just shared personal experience with it, or at Dash who introduced it."
+    }
+   }
+  },
+  {
+   "id": "o06-01594/13",
+   "speaker": "Elif",
+   "text": "So Otto reckons peat moss makes the soil too acidic?",
+   "before": [
+    "Raj: Does that change if I use peat moss in the mix?",
+    "agent: Peat moss is naturally acidic, so it might lower the pH a bit. You might need to add lime to balance it out."
+   ],
+   "kind": "relay_agent_answer",
+   "rule": "G4",
+   "guide": "ignore",
+   "majority": "wait",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Elif mentions Otto in the third person and asks the room to clarify what it meant."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "about",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Elif, not the agent's partner, questions the agent's answer while referring to Otto in the third person; it could be for Raj or invite Otto to clarify, so waiting is safe."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G4",
+     "reason": "Elif mentions Otto in the third person while putting a clarifying question about its answer to the room, which Otto could answer if nobody else does."
+    }
+   }
+  },
+  {
+   "id": "o06-00969/2",
+   "speaker": "Mohammed",
+   "text": "Okay, keep scrolling then, I'll find it.",
+   "before": [
+    "Mohammed: Does anyone know where the boiler service date is listed?",
+    "agent: It's in the service folder, page three, usually."
+   ],
+   "kind": "command_no_name",
+   "rule": "G6",
+   "guide": "respond",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Mohammed follows up on Ivy’s answer with a command without turning to anyone else."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Mohammed is telling whoever is scrolling the document to carry on, a physical action only a person can do, not a request to the agent."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Mohammed instructs Evie to keep scrolling on her device, an action only the other person present can perform."
+    }
+   }
+  }
+ ],
+ "graded_lines": []
+}

@@ -1,0 +1,25 @@
+experiment_id: exp-048-side-train-r6-tt
+status: done (2026-11-19); actual about $12
+track: sidechat (Phase 5, agent-1x)
+what: >
+  Two-tower students (sidechat-tt-0.1: history and line encoded apart by one shared encoder, the
+  line reading the cached history through one cross-attention layer), Ettin-32M and Ettin-68M, 3
+  epochs, distilled from round 6's teacher (80% its calibrated probabilities on the same augmented
+  lines, 20% labels) over round 6's corpus plus gen-0.3. History up to 320 tokens, line up to 96.
+forecast block:
+  campaign: exp-048-side-train-r6-tt
+  decision it enables: whether a small two-tower model keeps the teacher's accuracy
+  token forecast: none
+  Modal forecast: two H100s for 40 to 70 minutes, then scoring at about 15 minutes
+  retry cap: 1
+  spend cap: $20
+  stop condition: report in R2
+  approved by Jon on: 2026-11-19 (the agent-1x plan and the two-tower student, in chat)
+forecast_usd: about $8
+command: started by exp-042 (train.run, encoders ettin-32m,ettin-68m, arch twotower, tag r6tt)
+results: uv run python -m sidechat.pipeline.results exp-048-side-train-r6-tt
+actual_usd: about $12
+result:
+  ettin-32m: "Duplex-MPE 95.18%, outright 0.25%, implicit T 6.1%, N1 outright 0.94%; Ambient 97.72%; AMI 99.97%; pilot 86.67% (teacher r6 s1 89.26%)"
+  ettin-68m: "Duplex-MPE 95.52%, outright 0.23%, implicit T 9.6%, N1 outright 0.36%; Ambient 98.07%; AMI 99.99%; pilot 86.30%"
+  learned: "students of round 6 seed 1 lose 2.6 to 3 pilot points to it and most of its unnamed requests"

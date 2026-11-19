@@ -1,0 +1,29 @@
+experiment_id: exp-036-side-tt-smoke
+status: done (2026-11-19); actual about $1.50
+track: sidechat (Phase 5, agent-1x)
+what: >
+  Smoke test of the new code before the real runs: a two-tower Ettin-32M (history and line encoded
+  apart, sidechat-tt-0.1) distilled from side-r3-ettin-150m-s0 on 4,000 gen-0.1 lines for one
+  epoch, scored on every set, then exported (two graphs, transformer optimizer, int8 gate). Its
+  numbers mean nothing; it checks that training, distillation, scoring, export and the runtime run
+  end to end.
+forecast block:
+  campaign: exp-036-side-tt-smoke
+  decision it enables: whether the two-tower and distillation code can be trusted with real runs
+  token forecast: none
+  Modal forecast: one H100 for about 15 minutes, one 8-core CPU for about 10 minutes
+  retry cap: 1
+  spend cap: $5
+  stop condition: export in R2
+  approved by Jon on: 2026-11-19 (asked in chat for the distilled two-tower student)
+forecast_usd: about $2
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.train::run --exp exp-036-side-tt-smoke --corpus gen-0.1 --encoders ettin-32m --epochs 1 --train-cap 4000 --tag ttsmoke --arch twotower --teacher side-r3-ettin-150m-s0 --test-corpus gen-0.1;
+  then uv run modal run --detach -m sidechat.pipeline.export::run --exp exp-036-side-tt-smoke-export --run-id side-ttsmoke-ettin-32m-s0
+results: uv run python -m sidechat.pipeline.results exp-036-side-tt-smoke
+actual_usd: about $1.50
+result:
+  training: "two-tower 32M with the r3 teacher trained and scored end to end (4,000 lines, one epoch: Duplex-MPE 92.7%, AMI 98.0%, numbers mean little)"
+  export: "the first export's graph disagreed with PyTorch (largest probability difference 0.53, int8 171/283): traced on short examples, the encoder's sliding-window mask was left out of the graph. Fixed by tracing on a long and a short input; re-export exp-036-side-tt-smoke-export2"
+  timing: "on an unthrottled Modal core, the line alone with the history cached 16.8 ms, both towers cold 61 ms (fp32, one thread)"

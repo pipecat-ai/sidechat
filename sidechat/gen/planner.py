@@ -117,6 +117,9 @@ WEIGHTS: dict[str, float] = {
     "steps_to_people": 1.0,
     "host_to_group": 1.0,
 }
+# Kinds outside the default mix, planned only when `plan(add=...)` gives them a weight (gen-0.4), so
+# earlier corpora's plans replay unchanged.
+ADDED = {"relay_agent_answer"}
 # Kinds only reached through a forced next step.
 FORCED_ONLY = {
     "request_after_summon",
@@ -125,6 +128,7 @@ FORCED_ONLY = {
     "aside_over_agent",
     "name_first_over_agent",
     "answer_after_aside",
+    "follow_up_after_reaction",
 }
 # Kinds after which the agent answers.
 ANSWERED = {
@@ -140,6 +144,7 @@ ANSWERED = {
     "answer_to_agent_question",
     "answer_after_aside",
     "follow_up",
+    "follow_up_after_reaction",
     "correction",
     "command_no_name",
     "reply_then_request",
@@ -239,7 +244,7 @@ def _allowed(kind: str, s: State, cast: Cast) -> bool:
         return s.lines >= 8
     if kind in ("to_named_person_after_agent", "people_after_agent"):
         return agent_just and answered and n >= 2
-    if kind in ("you_to_person_after_agent", "unclear_after_agent", "follow_up_by_other"):
+    if kind in ("you_to_person_after_agent", "unclear_after_agent", "follow_up_by_other", "relay_agent_answer"):
         return agent_just and answered and n >= 2
     if kind in ("follow_up", "correction", "command_no_name"):
         return agent_just and answered and s.partner is not None
@@ -309,6 +314,10 @@ def _speaker_and_target(kind: str, rng: random.Random, cast: Cast, s: State) -> 
     if kind == "you_to_person_after_agent":
         sp = _pick_speaker(rng, cast, s, exclude=s.partner)
         return sp, [_other(rng, cast, sp, prefer=s.partner)]
+    if kind == "relay_agent_answer":
+        # Often the person the agent answered, passing it on; sometimes someone else.
+        sp = s.partner if (s.partner and rng.random() < 0.6) else _pick_speaker(rng, cast, s)
+        return sp, [_other(rng, cast, sp)]
     if kind in ("thanks", "thanks_named", "stop_named"):
         return (s.partner or _pick_speaker(rng, cast, s)), []
     if kind == "question_to_named_person" and s.ask_pending and s.agent_ago == 0 and s.partner and not s.asked_room:
@@ -372,6 +381,8 @@ def plan(
     boost: dict[str, float] | None = None,
     quiet: tuple[float, float] | None = (0.0, 0.0),
     after_quiet: float = 0.0,
+    add: dict[str, float] | None = None,
+    delayed: float = 0.0,
 ) -> list[Beat]:
     """A plan: people's lines and the agent's replies, in order. `boost` multiplies kinds' weights.
 
@@ -379,8 +390,14 @@ def plan(
     lines of people among themselves). The default keeps gen-0.1's plans; None gives gen-0.2's
     (0.08, 0.25). `after_quiet` is the chance that a quiet opening ends with a request the agent
     could do, put to nobody in particular (an even call): an agent that has not spoken yet can
-    still be wanted (round 2 learned the opposite, exp-022)."""
+    still be wanted (round 2 learned the opposite, exp-022).
+
+    gen-0.4: `add` gives weights to kinds outside the default mix (`ADDED`). `delayed` is the chance
+    that, after the agent answers someone, another person reacts briefly and the first person then
+    carries on with the agent without its name (`follow_up_after_reaction`). Both default to off,
+    so earlier corpora's plans replay unchanged."""
     boost = boost or {}
+    mix = {**WEIGHTS, **(add or {})}
     target_lines = rng.randint(*lines)
     s = State()
     beats: list[Beat] = []
@@ -424,8 +441,8 @@ def plan(
         if queue:
             beat = queue.pop(0)
         else:
-            kinds = [k for k, w in WEIGHTS.items() if w > 0 and _allowed(k, s, cast)]
-            weights = [WEIGHTS[k] * boost.get(k, 1.0) for k in kinds]
+            kinds = [k for k, w in mix.items() if w > 0 and _allowed(k, s, cast)]
+            weights = [mix[k] * boost.get(k, 1.0) for k in kinds]
             if s.agent_ago == 0 and s.agent_act in ("answer", "answer_open", "act", "ask"):
                 # Right after the agent speaks, lean on the rhythm-dependent kinds.
                 weights = [
@@ -445,6 +462,7 @@ def plan(
                             "correction",
                             "command_no_name",
                             "reply_then_request",
+                            "relay_agent_answer",
                         )
                         else 1
                     )
@@ -543,6 +561,19 @@ def plan(
                     queue.insert(0, Beat(partner, kind="stop_named", over_agent=True))
                 else:
                     queue.insert(0, Beat(_other(rng, cast, partner), kind="backchannel", over_agent=True))
+            elif (
+                delayed
+                and reply.act in ("answer", "act")
+                and not queue
+                and len(cast.people) >= 2
+                and s.lines + 2 <= target_lines
+                and rng.random() < delayed
+            ):
+                # Someone reacts, then the person the agent answered carries on with it (gen-0.4).
+                partner = reply.extra["partner"]
+                reaction = "people_after_agent" if rng.random() < 0.6 else "backchannel"
+                queue.append(Beat(_other(rng, cast, partner), kind=reaction))
+                queue.append(Beat(partner, kind="follow_up_after_reaction"))
         else:
             if prev_agent_ago == 0 and s.interrupted:
                 s.interrupted = False

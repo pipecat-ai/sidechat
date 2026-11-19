@@ -97,7 +97,7 @@ async def main() -> int:
     ap.add_argument("which", choices=["sidechat", "jev"])
     ap.add_argument("model", nargs="?", default="")
     ap.add_argument("--int8", action="store_true")
-    ap.add_argument("--threads", type=int, default=2, help="the demo adapter's default is 2")
+    ap.add_argument("--threads", type=int, default=1, help="the adapter's default is 1")
     ap.add_argument("--rounds", type=int, default=0, help="passes over each shape (default: 5 Sidechat, 2 Jev)")
     args = ap.parse_args()
     rounds = args.rounds or (5 if args.which == "sidechat" else 2)
@@ -109,14 +109,17 @@ async def main() -> int:
     if args.which == "sidechat":
         from sidechat.integrations.pipecat_classifier import SidechatClassifier
 
-        classifier = SidechatClassifier(args.model, bot_name=B, threads=args.threads, int8=args.int8)
-        name = "model-int8.onnx" if args.int8 else "model.onnx"
+        # No background head start here: each line's history is encoded, untimed, just before it.
+        classifier = SidechatClassifier(args.model, bot_name=B, threads=args.threads, int8=args.int8, speculate=False)
         folder = pathlib.Path(args.model)
+        arch = json.loads((folder / "config.json").read_text()).get("arch", "single")
+        graphs = ["context", "line"] if arch == "twotower" else ["model"]
         out |= {
             "model": classifier.model,
             "build": "int8" if args.int8 else "fp32",
             "threads": args.threads,
-            "file_mb": round((folder / name).stat().st_size / 1e6, 1),
+            "arch": arch,
+            "file_mb": round(sum((folder / f"{g}{'-int8' if args.int8 else ''}.onnx").stat().st_size for g in graphs) / 1e6, 1),
             "tokenizer_mb": round((folder / "tokenizer.json").stat().st_size / 1e6, 1),
         }
     else:
@@ -134,9 +137,21 @@ async def main() -> int:
     roster.join({"id": "sam", "info": {"userName": "Sam"}})
     monitor = AddressingMonitor(classifier=classifier, context=LLMContext(), roster=roster, config=config)
 
-    async def one(earlier: list[str], latest: str) -> float:
+    two = type(getattr(classifier, "_model", None)).__name__ == "TwoTower"
+    prepared: list[float] = []
+
+    async def one(earlier: list[str], latest: str, warm: bool = True) -> float:
+        """The demo's classifier_ms for one line. A two-tower model's history is first encoded,
+        untimed (as while the person talks), unless `warm` is False."""
         m = split(latest)
-        v = await monitor.classify([split(x) for x in earlier], m["speaker"], m["said"])
+        history = [split(x) for x in earlier]
+        if two:
+            classifier._model._cache.clear()
+            if warm:
+                t = time.perf_counter()
+                classifier.prepare_history(history)
+                prepared.append((time.perf_counter() - t) * 1000)
+        v = await monitor.classify(history, m["speaker"], m["said"])
         return v.classifier_ms
 
     first = await one([], SAMPLES[0][1])  # the first line after loading or connecting
@@ -151,6 +166,10 @@ async def main() -> int:
             for earlier, latest in items:
                 ms.append(await one(earlier, latest))
         out[shape] = stats(ms)
+        if two:
+            out[f"{shape}_history_encode"] = stats(prepared[-len(ms) :])
+            cold = [await one(earlier, latest, warm=False) for _ in range(rounds) for earlier, latest in items]
+            out[f"{shape}_cold"] = stats(cold)
     out["rss_mb_peak"] = rss_mb()
     if args.which == "jev":
         await classifier._client.close()

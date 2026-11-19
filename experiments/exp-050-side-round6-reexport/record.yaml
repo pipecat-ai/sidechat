@@ -1,0 +1,31 @@
+experiment_id: exp-050-side-round6-reexport
+status: done (2026-11-19); actual about $2.50
+track: sidechat (Phase 5, agent-1x)
+what: >
+  exp-042's export and latency steps again, with the tokenizer fix. exp-036's probe found the
+  two-tower parity gap: an exported tokenizer.json keeps the truncation of the tokenizer's last
+  call (the line's 96 tokens), so the runtime cut every history to 96 tokens. The runtime now turns
+  truncation and padding off and the export saves the tokenizer with both off (probe after the fix:
+  largest difference 6e-6 on 120 lines). exp-042 was already running with the old code, and
+  stopping it would stop round 6's training, so this job waits on Modal for exp-042 to finish,
+  then re-exports the teacher and students (exp-043-b to exp-046-b, overwriting exp-042's exports)
+  and times them again (exp-047-b), with its own summary and gate.
+forecast block:
+  campaign: exp-050-side-round6-reexport
+  decision it enables: the trustworthy agent-1x gate
+  token forecast: Jev, about 280 requests
+  Modal forecast: four 8-core exports for 10 to 25 minutes, about 18 small latency containers, a 0.25-core driver for up to 5 hours (mostly waiting)
+  retry cap: 0
+  spend cap: $6
+  stop condition: summary in R2
+  approved by Jon on: 2026-11-19 (the agent-1x plan, and "Are there things you can start that run on Modal")
+forecast_usd: about $3.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round6::run --exp exp-050-side-round6-reexport --steps export,latency --wait-for exp-042-side-round6 --suffix -b
+results: uv run python -m sidechat.pipeline.results exp-050-side-round6-reexport
+actual_usd: about $2.50
+result:
+  exports: "parity 283/283 for all four, largest difference 6e-6; int8 shipped for the teacher and the two-tower 32M (182 MB), not for the 68M or the short 32M (parity 158/283 and 223/283)"
+  agent-1x: "two-tower 32M int8: 8 ms short, 11 ms full history (history encoded beforehand), 97 ms cold, 416 MB; two-tower 68M fp32 96 ms, 802 MB; short 32M fp32 100 ms; round 6 150M int8 508 ms; Jev 66 ms"
+  gate: "no student ships: all three within a point on Duplex-MPE and AMI but 2.6 to 3.0 points below the teacher on the pilot"

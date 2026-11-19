@@ -87,6 +87,7 @@ def _sha(text: str, n: int = 16) -> str:
 
 
 @app.function(
+    name="label_run",
     image=image,
     cpu=2.0,
     memory=4096,

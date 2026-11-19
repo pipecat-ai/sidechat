@@ -1,0 +1,19 @@
+experiment_id: exp-043-side-export-r6
+status: planned (2026-11-19), started by exp-042
+track: sidechat (Phase 5, agent-1x)
+what: >
+  Export of the round 6 teacher: ONNX (traced on a long and a short input, so the sliding-window and padding masks
+  stay in the graph), parity with PyTorch, the transformer optimizer if it keeps parity and is
+  faster, int8 per channel behind the dev gate.
+forecast block:
+  campaign: exp-043-side-export-r6
+  decision it enables: a build to time on agent-1x
+  token forecast: none
+  Modal forecast: one 8-core CPU container for 10 to 25 minutes
+  retry cap: 0
+  spend cap: $3
+  stop condition: export in R2
+  approved by Jon on: 2026-11-19 (the agent-1x plan, in chat)
+forecast_usd: about $0.60
+command: started by exp-042 (export.run)
+results: uv run python -m sidechat.pipeline.results exp-043-side-export-r6

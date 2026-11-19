@@ -1,0 +1,18 @@
+{
+ "exp": "exp-040-side-dataset",
+ "app": "waystone-side-dataset",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T10:13:12+00:00",
+ "args": {
+  "corpus": "gen-pilot,gen-0.1,gen-0.2,gen-0.3",
+  "dataset_id": "sidechat-gen-0.1"
+ },
+ "updated_at": "2026-11-19T10:14:10+00:00",
+ "elapsed_s": 58,
+ "rows": {
+  "train": 322717,
+  "validation": 31074,
+  "test": 50924
+ }
+}

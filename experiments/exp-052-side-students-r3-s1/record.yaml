@@ -1,0 +1,26 @@
+experiment_id: exp-052-side-students-r3-s1
+status: done (2026-11-19); actual about $13
+track: sidechat (Phase 5, agent-1x)
+what: >
+  exp-051's two-tower students taught by side-r3-ettin-150m-s0 (Ettin-32M and 68M, 3 epochs, round
+  6's corpus plus gen-0.3), with seed 1 (exp-051 was seed 0), teacher share 0.8. Run ids side-r6ttr3t-ettin-{32m,68m}-s1. Asks whether exp-051's 68M missing 171 of Duplex-MPE's 2,000 named requests (32M missed 27) is the seed. Exported with the tokenizer fix and
+  timed on agent-1x and agent-2x beside Jev, with the summary and gate.
+forecast block:
+  campaign: exp-052-side-students-r3-s1
+  decision it enables: a student that keeps items 4 and 5 for agent-1x
+  token forecast: Jev, about 140 requests
+  Modal forecast: two H100s for 50 to 95 minutes, two 8-core exports, about 6 small latency containers
+  retry cap: 1 on training
+  spend cap: $15
+  stop condition: summary in R2
+  approved by Jon on: 2026-11-19 (the agent-1x plan, and "when ... we're happy we've passed all the gates")
+forecast_usd: about $9
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round6::run --exp exp-052-side-students-r3-s1 --steps students,export,latency --teacher side-r3-ettin-150m-s0 --student-tag r3t --student-seed 1 --suffix -r3t-s1 --no-short --no-export-teacher
+results: uv run python -m sidechat.pipeline.results exp-052-side-students-r3-s1
+actual_usd: about $13
+result:
+  ettin-32m: "Duplex-MPE 95.28% (-1.4 against round 3), named requests 92.1%, unnamed 10.7%, N1 outright 0.61%; pilot 87.78%; fp32 (int8 failed parity 266/283); agent-1x 13 ms short, 15 ms full history, 116 ms cold, 487 MB"
+  ettin-68m: "Duplex-MPE 96.00% (-0.7), named 99.5%, unnamed 9.0%, outright 0.12%, N1 outright 0.07%; Ambient 98.87%; pilot 85.56% (-1.8); int8 failed (quantizer error); fp32 on agent-1x 91 ms, 803 MB, slower than Jev's 58"
+  learned: "named requests swing with the seed (68M 87.8% to 99.5%, 32M 98.7% to 92.1%); unnamed requests stay at 9 to 11%"

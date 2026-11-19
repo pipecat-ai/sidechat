@@ -1,0 +1,33 @@
+experiment_id: exp-040-side-dataset
+status: done (2026-11-19); actual about $0.01
+track: sidechat (release)
+what: >
+  Our own generated corpora (gen-pilot, gen-0.1, gen-0.2, gen-0.3) as a Hugging Face dataset in
+  Parquet, `sidechat-gen-0.1`: one flat row per line with its history, labels under the current
+  guide, split into train, validation and test as generated. Rows are built by the training job's
+  own code (the same filter as training). No AMI or benchmark rows. gen-0.4 was still being written
+  (exp-035) when this started and is left out; add it with --corpus (and a new --dataset-id) once
+  its committee check (inside exp-042) is in. Written to R2 only, nothing uploaded to the Hub.
+forecast block:
+  campaign: exp-040-side-dataset
+  decision it enables: a dataset folder ready to upload to the Hub
+  token forecast: none
+  Modal forecast: one 4-core, 32 GB CPU container for 5 to 15 minutes (about 560 MB of rows read
+  from R2, about 40 MB of Parquet written)
+  retry cap: 1
+  spend cap: $1
+  stop condition: report in R2
+  approved by Jon on: 2026-11-19 (asked in chat for a detached Modal run turning our generated
+    training data into a Parquet file for HF)
+forecast_usd: under $0.25
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.dataset::run --exp exp-040-side-dataset
+results: uv run python -m sidechat.pipeline.results exp-040-side-dataset
+actual_usd: about $0.01 (two runs of 77 s and 58 s on one 4-core container; the second fixed one sentence of the card)
+result:
+  where: "R2 runs/side/datasets/sidechat-gen-0.1/: data/{train,validation,test}-00000-of-00001.parquet, README.md (card), MANIFEST.json"
+  rows: "404,715 lines from 29,177 conversations: train 322,717, validation 31,074, test 50,924; 3,908 of 408,623 written lines left out by the training filter"
+  size: "30 MB of Parquet (zstd), row groups of 10,000"
+  checks: "train counts for gen-pilot, gen-0.1 and gen-0.2 equal exp-034's (the rows rc1 trained on); sha256 of every file matches MANIFEST.json after download; no conversation in two splits; writer b only in test"
+  open: "card licence set to bsd-2-clause to match the model repo, for Jon to confirm before upload"

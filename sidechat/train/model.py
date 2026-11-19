@@ -62,6 +62,72 @@ class SidechatModel(nn.Module):
         return self.intent(x), self.respond(x).squeeze(-1), self.unclear(x).squeeze(-1)
 
 
+def _mean(h, mask):
+    m = mask.unsqueeze(-1).to(h.dtype)
+    return (h * m).sum(1) / m.sum(1).clamp(min=1.0)
+
+
+class TwoTowerModel(nn.Module):
+    """One encoder used twice (`sidechat-tt-0.1`): over the history, whose token states are cached
+    while the next person talks, and over the line when they stop. The line's tokens read the
+    cached history through one cross-attention layer; the heads see the line, the history, what the
+    line drew from it, and the rhythm numbers. Attention is written out, so it exports to ONNX."""
+
+    def __init__(
+        self,
+        encoder: str,
+        num_dim: int = features.NUM_DIM,
+        dropout: float = 0.1,
+        pretrained: bool = True,
+        attn: str | None = None,
+        heads: int = 4,
+    ):
+        from transformers import AutoConfig, AutoModel
+
+        super().__init__()
+        repo, rev = ENCODERS[encoder]
+        kw = {"attn_implementation": attn} if attn else {}
+        if pretrained:
+            self.enc = AutoModel.from_pretrained(repo, revision=rev, **kw)
+        else:
+            self.enc = AutoModel.from_config(AutoConfig.from_pretrained(repo, revision=rev), **kw)
+        h = self.enc.config.hidden_size
+        self.heads, self.dh = heads, h // heads
+        self.q, self.k, self.v, self.o = (nn.Linear(h, h) for _ in range(4))
+        self.num = nn.Sequential(nn.Linear(num_dim, 64), nn.GELU())
+        self.mix = nn.Sequential(nn.Dropout(dropout), nn.Linear(3 * h + 64, 256), nn.GELU(), nn.Dropout(dropout))
+        self.intent = nn.Linear(256, len(INTENTS))
+        self.respond = nn.Linear(256, 1)
+        self.unclear = nn.Linear(256, 1)
+
+    def encode_context(self, ids, mask):
+        return self.enc(input_ids=ids, attention_mask=mask).last_hidden_state
+
+    def forward_line(self, ids, mask, ctx, ctx_mask, num):
+        line = self.enc(input_ids=ids, attention_mask=mask).last_hidden_state
+        ctx = ctx.to(line.dtype)
+        b, n, _ = line.shape
+        t = ctx.shape[1]
+        q = self.q(line).view(b, n, self.heads, self.dh).transpose(1, 2)
+        k = self.k(ctx).view(b, t, self.heads, self.dh).transpose(1, 2)
+        v = self.v(ctx).view(b, t, self.heads, self.dh).transpose(1, 2)
+        scores = (q @ k.transpose(-1, -2)) / (self.dh**0.5)
+        scores = scores.masked_fill(ctx_mask[:, None, None, :] == 0, -1e4)
+        drawn = (torch.softmax(scores.float(), -1).to(v.dtype) @ v).transpose(1, 2).reshape(b, n, -1)
+        drawn = self.o(drawn)
+        x = self.mix(torch.cat([_mean(line, mask), _mean(ctx, ctx_mask), _mean(drawn, mask), self.num(num)], dim=-1))
+        return self.intent(x), self.respond(x).squeeze(-1), self.unclear(x).squeeze(-1)
+
+    def forward(self, ctx_ids, ctx_mask, line_ids, line_mask, num):
+        return self.forward_line(line_ids, line_mask, self.encode_context(ctx_ids, ctx_mask), ctx_mask, num)
+
+
+def build(spec: dict, pretrained: bool = True, attn: str | None = None) -> nn.Module:
+    """The model a run's config describes: `arch` "twotower" or the original single tower."""
+    cls = TwoTowerModel if spec.get("arch") == "twotower" else SidechatModel
+    return cls(spec["encoder"], pretrained=pretrained, attn=attn)
+
+
 # --- batches ----------------------------------------------------------------------------------
 
 _PUNCT = re.compile(r"[^\w\s']")
@@ -134,9 +200,15 @@ def targets(label: dict) -> tuple[list[float], float, float]:
     return intent, float(respond), float(bool(label.get("unclear")))
 
 
-def encode(tok, rows: list[dict], max_len: int, device: str) -> dict:
+def encode(tok, rows: list[dict], max_len: int, device: str, turns: int = 0) -> dict:
+    """`turns` > 0 is the short input: at most that many earlier turns, the oldest dropped until the
+    text fits `max_len` (`features.fitted`). 0 keeps the original input, cut at `max_len`."""
     reqs = [SidechatRequest(**r["request"]) for r in rows]
-    texts, starts = zip(*(features.text(q) for q in reqs))
+    if turns:
+        count = lambda t: len(tok(t)["input_ids"])
+        texts, starts = zip(*(features.fitted(q, turns, max_len, count) for q in reqs))
+    else:
+        texts, starts = zip(*(features.text(q) for q in reqs))
     enc = tok(
         list(texts), truncation=True, max_length=max_len, padding=True, return_offsets_mapping=True, return_tensors="pt"
     )
@@ -149,12 +221,52 @@ def encode(tok, rows: list[dict], max_len: int, device: str) -> dict:
             line_mask[i, max(0, n - 16) : n] = 1
     num = torch.tensor([features.numbers(q) for q in reqs], dtype=torch.float32)
     out = {"ids": enc["input_ids"], "mask": enc["attention_mask"], "line_mask": line_mask, "num": num}
+    return _with_targets(out, rows, device)
+
+
+def _with_targets(out: dict, rows: list[dict], device: str) -> dict:
     if "label" in rows[0]:
         t = [targets(r["label"]) for r in rows]
         out["t_intent"] = torch.tensor([x[0] for x in t])
         out["t_respond"] = torch.tensor([x[1] for x in t])
         out["t_unclear"] = torch.tensor([x[2] for x in t])
     return {k: v.to(device) for k, v in out.items()}
+
+
+def encode_tt(tok, rows: list[dict], ctx_len: int, line_len: int, device: str) -> dict:
+    """A two-tower batch: the history (oldest turns dropped to fit `ctx_len`) and the line."""
+    reqs = [SidechatRequest(**r["request"]) for r in rows]
+    count = lambda t: len(tok(t)["input_ids"])
+    c = tok(
+        [features.context_fitted(q, ctx_len, count) for q in reqs],
+        truncation=True,
+        max_length=ctx_len,
+        padding=True,
+        return_tensors="pt",
+    )
+    li = tok([features.line_text(q) for q in reqs], truncation=True, max_length=line_len, padding=True, return_tensors="pt")
+    num = torch.tensor([features.numbers(q) for q in reqs], dtype=torch.float32)
+    out = {
+        "ctx_ids": c["input_ids"],
+        "ctx_mask": c["attention_mask"],
+        "line_ids": li["input_ids"],
+        "line_mask": li["attention_mask"],
+        "num": num,
+    }
+    return _with_targets(out, rows, device)
+
+
+def make_batch(tok, rows: list[dict], spec: dict, device: str) -> dict:
+    """A batch for the model `spec` (a run's config) describes."""
+    if spec.get("arch") == "twotower":
+        return encode_tt(tok, rows, spec["ctx_len"], spec["line_len"], device)
+    return encode(tok, rows, spec["max_len"], device, turns=spec.get("text_turns", 0))
+
+
+def run(net, b: dict):
+    if "ctx_ids" in b:
+        return net(b["ctx_ids"], b["ctx_mask"], b["line_ids"], b["line_mask"], b["num"])
+    return net(b["ids"], b["mask"], b["line_mask"], b["num"])
 
 
 def loss_fn(out, b) -> torch.Tensor:
@@ -167,16 +279,25 @@ def loss_fn(out, b) -> torch.Tensor:
 
 @torch.no_grad()
 def predict(
-    model, tok, rows: list[dict], max_len: int, device: str, temps: dict | None = None, batch: int = 128
+    model,
+    tok,
+    rows: list[dict],
+    max_len: int,
+    device: str,
+    temps: dict | None = None,
+    batch: int = 128,
+    turns: int = 0,
+    spec: dict | None = None,
 ) -> list[dict]:
     temps = temps or {"intent": 1.0, "respond": 1.0, "unclear": 1.0}
+    spec = spec or {"max_len": max_len, "text_turns": turns}
     model.eval()
     out = []
     for i in range(0, len(rows), batch):
         part = rows[i : i + batch]
-        b = encode(tok, [{"request": r["request"]} for r in part], max_len, device)
+        b = make_batch(tok, [{"request": r["request"]} for r in part], spec, device)
         with torch.autocast("cuda", dtype=torch.bfloat16, enabled=device == "cuda"):
-            li, lr_, lu = model(b["ids"], b["mask"], b["line_mask"], b["num"])
+            li, lr_, lu = run(model, b)
         pi = torch.softmax(li.float() / temps["intent"], -1).cpu().tolist()
         pr = torch.sigmoid(lr_.float() / temps["respond"]).cpu().tolist()
         pu = torch.sigmoid(lu.float() / temps["unclear"]).cpu().tolist()
@@ -193,14 +314,17 @@ def predict(
 
 
 @torch.no_grad()
-def logits(model, tok, rows: list[dict], max_len: int, device: str, batch: int = 128):
+def logits(
+    model, tok, rows: list[dict], max_len: int, device: str, batch: int = 128, turns: int = 0, spec: dict | None = None
+):
     """Raw logits on rows with labels, for fitting temperatures."""
+    spec = spec or {"max_len": max_len, "text_turns": turns}
     model.eval()
     acc = {"li": [], "lr": [], "lu": [], "ti": [], "tr": [], "tu": []}
     for i in range(0, len(rows), batch):
-        b = encode(tok, rows[i : i + batch], max_len, device)
+        b = make_batch(tok, rows[i : i + batch], spec, device)
         with torch.autocast("cuda", dtype=torch.bfloat16, enabled=device == "cuda"):
-            li, lr_, lu = model(b["ids"], b["mask"], b["line_mask"], b["num"])
+            li, lr_, lu = run(model, b)
         for k, v in (
             ("li", li),
             ("lr", lr_),

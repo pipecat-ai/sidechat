@@ -1,0 +1,29 @@
+experiment_id: exp-037-side-committee-gen-0.4
+status: done (2026-11-19); actual about $10
+track: sidechat (Phase 5, round 6 data)
+what: >
+  The committee (a, b, c, guide 0.4) labels, blind, 330 gen-0.4 dev and test lines of the kinds
+  round 6 added or raised: 120 follow-ups to the agent after someone else's brief reaction, 120
+  people passing on what the agent said to someone else, and 90 unnamed commands and replies with
+  requests. Agreement with the construction labels says whether the new kinds are labelled right,
+  as exp-024 did for gen-0.2. Runs beside round 6's training; a kind below about 90% is left out
+  of the students' corpus and the round is read with that in mind.
+forecast block:
+  campaign: exp-037-side-committee-gen-0.4
+  decision it enables: whether round 6's new kinds can be trusted
+  token forecast: 330 lines x 3 members at exp-024's rate
+  Modal forecast: one CPU container for about 5 minutes
+  retry cap: 2
+  spend cap: $20
+  stop condition: scorecard.json and report.md in R2
+  approved by Jon on: 2026-11-19 ("Let's action round 6", in chat)
+forecast_usd: about $9
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.label::run --exp exp-037-side-committee-gen-0.4 --sets corpus:gen-0.4:dev+test:120:follow_up_after_reaction,corpus:gen-0.4:dev+test:120:relay_agent_answer,corpus:gen-0.4:dev+test:90:command_no_name+reply_then_request --spend-cap-usd 20
+results: uv run python -m sidechat.pipeline.results exp-037-side-committee-gen-0.4
+actual_usd: about $10 (a $1.11, b $2.09, c $6.91)
+result:
+  agreement: "committee majority agrees with the construction labels on 98.8% (326/330; 96.9 to 99.5)"
+  by_kind: "follow_up_after_reaction 98.3% (118/120); relay_agent_answer 99.2% (119/120); reply_then_request 100% (47/47); command_no_name 97.7% (42/43)"
+  reading: "both new kinds read the way the guide labels them; nothing is left out of the students' corpus"

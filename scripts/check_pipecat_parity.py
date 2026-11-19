@@ -2,7 +2,10 @@
 
 Run with the Python of a Pipecat checkout that has `pipecat.models.labs.side_chat`:
 
-    ~/Sites/pipecat/.venv/bin/python scripts/check_pipecat_parity.py models/side-r3-ettin-150m-s0 models/sidechat-rc1
+    ~/Sites/pipecat/.venv/bin/python scripts/check_pipecat_parity.py models/side-r3-ettin-150m-s0
+
+The folder is the export, laid out as `pipecat-ai/sidechat` on Hugging Face is, so both runtimes
+load the same files.
 
 The lines are every hand-written suite in all three speaker conditions, plus variants of each that
 exercise aliases, people's names, speech over the agent and a history long enough to be truncated.
@@ -19,20 +22,20 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from pipecat.models.labs.side_chat.conversation import (  # noqa: E402
+from pipecat.models.labs.side_chat.conversation import (
     SideChatAgent,
     SideChatLine,
     SideChatTurn,
     encoder_text,
     numbers,
 )
-from pipecat.models.labs.side_chat.model import SideChatModel  # noqa: E402
+from pipecat.models.labs.side_chat.model import SideChatModel
 
-from sidechat import conditions  # noqa: E402
-from sidechat.runtime import load  # noqa: E402
-from sidechat.schema import SidechatRequest  # noqa: E402
-from sidechat.sources import suites  # noqa: E402
-from sidechat.train import features  # noqa: E402
+from sidechat import conditions
+from sidechat.runtime import load
+from sidechat.schema import SidechatRequest
+from sidechat.sources import suites
+from sidechat.train import features
 
 SUITES = tuple(suites.SUITE_FILES)
 FILLER = " and then we went over the numbers for the third quarter again, line by line"
@@ -72,7 +75,6 @@ def port(req: SidechatRequest) -> tuple[SideChatAgent, SideChatLine]:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("model_dir", type=pathlib.Path, help="the export, as sidechat.pipeline.fetch saves it")
-    ap.add_argument("release_dir", type=pathlib.Path, help="the same model laid out by package_release.py")
     args = ap.parse_args()
 
     reqs = requests()
@@ -90,7 +92,7 @@ def main() -> None:
 
     for precision in ("fp32", "int8"):
         ours = load(args.model_dir, threads=4, int8=precision == "int8")
-        theirs = SideChatModel(args.release_dir, precision=precision, threads=4)
+        theirs = SideChatModel(args.model_dir, precision=precision, threads=4)
         worst = 0.0
         disagree = 0
         for req in reqs:

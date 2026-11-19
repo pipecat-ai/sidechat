@@ -1,0 +1,74 @@
+{
+ "exp": "exp-054-side-publish-rc0.2",
+ "run_id": "side-r6ttr3t-ettin-32m-s0",
+ "repo": "pipecat-ai/sidechat",
+ "private": false,
+ "subdir": "agent-1x",
+ "tag": "rc0.2",
+ "commit": "08c9b8ce0853f1a9d278bfbad9eeb14017858283",
+ "files": {
+  "config.json": {
+   "bytes": 570,
+   "sha256": "8c930d07e35e6a144be618cc7390165088e574ca7e7ef6c8fee6b2c9c94ec392"
+  },
+  "context.onnx": {
+   "bytes": 127762396,
+   "sha256": "aa4877b679e02813eba9d99045cf06c1d5ebef03a186667f0dab4d06fc5cf719"
+  },
+  "data/dev.jsonl.gz": {
+   "bytes": 3114785,
+   "sha256": "c2dcc99926dc4fbbe6a4e0040c0a703e6ac8b26e00329392d2554f335d9ea9b6"
+  },
+  "data/train.jsonl.gz": {
+   "bytes": 31520688,
+   "sha256": "de70ad487c54f775196d9ebfa478786da0561a5f6982aabacc48e99cccbe6d56"
+  },
+  "line.onnx": {
+   "bytes": 131400350,
+   "sha256": "2acddb9ba46b62bcca1746f80e3ac35e86579ee81d92bf279b91a817806e49ba"
+  },
+  "tokenizer.json": {
+   "bytes": 3583228,
+   "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30"
+  }
+ },
+ "rows": {
+  "train": {
+   "rows": 420828,
+   "by_set": {
+    "gen-0.1": 83732,
+    "gen-pilot": 6263,
+    "gen-0.2": 129798,
+    "gen-0.3": 102924,
+    "gen-0.4": 82835,
+    "ami-silent-0.1": 15276
+   },
+   "by_respond": {
+    "0.0": 249504,
+    "1.0": 101919,
+    "0.75": 9640,
+    "0.5": 56995,
+    "0.25": 2770
+   }
+  },
+  "dev": {
+   "rows": 43624,
+   "by_set": {
+    "gen-0.1": 8346,
+    "gen-pilot": 656,
+    "gen-0.2": 12443,
+    "gen-0.3": 9629,
+    "gen-0.4": 8364,
+    "ami-silent-0.1": 4186
+   },
+   "by_respond": {
+    "0.0": 26929,
+    "0.5": 5483,
+    "1.0": 10036,
+    "0.75": 917,
+    "0.25": 259
+   }
+  }
+ },
+ "finished_at": "2026-11-19T18:15:20+00:00"
+}

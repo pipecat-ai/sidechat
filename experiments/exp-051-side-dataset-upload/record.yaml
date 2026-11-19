@@ -1,0 +1,30 @@
+experiment_id: exp-051-side-dataset-upload
+status: done (2026-11-19); actual under $0.01
+track: sidechat (release)
+what: >
+  Upload the dataset built in exp-040 (`sidechat-gen-0.1`: gen-pilot to gen-0.3 as Parquet, with its
+  card) from R2 to the Hugging Face Hub as a private dataset repo, pipecat-ai/sidechat-gen. Every
+  file is checked against MANIFEST.json first; the job refuses if the repo already exists and is
+  public. No test-only data is in it.
+forecast block:
+  campaign: exp-051-side-dataset-upload
+  decision it enables: Jon can look at the dataset on the Hub before making it public
+  token forecast: none
+  Modal forecast: one 2-core CPU container for 1 to 5 minutes (30 MB read from R2, sent to the Hub)
+  retry cap: 0
+  spend cap: $1
+  stop condition: commit on the Hub, report in R2
+  approved by Jon on: 2026-11-19 ("Yes, upload private", in chat)
+forecast_usd: under $0.05
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.dataset::upload --exp exp-051-side-dataset-upload
+results: uv run python -m sidechat.pipeline.results exp-051-side-dataset-upload
+actual_usd: under $0.01 (one 2-core container for 12 s)
+note: >
+  Run as exp-050-side-dataset-upload, which clashed with exp-050-side-round6-reexport started at
+  the same time; renumbered after. R2 holds its results under both names.
+result:
+  hub: "datasets/pipecat-ai/sidechat-gen, private, commit f46ab3aec4835600614a81a605f5df07b3eea313"
+  files: "README.md, MANIFEST.json and the three Parquet splits, sizes as in exp-040; split config read back from the card"
+  open: "the card's licence (bsd-2-clause, as the model) is for Jon to confirm before making it public; the Hub's viewer had not processed it yet"

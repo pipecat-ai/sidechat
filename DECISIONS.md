@@ -3,6 +3,23 @@
 Newest first. `date · id · who · decision · why · reversible?`. "Agent default" means the agent
 chose it and Jon has not yet confirmed. Open questions are at the bottom.
 
+- 2026-11-19 · SD-22 · Jon (delegated) · Release rc0.2 on `pipecat-ai/sidechat`: round 3's 150M
+  stays the default at the repo root, unchanged, so Pipecat's pinned download is unaffected, and
+  the two-tower 32M student (`side-r6ttr3t-ettin-32m-s0`, fp32) ships as an opt-in `agent-1x/`
+  build. It passes the gate as Jon set it (faster than Jev on agent-1x with a full history; within
+  about a point of round 3 on Duplex-MPE, AMI and the pilot) but answers fewer unnamed requests
+  than Jev (item 5), which the card says plainly. · Jon: "push and ship this on hugging face, we
+  can call this RC0.2". · Reversible: delete `agent-1x/` on the Hub; the tag stays.
+
+- 2026-11-19 · SD-21 · Jon (delegated) · Unnamed requests to an agent that has not spoken keep
+  guide 0.4's label: a request open to the room is `wait` with `respond` 0.5 (SD-11, SD-12). No
+  relabel. · Measured on stored predictions (tags only): every model reads Duplex-MPE's implicit
+  requests as said to a person or to the agent, almost never as open (median open intent 0.01;
+  intent `other` for 52% to 84% of them), so neither "held" nor "even call" changes what any model
+  does there. Item 5 also swings with the seed and round (150M: 22.8% to 47.2% answered now;
+  round 1's labels-only 68M: 61%), so it is a reading-the-context problem, not a label problem. ·
+  Reversible: a guide revision.
+
 - 2026-11-19 · SD-20 · agent default · Thresholds get a second bar on dev: answer at most 0.4% of
   real-speech lines meant for people outright, measured on AMI's two dev series (4,186 lines). The
   generated dev alone allowed thresholds that answered 0.8% of Duplex-MPE's and AMI's lines for

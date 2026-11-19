@@ -1,0 +1,31 @@
+{
+ "exp": "exp-050-side-dataset-upload",
+ "dataset_id": "sidechat-gen-0.1",
+ "repo": "pipecat-ai/sidechat-gen",
+ "private": true,
+ "commit": "f46ab3aec4835600614a81a605f5df07b3eea313",
+ "files": {
+  "README.md": {
+   "bytes": 3933,
+   "sha256": "4a02de6b5daea894ddd7a6ad749661e7db3000596fb6d818a4c758a5b285f827"
+  },
+  "data/test-00000-of-00001.parquet": {
+   "bytes": 4040233,
+   "sha256": "b052eda5d3332847c16cee4ac0caa9628396137710d477aeb10579ea2d6e8caa"
+  },
+  "data/train-00000-of-00001.parquet": {
+   "bytes": 23691935,
+   "sha256": "260338d38cb320c721f71dda11d689a242c17eebf6155ce72e4bba0b0a02f3e4"
+  },
+  "data/validation-00000-of-00001.parquet": {
+   "bytes": 2313464,
+   "sha256": "e90987d18384965557676f59d84bb6439e7c38760cd58adc521fd734971ab4b5"
+  }
+ },
+ "rows": {
+  "train": 322717,
+  "validation": 31074,
+  "test": 50924
+ },
+ "finished_at": "2026-11-19T10:24:30+00:00"
+}

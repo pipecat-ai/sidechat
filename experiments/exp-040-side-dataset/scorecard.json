@@ -1,0 +1,181 @@
+{
+ "exp": "exp-040-side-dataset",
+ "dest": "runs/side/datasets/sidechat-gen-0.1",
+ "dataset_id": "sidechat-gen-0.1",
+ "corpus": "gen-pilot,gen-0.1,gen-0.2,gen-0.3",
+ "guide": "sidechat-guide-0.4",
+ "rows": {
+  "by_corpus": {
+   "gen-pilot": {
+    "written": 8426,
+    "kept": {
+     "train": 6263,
+     "validation": 656,
+     "test": 1451
+    },
+    "dropped": 56,
+    "conversations": 599,
+    "writers": [
+     "a",
+     "b",
+     "c",
+     "o"
+    ]
+   },
+   "gen-0.1": {
+    "written": 113262,
+    "kept": {
+     "train": 83732,
+     "validation": 8346,
+     "test": 20405
+    },
+    "dropped": 779,
+    "conversations": 8095,
+    "writers": [
+     "a",
+     "b",
+     "c",
+     "o"
+    ]
+   },
+   "gen-0.2": {
+    "written": 161038,
+    "kept": {
+     "train": 129798,
+     "validation": 12443,
+     "test": 16340
+    },
+    "dropped": 2457,
+    "conversations": 11490,
+    "writers": [
+     "a",
+     "c",
+     "o"
+    ]
+   },
+   "gen-0.3": {
+    "written": 125897,
+    "kept": {
+     "train": 102924,
+     "validation": 9629,
+     "test": 12728
+    },
+    "dropped": 616,
+    "conversations": 8993,
+    "writers": [
+     "a",
+     "c",
+     "o"
+    ]
+   }
+  },
+  "by_split": {
+   "train": 322717,
+   "validation": 31074,
+   "test": 50924
+  },
+  "expect": {
+   "respond": 108372,
+   "ignore": 242432,
+   "wait": 42880,
+   "None": 11031
+  },
+  "kind": {
+   "reply_to_person": 73057,
+   "question_to_named_person": 21171,
+   "name_first": 19220,
+   "statement": 14930,
+   "answer_to_agent_question": 13505,
+   "follow_up": 12210,
+   "group_question_not_for_agent": 11300,
+   "statement_to_named_person": 10694,
+   "open_factual": 8433,
+   "open_question": 8293,
+   "unclear_you": 7409,
+   "name_mid": 6839,
+   "role_request": 6729,
+   "named_after_aside": 6678,
+   "name_last": 6620,
+   "follow_up_by_other": 6102,
+   "backchannel": 6027,
+   "thinking_aloud": 5689,
+   "proposal_to_group": 5667,
+   "about_reported": 5600,
+   "about_judged": 5595,
+   "request_to_people": 5560,
+   "about_hypothetical": 5556,
+   "people_after_agent": 5395,
+   "remark_to_group": 5389,
+   "unclear_after_agent": 5373,
+   "to_named_person_after_agent": 5236,
+   "invite": 5235,
+   "continuing_with_person": 5184,
+   "you_to_person": 5167,
+   "you_to_person_after_agent": 5134,
+   "open_request": 4550,
+   "other_device": 4362,
+   "about_to_named_person": 4027,
+   "wake_phrase": 3972,
+   "you_after_invite": 3783,
+   "unclear_you_person_task": 3706,
+   "role_address": 3209,
+   "imperative_to_person": 3103,
+   "statement_of_need": 2967,
+   "command_no_name": 2740,
+   "about_question": 2720,
+   "name_word_sense": 2664,
+   "name_alone": 2609,
+   "reply_then_request": 2586,
+   "never_mind": 2557,
+   "correction": 2545,
+   "thanks": 2453,
+   "request_after_summon": 2411,
+   "about_question_to_group": 2254,
+   "action_to_game_master": 2222,
+   "host_to_group": 2104,
+   "relayed_invite": 1977,
+   "about_stated": 1859,
+   "about_quoted": 1671,
+   "opener_to_agent": 1670,
+   "about_pronoun": 1622,
+   "name_misheard": 1493,
+   "stop_named": 1473,
+   "aside_over_agent": 1385,
+   "indirect_wish": 1366,
+   "alias_false_match": 1284,
+   "steps_to_people": 1274,
+   "thanks_named": 1107,
+   "question_only_agent_can_answer": 1080,
+   "name_slip_corrected": 1041,
+   "name_first_over_agent": 962,
+   "off_call": 927,
+   "similar_name_person": 918,
+   "answer_after_aside": 822,
+   "resume_no_name": 690,
+   "farewell_named": 517,
+   "addressed_by_exclusion": 434,
+   "table_talk": 356,
+   "only_agent_can_do": 246
+  },
+  "rows": 404715
+ },
+ "files": {
+  "README.md": {
+   "bytes": 3933,
+   "sha256": "4a02de6b5daea894ddd7a6ad749661e7db3000596fb6d818a4c758a5b285f827"
+  },
+  "data/test-00000-of-00001.parquet": {
+   "bytes": 4040233,
+   "sha256": "b052eda5d3332847c16cee4ac0caa9628396137710d477aeb10579ea2d6e8caa"
+  },
+  "data/train-00000-of-00001.parquet": {
+   "bytes": 23691935,
+   "sha256": "260338d38cb320c721f71dda11d689a242c17eebf6155ce72e4bba0b0a02f3e4"
+  },
+  "data/validation-00000-of-00001.parquet": {
+   "bytes": 2313464,
+   "sha256": "e90987d18384965557676f59d84bb6439e7c38760cd58adc521fd734971ab4b5"
+  }
+ },
+ "built_at": "2026-11-19T10:14:04+00:00"
+}

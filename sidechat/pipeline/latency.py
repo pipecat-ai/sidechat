@@ -69,8 +69,8 @@ def _bench(spec: dict) -> dict:
     if spec["which"] == "sidechat":
         folder = pathlib.Path("/tmp/models") / spec["run_id"]
         folder.mkdir(parents=True, exist_ok=True)
-        model = "model-int8.onnx" if spec["int8"] else "model.onnx"
-        for name in ("config.json", "tokenizer.json", model):  # streamed to disk, never held in memory
+        graphs = [f"{g}-int8.onnx" if spec["int8"] else f"{g}.onnx" for g in spec.get("graphs", ["model"])]
+        for name in ("config.json", "tokenizer.json", *graphs):  # streamed to disk, never held in memory
             s3.download_file(r2._bucket(), f"models/side/{spec['run_id']}/export/{name}", str(folder / name))
         cmd += [str(folder), "--threads", str(spec["threads"])] + (["--int8"] if spec["int8"] else [])
     cmd += ["--rounds", str(spec["rounds"])]  # options after the model path: argparse takes positionals first
@@ -132,40 +132,53 @@ def _render(exp: str, results: list[dict], run_ids: list[str]) -> str:
             "Each variant ran alone in a container with the profile's CPU and memory as hard limits. Times are "
             "the demo's `classifier_ms` (p50 / p90 / p99, ms) over its 33 sample lines: \"demo\" as written "
             "(0 to 2 earlier lines), \"full window\" after 8 earlier lines. Memory is the bench process's peak "
-            "resident size (Python, Pipecat and the classifier, nothing else of the bot)."
+            "resident size (Python, Pipecat and the classifier, nothing else of the bot). A two-tower "
+            "model's history is encoded first, untimed, as it would be while the person talks; its cold time "
+            "(both towers) and the history encoding are shown apart. \"Beats Jev\" compares the full-window "
+            "median with Jev's in the same profile."
         ),
         "",
-        f"Models: {', '.join(run_ids)}. `smoke` is a 32M trial model, here for its speed only.",
+        f"Models: {', '.join(run_ids)}.",
         "",
     ]
     for profile, (cpu, mem) in PROFILES.items():
         rows = [r for r in results if r["profile"] == profile]
         if not rows:
             continue
+        jev = next((r for r in rows if r["name"] == "jev" and r.get("ok")), None)
+        jev_full = (jev or {}).get("full_window", {}).get("p50")
         lines += [
             f"## {profile}: {cpu} vCPU, {mem} MiB",
             "",
-            "| Variant | Threads | Memory MB | Load s | First line ms | demo p50 / p90 / p99 | full window p50 / p90 / p99 | Lines |",
-            "|---|---|---|---|---|---|---|---|",
+            (
+                "| Variant | Threads | Memory MB | Load s | First line ms | demo p50 / p90 / p99 | full window p50 / p90 / p99 "
+                "| full window cold p50 | history encode p50 | Beats Jev | Lines |"
+            ),
+            "|---|---|---|---|---|---|---|---|---|---|---|",
         ]
         for r in rows:
             if not r.get("ok"):
                 why = "killed (out of memory)" if r.get("killed") else f"failed (exit {r.get('returncode', r.get('error', '?'))})"
-                lines.append(f"| {r['name']} | {r.get('threads', '')} | {why} | | | | | |")
+                lines.append(f"| {r['name']} | {r.get('threads', '')} | {why} | | | | | | | | |")
                 continue
             n = (r.get("demo") or {}).get("n", 0) + (r.get("full_window") or {}).get("n", 0)
+            cold = (r.get("full_window_cold") or {}).get("p50")
+            enc = (r.get("full_window_history_encode") or {}).get("p50")
+            full = (r.get("full_window") or {}).get("p50")
+            beats = "" if r["name"] == "jev" or jev_full is None or full is None else ("yes" if full < jev_full else "no")
             lines.append(
                 f"| {r['name']} | {r.get('threads', '')} | {r.get('rss_mb_peak', 0):.0f} | {r.get('load_s', 0):.2f} | "
-                f"{r.get('first_line_ms', 0):.0f} | {cell(r, 'demo')} | {cell(r, 'full_window')} | {n} |"
+                f"{r.get('first_line_ms', 0):.0f} | {cell(r, 'demo')} | {cell(r, 'full_window')} | "
+                f"{'' if cold is None else f'{cold:.0f}'} | {'' if enc is None else f'{enc:.0f}'} | {beats} | {n} |"
             )
         lines.append("")
     return "\n".join(lines) + "\n"
 
 
-@app.function(image=image, cpu=0.25, memory=512, timeout=3600, secrets=_secrets())
+@app.function(name="latency_run", image=image, cpu=0.25, memory=512, timeout=3600, secrets=_secrets())
 def run(
     exp: str,
-    run_ids: str = "side-r3-ettin-150m-s0,side-r1-ettin-68m-s0,side-smoke-ettin-32m-s0",
+    run_ids: str = "side-r3-ettin-150m-s0,side-r1-ettin-68m-s0",
     profiles: str = "agent-1x,agent-2x,agent-3x",
     threads: str = "1,2",
     rounds: int = 3,
@@ -201,16 +214,18 @@ def run(
         builds = []
         for run_id in ids:
             keys = {o["Key"].rsplit("/", 1)[-1] for o in r2.list_keys(s3, f"models/side/{run_id}/export/")}
+            cfg = r2.get_json(s3, f"models/side/{run_id}/export/config.json") or {}
+            graphs = ["context", "line"] if cfg.get("arch") == "twotower" else ["model"]
             for int8 in (False, True):
-                if ("model-int8.onnx" if int8 else "model.onnx") in keys:
-                    builds.append((run_id, int8))
+                if all((f"{g}-int8.onnx" if int8 else f"{g}.onnx") in keys for g in graphs):
+                    builds.append((run_id, int8, graphs))
         specs = []
         for profile in [p.strip() for p in profiles.split(",") if p.strip()]:
-            for run_id, int8 in builds:
+            for run_id, int8, graphs in builds:
                 for t in [int(x) for x in threads.split(",") if x.strip()]:
                     name = f"{_short(run_id)}-{'int8' if int8 else 'fp32'}-t{t}"
                     specs.append({"exp": exp, "profile": profile, "name": name, "which": "sidechat", "run_id": run_id,
-                                  "int8": int8, "threads": t, "rounds": rounds})
+                                  "int8": int8, "threads": t, "rounds": rounds, "graphs": graphs})
             if jev:
                 specs.append({"exp": exp, "profile": profile, "name": "jev", "which": "jev", "rounds": 2})
         save(stage=f"benching {len(specs)} variants", variants=len(specs))

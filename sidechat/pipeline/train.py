@@ -126,7 +126,20 @@ def train(
     warmup: float = 0.1,
     dev_cap: int = 6000,
     train_cap: int = 0,
+    text_turns: int = 0,
+    teacher: str = "",
+    alpha: float = 0.8,
+    arch: str = "single",
+    ctx_len: int = 320,
+    line_len: int = 96,
+    drop_kinds: str = "",
 ) -> dict:
+    """`drop_kinds` (comma-separated) leaves those generated kinds out of training and dev.
+    `arch` "twotower" trains the two-tower model (history and line encoded apart, `ctx_len` and
+    `line_len` tokens). `text_turns` > 0 trains on the short input (at most that many earlier turns, fitted to
+    `max_len`). `teacher` names a trained run to distil from: each batch's targets become
+    `alpha` x the teacher's calibrated probabilities on the same augmented lines (read with the
+    teacher's own input) + (1 - alpha) x the labels."""
     import random
     import tempfile
     import time
@@ -144,17 +157,26 @@ def train(
     torch.manual_seed(seed)
     rng = random.Random(seed)
     s3 = r2.client()
-    train_rows = _corpus_rows(s3, corpus, {"train"}, safe_only=True)
+    drop = {k for k in drop_kinds.split(",") if k}
+    train_rows = [r for r in _corpus_rows(s3, corpus, {"train"}, safe_only=True) if r["tags"].get("kind") not in drop]
     if train_cap:
         rng.shuffle(train_rows)
         train_rows = train_rows[:train_cap]
-    dev_rows = _corpus_rows(s3, corpus, {"dev"}, safe_only=True)
+    dev_rows = [r for r in _corpus_rows(s3, corpus, {"dev"}, safe_only=True) if r["tags"].get("kind") not in drop]
     rng.shuffle(dev_rows)
     dev_rows = [conditions.apply(r, "anonymous") for r in dev_rows[:dev_cap]]
     repo, rev = M.ENCODERS[encoder]
     tok = AutoTokenizer.from_pretrained(repo, revision=rev)
     device = "cuda"
-    net = M.SidechatModel(encoder).to(device)
+    spec = {
+        "arch": arch,
+        "encoder": encoder,
+        "max_len": max_len,
+        "text_turns": text_turns,
+        "ctx_len": ctx_len,
+        "line_len": line_len,
+    }
+    net = M.build(spec).to(device)
     enc_params = list(net.enc.parameters())
     enc_ids = {id(p) for p in enc_params}
     head_params = [p for p in net.parameters() if id(p) not in enc_ids]
@@ -169,15 +191,34 @@ def train(
         ),
     )
 
+    tnet = tcfg = ttok = None
+    if teacher:
+        tnet, ttok, tcfg = _load(s3, teacher, device)
+        tnet.eval()
+
+    def distil(part: list[dict], b: dict) -> None:
+        """Blend the teacher's probabilities on these lines into the batch's targets."""
+        t = tcfg["temperatures"]
+        with torch.no_grad():
+            tb = M.make_batch(ttok, part, tcfg, device)
+            with torch.autocast("cuda", dtype=torch.bfloat16):
+                li, lr_, lu = M.run(tnet, tb)
+            pi = torch.softmax(li.float() / t["intent"], -1)
+            pr = torch.sigmoid(lr_.float() / t["respond"])
+            pu = torch.sigmoid(lu.float() / t["unclear"])
+        b["t_intent"] = alpha * pi + (1 - alpha) * b["t_intent"]
+        b["t_respond"] = alpha * pr + (1 - alpha) * b["t_respond"]
+        b["t_unclear"] = alpha * pu + (1 - alpha) * b["t_unclear"]
+
     def dev_loss() -> float:
         net.eval()
         total, n = 0.0, 0
         with torch.no_grad():
             for i in range(0, len(dev_rows), 128):
                 part = dev_rows[i : i + 128]
-                b = M.encode(tok, part, max_len, device)
+                b = M.make_batch(tok, part, spec, device)
                 with torch.autocast("cuda", dtype=torch.bfloat16):
-                    out = net(b["ids"], b["mask"], b["line_mask"], b["num"])
+                    out = M.run(net, b)
                 total += float(M.loss_fn(out, b)) * len(part)
                 n += len(part)
         net.train()
@@ -192,9 +233,11 @@ def train(
         running = 0.0
         for i in range(0, len(order), batch):
             part = [M.augment(train_rows[j], rng) for j in order[i : i + batch]]
-            b = M.encode(tok, part, max_len, device)
+            b = M.make_batch(tok, part, spec, device)
+            if tnet is not None:
+                distil(part, b)
             with torch.autocast("cuda", dtype=torch.bfloat16):
-                out = net(b["ids"], b["mask"], b["line_mask"], b["num"])
+                out = M.run(net, b)
             loss = M.loss_fn(out, b)
             opt.zero_grad(set_to_none=True)
             loss.backward()
@@ -216,7 +259,7 @@ def train(
             best = dl
             best_state = {k: v.detach().to("cpu").clone() for k, v in net.state_dict().items()}
     net.load_state_dict(best_state)
-    temps = M.fit_temperatures(M.logits(net, tok, dev_rows, max_len, device))
+    temps = M.fit_temperatures(M.logits(net, tok, dev_rows, max_len, device, spec=spec))
     best_epoch = min(history, key=lambda h: h["dev_loss"])["epoch"]
 
     # Save weights, config and tokenizer.
@@ -228,7 +271,10 @@ def train(
         "encoder": encoder,
         "repo": repo,
         "revision": rev,
-        "input_version": features.INPUT_VERSION,
+        "input_version": features.TT_VERSION if arch == "twotower" else features.INPUT_VERSION,
+        "arch": arch,
+        "ctx_len": ctx_len if arch == "twotower" else None,
+        "line_len": line_len if arch == "twotower" else None,
         "num_dim": features.NUM_DIM,
         "max_len": max_len,
         "temperatures": temps,
@@ -242,6 +288,10 @@ def train(
         "head_lr": head_lr,
         "batch": batch,
         "seed": seed,
+        "text_turns": text_turns,
+        "drop_kinds": sorted(drop) or None,
+        "teacher": teacher or None,
+        "alpha": alpha if teacher else None,
     }
     r2.put_json(s3, _model_key(run_id, "config.json"), config)
     with tempfile.TemporaryDirectory() as d:
@@ -261,7 +311,7 @@ def _load(s3, run_id: str, device: str, attn: str | None = None):
     from sidechat.train import model as M
 
     config = r2.get_json(s3, _model_key(run_id, "config.json"))
-    net = M.SidechatModel(config["encoder"], pretrained=False, attn=attn)
+    net = M.build(config, pretrained=False, attn=attn)
     net.load_state_dict(st_load(r2.get_bytes(s3, _model_key(run_id, "model.safetensors"))))
     net.to(device)
     d = tempfile.mkdtemp()
@@ -293,7 +343,7 @@ def score(run_id: str, corpus: str, test_corpus: str = "", extra_sets: str = "")
     temps, max_len = config["temperatures"], config["max_len"]
 
     def run_on(rows: list[dict], name: str) -> dict[str, dict]:
-        preds = M.predict(net, tok, rows, max_len, device, temps)
+        preds = M.predict(net, tok, rows, max_len, device, temps, spec=config)
         r2.put_jsonl(s3, f"{r2.PREFIX}/predictions/{run_id}/{name}.jsonl", preds)
         return {p["row_id"]: p for p in preds}
 
@@ -351,6 +401,7 @@ def score(run_id: str, corpus: str, test_corpus: str = "", extra_sets: str = "")
 
 
 @app.function(
+    name="train_run",
     image=image,
     cpu=2.0,
     memory=8192,
@@ -369,9 +420,18 @@ def run(
     test_corpus: str = "",
     extra_sets: str = "",
     score_only: bool = False,
+    text_turns: int = 0,
+    max_len: int = 320,
+    teacher: str = "",
+    alpha: float = 0.8,
+    arch: str = "single",
+    ctx_len: int = 320,
+    line_len: int = 96,
+    drop_kinds: str = "",
 ) -> dict:
     """Train one model per encoder in parallel, then score each. `score_only` rescores models
-    already trained under these run ids (after a change to scoring)."""
+    already trained under these run ids (after a change to scoring). `text_turns`, `max_len`,
+    `teacher` and `alpha` are the short input and distillation (`train`)."""
     import time
     import traceback
     from datetime import UTC, datetime
@@ -397,6 +457,14 @@ def run(
             "test_corpus": test_corpus,
             "extra_sets": extra_sets,
             "score_only": score_only,
+            "text_turns": text_turns,
+            "max_len": max_len,
+            "teacher": teacher,
+            "alpha": alpha,
+            "arch": arch,
+            "ctx_len": ctx_len,
+            "line_len": line_len,
+            "drop_kinds": drop_kinds,
         },
     }
 
@@ -413,7 +481,25 @@ def run(
         calls = (
             {}
             if score_only
-            else {e: train.spawn(runs[e], corpus, e, epochs=epochs, seed=seed, train_cap=train_cap) for e in names}
+            else {
+                e: train.spawn(
+                    runs[e],
+                    corpus,
+                    e,
+                    epochs=epochs,
+                    seed=seed,
+                    train_cap=train_cap,
+                    max_len=max_len,
+                    text_turns=text_turns,
+                    teacher=teacher,
+                    alpha=alpha,
+                    arch=arch,
+                    ctx_len=ctx_len,
+                    line_len=line_len,
+                    drop_kinds=drop_kinds,
+                )
+                for e in names
+            }
         )
         trained = {}
         if score_only:

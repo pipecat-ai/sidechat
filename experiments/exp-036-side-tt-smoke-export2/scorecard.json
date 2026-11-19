@@ -1,0 +1,73 @@
+{
+ "run_id": "side-ttsmoke-ettin-32m-s0",
+ "size_mb": 259.2,
+ "parity": {
+  "rows": 283,
+  "max_prob_diff": 0.526657,
+  "decisions_same": 270
+ },
+ "latency_modal_cpu": {
+  "4_threads": {
+   "p50_ms": 9.56,
+   "p95_ms": 12.49
+  },
+  "1_threads": {
+   "p50_ms": 14.8,
+   "p95_ms": 18.98
+  },
+  "cold_1_threads": {
+   "p50_ms": 54.61,
+   "p95_ms": 65.92
+  }
+ },
+ "thresholds": {
+  "respond": 0.85,
+  "wait": 0.6,
+  "open": 0.3,
+  "dev_right": 6216,
+  "dev_n": 8093,
+  "dev_wrong_now": 38,
+  "dev_quiet": 4460,
+  "max_wrong_now": 0.01,
+  "real_wrong_now": 2,
+  "real_quiet": 4186,
+  "max_wrong_now_real": 0.004
+ },
+ "optimized": {
+  "fused": {
+   "context": {
+    "Gelu": 10,
+    "LayerNormalization": 1,
+    "SkipLayerNormalization": 20
+   },
+   "line": {
+    "Gelu": 12,
+    "LayerNormalization": 1,
+    "SkipLayerNormalization": 20
+   }
+  },
+  "parity": {
+   "rows": 283,
+   "max_prob_diff": 0.526657,
+   "decisions_same": 270
+  },
+  "latency_modal_cpu": {
+   "4_threads": {
+    "p50_ms": 10.44,
+    "p95_ms": 13.69
+   },
+   "1_threads": {
+    "p50_ms": 16.35,
+    "p95_ms": 20.73
+   },
+   "cold_1_threads": {
+    "p50_ms": 53.93,
+    "p95_ms": 61.33
+   }
+  },
+  "shipped": false
+ },
+ "int8": {
+  "error": "parity too far from PyTorch: same decision on 171/283, largest probability difference 0.936673"
+ }
+}

@@ -1,0 +1,35 @@
+experiment_id: exp-035-side-gen-0.4
+status: done (2026-11-19); actual about $20
+track: sidechat (Phase 5, round 6 data)
+what: >
+  Corpus gen-0.4 under guide 0.4: o 4,000 (two H100s), a 2,500, c 800 conversations, seed 6, no
+  quiet stretches. Aimed at the scorecard items more data can close, from the r3 model's misses by
+  kind (pilot and Duplex-MPE tags only, no test text read): item 6, unnamed follow-ups and commands
+  in an exchange with the agent (pilot follow_up 6/9 missed, command_no_name, reply_then_request
+  and resume_no_name 6/6); item 7, a person passing on to someone else what the agent just said,
+  by name (13 of Duplex-MPE N1's 17 outright answers are such statements right after the agent);
+  item 9, more even calls. New: `follow_up_after_reaction` (G6, after another person's brief
+  reaction, about 3.7% of lines) and `relay_agent_answer` (G4, about 2%); boosts on unnamed commands,
+  replies with requests, corrections, even calls, and follow-ups by someone else (the contrast).
+forecast block:
+  campaign: exp-035-side-gen-0.4
+  decision it enables: round 6's training corpus
+  token forecast: gen-0.3's rates per conversation (exp-026) x 4,000 / 2,500 / 800
+  Modal forecast: two H100s for about 20 minutes, CPU containers for the API writers
+  retry cap: 1 on the driver, 2 on the API writers
+  spend cap: $40
+  stop condition: rows in R2
+  approved by Jon on: 2026-11-19 ("Let's action round 6", in chat)
+forecast_usd: about $19 (o $2.2, a $6.2, c $9.9, CPU $0.50)
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.generate::run --exp exp-035-side-gen-0.4 --gen-id gen-0.4
+  --counts o:4000,a:2500,c:800 --seed 6 --spend-cap-usd 40 --o-shards 2
+  --boost command_no_name:3,reply_then_request:2.5,correction:1.5,open_question:1.5,open_factual:1.5,open_request:2,unclear_you:1.5,unclear_after_agent:1.5,invite:1.5,about_reported:1.5,follow_up_by_other:1.6
+  --add relay_agent_answer:6 --delayed 0.2
+results: uv run python -m sidechat.pipeline.results exp-035-side-gen-0.4
+actual_usd: about $20 (o $2.32 on two H100s, a $6.63, c $10.48, CPU about $0.40)
+result:
+  corpus: "7,296 conversations, 102,443 labelled lines, 1,147 s"
+  splits: "{'train': 83301, 'dev': 8418, 'test': 10724}"
+  brief: "1,970 lines broke their brief (left out of training), mostly the old 'about the agent' kinds; the two new kinds are not among the top 15"

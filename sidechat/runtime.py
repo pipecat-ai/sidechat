@@ -15,6 +15,8 @@ from __future__ import annotations
 import json
 import math
 import pathlib
+import threading
+from collections import OrderedDict
 from dataclasses import dataclass
 
 from sidechat.schema import INTENTS, SidechatAnswer, SidechatRequest
@@ -46,9 +48,13 @@ class Sidechat:
         import numpy as np
 
         max_len = self.config["max_len"]
+        turns = self.config.get("text_turns", 0)
         encs, starts = [], []
         for q in reqs:
-            text, start = features.text(q)
+            if turns:
+                text, start = features.fitted(q, turns, max_len, lambda t: len(self.tokenizer.encode(t).ids))
+            else:
+                text, start = features.text(q)
             enc = self.tokenizer.encode(text)
             encs.append(enc)
             starts.append(start)
@@ -86,6 +92,9 @@ class Sidechat:
     def answer(self, req: SidechatRequest) -> SidechatAnswer:
         return self.answers([req])[0]
 
+    def prepare(self, req: SidechatRequest) -> None:
+        """Nothing to do ahead of time for a single-tower model (see `TwoTower.prepare`)."""
+
     def decide(self, answer: SidechatAnswer, thresholds: dict | None = None) -> str:
         t = thresholds or self.thresholds
         if answer.respond >= t["respond"]:
@@ -95,9 +104,72 @@ class Sidechat:
         return "ignore"
 
 
+class TwoTower(Sidechat):
+    """A two-tower model (`sidechat-tt-0.1`): `context.onnx` encodes the history, `line.onnx` the
+    line with the cached history. Call `prepare` with the next line's history as soon as it is known
+    (when the previous line ends) and `answer` then only encodes the new line. A history seen before
+    is never encoded twice; the cache keeps the last few."""
+
+    def __init__(self, context_session, line_session, tokenizer, config: dict, keep: int = 16):
+        super().__init__(line_session, tokenizer, config)
+        self.context_session = context_session
+        self._cache: OrderedDict[str, tuple] = OrderedDict()
+        self._keep = keep
+        self._lock = threading.Lock()  # `prepare` may run in another thread than `answer`
+
+    def _ids(self, text: str, limit: int):
+        import numpy as np
+
+        ids = self.tokenizer.encode(text).ids[:limit]
+        return np.array([ids], dtype=np.int64), np.ones((1, len(ids)), dtype=np.int64)
+
+    def _context(self, req: SidechatRequest) -> tuple:
+        n = self.config["ctx_len"]
+        text = features.context_fitted(req, n, lambda t: len(self.tokenizer.encode(t).ids))
+        with self._lock:
+            hit = self._cache.get(text)
+            if hit is not None:
+                self._cache.move_to_end(text)
+                return hit
+        ids, mask = self._ids(text, n)
+        states = self.context_session.run(None, {"ids": ids, "mask": mask})[0]
+        with self._lock:
+            self._cache[text] = (states, mask)
+            while len(self._cache) > self._keep:
+                self._cache.popitem(last=False)
+        return states, mask
+
+    def prepare(self, req: SidechatRequest) -> None:
+        """Encode and cache this request's history now; its line is not read."""
+        self._context(req)
+
+    def answers(self, reqs: list[SidechatRequest]) -> list[SidechatAnswer]:
+        import numpy as np
+
+        t = self.config["temperatures"]
+        out = []
+        for q in reqs:
+            states, cmask = self._context(q)
+            ids, mask = self._ids(features.line_text(q), self.config["line_len"])
+            num = np.array([features.numbers(q)], dtype=np.float32)
+            li, lr, lu = self.session.run(
+                None, {"ids": ids, "mask": mask, "ctx": states, "ctx_mask": cmask, "num": num}
+            )
+            probs = _softmax([float(x) for x in li[0]], t["intent"])
+            out.append(
+                SidechatAnswer(
+                    intent={k: round(p, 6) for k, p in zip(INTENTS, probs)},
+                    respond=round(_sigmoid(float(lr[0]), t["respond"]), 6),
+                    unclear=round(_sigmoid(float(lu[0]), t["unclear"]), 6),
+                )
+            )
+        return out
+
+
 def load(folder: str | pathlib.Path, threads: int = 4, int8: bool = False) -> Sidechat:
-    """`int8=True` loads `model-int8.onnx` (dynamic int8 weights, smaller and faster on CPU) when
-    the export made one; its own thresholds, if the export chose them, replace the fp32 ones."""
+    """`int8=True` loads the int8 build (`model-int8.onnx`, or `context-int8.onnx` and
+    `line-int8.onnx` for a two-tower model) when the export made one; its own thresholds, if the
+    export chose them, replace the fp32 ones."""
     import onnxruntime as ort
     from tokenizers import Tokenizer
 
@@ -105,14 +177,26 @@ def load(folder: str | pathlib.Path, threads: int = 4, int8: bool = False) -> Si
     opts = ort.SessionOptions()
     opts.intra_op_num_threads = threads
     opts.inter_op_num_threads = 1
-    name = "model-int8.onnx" if int8 else "model.onnx"
-    if not (folder / name).exists():
-        raise FileNotFoundError(f"{folder / name} not found")
-    session = ort.InferenceSession(str(folder / name), opts, providers=["CPUExecutionProvider"])
-    tokenizer = Tokenizer.from_file(str(folder / "tokenizer.json"))
     config = json.loads((folder / "config.json").read_text())
+    tt = config.get("arch") == "twotower"
+    graphs = ["context", "line"] if tt else ["model"]
+    sessions = []
+    for g in graphs:
+        name = f"{g}-int8.onnx" if int8 else f"{g}.onnx"
+        if not (folder / name).exists():
+            raise FileNotFoundError(f"{folder / name} not found")
+        sessions.append(ort.InferenceSession(str(folder / name), opts, providers=["CPUExecutionProvider"]))
+    tokenizer = Tokenizer.from_file(str(folder / "tokenizer.json"))
+    # The inputs are cut here, by length, never by the tokenizer: a tokenizer.json saved after a
+    # call with `max_length` keeps that truncation (a two-tower export kept the line's 96 tokens and
+    # cut every history to 96, exp-036).
+    tokenizer.no_truncation()
+    tokenizer.no_padding()
     if int8 and config.get("thresholds_int8"):
         config = {**config, "thresholds": config["thresholds_int8"]}
-    if config.get("input_version") != features.INPUT_VERSION:
-        raise ValueError(f"model expects {config.get('input_version')}, this code builds {features.INPUT_VERSION}")
-    return Sidechat(session, tokenizer, config)
+    want = features.TT_VERSION if tt else features.INPUT_VERSION
+    if config.get("input_version") != want:
+        raise ValueError(f"model expects {config.get('input_version')}, this code builds {want}")
+    if tt:
+        return TwoTower(sessions[0], sessions[1], tokenizer, config)
+    return Sidechat(sessions[0], tokenizer, config)

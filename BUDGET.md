@@ -61,6 +61,15 @@ estimates from run time, not read from billing.
 - 2026-11-19 · exp-032-side-latency · Latency beside Jev on this Mac, about 140 Jev requests · under $0.01 · under $0.01
 - 2026-11-19 · exp-033-side-latency-cloud · Latency on Pipecat Cloud-shaped CPU containers, two runs · under $0.50 · about $0.20
 - 2026-11-19 · exp-034-side-publish · Model, card and training rows to the Hub · under $0.50 · under $0.10
+- 2026-11-19 · exp-040-side-dataset · Generated corpora as a Parquet dataset for the Hub, in R2 · under $0.25 · about $0.01
+- 2026-11-19 · exp-051-side-dataset-upload · That dataset to the Hub, private · under $0.05 · under $0.01
+- 2026-11-19 · exp-035-side-gen-0.4 · Corpus gen-0.4, 7,296 conversations (round 6 data) · about $19 · about $20
+- 2026-11-19 · exp-036-side-tt-smoke · Two-tower and distillation smoke test, two exports · about $2 · about $1.50
+- 2026-11-19 · exp-042-side-round6 · Round 6 and the agent-1x students, chained (exp-037 to exp-049) · about $36 · about $38
+- 2026-11-19 · exp-050-side-round6-reexport · Exports and agent-1x timing again after the tokenizer fix, plus three parity probes · about $3.50 · about $3
+- 2026-11-19 · exp-051-side-students-r3 · Two-tower students taught by round 3, exports, timing · about $9 · about $13.50
+- 2026-11-19 · exp-052, exp-053 · The round 3 students again: seed 1, and teacher share 0.5 · about $18 · about $26
+- 2026-11-19 · exp-054-side-publish-rc0.2 · rc0.2 to the Hub: the agent-1x build and its rows · under $0.50 · under $0.05
 
 Note for Phase 3: member c costs 6 to 7 times member a, because its provider cached almost none of
 the shared prompt (about 7% of input tokens against 95% for a and b). At the plan's ~5,500
@@ -68,4 +77,4 @@ committee lines that is about $100 for c alone. Its batch API is half price.
 
 ## Total
 
-About $188 spent of the $1,000 cap. Nothing in flight.
+About $291 spent of the $1,000 cap. Nothing in flight.

@@ -1,0 +1,46 @@
+{
+ "exp": "exp-036-side-tt-smoke",
+ "app": "waystone-side-train",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-19T09:13:07+00:00",
+ "args": {
+  "corpus": "gen-0.1",
+  "encoders": "ettin-32m",
+  "epochs": 1,
+  "seed": 0,
+  "tag": "ttsmoke",
+  "test_corpus": "gen-0.1",
+  "extra_sets": "",
+  "score_only": false,
+  "text_turns": 0,
+  "max_len": 320,
+  "teacher": "side-r3-ettin-150m-s0",
+  "alpha": 0.8,
+  "arch": "twotower",
+  "ctx_len": 320,
+  "line_len": 96
+ },
+ "updated_at": "2026-11-19T09:18:29+00:00",
+ "elapsed_s": 322,
+ "trained": {
+  "ettin-32m": {
+   "best_epoch": 1,
+   "history": [
+    {
+     "epoch": 1,
+     "train_loss": 1.7475,
+     "dev_loss": 1.0644,
+     "secs": 63
+    }
+   ],
+   "temperatures": {
+    "intent": 0.85,
+    "respond": 0.95,
+    "unclear": 0.9
+   },
+   "secs": 89,
+   "error": null
+  }
+ }
+}
