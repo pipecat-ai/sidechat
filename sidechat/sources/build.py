@@ -13,7 +13,7 @@ from collections import Counter
 from datetime import UTC, datetime
 
 from sidechat.schema import SCHEMA_VERSION
-from sidechat.sources import ambient_bench, ami, duplex_mpe, slurp, suites
+from sidechat.sources import ambient_bench, ami, duplex_mpe, realreq, slurp, suites
 
 SETS = (
     "demo",
@@ -27,6 +27,7 @@ SETS = (
     "slurp",
     "slurp-stt",
     "slurp-stt-keyterm",
+    "realreq",
 )
 
 
@@ -105,6 +106,43 @@ def build_rows(which: str, limit: int = 0) -> tuple[list[dict], dict, dict]:
             "corpus_rows_sha256": manifest_in.get("rows_sha256"),
             "guide": manifest_in.get("guide"),
             "use": "per split",
+        }
+    elif which.startswith("realreq"):
+        # Real people's requests (SLURP's and CLINC150's text) said in AMI's unlabelled meetings.
+        import urllib.request
+
+        from sidechat.gen import world
+
+        def get(url: str) -> str:
+            with urllib.request.urlopen(url, timeout=120) as resp:
+                return resp.read().decode()
+
+        version, _, splits = which.partition(":")
+        if version not in realreq.VERSIONS:
+            raise ValueError(f"unknown realreq version {version!r}; choose from {sorted(realreq.VERSIONS)}")
+        sl = {
+            name: [
+                json.loads(x)
+                for x in get(realreq.SLURP_URL.format(commit=realreq.SLURP_COMMIT, split=name)).splitlines()
+                if x.strip()
+            ]
+            for name in ("train", "devel", "test")
+        }
+        clinc = json.loads(get(realreq.CLINC_URL.format(commit=realreq.CLINC_COMMIT)))
+        reqs = realreq.requests({"train": sl["train"], "devel": sl["devel"]}, clinc, sl["test"], version)
+        local = _fetch(ami.REPO, ami.REVISION, ami.FILES["all"])
+        records = [json.loads(x) for x in pathlib.Path(local).read_text().splitlines() if x.strip()]
+        names = sorted(n for n in world.AGENTS if n not in world.HELDOUT_AGENTS)
+        rows = realreq.convert(reqs, records, names, list(world.PEOPLE), version)
+        if splits:
+            rows = [r for r in rows if r["tags"]["split"] in set(splits.split("+"))]
+        source = {
+            "kind": "splice: real requests in AMI meetings",
+            "slurp": {"url": realreq.SLURP_URL, "commit": realreq.SLURP_COMMIT},
+            "clinc": {"url": realreq.CLINC_URL, "commit": realreq.CLINC_COMMIT},
+            "ami": {"repo": ami.REPO, "revision": ami.REVISION},
+            "licence": realreq.LICENCE,
+            "use": realreq.USE,
         }
     elif which in ("slurp", "slurp-stt", "slurp-stt-keyterm"):
         # SLURP's requests said in AMI's silence-test meetings (`sidechat/sources/slurp.py`). Test only.

@@ -3,6 +3,24 @@
 Newest first. `date · id · who · decision · why · reversible?`. "Agent default" means the agent
 chose it and Jon has not yet confirmed. Open questions are at the bottom.
 
+- 2026-11-20 · SD-26 · Jon · Release rc0.3 on `pipecat-ai/sidechat`: round 9's dev picks replace
+  both builds, `side-r9-ettin-150m-s1` at the root (fp32 only) and `side-r9tt-ettin-32m-s1` in
+  `agent-1x/`. They fail round 8's gate margins only on holds of people's talk (AMI about 1% from
+  0.1%, the Ambient Bench 2 to 3% from 1%, never answered outright), in exchange for holding 87 to
+  91% of real unnamed requests (rc0.2: 17% and 4%; Jev 82%). The card states the trade. Round 3's
+  int8 file leaves the root, since round 9's int8 failed parity. · Jon: "Ship rc0.3", after the
+  round 9 report. · Reversible: tag `rc0.2` keeps the old builds.
+
+- 2026-11-20 · SD-25 · Jon ("Yes, fix it") · Jobs that launch other jobs (the round job,
+  `train_run`, `latency_run`, the generator's `run`) are `nonpreemptible`, and the round job and
+  `train_run` record the calls they spawn so a restart waits on them instead of launching them
+  again (`sidechat/lib/resume.py`). · exp-060's logs: Modal preempted the round's job an hour in and
+  restarted it on the same input, and it trained both teachers and the students a second time
+  (about $17 wasted); round 8's teachers ran twice too. Modal charges 3x for a non-preemptible
+  container's CPU and memory, a few cents for these; GPU jobs cannot be non-preemptible and do not
+  need to be. Checked on Modal with a throwaway job: a running or finished call is reattached, a
+  cancelled one is launched afresh. · Reversible: drop the flag.
+
 - 2026-11-19 · SD-24 · agent default · Pass the agent's name (and any aliases) to the
   speech-to-text service as a keyterm; do not add other spellings of the name as aliases at runtime.
   · exp-058: Deepgram's keyterm took named requests answered as heard from 13% to 74% (default

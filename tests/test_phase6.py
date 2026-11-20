@@ -111,3 +111,47 @@ def test_slurp_splices_match_between_written_and_heard():
         assert w["request"]["agent"]["name"] == "Olly"
     assert written["1"]["label"]["expect"] == "respond" and written["1"]["tags"]["named"] == "1"
     assert written["2"]["label"]["expect"] == "wait" and written["2"]["label"]["respond"] == 0.5
+
+
+def test_real_requests_are_formatted_and_kept_off_the_test_split():
+    from sidechat.sources import realreq
+
+    assert realreq.formatted("what's the weather like in london") == "What's the weather like in london?"
+    assert realreq.formatted("i'm hungry order me a pizza") == "I'm hungry order me a pizza."
+    assert (
+        realreq.after_name("How far is it?") == "how far is it?"
+        and realreq.after_name("I need a cab.") == "I need a cab."
+    )
+    slurp = {
+        "train": [{"slurp_id": 1, "sentence": "olly set an alarm"}, {"slurp_id": 2, "sentence": "play some jazz"}],
+        "devel": [{"slurp_id": 3, "sentence": "what time is it"}],
+    }
+    clinc = {"train": [["tell me a joke", "tell_joke"]], "val": [["how do i say hi in french", "translate"]]}
+    got = realreq.requests(slurp, clinc, [{"sentence": "Play some jazz!"}])
+    assert {r["id"] for r in got} == {"slurp-1", "slurp-3", "clinc-train-0", "clinc-val-0"}  # the test request is out
+    assert {r["split"] for r in got if r["source"] == "slurp"} == {"train", "dev"}
+
+
+def test_hold_bar_on_real_lines_moves_the_thresholds():
+    from sidechat.train.evaluate import choose_thresholds
+
+    def p(respond: float, open_: float = 0.0) -> dict:
+        return {
+            "respond": respond,
+            "intent": {"direct": 0, "indirect": 0, "open": open_, "about": 0, "other": 1 - open_},
+        }
+
+    rows, preds = [], {}
+    for i in range(40):  # held right at 0.42 (wait), quiet at 0.1, answered at 0.95
+        for exp_, pr in (("wait", p(0.42)), ("ignore", p(0.1)), ("respond", p(0.95))):
+            rid = f"g/{exp_}{i}"
+            rows.append({"row_id": rid, "label": {"expect": exp_}})
+            preds[rid] = pr
+    real = []
+    for i in range(100):  # real people's lines, 5 of them near the hold threshold
+        rid = f"real/{i}"
+        real.append({"row_id": rid, "label": {"expect": "ignore"}})
+        preds[rid] = p(0.41 if i < 5 else 0.05)
+    loose = choose_thresholds(preds, rows, real_rows=real)
+    tight = choose_thresholds(preds, rows, real_rows=real, max_held_real=0.02)
+    assert loose["real_held"] == 5 and tight["real_held"] <= 2

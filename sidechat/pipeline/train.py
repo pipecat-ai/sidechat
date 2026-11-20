@@ -60,7 +60,8 @@ def _secrets() -> list:
 
 def _corpus_rows(s3, corpus: str, splits: set[str], safe_only: bool) -> list[dict]:
     """Rows of the named corpora in these splits. `ami-silent` is the AMI meetings without addressee
-    labels (`sidechat/sources/ami.py`). Generated rows take their label from their kind under the
+    labels (`sidechat/sources/ami.py`); `realreq` is real people's requests said in those meetings
+    (`sidechat/sources/realreq.py`). Generated rows take their label from their kind under the
     current guide, so a guide change reaches corpora written before it."""
     from sidechat import guide
     from sidechat.lib import r2
@@ -68,8 +69,8 @@ def _corpus_rows(s3, corpus: str, splits: set[str], safe_only: bool) -> list[dic
 
     rows = []
     for gen_id in [g for g in corpus.split(",") if g]:
-        if gen_id == "ami-silent":
-            got, _, _ = build.build_rows("ami-silent")
+        if gen_id == "ami-silent" or gen_id.startswith("realreq"):
+            got, _, _ = build.build_rows(gen_id)
             rows.extend(r for r in got if r["tags"]["split"] in splits)
             continue
         for r in r2.get_jsonl(s3, f"{r2.PREFIX}/corpus/{gen_id}/rows.jsonl") or []:
@@ -345,7 +346,7 @@ SCORE_SETS = ("pilot-0.4", "pilot-0.4@anonymous", "demo", "duplex", "ambient", "
 @app.function(
     image=image, gpu="H100", cpu=8.0, memory=65536, timeout=3 * 3600, secrets=_secrets(), volumes={"/cache": hf_cache}
 )
-def score(run_id: str, corpus: str, test_corpus: str = "", extra_sets: str = "") -> dict:
+def score(run_id: str, corpus: str, test_corpus: str = "", extra_sets: str = "", max_held_real: float = 0.0) -> dict:
     """Score on every set. `test_corpus` (default: `corpus`) fixes which corpora's test split is
     "generated test", so rounds compare on the same lines; `extra_sets` are more `build_rows` names."""
     from sidechat import conditions
@@ -371,7 +372,7 @@ def score(run_id: str, corpus: str, test_corpus: str = "", extra_sets: str = "")
     ]
     real = [conditions.apply(r, "anonymous") for r in build.build_rows("ami-silent:dev")[0]]
     dev_preds = run_on(dev + real, "dev@anonymous")
-    t = E.choose_thresholds(dev_preds, dev, real_rows=real)
+    t = E.choose_thresholds(dev_preds, dev, real_rows=real, max_held_real=max_held_real)
 
     def jev_scores(rows_id: str) -> dict:
         got = r2.get_jsonl(s3, f"{r2.PREFIX}/baselines/jev-demo-0.1/scores/{rows_id}.jsonl") or []
@@ -404,6 +405,8 @@ def score(run_id: str, corpus: str, test_corpus: str = "", extra_sets: str = "")
         entry = E.set_card(rows, preds, t, jev_scores(manifest["rows_id"]) or None)
         if which.startswith("pilot"):
             entry["by_kind"] = E.sliced(rows, preds, t, "kind", jev_scores(manifest["rows_id"]) or None, min_n=4)
+        elif which.startswith(("slurp", "corpus:")):  # named against unnamed requests; name-as-a-word lines
+            entry["by_kind"] = E.sliced(rows, preds, t, "kind", jev_scores(manifest["rows_id"]) or None, min_n=1)
         if which == "duplex":
             entry["by_condition_event"] = E.sliced(
                 [{**r, "tags": {**r["tags"], "ce": r["tags"]["condition"] + "/" + r["tags"]["event"]}} for r in rows],
@@ -475,6 +478,7 @@ def score_sets(run_id: str, sets: str, names: str = "") -> dict:
     timeout=10 * 3600,
     secrets=_secrets(),
     retries=modal.Retries(max_retries=1, initial_delay=60.0),
+    nonpreemptible=True,  # it launches the GPU jobs (sidechat/lib/resume.py)
 )
 def run(
     exp: str,
@@ -496,6 +500,7 @@ def run(
     line_len: int = 96,
     drop_kinds: str = "",
     people_only: float = 0.0,
+    max_held_real: float = 0.0,
 ) -> dict:
     """Train one model per encoder in parallel, then score each. `score_only` rescores models
     already trained under these run ids (after a change to scoring). `text_turns`, `max_len`,
@@ -504,7 +509,7 @@ def run(
     import traceback
     from datetime import UTC, datetime
 
-    from sidechat.lib import r2
+    from sidechat.lib import r2, resume
     from sidechat.train import report
 
     s3 = r2.client()
@@ -534,8 +539,14 @@ def run(
             "line_len": line_len,
             "drop_kinds": drop_kinds,
             "people_only": people_only,
+            "max_held_real": max_held_real,
         },
     }
+    kept = resume.carried(r2.get_json(s3, f"{out}/status.json"), status["args"])
+    if kept:
+        status.update(started_at=kept["started_at"], restarts=kept["restarts"])
+        status["restarted_at"] = datetime.now(UTC).isoformat(timespec="seconds")
+    status["calls"] = kept.get("calls", {})
 
     def save(**changes) -> None:
         status.update(changes)
@@ -543,6 +554,7 @@ def run(
         status["elapsed_s"] = round(time.monotonic() - started)
         r2.put_json(s3, f"{out}/status.json", status)
 
+    spawner = resume.Calls(status["calls"], save)
     try:
         save()
         names = [e for e in encoders.split(",") if e]
@@ -551,7 +563,9 @@ def run(
             {}
             if score_only
             else {
-                e: train.spawn(
+                e: spawner.spawn(
+                    f"train/{e}",
+                    train,
                     runs[e],
                     corpus,
                     e,
@@ -590,7 +604,9 @@ def run(
         save(stage="scoring")
         scored = {}
         score_calls = {
-            e: score.spawn(runs[e], corpus, test_corpus, extra_sets) for e in names if "error" not in trained[e]
+            e: spawner.spawn(f"score/{e}", score, runs[e], corpus, test_corpus, extra_sets, max_held_real)
+            for e in names
+            if "error" not in trained[e]
         }
         for e, c in score_calls.items():
             try:

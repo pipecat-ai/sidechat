@@ -1,0 +1,44 @@
+experiment_id: exp-060-side-round9
+status: done (2026-11-20)
+track: sidechat (round 9, both builds)
+what: >
+  Round 8 rebalanced (Jon: "Rebalance first"). Round 8 held 91-95% of real unnamed requests but held
+  about 1.5 points more of people's own talk and answered more of Duplex-MPE's lines for others
+  outright; dev could not tell the 150M seeds apart and picked the one over item 2's bar. Changes:
+  (1) realreq-0.2: 5,000 train and 1,000 dev requests (from 12,000 and 2,000), 45% unnamed and held,
+  25% naming the agent, 30% naming a person (from 15%). (2) Thresholds hold at most 0.2% of AMI's
+  real dev lines (choose_thresholds max_held_real; round 3 holds 0.05% there, round 8 0.26-0.72%).
+  (3) Seeds are picked on dev with real people's dev lines left alone counted. Same recipe otherwise
+  (sidechat/pipeline/round8.py with tag r9). Gates against the released builds as in round 8.
+forecast block:
+  campaign: exp-060-side-round9
+  decision it enables: whether rc0.3 can replace either build
+  token forecast: none
+  Modal forecast: 2 H100 runs of Ettin-150M (about 1 h each with scoring), 2 H100 runs of the 32M student (about 1.3 h each), 3 exports, one latency job
+  retry cap: 1 per training run
+  spend cap: $60
+  stop condition: summary in R2; nothing is published
+  approved by Jon on: 2026-11-20 ("Rebalance first")
+forecast_usd: about $28
+step experiments: exp-060-side-round9-train-r9-s0, -train-r9-s1, -train-r9tt-s0, -train-r9tt-s1, -export-<run>, -latency
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round8::run --exp exp-060-side-round9 --tag r9
+  --realreq realreq-0.2 --max-held-real 0.002
+results: uv run python -m sidechat.pipeline.results exp-060-side-round9
+actual_usd: about $35 by run times (about 7 H100-hours with CPU and memory; about $17 of it the duplicate runs below)
+incident: >
+  Modal preempted the round's job at 10:35 UTC (and a teacher's train_run at 10:44) and restarted it on the
+  same input. The restarted job trained both teachers again and launched the students again, so the
+  first teachers' and the first students' GPU time (about $17) is wasted; the second runs write last and
+  are the results. Fixed for later runs (sidechat/lib/resume.py, SD-25); this run keeps the old code.
+result:
+  picks: "dev picks side-r9-ettin-150m-s1 and side-r9tt-ettin-32m-s1"
+  slurp_unnamed_held_heard: "150M 93.5% / 90.9%, 32M 81.1% / 86.6% (released 16.7% and 3.6%, Jev 82.3%; round 8 91-95%)"
+  duplex_others_outright: "150M 0.16% / 0.21% (round 3 0.22%), 32M 0.26% / 0.33% (rc0.2 0.26%); bar 0.4%"
+  ami_labelled_held: "150M 1.30% / 1.01% (round 3 0.11%), 32M 0.92% / 1.33% (rc0.2 0.01%); Jev 14.8%"
+  ambient_held: "150M 2.7% / 2.8% (round 3 1.1%), 32M 2.2% / 2.1% (rc0.2 1.0%); Jev 14.6%"
+  duplex_unnamed_answered: "150M 26.6% / 29.3% (round 3 38.8%, Jev 26.6%), 32M 6.5% / 10.2% (rc0.2 10.7%)"
+  scorecard_items: "150M 11 / 12 (round 3 12), 32M 10 / 11 (rc0.2 10)"
+  gates: "none ships by round 8's margins; every shortfall is holds on people's lines (Ambient, AMI), none outright"
+  report: reports/2026-11-20-side-round9.md

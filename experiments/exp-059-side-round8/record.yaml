@@ -1,0 +1,40 @@
+experiment_id: exp-059-side-round8
+status: done (2026-11-20); actual about $30
+track: sidechat (round 8, both builds)
+what: >
+  Real people's requests in training, for item 5. On real speech both builds ignore most unnamed
+  requests an assistant could do (exp-057: 82-97% missed; Jev holds 82%). New corpus `realreq`
+  (sidechat/sources/realreq.py): 12,000 train and 2,000 dev requests from SLURP's text (train and
+  devel splits, CC BY 4.0; test-split requests left out) and CLINC150's in-scope queries (CC BY 3.0),
+  each said at a seeded point in one of AMI's unlabelled training or dev meetings (never the 22
+  labelled meetings or the silence test), formatted as a speech-to-text service writes. Labels by
+  guide 0.4: 60% unnamed (open_request, hold), 25% with the agent's name added (respond), 15% with a
+  person's name added (question_to_named_person, ignore). Teacher: round 3's recipe (Ettin-150M, 2
+  epochs) on round 3's corpus plus realreq, seeds 0 and 1; the better on dev teaches two-tower
+  Ettin-32M students (the rc0.2 student's corpus plus realreq, alpha 0.8, seeds 0 and 1). Exports,
+  agent-1x timing, and gates against the released builds (student_gate.gate_default). Disclosed: the
+  SLURP-in-AMI test uses the same splicing and SLURP wording (other utterances), so it is a friendly
+  test; Duplex-MPE's unnamed requests and the pilot are the unfriendly checks.
+forecast block:
+  campaign: exp-059-side-round8
+  decision it enables: whether rc0.3 can replace either build
+  token forecast: none
+  Modal forecast: 2 H100 runs of Ettin-150M (about 2 h each with scoring), 2 H100 runs of the 32M student (about 1.2 h each), 3 exports, one latency job
+  retry cap: 1 per training run
+  spend cap: $60
+  stop condition: summary in R2; nothing is published
+  approved by Jon on: 2026-11-19 ("do it", to unnamed requests taught with real people's wording)
+forecast_usd: about $32
+step experiments: exp-059-side-round8-train-r8-s0, -train-r8-s1, -train-r8tt-s0, -train-r8tt-s1, -export-<run>, -latency
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round8::run --exp exp-059-side-round8
+results: uv run python -m sidechat.pipeline.results exp-059-side-round8
+actual_usd: about $30 (each teacher's job ran twice, most likely after Modal preempted the round's job, SD-25; the first attempts' GPU time is not recorded)
+result:
+  slurp_unnamed_held_heard: "150M 95.3% / 95.2%, 32M 90.9% / 91.0% (released 16.7% and 3.6%, Jev 82.3%)"
+  duplex_unnamed_answered: "150M 46.5% / 39.1% (round 3 38.8%), 32M 11.5% / 9.7% (rc0.2 10.7%)"
+  costs: "holds on people's lines about +1.5 points (AMI, Ambient); Duplex-MPE others answered outright 0.40% / 0.56% (round 3 0.22%); 32M pilot -1.1 to -1.9"
+  picks: "dev picks the 150M seed 1 (by 3 lines of 22,841), which fails item 2; 32M seed 0, which meets 11 scorecard items (rc0.2 10)"
+  verdict: "default build not ready; 32M seed 0 a candidate for rc0.3's agent-1x"
+  report: reports/2026-11-20-side-round8.md

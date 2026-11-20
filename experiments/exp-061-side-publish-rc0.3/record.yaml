@@ -1,0 +1,41 @@
+experiment_id: exp-061-side-publish-rc0.3
+status: done (2026-11-20); actual under $0.05
+track: sidechat (release)
+what: >
+  Release rc0.3 on pipecat-ai/sidechat (public). Round 9's two dev picks replace rc0.2's builds:
+  side-r9-ettin-150m-s1 at the repo root (fp32 only; its int8 build failed parity, so round 3's
+  model-int8.onnx is removed in the same commit) and side-r9tt-ettin-32m-s1 in agent-1x/ (fp32).
+  Each with its tokenizer, config, MANIFEST.json and the rows it was trained on (train and dev,
+  rebuilt by the training job's own code and checked against the run's train_rows; these now include
+  realreq-0.2, SLURP text CC BY 4.0 and CLINC150 CC BY 3.0, attributed on the card). Two publish jobs,
+  root first, then agent-1x with tag rc0.3. rc0.2 stays at its tag; Pipecat's download pinned at
+  c9b59be is unaffected. Test-only sets are never uploaded.
+forecast block:
+  campaign: exp-061-side-publish-rc0.3
+  decision it enables: rc0.3 can be tried from the Hub
+  token forecast: none
+  Modal forecast: two 4-core CPU containers, a few minutes each (240k and 426k rows, about 0.9 GB uploaded)
+  retry cap: 1
+  spend cap: $2
+  stop condition: tagged commit on the Hub, report in R2
+  approved by Jon on: 2026-11-20 ("Ship rc0.3")
+forecast_usd: under $0.50
+step experiments: exp-061-side-publish-rc0.3-root, exp-061-side-publish-rc0.3-agent-1x
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.publish::run --exp exp-061-side-publish-rc0.3-root
+  --run-id side-r9-ettin-150m-s1 --no-private;
+  uv run modal run --detach -m sidechat.pipeline.publish::run --exp exp-061-side-publish-rc0.3-agent-1x
+  --run-id side-r9tt-ettin-32m-s1 --subdir agent-1x --tag rc0.3 --no-private
+results: uv run python -m sidechat.pipeline.results exp-061-side-publish-rc0.3-agent-1x
+checks before: >
+  side-r9-ettin-150m-s1's export: same decision as PyTorch on 283/283 parity lines, largest probability
+  difference 6e-06. side-r9tt-ettin-32m-s1's export (its export report was overwritten by seed 0's;
+  the names are fixed): run locally, same decision as the stored PyTorch predictions on 1,500/1,500
+  sampled AMI lines, largest respond difference 0.006 (GPU against CPU).
+actual_usd: under $0.05
+result:
+  hub: "pipecat-ai/sidechat: root at commit 05704f44 (model-int8.onnx removed), agent-1x/ at f5851382, then the card's example output corrected at dafacac7; tag rc0.3 points to dafacac75717d314d38643c103a6928e4fc9cc64 (moved there from f5851382 minutes after it was made). rc0.2 still points to 08c9b8ce"
+  rows: "root data: train 240,069 (the run's own count; realreq-0.2 5,000), dev 26,631; agent-1x/data: train 425,828 (the run's own count), dev 44,624"
+  checked: "rc0.3 downloaded from the Hub: every graph, tokenizer and config matches its MANIFEST sha256; the root loads as the single-tower model and answers the card's example 0.97 respond, agent-1x loads as TwoTower and answers 0.98 respond; no model-int8.onnx at the root"
+  took: "about 1.5 minutes per publish job on one CPU container"

@@ -1,0 +1,1290 @@
+{
+ "exp": "exp-060-side-round9",
+ "teacher": "side-r9-ettin-150m-s1",
+ "student_pick": "side-r9tt-ettin-32m-s1",
+ "models": {
+  "side-r3-ettin-150m-s0": {
+   "generated": {
+    "value": 0.9895,
+    "k": 21009,
+    "n": 21233,
+    "ci95": [
+     0.988,
+     0.9907
+    ]
+   },
+   "duplex": {
+    "value": 0.9667,
+    "k": 50592,
+    "n": 52336,
+    "ci95": [
+     0.9651,
+     0.9682
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0022,
+    "k": 97,
+    "n": 44528,
+    "ci95": [
+     0.0018,
+     0.0027
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0086,
+    "k": 382,
+    "n": 44528,
+    "ci95": [
+     0.0078,
+     0.0095
+    ]
+   },
+   "explicit_t": {
+    "value": 0.995,
+    "k": 1990,
+    "n": 2000,
+    "ci95": [
+     0.9908,
+     0.9973
+    ]
+   },
+   "implicit_t": {
+    "value": 0.3875,
+    "k": 775,
+    "n": 2000,
+    "ci95": [
+     0.3664,
+     0.409
+    ]
+   },
+   "implicit_held": {
+    "value": 0.1325,
+    "k": 265,
+    "n": 2000,
+    "ci95": [
+     0.1183,
+     0.1481
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9872,
+    "k": 15591,
+    "n": 15793,
+    "ci95": [
+     0.9853,
+     0.9888
+    ]
+   },
+   "ami": {
+    "value": 0.9989,
+    "k": 8865,
+    "n": 8875,
+    "ci95": [
+     0.9979,
+     0.9994
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8741,
+    "k": 236,
+    "n": 270,
+    "ci95": [
+     0.8292,
+     0.9085
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0015,
+    "k": 12,
+    "n": 8202,
+    "ci95": [
+     0.0008,
+     0.0026
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 0.8524590163934426,
+    "k": 52,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.18151571164510166,
+    "k": 491,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0018484288354898336,
+    "k": 5,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.13114754098360656,
+    "k": 8,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.16678994082840237,
+    "k": 451,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0029585798816568047,
+    "k": 8,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7377049180327869,
+    "k": 45,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.1656192236598891,
+    "k": 448,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0036968576709796672,
+    "k": 10,
+    "n": 2705
+   }
+  },
+  "side-r9-ettin-150m-s0": {
+   "generated": {
+    "value": 0.9895,
+    "k": 21011,
+    "n": 21233,
+    "ci95": [
+     0.9881,
+     0.9908
+    ]
+   },
+   "duplex": {
+    "value": 0.9633,
+    "k": 50417,
+    "n": 52336,
+    "ci95": [
+     0.9617,
+     0.9649
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0016,
+    "k": 73,
+    "n": 44528,
+    "ci95": [
+     0.0013,
+     0.0021
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0078,
+    "k": 346,
+    "n": 44528,
+    "ci95": [
+     0.007,
+     0.0086
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9965,
+    "k": 1993,
+    "n": 2000,
+    "ci95": [
+     0.9928,
+     0.9983
+    ]
+   },
+   "implicit_t": {
+    "value": 0.266,
+    "k": 532,
+    "n": 2000,
+    "ci95": [
+     0.2471,
+     0.2858
+    ]
+   },
+   "implicit_held": {
+    "value": 0.118,
+    "k": 236,
+    "n": 2000,
+    "ci95": [
+     0.1046,
+     0.1329
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9688,
+    "k": 15300,
+    "n": 15793,
+    "ci95": [
+     0.966,
+     0.9714
+    ]
+   },
+   "ami": {
+    "value": 0.987,
+    "k": 8760,
+    "n": 8875,
+    "ci95": [
+     0.9845,
+     0.9892
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8667,
+    "k": 234,
+    "n": 270,
+    "ci95": [
+     0.8209,
+     0.9021
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.016,
+    "k": 131,
+    "n": 8202,
+    "ci95": [
+     0.0135,
+     0.0189
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0001,
+    "k": 1,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0007
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9689463955637708,
+    "k": 2621,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0003696857670979667,
+    "k": 1,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.11475409836065574,
+    "k": 7,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.9352810650887574,
+    "k": 2529,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0,
+    "k": 0,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7868852459016393,
+    "k": 48,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.9364140480591497,
+    "k": 2533,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0007393715341959334,
+    "k": 2,
+    "n": 2705
+   }
+  },
+  "side-r9-ettin-150m-s1": {
+   "generated": {
+    "value": 0.9895,
+    "k": 21009,
+    "n": 21233,
+    "ci95": [
+     0.988,
+     0.9907
+    ]
+   },
+   "duplex": {
+    "value": 0.9637,
+    "k": 50438,
+    "n": 52336,
+    "ci95": [
+     0.9621,
+     0.9653
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0021,
+    "k": 93,
+    "n": 44528,
+    "ci95": [
+     0.0017,
+     0.0026
+    ]
+   },
+   "duplex_held": {
+    "value": 0.008,
+    "k": 355,
+    "n": 44528,
+    "ci95": [
+     0.0072,
+     0.0088
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9955,
+    "k": 1991,
+    "n": 2000,
+    "ci95": [
+     0.9915,
+     0.9976
+    ]
+   },
+   "implicit_t": {
+    "value": 0.2935,
+    "k": 587,
+    "n": 2000,
+    "ci95": [
+     0.274,
+     0.3138
+    ]
+   },
+   "implicit_held": {
+    "value": 0.1325,
+    "k": 265,
+    "n": 2000,
+    "ci95": [
+     0.1183,
+     0.1481
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9689,
+    "k": 15302,
+    "n": 15793,
+    "ci95": [
+     0.9661,
+     0.9715
+    ]
+   },
+   "ami": {
+    "value": 0.9899,
+    "k": 8785,
+    "n": 8875,
+    "ci95": [
+     0.9876,
+     0.9917
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8778,
+    "k": 237,
+    "n": 270,
+    "ci95": [
+     0.8333,
+     0.9116
+    ]
+   },
+   "demo": {
+    "value": 1.0,
+    "k": 48,
+    "n": 48,
+    "ci95": [
+     0.9259,
+     1.0
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0112,
+    "k": 92,
+    "n": 8202,
+    "ci95": [
+     0.0092,
+     0.0137
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0001,
+    "k": 1,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0007
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9456561922365989,
+    "k": 2558,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0011090573012939,
+    "k": 3,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.08196721311475409,
+    "k": 5,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.9090236686390533,
+    "k": 2458,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0007396449704142012,
+    "k": 2,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7868852459016393,
+    "k": 48,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.9094269870609981,
+    "k": 2460,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0014787430683918669,
+    "k": 4,
+    "n": 2705
+   }
+  },
+  "side-r6ttr3t-ettin-32m-s0": {
+   "generated": {
+    "value": 0.9849,
+    "k": 20913,
+    "n": 21233,
+    "ci95": [
+     0.9832,
+     0.9865
+    ]
+   },
+   "duplex": {
+    "value": 0.9563,
+    "k": 50050,
+    "n": 52336,
+    "ci95": [
+     0.9545,
+     0.958
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0026,
+    "k": 115,
+    "n": 44528,
+    "ci95": [
+     0.0022,
+     0.0031
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0079,
+    "k": 352,
+    "n": 44528,
+    "ci95": [
+     0.0071,
+     0.0088
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9865,
+    "k": 1973,
+    "n": 2000,
+    "ci95": [
+     0.9804,
+     0.9907
+    ]
+   },
+   "implicit_t": {
+    "value": 0.107,
+    "k": 214,
+    "n": 2000,
+    "ci95": [
+     0.0942,
+     0.1213
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0745,
+    "k": 149,
+    "n": 2000,
+    "ci95": [
+     0.0638,
+     0.0868
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9844,
+    "k": 15546,
+    "n": 15793,
+    "ci95": [
+     0.9823,
+     0.9862
+    ]
+   },
+   "ami": {
+    "value": 0.9999,
+    "k": 8874,
+    "n": 8875,
+    "ci95": [
+     0.9994,
+     1.0
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8741,
+    "k": 236,
+    "n": 270,
+    "ci95": [
+     0.8292,
+     0.9085
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0001,
+    "k": 1,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0007
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 0.639344262295082,
+    "k": 39,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.03031423290203327,
+    "k": 82,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0,
+    "k": 0,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.06557377049180328,
+    "k": 4,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.03550295857988166,
+    "k": 96,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0003698224852071006,
+    "k": 1,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.5901639344262295,
+    "k": 36,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.036598890942698706,
+    "k": 99,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0011090573012939,
+    "k": 3,
+    "n": 2705
+   }
+  },
+  "side-r9tt-ettin-32m-s0": {
+   "generated": {
+    "value": 0.9863,
+    "k": 20942,
+    "n": 21233,
+    "ci95": [
+     0.9846,
+     0.9878
+    ]
+   },
+   "duplex": {
+    "value": 0.9549,
+    "k": 49977,
+    "n": 52336,
+    "ci95": [
+     0.9531,
+     0.9567
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0026,
+    "k": 115,
+    "n": 44528,
+    "ci95": [
+     0.0022,
+     0.0031
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0065,
+    "k": 288,
+    "n": 44528,
+    "ci95": [
+     0.0058,
+     0.0073
+    ]
+   },
+   "explicit_t": {
+    "value": 0.965,
+    "k": 1930,
+    "n": 2000,
+    "ci95": [
+     0.956,
+     0.9722
+    ]
+   },
+   "implicit_t": {
+    "value": 0.0645,
+    "k": 129,
+    "n": 2000,
+    "ci95": [
+     0.0545,
+     0.0761
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0745,
+    "k": 149,
+    "n": 2000,
+    "ci95": [
+     0.0638,
+     0.0868
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9723,
+    "k": 15355,
+    "n": 15793,
+    "ci95": [
+     0.9696,
+     0.9747
+    ]
+   },
+   "ami": {
+    "value": 0.9906,
+    "k": 8792,
+    "n": 8875,
+    "ci95": [
+     0.9884,
+     0.9924
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8741,
+    "k": 236,
+    "n": 270,
+    "ci95": [
+     0.8292,
+     0.9085
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0079,
+    "k": 65,
+    "n": 8202,
+    "ci95": [
+     0.0062,
+     0.0101
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0001,
+    "k": 1,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0007
+    ]
+   },
+   "slurp_named_written": {
+    "value": 0.8852459016393442,
+    "k": 54,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.8635859519408503,
+    "k": 2336,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.005914972273567467,
+    "k": 16,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.08196721311475409,
+    "k": 5,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.8110207100591716,
+    "k": 2193,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0007396449704142012,
+    "k": 2,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7049180327868853,
+    "k": 43,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.8088724584103512,
+    "k": 2188,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0014787430683918669,
+    "k": 4,
+    "n": 2705
+   }
+  },
+  "side-r9tt-ettin-32m-s1": {
+   "generated": {
+    "value": 0.985,
+    "k": 20914,
+    "n": 21233,
+    "ci95": [
+     0.9833,
+     0.9865
+    ]
+   },
+   "duplex": {
+    "value": 0.9567,
+    "k": 50072,
+    "n": 52336,
+    "ci95": [
+     0.955,
+     0.9585
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0033,
+    "k": 146,
+    "n": 44528,
+    "ci95": [
+     0.0028,
+     0.0039
+    ]
+   },
+   "duplex_held": {
+    "value": 0.007,
+    "k": 312,
+    "n": 44528,
+    "ci95": [
+     0.0063,
+     0.0078
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9965,
+    "k": 1993,
+    "n": 2000,
+    "ci95": [
+     0.9928,
+     0.9983
+    ]
+   },
+   "implicit_t": {
+    "value": 0.1025,
+    "k": 205,
+    "n": 2000,
+    "ci95": [
+     0.09,
+     0.1166
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0755,
+    "k": 151,
+    "n": 2000,
+    "ci95": [
+     0.0647,
+     0.0879
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9749,
+    "k": 15396,
+    "n": 15793,
+    "ci95": [
+     0.9723,
+     0.9772
+    ]
+   },
+   "ami": {
+    "value": 0.9867,
+    "k": 8757,
+    "n": 8875,
+    "ci95": [
+     0.9841,
+     0.9889
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8667,
+    "k": 234,
+    "n": 270,
+    "ci95": [
+     0.8209,
+     0.9021
+    ]
+   },
+   "demo": {
+    "value": 1.0,
+    "k": 48,
+    "n": 48,
+    "ci95": [
+     0.9259,
+     1.0
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0143,
+    "k": 117,
+    "n": 8202,
+    "ci95": [
+     0.0119,
+     0.0171
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9101663585951941,
+    "k": 2462,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.009611829944547136,
+    "k": 26,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.09836065573770492,
+    "k": 6,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.8664940828402367,
+    "k": 2343,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.009245562130177515,
+    "k": 25,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7868852459016393,
+    "k": 48,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.8658040665434381,
+    "k": 2342,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.009981515711645102,
+    "k": 27,
+    "n": 2705
+   }
+  },
+  "jev": {
+   "duplex": {
+    "value": 0.8311,
+    "k": 43495,
+    "n": 52336,
+    "ci95": [
+     0.8278,
+     0.8343
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0041,
+    "k": 182,
+    "n": 44528,
+    "ci95": [
+     0.0035,
+     0.0047
+    ]
+   },
+   "duplex_held": {
+    "value": 0.1601,
+    "k": 7131,
+    "n": 44528,
+    "ci95": [
+     0.1568,
+     0.1636
+    ]
+   },
+   "ambient": {
+    "value": 0.8535,
+    "k": 13479,
+    "n": 15793,
+    "ci95": [
+     0.8479,
+     0.8589
+    ]
+   },
+   "ami": {
+    "value": 0.8522,
+    "k": 7563,
+    "n": 8875,
+    "ci95": [
+     0.8446,
+     0.8594
+    ]
+   },
+   "pilot": {
+    "value": 0.7778,
+    "k": 210,
+    "n": 270,
+    "ci95": [
+     0.7245,
+     0.8233
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9915,
+    "k": 1983,
+    "n": 2000,
+    "ci95": [
+     0.9864,
+     0.9947
+    ]
+   },
+   "implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "implicit_held": {
+    "value": 0.732,
+    "k": 1464,
+    "n": 2000,
+    "ci95": [
+     0.7122,
+     0.751
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.1348,
+    "k": 1106,
+    "n": 8202,
+    "ci95": [
+     0.1276,
+     0.1424
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9012939001848429,
+    "k": 2438,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0011090573012939,
+    "k": 3,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.4918032786885246,
+    "k": 30,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.8232248520710059,
+    "k": 2226,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0003698224852071006,
+    "k": 1,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7377049180327869,
+    "k": 45,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.8207024029574861,
+    "k": 2220,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0011090573012939,
+    "k": 3,
+    "n": 2705
+   }
+  }
+ },
+ "speed": {
+  "side-r6ttr3t-ettin-32m-s0": {
+   "build": "fp32",
+   "memory": "490",
+   "full": "15",
+   "cold": "117",
+   "full_ms": 14.7
+  },
+  "side-r9tt-ettin-32m-s0": {
+   "build": "fp32",
+   "memory": "490",
+   "full": "10",
+   "cold": "90",
+   "full_ms": 9.7
+  },
+  "side-r9tt-ettin-32m-s1": {
+   "build": "fp32",
+   "memory": "487",
+   "full": "14",
+   "cold": "108",
+   "full_ms": 13.5
+  },
+  "jev": {
+   "build": "API",
+   "full": "49"
+  }
+ },
+ "gates": {
+  "side-r9-ettin-150m-s1": {
+   "ships": false,
+   "why": "unnamed requests held as heard 90.9% (was 16.7%); Duplex-MPE right -0.30 points; **fails:** Ambient Bench right -1.83 points; **fails:** AMI right -0.90 points; generated test right +0.00 points; pilot right +0.37 points; named requests answered +0.05 points; SLURP named answered (keyterm) +4.92 points; Duplex-MPE others answered outright -0.01 points; Duplex-MPE others held -0.06 points; AMI as heard, held +0.97 points; Duplex-MPE others answered outright 0.21% (bar 0.4%)"
+  },
+  "side-r9tt-ettin-32m-s0": {
+   "ships": false,
+   "why": "unnamed requests held as heard 81.1% (was 3.6%); Duplex-MPE right -0.14 points; **fails:** Ambient Bench right -1.21 points; **fails:** AMI right -0.93 points; generated test right +0.14 points; pilot right +0.00 points; **fails:** named requests answered -2.15 points; SLURP named answered (keyterm) +11.48 points; Duplex-MPE others answered outright +0.00 points; Duplex-MPE others held -0.14 points; AMI as heard, held +0.78 points; Duplex-MPE others answered outright 0.26% (bar 0.4%); full history on agent-1x 10 ms (Jev 49)"
+  },
+  "side-r9tt-ettin-32m-s1": {
+   "ships": false,
+   "why": "unnamed requests held as heard 86.6% (was 3.6%); Duplex-MPE right +0.04 points; **fails:** Ambient Bench right -0.95 points; **fails:** AMI right -1.32 points; generated test right +0.01 points; pilot right -0.74 points; named requests answered +1.00 points; SLURP named answered (keyterm) +19.67 points; Duplex-MPE others answered outright +0.07 points; Duplex-MPE others held -0.09 points; **fails:** AMI as heard, held +1.42 points; Duplex-MPE others answered outright 0.33% (bar 0.4%); full history on agent-1x 14 ms (Jev 49)"
+  }
+ },
+ "notes": [
+  "Dev picks `side-r9-ettin-150m-s1` among the teachers and `side-r9tt-ettin-32m-s1` among the students."
+ ],
+ "finished_at": "2026-11-20T12:37:35+00:00"
+}

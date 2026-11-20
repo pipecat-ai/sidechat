@@ -36,6 +36,7 @@ def choose_thresholds(
     max_wrong_now: float = 0.01,
     real_rows: list[dict] | None = None,
     max_wrong_now_real: float = 0.004,
+    max_held_real: float = 0.0,
 ) -> dict:
     """The thresholds with the most decisions right on rows with a definite decision, among those that
     answer at most `max_wrong_now` of the stay-quiet lines outright (scorecard item 2: answering a
@@ -44,14 +45,13 @@ def choose_thresholds(
     `real_rows` (stay-quiet lines of real speech, their predictions in `preds`) add a second bar:
     answer at most `max_wrong_now_real` of them outright. Item 2's bar on Duplex-MPE is 0.4%; real
     speech is where the generated dev is too easy. They do not count towards decisions right.
+    `max_held_real` > 0 adds a third: hold for a pause on at most that share of them (round 8's
+    model held more of people's own talk once it learned to hold real requests).
     """
     lab = [(preds[r["row_id"]], r["label"]["expect"]) for r in rows if r["label"]["expect"] and r["row_id"] in preds]
     quiet = max(1, sum(e == "ignore" for _, e in lab))
-    real = [
-        preds[r["row_id"]]["respond"]
-        for r in real_rows or []
-        if r["label"]["expect"] == "ignore" and r["row_id"] in preds
-    ]
+    real_p = [preds[r["row_id"]] for r in real_rows or [] if r["label"]["expect"] == "ignore" and r["row_id"] in preds]
+    real = [p["respond"] for p in real_p]
     best, best_key, fallback, fallback_key = None, None, None, None
     for tr, tw, to in product(T_RESPOND + [0.92, 0.94, 0.96, 0.98], T_WAIT, T_OPEN):
         if tw >= tr:
@@ -60,15 +60,20 @@ def choose_thresholds(
         right = sum(decide(p, t) == e for p, e in lab)
         wrong_now = sum(decide(p, t) == "respond" and e == "ignore" for p, e in lab)
         wrong_real = sum(x >= tr for x in real)
+        held_real = sum(decide(p, t) == "wait" for p in real_p) if max_held_real else 0
         key = (right, -wrong_now, tr)
-        ok = wrong_now / quiet <= max_wrong_now and (not real or wrong_real / len(real) <= max_wrong_now_real)
+        ok = (
+            wrong_now / quiet <= max_wrong_now
+            and (not real or wrong_real / len(real) <= max_wrong_now_real)
+            and (not real or not max_held_real or held_real / len(real) <= max_held_real)
+        )
         if ok and (best_key is None or key > best_key):
             best, best_key = t, key
-        fkey = (-wrong_real, -wrong_now, right)
+        fkey = (-wrong_real, -held_real, -wrong_now, right)
         if fallback_key is None or fkey > fallback_key:
             fallback, fallback_key = t, fkey
     if best is None:
-        best, best_key = fallback, (fallback_key[2], fallback_key[1], fallback["respond"])
+        best, best_key = fallback, (fallback_key[3], fallback_key[2], fallback["respond"])
     wrong = sum(decide(p, best) == "respond" and e == "ignore" for p, e in lab)
     out = {
         **best,
@@ -81,9 +86,12 @@ def choose_thresholds(
     if real:
         out.update(
             real_wrong_now=sum(x >= best["respond"] for x in real),
+            real_held=sum(decide(p, best) == "wait" for p in real_p),
             real_quiet=len(real),
             max_wrong_now_real=max_wrong_now_real,
         )
+        if max_held_real:
+            out["max_held_real"] = max_held_real
     return out
 
 

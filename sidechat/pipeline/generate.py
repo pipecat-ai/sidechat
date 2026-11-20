@@ -262,6 +262,7 @@ def _beats_from(dicts: list[dict]):
     timeout=8 * 3600,
     secrets=_secrets(),
     retries=modal.Retries(max_retries=1, initial_delay=60.0),
+    nonpreemptible=True,  # it launches the writers (sidechat/lib/resume.py)
 )
 def run(
     exp: str,

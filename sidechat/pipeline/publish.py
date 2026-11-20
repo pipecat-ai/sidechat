@@ -149,11 +149,23 @@ def run(
         api = HfApi(token=os.environ["HF_TOKEN"])
         api.create_repo(repo, repo_type="model", private=private, exist_ok=True)
         where = f"{subdir}/: " if subdir else ""
+        # Graphs an earlier build left in this folder that this one does not ship (an int8 build
+        # that failed its check this time) go in the same commit, so no folder mixes two builds.
+        prefix = f"{subdir}/" if subdir else ""
+        stale = [
+            f
+            for f in api.list_repo_files(repo)
+            if f.startswith(prefix)
+            and "/" not in f[len(prefix) :]
+            and f.endswith(".onnx")
+            and f[len(prefix) :] not in files
+        ]
         commit = api.upload_folder(
             folder_path=str(top),
             repo_id=repo,
             repo_type="model",
             commit_message=f"{where}{run_id}: ONNX export, model card and training rows",
+            delete_patterns=stale or None,
         )
         if tag:
             save(stage=f"tagging {tag}")
@@ -166,6 +178,7 @@ def run(
             "subdir": subdir,
             "tag": tag,
             "commit": commit.oid,
+            "removed": stale,
             "files": files,
             "rows": counts,
             "finished_at": datetime.now(UTC).isoformat(timespec="seconds"),
@@ -180,6 +193,8 @@ def run(
             "|---|---|---|",
         ]
         lines += [f"| {k} | {v['bytes']:,} | `{v['sha256'][:16]}` |" for k, v in files.items()]
+        if stale:
+            lines += ["", "Removed (an earlier build's graphs this one does not ship): " + ", ".join(stale)]
         lines += ["", f"Rows: train {counts['train']['rows']:,}, dev {counts['dev']['rows']:,}.", ""]
         r2.put_text(s3, f"{out}/report.md", "\n".join(lines))
         save(state="done", stage="done", commit=commit.oid)

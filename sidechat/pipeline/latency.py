@@ -175,7 +175,9 @@ def _render(exp: str, results: list[dict], run_ids: list[str]) -> str:
     return "\n".join(lines) + "\n"
 
 
-@app.function(name="latency_run", image=image, cpu=0.25, memory=512, timeout=3600, secrets=_secrets())
+@app.function(  # it launches the benches, so it is not preempted (sidechat/lib/resume.py)
+    name="latency_run", image=image, cpu=0.25, memory=512, timeout=3600, secrets=_secrets(), nonpreemptible=True
+)
 def run(
     exp: str,
     run_ids: str = "side-r3-ettin-150m-s0,side-r1-ettin-68m-s0",
@@ -223,7 +225,8 @@ def run(
         for profile in [p.strip() for p in profiles.split(",") if p.strip()]:
             for run_id, int8, graphs in builds:
                 for t in [int(x) for x in threads.split(",") if x.strip()]:
-                    name = f"{_short(run_id)}-{'int8' if int8 else 'fp32'}-t{t}"
+                    seed = run_id.rsplit("-", 1)[-1]  # two seeds of one size are otherwise one name (exp-060)
+                    name = f"{_short(run_id)}-{seed}-{'int8' if int8 else 'fp32'}-t{t}"
                     specs.append({"exp": exp, "profile": profile, "name": name, "which": "sidechat", "run_id": run_id,
                                   "int8": int8, "threads": t, "rounds": rounds, "graphs": graphs})
             if jev:

@@ -74,6 +74,9 @@ estimates from run time, not read from billing.
 - 2026-11-19 · exp-056-side-phase6-stt · AMI's headset audio through Deepgram; Jev and two models on what was heard · about $9 · about $5.50
 - 2026-11-19 · exp-057-side-phase6-slurp · SLURP's recorded requests in AMI meetings, written and heard; Jev and two models · about $3 · about $1.80
 - 2026-11-19 · exp-058-side-phase6-names · The agent's name as heard: Deepgram keyterm, name spellings as aliases, both builds on every set · about $3.50 · about $2.10
+- 2026-11-19 · exp-059-side-round8 · Round 8: real people's requests in training; two 150M teachers, two 32M students, exports, timing · about $32 · about $30
+- 2026-11-20 · exp-060-side-round9 · Round 9: round 8 rebalanced (realreq-0.2, a hold bar on real dev lines); two 150M teachers, two 32M students, exports, timing · about $28 · about $35 (about $17 of it duplicate runs after a Modal preemption, SD-25)
+- 2026-11-20 · exp-061-side-publish-rc0.3 · rc0.3 to the Hub: round 9's two builds and their rows · under $0.50 · under $0.05
 
 Note for Phase 3: member c costs 6 to 7 times member a, because its provider cached almost none of
 the shared prompt (about 7% of input tokens against 95% for a and b). At the plan's ~5,500
@@ -81,4 +84,4 @@ committee lines that is about $100 for c alone. Its batch API is half price.
 
 ## Total
 
-About $319 spent of the $1,000 cap. Nothing in flight.
+About $384 spent of the $1,000 cap. Nothing in flight.

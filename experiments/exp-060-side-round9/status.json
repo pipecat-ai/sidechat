@@ -1,0 +1,35 @@
+{
+ "exp": "exp-060-side-round9",
+ "app": "waystone-side-round8",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-20T10:36:04+00:00",
+ "args": {
+  "steps": "teacher,students,export,latency",
+  "teacher": "",
+  "tag": "r9",
+  "realreq": "realreq-0.2",
+  "max_held_real": 0.002
+ },
+ "steps": {
+  "teacher": {
+   "s0": "done",
+   "s1": "done"
+  },
+  "pick": "side-r9-ettin-150m-s1",
+  "students": {
+   "s0": "done",
+   "s1": "done"
+  },
+  "export": {
+   "side-r9-ettin-150m-s1": "done",
+   "side-r9tt-ettin-32m-s0": "done",
+   "side-r9tt-ettin-32m-s1": "done"
+  },
+  "latency": {
+   "latency": "done"
+  }
+ },
+ "updated_at": "2026-11-20T12:37:36+00:00",
+ "elapsed_s": 7292
+}
