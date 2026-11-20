@@ -30,6 +30,13 @@ STT_SET = "slurp-in-ami-stt-0.1"
 STT_PREFIX = "stt/slurp-deepgram-nova-3"  # under runs/side in R2: transcripts.jsonl and manifest.json
 STT_KEYTERM_PREFIX = "stt/slurp-deepgram-nova-3-keyterm"  # heard with the agent's name as a keyterm
 STT_KEYTERM_SET = "slurp-in-ami-stt-keyterm-0.1"
+# A dev set for the name as heard: SLURP's train and devel utterances that say "Olly", every
+# recording of each (`stt_slurp.run --split dev`). Never the test split; never training (SD-23).
+DEV_STT_PREFIX = "stt/slurp-names-dev-deepgram-nova-3"
+DEV_STT_KEYTERM_PREFIX = "stt/slurp-names-dev-deepgram-nova-3-keyterm"
+DEV_SET = "slurp-names-dev-0.1"
+DEV_STT_SET = "slurp-names-dev-stt-0.1"
+DEV_STT_KEYTERM_SET = "slurp-names-dev-stt-keyterm-0.1"
 AGENT = Agent(name="Olly", role="AI assistant in the meeting")
 LICENCE = "text CC BY 4.0, audio CC BY-NC 4.0"
 USE = "test only (SD-23)"
@@ -88,6 +95,7 @@ def convert(slurp_rows: list[dict], ami_rows: list[dict], heard: bool, set_name:
                 "scenario": s["scenario"],
                 "intent": s["intent"],
                 "meeting": meeting,
+                "device": s.get("device", "headset"),
             },
         )
         rows.append(rec.model_dump(mode="json"))

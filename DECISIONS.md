@@ -3,6 +3,15 @@
 Newest first. `date · id · who · decision · why · reversible?`. "Agent default" means the agent
 chose it and Jon has not yet confirmed. Open questions are at the bottom.
 
+- 2026-11-20 · SD-27 · Jon ("Yes, test it") · TCL Research Europe's Intelligent Wakeup
+  (`TCLResearchEurope/intelligent_wakeup`, v1.0.1, CC BY-NC 4.0) is an independent test set, used
+  for evaluation only, as its licence allows. Only the test split's text is read; it is kept in R2
+  (`runs/side/sources/tcl-wakeup-v1.0.1/`). Neither its text nor converted rows go into git or onto
+  the Hub, and no split of it is trained on or tuned against. Its label is its own: a person's
+  turn is for the assistant when the assistant speaks next (`sidechat/sources/tcl_wakeup.py`). ·
+  An on-task set made by others, with the assistant's own turns in the history, shows where rc0.3
+  stands outside our own data. · Reversible: delete the R2 prefix.
+
 - 2026-11-20 · SD-26 · Jon · Release rc0.3 on `pipecat-ai/sidechat`: round 9's dev picks replace
   both builds, `side-r9-ettin-150m-s1` at the root (fp32 only) and `side-r9tt-ettin-32m-s1` in
   `agent-1x/`. They fail round 8's gate margins only on holds of people's talk (AMI about 1% from

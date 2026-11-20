@@ -1,6 +1,6 @@
 # Where things stand
 
-Updated 2026-11-20, after the rc0.3 release (phase 7, part 3). Earlier: 03:40 UTC, the end of the overnight run. Jon asked for autonomous work through the phases within $1,000
+Updated 2026-11-20, after the phase 8 checks (names as heard, an independent test). Earlier: 03:40 UTC, the end of the overnight run. Jon asked for autonomous work through the phases within $1,000
 (SD-17), to have a model to test in the morning. Read the latest note in [notes/](notes/) first,
 then this, then [DECISIONS.md](DECISIONS.md). How to try a model: [TESTING.md](TESTING.md).
 
@@ -46,6 +46,23 @@ then this, then [DECISIONS.md](DECISIONS.md). How to try a model: [TESTING.md](T
   rounds 8 and 9 ([phase-5-round9.md](notes/phase-5-round9.md)). Shipped as rc0.3
   (SD-26, [phase-7-release-rc0.3.md](notes/phase-7-release-rc0.3.md)). Jobs that launch others no
   longer run twice when Modal preempts them (SD-25).
+- **Duplex-MPE's unnamed requests are mostly a style gap, not a model gap**
+  ([2026-11-20-side-duplex-implicit.md](reports/2026-11-20-side-duplex-implicit.md)). Its requests
+  to the assistant say "you" 74% of the time, which is how real people ask each other (AMI 37%),
+  not how they ask assistants (SLURP 7%). Don't train on it.
+- **Names as heard are at the text ceiling with the keyterm**
+  ([2026-11-20-side-names-as-heard.md](reports/2026-11-20-side-names-as-heard.md), exp-062): of the
+  named requests the keyterm still loses, half have no trace of the name and most of the rest are
+  ordinary words ("only", "you"). No rule recovers them without answering people. Remaining options:
+  an independent test (TCL `intelligent_wakeup`, test only); context-only requests from the
+  generator (modest gain); timing input (a model change); a speech-to-text setting that keeps the
+  name more often (about $0.30 a configuration on the names dev set).
+- **On an independent test, rc0.3 answers as well as Jev and holds a tenth as often**
+  ([2026-11-20-side-tcl-wakeup.md](reports/2026-11-20-side-tcl-wakeup.md), exp-063, SD-27). On TCL's
+  Intelligent Wakeup (text only, test only): F1 0.725 against Jev's 0.717, and 3% of people's
+  lines held against 37%. Named requests are answered 98.7%. TCL's audio model, trained on its own
+  data, reaches 0.890. The gap is the line right after the agent answers (AUROC 0.67), so timing
+  input is the next real step. Generated follow-ups are the text-side option.
 
 ## The bar
 

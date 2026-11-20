@@ -13,7 +13,7 @@ from collections import Counter
 from datetime import UTC, datetime
 
 from sidechat.schema import SCHEMA_VERSION
-from sidechat.sources import ambient_bench, ami, duplex_mpe, realreq, slurp, suites
+from sidechat.sources import ambient_bench, ami, duplex_mpe, realreq, slurp, suites, tcl_wakeup
 
 SETS = (
     "demo",
@@ -27,7 +27,11 @@ SETS = (
     "slurp",
     "slurp-stt",
     "slurp-stt-keyterm",
+    "names-dev",
+    "names-dev-stt",
+    "names-dev-stt-keyterm",
     "realreq",
+    "tcl",
 )
 
 
@@ -144,12 +148,22 @@ def build_rows(which: str, limit: int = 0) -> tuple[list[dict], dict, dict]:
             "licence": realreq.LICENCE,
             "use": realreq.USE,
         }
-    elif which in ("slurp", "slurp-stt", "slurp-stt-keyterm"):
-        # SLURP's requests said in AMI's silence-test meetings (`sidechat/sources/slurp.py`). Test only.
+    elif which in ("slurp", "slurp-stt", "slurp-stt-keyterm", "names-dev", "names-dev-stt", "names-dev-stt-keyterm"):
+        # SLURP's requests said in AMI's silence-test meetings (`sidechat/sources/slurp.py`). Test only;
+        # names-dev* are the train and devel utterances that say the name, a dev set for names as heard.
         from sidechat.lib import r2
 
         s3 = r2.client()
-        prefix = slurp.STT_KEYTERM_PREFIX if which == "slurp-stt-keyterm" else slurp.STT_PREFIX
+        dev = which.startswith("names-dev")
+        keyterm = which.endswith("-keyterm")
+        if dev:
+            prefix = slurp.DEV_STT_KEYTERM_PREFIX if keyterm else slurp.DEV_STT_PREFIX
+            set_name = {"names-dev": slurp.DEV_SET, "names-dev-stt": slurp.DEV_STT_SET}.get(
+                which, slurp.DEV_STT_KEYTERM_SET
+            )
+        else:
+            prefix = slurp.STT_KEYTERM_PREFIX if keyterm else slurp.STT_PREFIX
+            set_name = slurp.STT_KEYTERM_SET if keyterm else ""
         smf = r2.get_json(s3, f"{r2.PREFIX}/{prefix}/manifest.json")
         amf = r2.get_json(s3, f"{r2.PREFIX}/{ami.STT_PREFIX}/manifest.json")
         if not smf or not amf:
@@ -157,8 +171,8 @@ def build_rows(which: str, limit: int = 0) -> tuple[list[dict], dict, dict]:
         rows = slurp.convert(
             r2.get_jsonl(s3, f"{r2.PREFIX}/{prefix}/transcripts.jsonl") or [],
             r2.get_jsonl(s3, f"{r2.PREFIX}/{ami.STT_PREFIX}/transcripts.jsonl") or [],
-            heard=which != "slurp",
-            set_name=slurp.STT_KEYTERM_SET if which == "slurp-stt-keyterm" else "",
+            heard=which not in ("slurp", "names-dev"),
+            set_name=set_name,
         )
         source = {
             "kind": "splice: SLURP requests in AMI meetings",
@@ -250,6 +264,26 @@ def build_rows(which: str, limit: int = 0) -> tuple[list[dict], dict, dict]:
             "files": files,
             "licence": duplex_mpe.LICENCE,
             "use": duplex_mpe.USE,
+        }
+    elif which == "tcl":
+        # TCL's Intelligent Wakeup, test split, text only, kept in R2 by `sidechat.pipeline.tcl`.
+        # Test only (SD-27).
+        from sidechat.lib import r2
+
+        s3 = r2.client()
+        tmf = r2.get_json(s3, f"{r2.PREFIX}/{tcl_wakeup.TEXT_PREFIX}/manifest.json")
+        if not tmf:
+            raise ValueError("no TCL text in R2 yet: run sidechat.pipeline.tcl with the fetch step first")
+        sessions = r2.get_jsonl(s3, f"{r2.PREFIX}/{tcl_wakeup.TEXT_PREFIX}/test.jsonl") or []
+        rows = tcl_wakeup.convert(sessions[:limit] if limit else sessions)
+        source = {
+            "kind": "Hugging Face dataset, text columns",
+            "repo": tcl_wakeup.REPO,
+            "revision": tcl_wakeup.REVISION,
+            "files": tmf.get("files"),
+            "text": f"{r2.PREFIX}/{tcl_wakeup.TEXT_PREFIX}/test.jsonl",
+            "licence": tcl_wakeup.LICENCE,
+            "use": tcl_wakeup.USE,
         }
     elif which == "ambient":
         local = _fetch(ambient_bench.REPO, ambient_bench.REVISION, ambient_bench.FILES["test"])

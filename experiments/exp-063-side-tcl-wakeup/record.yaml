@@ -1,0 +1,41 @@
+experiment_id: exp-063-side-tcl-wakeup
+status: done (2026-11-20)
+track: sidechat (independent test)
+what: >
+  An independent test: TCL Research Europe's Intelligent Wakeup, test split, text only (243
+  sessions, 3,647 people's turns, 6.72 hours of recording). Conversations among people with a voice
+  assistant, Sigma, in the room, written by a language model and spoken by text-to-speech; the
+  assistant's own turns stay in the history. Its label: a person's turn is for the assistant when
+  the assistant speaks next, "direct" with its name (158), "contextual" without (141); the other
+  3,348 are not. CC BY-NC 4.0: evaluation only, never trained on or tuned against, text and rows
+  kept in R2, out of git and off the Hub (SD-27). Jev and rc0.3's and rc0.2's builds, speakers
+  named and anonymous. TCL's own audio model, trained on TCL's train split, is the reference from
+  its repo (F1 0.890; direct 148/158, contextual 107/141, 19 false accepts of 3,348).
+forecast block:
+  campaign: exp-063-side-tcl-wakeup
+  decision it enables: where rc0.3 stands on an on-task set made by others, and whether its
+    weaknesses there (unnamed follow-ups, people's lines) match what our own tests show
+  token forecast: Jev on 7,294 requests (3,647 lines in two speaker-label conditions), about 8 to
+    12 million input tokens at $0.042 a million, about $0.35 to $0.50
+  Modal forecast: one non-preemptible 1-CPU launcher for about 40 minutes (a 2.1 GB download of the
+    test split, text columns kept), Jev's CPU container for about 20 minutes, four GPU scoring jobs
+    of about 5 minutes each; about $0.50
+  retry cap: Jev's own (2); scoring 0
+  spend cap: Jev $3 (the job stops before passing it)
+  stop condition: scorecard.json and report.md in runs/side/results/exp-063-side-tcl-wakeup/
+  approved by Jon on: 2026-11-20 ("Yes, test it")
+forecast_usd: about $1
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.tcl::run --exp exp-063-side-tcl-wakeup
+actual_usd: about $0.40 (Jev $0.25 for 7,293 requests, 5,921,211 input tokens; Modal about $0.15, the whole run 154 s)
+result:
+  set: "243 sessions, 3,647 people's turns (158 direct, 141 contextual, 3,348 not for Sigma), 6.7 hours"
+  headline_anonymous: "rc0.3 default F1 0.725 (precision 0.761, recall 0.692), 9.7 false accepts an hour; Jev 0.717 (0.790, 0.656), 7.7; rc0.2 default 0.732; TCL's audio model, trained on TCL, 0.890 (0.931, 0.853), 2.8"
+  named_requests: "every build 98.7% answered now (156/158); Jev 98.1 to 98.7%; TCL's model 93.7%"
+  unnamed_follow_ups: "rc0.3 36.2% now (51/141) and 20.6% held; Jev 29.1% now and 51.8% held; TCL's model 75.9%"
+  peoples_lines: "rc0.3 1.94% answered outright (65/3,348) and 3.1% held; Jev 1.55% and 36.9%; TCL's model 0.57%"
+  paired: "rc0.3 vs Jev, decided right: +0.05 points (-0.47 to +0.58); rc0.3 vs rc0.2: answered outright +0.2 points (not beyond noise), left alone -0.7 points (holds)"
+  where: "right after Sigma, when the other person speaks, AUROC 0.67 (0.995 before Sigma has spoken); 33 of 64 false accepts are there; a threshold chosen on the test gives the same F1 (0.725)"
+  label: "15 of 64 false accepts are answered by Sigma one turn later; of 10 lines naming Sigma answered outright, 4 are named questions to it and 4 a named thanks"
+  report: reports/2026-11-20-side-tcl-wakeup.md

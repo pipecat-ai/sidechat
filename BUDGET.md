@@ -77,6 +77,10 @@ estimates from run time, not read from billing.
 - 2026-11-19 · exp-059-side-round8 · Round 8: real people's requests in training; two 150M teachers, two 32M students, exports, timing · about $32 · about $30
 - 2026-11-20 · exp-060-side-round9 · Round 9: round 8 rebalanced (realreq-0.2, a hold bar on real dev lines); two 150M teachers, two 32M students, exports, timing · about $28 · about $35 (about $17 of it duplicate runs after a Modal preemption, SD-25)
 - 2026-11-20 · exp-061-side-publish-rc0.3 · rc0.3 to the Hub: round 9's two builds and their rows · under $0.50 · under $0.05
+- 2026-11-20 · exp-062-side-names-dev · SLURP's train and devel recordings that say the name, through Deepgram, plain and with keyterm · about $1.50 · about $0.90
+- 2026-11-20 · exp-063-side-tcl-wakeup · An independent test: TCL's Intelligent Wakeup, test split,
+  text only; Jev and rc0.3's and rc0.2's builds, speakers named and anonymous · about $1 · about
+  $0.40 (Jev $0.25 for 7,293 requests, 5,921,211 input tokens; Modal about $0.15)
 
 Note for Phase 3: member c costs 6 to 7 times member a, because its provider cached almost none of
 the shared prompt (about 7% of input tokens against 95% for a and b). At the plan's ~5,500
@@ -84,4 +88,4 @@ committee lines that is about $100 for c alone. Its batch API is half price.
 
 ## Total
 
-About $384 spent of the $1,000 cap. Nothing in flight.
+About $386 spent of the $1,000 cap. Nothing in flight.

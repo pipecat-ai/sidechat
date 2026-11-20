@@ -1,0 +1,39 @@
+experiment_id: exp-062-side-names-dev
+status: done (2026-11-20)
+track: sidechat (names as heard)
+what: >
+  A dev set for the agent's name as speech-to-text hears it. With Deepgram's keyterm, rc0.3 answers
+  every SLURP test request whose transcript has "Olly" (48 of 61) and none of the 13 whose transcript
+  lost it, so the remaining loss on named requests is in speech-to-text, not the model. To work on
+  that without tuning to the 61 test lines, SLURP's train and devel utterances that say "Olly" are
+  heard by Deepgram nova-3, every recording of each (close-talk and far-field), once plain and once
+  with keyterm=Olly. SLURP's audio is CC BY-NC 4.0: dev and test only, never training; nothing from
+  it goes into git or onto the Hub (SD-23). Sets names-dev, names-dev-stt, names-dev-stt-keyterm
+  (sidechat/sources/slurp.py).
+forecast block:
+  campaign: exp-062-side-names-dev
+  decision it enables: what speech-to-text writes for the name when it misses it, and whether a fix
+    in text (the runtime or training) can recover it
+  token forecast: none
+  Modal forecast: two 4-core CPU containers, about 15 minutes each (a 3.9 GB download, then Deepgram)
+  Deepgram forecast: an estimated 1,000 to 2,000 recordings of about 4 s, about 70 to 140 minutes per pass at $0.0043 a minute, about $0.30 to $0.60 per pass
+  retry cap: 0
+  spend cap: $3 per pass (the job stops before hearing anything past it)
+  stop condition: transcripts and manifest in R2
+  approved by Jon on: 2026-11-20 ("Yes, names next")
+forecast_usd: about $1.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.stt_slurp::run --exp exp-062-side-names-dev-plain --split dev --spend-cap-usd 3;
+  uv run modal run --detach -m sidechat.pipeline.stt_slurp::run --exp exp-062-side-names-dev-keyterm --split dev --keyterm Olly --spend-cap-usd 3
+actual_usd: about $0.90 (Deepgram about $0.58 for two passes of 68 minutes; Modal, including two downloads Zenodo cut part way)
+incident: >
+  Both first attempts failed downloading SLURP's 3.9 GB archive: Zenodo closed the connection at 310 MB
+  and 3.4 GB while two downloads ran at once. stt_slurp now resumes a cut download and keeps the chosen
+  recordings in R2 (runs/side/stt/slurp-audio-cache/), so the keyterm pass read them from there.
+result:
+  dev_set: "449 utterances that say Olly, 507 headset and 727 far-field recordings"
+  name_written: "plain: headset 3.0%, far-field 0.1%; keyterm: headset 81.5% (413/507), far-field 68.8% (500/727)"
+  keyterm_misses: "headset 94: dropped 49 (52%), 'only' 12, 'you' 5, a few other assistants' names; far-field: dropped 57, 'only' 37, 'you' 24"
+  rule: "a word one letter from the name, first or last: with a comma +0.2 / +0.1 points under the keyterm (fires on 32 of 98 generated lines calling a similar-named person); without a comma +2.6 / +5.5 points but fires on about 0.2% of people's lines for an agent called Olly. No rule shipped"
+  report: reports/2026-11-20-side-names-as-heard.md
