@@ -1,0 +1,3796 @@
+{
+ "meta": {
+  "exp": "exp-065-side-committee-gen-0.5",
+  "label_id": "corpus:gen-0.5:dev+test:120:people_question_after_agent-committee-0.4",
+  "sets": [
+   "corpus:gen-0.5:dev+test:120:people_question_after_agent",
+   "corpus:gen-0.5:dev+test:120:partner_to_people_after_agent",
+   "corpus:gen-0.5:dev+test:120:follow_up_later"
+  ],
+  "guide": "sidechat-guide-0.4",
+  "prompt_sha": "5b71303e8551",
+  "members": [
+   "a",
+   "b",
+   "c"
+  ],
+  "usage": {
+   "a": {
+    "answered": 360,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1754016,
+    "cached": 1662876,
+    "cache_write": 0,
+    "output": 23690,
+    "errors": [],
+    "usd": 1.251
+   },
+   "b": {
+    "answered": 360,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 2627619,
+    "cached": 2460128,
+    "cache_write": 55912,
+    "output": 34974,
+    "errors": [],
+    "usd": 2.409
+   },
+   "c": {
+    "answered": 360,
+    "reused": 0,
+    "failed": 0,
+    "fallback": 0,
+    "input": 1928711,
+    "cached": 248307,
+    "cache_write": 0,
+    "output": 34065,
+    "errors": [],
+    "usd": 7.651
+   }
+  },
+  "limit": null,
+  "finished_at": "2026-11-20T19:10:39+00:00"
+ },
+ "rows": 360,
+ "definite": 360,
+ "graded": 0,
+ "target": 0.9,
+ "majority": {
+  "decision": {
+   "value": 0.7333,
+   "k": 264,
+   "n": 360,
+   "ci95": [
+    0.6854,
+    0.7764
+   ]
+  },
+  "no_decision_majority": 6,
+  "intent": {
+   "value": 0.9083,
+   "k": 218,
+   "n": 240,
+   "ci95": [
+    0.8651,
+    0.9387
+   ]
+  },
+  "unanimous": {
+   "value": 0.6944,
+   "k": 250,
+   "n": 360,
+   "ci95": [
+    0.645,
+    0.7398
+   ]
+  }
+ },
+ "meets_target": false,
+ "members": {
+  "a": {
+   "answered": {
+    "value": 1.0,
+    "k": 360,
+    "n": 360,
+    "ci95": [
+     0.9894,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.6083,
+    "k": 219,
+    "n": 360,
+    "ci95": [
+     0.557,
+     0.6574
+    ]
+   },
+   "intent": {
+    "value": 0.7917,
+    "k": 190,
+    "n": 240,
+    "ci95": [
+     0.7359,
+     0.8383
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.8125,
+    "k": 195,
+    "n": 240,
+    "ci95": [
+     0.7583,
+     0.8568
+    ]
+   },
+   "rule": {
+    "value": 0.7861,
+    "k": 283,
+    "n": 360,
+    "ci95": [
+     0.7408,
+     0.8253
+    ]
+   },
+   "speak_mean_abs_diff": 1.033
+  },
+  "b": {
+   "answered": {
+    "value": 1.0,
+    "k": 360,
+    "n": 360,
+    "ci95": [
+     0.9894,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.75,
+    "k": 270,
+    "n": 360,
+    "ci95": [
+     0.7028,
+     0.7919
+    ]
+   },
+   "intent": {
+    "value": 0.9125,
+    "k": 219,
+    "n": 240,
+    "ci95": [
+     0.8699,
+     0.9421
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9292,
+    "k": 223,
+    "n": 240,
+    "ci95": [
+     0.8895,
+     0.9553
+    ]
+   },
+   "rule": {
+    "value": 0.8389,
+    "k": 302,
+    "n": 360,
+    "ci95": [
+     0.7974,
+     0.8733
+    ]
+   },
+   "speak_mean_abs_diff": 0.583
+  },
+  "c": {
+   "answered": {
+    "value": 1.0,
+    "k": 360,
+    "n": 360,
+    "ci95": [
+     0.9894,
+     1.0
+    ]
+   },
+   "decision": {
+    "value": 0.8556,
+    "k": 308,
+    "n": 360,
+    "ci95": [
+     0.8155,
+     0.8881
+    ]
+   },
+   "intent": {
+    "value": 0.9458,
+    "k": 227,
+    "n": 240,
+    "ci95": [
+     0.9095,
+     0.9681
+    ]
+   },
+   "for_the_agent": {
+    "value": 0.9583,
+    "k": 230,
+    "n": 240,
+    "ci95": [
+     0.925,
+     0.9772
+    ]
+   },
+   "rule": {
+    "value": 0.6806,
+    "k": 245,
+    "n": 360,
+    "ci95": [
+     0.6307,
+     0.7266
+    ]
+   },
+   "speak_mean_abs_diff": 0.344
+  }
+ },
+ "pairs": {
+  "a-b": {
+   "value": 0.8222,
+   "k": 296,
+   "n": 360,
+   "ci95": [
+    0.7794,
+    0.8583
+   ]
+  },
+  "a-c": {
+   "value": 0.7306,
+   "k": 263,
+   "n": 360,
+   "ci95": [
+    0.6825,
+    0.7738
+   ]
+  },
+  "b-c": {
+   "value": 0.8361,
+   "k": 301,
+   "n": 360,
+   "ci95": [
+    0.7944,
+    0.8708
+   ]
+  }
+ },
+ "by_rule": {
+  "G6": {
+   "value": 0.6333,
+   "k": 152,
+   "n": 240,
+   "ci95": [
+    0.5707,
+    0.6918
+   ]
+  },
+  "G7": {
+   "value": 0.9333,
+   "k": 112,
+   "n": 120,
+   "ci95": [
+    0.8739,
+    0.9658
+   ]
+  }
+ },
+ "by_expect": {
+  "ignore": {
+   "value": 0.9042,
+   "k": 217,
+   "n": 240,
+   "ci95": [
+    0.8603,
+    0.9353
+   ]
+  },
+  "wait": {
+   "value": 0.3917,
+   "k": 47,
+   "n": 120,
+   "ci95": [
+    0.309,
+    0.4811
+   ]
+  }
+ },
+ "by_kind": {
+  "follow_up_later": {
+   "value": 0.3917,
+   "k": 47,
+   "n": 120,
+   "ci95": [
+    0.309,
+    0.4811
+   ]
+  },
+  "partner_to_people_after_agent": {
+   "value": 0.875,
+   "k": 105,
+   "n": 120,
+   "ci95": [
+    0.804,
+    0.9228
+   ]
+  },
+  "people_question_after_agent": {
+   "value": 0.9333,
+   "k": 112,
+   "n": 120,
+   "ci95": [
+    0.8739,
+    0.9658
+   ]
+  }
+ },
+ "disagreements": [
+  {
+   "id": "o07-00666/19",
+   "speaker": "Noor",
+   "text": "So are we still going deeper, then?",
+   "before": [
+    "Noor: Can you check the lighting level down here?",
+    "agent: It's dim, but the torch still works."
+   ],
+   "kind": "people_question_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Noor follows up on her ongoing exchange with Frankie about the descent."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Noor's 'we' question could be a party-planning question for Joy and Femi or a prompt to the game master, and nothing settles which."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Noor turns to the other players to ask about the party's plans rather than addressing the game master."
+    }
+   }
+  },
+  {
+   "id": "o07-00790/2",
+   "speaker": "Chris",
+   "text": "Given that, are we still pushing the gamification angle for the episode?",
+   "before": [
+    "Chris: Remy, can you pull up the latest stats on Duolingo retention rates?",
+    "agent: Sure. About 40% of users drop off after the first month."
+   ],
+   "kind": "people_question_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chris follows up on Remy’s answer by asking what the statistic means for the episode’s angle."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Chris turns from the agent's answer to ask the people about their own editorial plan for the episode, a decision for the hosts."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "other",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Chris uses 'we' right after Remy's answer, which could be turning to the human co-host Rémi about their episode plan or including the AI co-host Remy."
+    }
+   }
+  },
+  {
+   "id": "o07-00935/4",
+   "speaker": "Freya",
+   "text": "So do we use that one instead of the old one?",
+   "before": [
+    "Freya: Assistant, which counter-argument is strongest for the intro?",
+    "agent: The 2019 stability study. It contradicts the main thesis directly."
+   ],
+   "kind": "people_question_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Freya is following up on Dash’s recommendation in her own exchange with it."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Freya continues her own exchange with Dash, following up on the answer it just gave her without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Freya was just speaking to the agent, so 'do we use that one' could be asking the AI tutor for advice or turning to the study group to make a joint decision."
+    }
+   }
+  },
+  {
+   "id": "o07-01021/5",
+   "speaker": "Greg",
+   "text": "So we're skipping the main deck? No way back?",
+   "before": [
+    "Greg: Fine, I'll go in. Maybe I can find another.",
+    "agent: Check the cargo bay. Usually full of spare tools."
+   ],
+   "kind": "people_question_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Greg follows up on Indy's cargo bay suggestion by asking the game master about his options."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the game and just answered Greg, who follows up about the game world without addressing anyone else."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Greg continues his exchange with the game master agent by asking a clarifying question about the adventure environment."
+    }
+   }
+  },
+  {
+   "id": "o07-01352/2",
+   "speaker": "Wei",
+   "text": "So are we still doing the hard ones?",
+   "before": [
+    "Alice: Atlas, is the next one addition?",
+    "agent: No. It's subtraction. Forty-two minus seventeen."
+   ],
+   "kind": "people_question_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Wei asks about the difficulty of the quiz Atlas is running."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the quiz and Wei's question about the difficulty of the questions carries on that quiz business without calling anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Someone other than the agent's last partner questions the quiz difficulty, which could be directed at either the quiz-running agent or Alice."
+    }
+   }
+  },
+  {
+   "id": "o07-01368/4",
+   "speaker": "Petra",
+   "text": "So are we still on track for the regular slot, or should we push it back?",
+   "before": [
+    "Petra: Yeah, mostly, but she missed Tuesday morning's dose, I think.",
+    "agent: Noted. That usually isn't a big deal if she caught up later. How is her BP at home?"
+   ],
+   "kind": "people_question_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Petra continues her intake exchange with Tess by asking whether to keep or delay the appointment."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Petra is mid-exchange with Tess, which runs the clinic intake, and her scheduling question carries on that business without turning to anyone else."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Petra continues her ongoing intake exchange with the agent, which leads the session."
+    }
+   }
+  },
+  {
+   "id": "o07-01568/16",
+   "speaker": "Hana",
+   "text": "So are we still going with the morning schedule change?",
+   "before": [
+    "Hana: Is there anything else I should prepare before they arrive?",
+    "agent: Just have your current pill bottles handy in case they ask for visual confirmation."
+   ],
+   "kind": "people_question_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hana continues her own intake exchange with Ember without turning to anyone else."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Hana has been talking with the intake agent, which leads the session, but a question about whether 'we' are still going with a schedule change could equally be for Leo, so nothing settles it."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Hana turns from the intake assistant to ask Leo about their own shared schedule plans ('are we still going with...')."
+    }
+   }
+  },
+  {
+   "id": "o07-02244/8",
+   "speaker": "Lars",
+   "text": "So are we still hiring for those open spots?",
+   "before": [
+    "Lars: Does anyone know the current headcount for the ops team?",
+    "agent: It's currently forty-two full-time employees."
+   ],
+   "kind": "people_question_after_agent",
+   "rule": "G7",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Lars follows up on Iris's answer to his headcount question without turning to anyone else."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Lars follows up his exchange with Iris, but whether the team is still hiring is the people's own decision, so it could be for the agent or the room."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Lars uses 'we' to ask the group about their own hiring plans and decisions, which is a question for the people rather than the agent."
+    }
+   }
+  },
+  {
+   "id": "a07-00168/3",
+   "speaker": "Ivan",
+   "text": "Okay, let's seal the outer hatch before we go any farther.",
+   "before": [
+    "Ivan: The airlock door.",
+    "agent: Its control panel is blinking red. The display says the outer hatch is open."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ivan declares his next in-game action in the ongoing exchange with Echo, the game master."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the game and Ivan continues his exchange with it by declaring an in-game action."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ivan continues his exchange with the game master by stating the next in-game action."
+    }
+   }
+  },
+  {
+   "id": "a07-01378/2",
+   "speaker": "Leo",
+   "text": "Let's use Florence and arrange a shared transfer.",
+   "before": [
+    "Leo: Can Clover check the best airport for the wedding in Siena?",
+    "agent: Florence Airport is about 90 minutes from Siena by car."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Leo continues his exchange with Clover by accepting its airport recommendation and asking to arrange a shared transfer."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "indirect",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Leo follows up on the agent's answer, but 'let's' reads as a proposal to the group, while arranging a transfer is a task the travel agent could do, so the addressee is unsettled."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Leo turns to the group to propose a plan based on the agent's answer rather than continuing the exchange with Clover."
+    }
+   }
+  },
+  {
+   "id": "a07-01407/14",
+   "speaker": "Femi",
+   "text": "Let's get an engineer rather than risk doing it ourselves.",
+   "before": [
+    "Femi: The dial reads 0.4 bar. What should I do?",
+    "agent: The system needs topping up. I can arrange an engineer if you're not comfortable using the filling loop."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Femi accepts Dash’s offer to arrange an engineer, continuing their support exchange."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Femi answers the agent's offer to arrange an engineer, continuing his exchange with the support agent who leads the call."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Femi say 'let's' which could be proposing the choice to Olga before telling the agent, or directly accepting the support agent's offer to arrange an engineer."
+    }
+   }
+  },
+  {
+   "id": "a07-01668/17",
+   "speaker": "Anna",
+   "text": "Let's take the Tuesday slot, then.",
+   "before": [
+    "Anna: Will the technician bring a replacement pump?",
+    "agent: Yes, the technician will bring a compatible pump."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Anna continues her exchange with Otto by accepting the appointment slot it offered."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Anna continues her own exchange with the support agent, accepting the appointment it offered, which only the agent can book."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Anna continues her exchange with the support agent to book the appointment slot it offered."
+    }
+   }
+  },
+  {
+   "id": "a07-01745/9",
+   "speaker": "Dana",
+   "text": "Let's hold here and prepare for something to come through.",
+   "before": [
+    "Dana: Listening.",
+    "agent: You hear slow footsteps and a chain dragging across stone."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Dana follows up on the game master's narration by declaring the party's next action."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent is the game master and Dana's line declares the party's action in the ongoing scene, carrying on the session business."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Dana is proposing a plan to the other players rather than stating an action to the game master."
+    }
+   }
+  },
+  {
+   "id": "b07-00036/20",
+   "speaker": "Raf",
+   "text": "Alright, so we just pay the eighty-nine fifty and ignore the rest.",
+   "before": [
+    "Raf: Okay, and can you email us something confirming the credit?",
+    "agent: Done. A confirmation just went to the account email with reference CR-20417."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Raf continues his exchange with Juno by stating what he thinks he still owes, implicitly asking her to confirm."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 4,
+     "rule": "G6",
+     "reason": "Raf is continuing his own exchange with the agent, seeking confirmation of what to do next without turning to Kate, and the agent can usefully clarify since the $89.50 already posted."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Raf continues his support exchange with Juno to confirm what they need to pay."
+    }
+   }
+  },
+  {
+   "id": "c07-00059/19",
+   "speaker": "Hiro",
+   "text": "One twenty-eight fifty is much better, let's pay that now.",
+   "before": [
+    "Hiro: Let's clear it today—Bea, what's the exact total after the late fee waiver?",
+    "agent: With the forty-five dollar fee waived, your current balance is one hundred twenty-eight dollars and fifty cents."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hiro follows up on Bea’s balance quote by asking to pay that amount now."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 4,
+     "rule": "G6",
+     "reason": "Hiro is continuing his own exchange with Bea, who runs the support call, and is asking to pay the balance she just quoted, which she can process."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hiro continues his exchange with the support agent by instructing it to process the payment for the balance it just quoted."
+    }
+   }
+  },
+  {
+   "id": "c07-00401/16",
+   "speaker": "Anna",
+   "text": "Let's take the stairs instead of wading through unknown water.",
+   "before": [
+    "Anna: Can we tell if the staircase is dry and clear of traps?",
+    "agent: The stone steps are dry, though covered in thick vines. You don't spot any obvious tripwires from here."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Anna follows up on Penny’s description by choosing the party’s next move for the game master to resolve."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game and Anna's line declares the party's action in the adventure, carrying on that business."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Anna is proposing a course of action to the other players in the party rather than stating a final action to the game master."
+    }
+   }
+  },
+  {
+   "id": "c07-00427/12",
+   "speaker": "Lucia",
+   "text": "Okay, cool, so we should probably, like, write down the exact dosage before she gets on.",
+   "before": [
+    "Lucia: Um, can we also add that he's been taking ibuprofen since Tuesday?",
+    "agent: Yes, I've noted that he's been taking ibuprofen since Tuesday."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Lucia continues her intake exchange with the assistant by asking to record the exact dosage."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 4,
+     "rule": "G6",
+     "reason": "Lucia continues her exchange with the intake assistant about the notes, so the agent, which leads the intake, should follow up and ask for the dosage."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Lucia turns to Pablo to suggest what the two of them should prepare before the doctor joins."
+    }
+   }
+  },
+  {
+   "id": "o07-00434/7",
+   "speaker": "Chris",
+   "text": "Alright, let's move on to the next one then.",
+   "before": [
+    "Chris: It's eleven. Can you give me a hint if I'm wrong?",
+    "agent: You are correct. It is number eleven."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chris is continuing the exchange with Juno and asking it to advance the quiz it runs."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chris continues his quiz exchange with Juno, which runs the quiz, asking it to move to the next question."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chris continues his quiz exchange with Juno, who runs the quiz and just confirmed his answer, asking to proceed to the next question."
+    }
+   }
+  },
+  {
+   "id": "o07-00850/15",
+   "speaker": "Dev",
+   "text": "Berlin. We'll finish this set soon.",
+   "before": [
+    "Dev: Frankie, skip to Europe now.",
+    "agent: Understood. Capital of Germany?"
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Dev answers the quiz question Frankie just asked."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Dev answers the quiz question the agent just asked, and the agent leads the session."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Dev answers the quiz question just asked by Frankie, who is leading the quiz."
+    }
+   }
+  },
+  {
+   "id": "o07-01195/5",
+   "speaker": "Anna",
+   "text": "Wait, so they’re both super reactive? We should double-check that later.",
+   "before": [
+    "Anna: Group one, I think? Like, the alkali metals. Can you give me another one?",
+    "agent: Yes, Group one. Another example is sodium, which is also in Group one."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Anna follows up on the tutor’s answer by asking whether both elements are highly reactive."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 4,
+     "rule": "G6",
+     "reason": "Anna continues her own exchange with the tutor running the quiz by asking a follow-up about its answer, though her remark about checking later softens it slightly."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Anna shifts from her exchange with the agent to address the group ('We should double-check that later'), rather than asking the agent to answer."
+    }
+   }
+  },
+  {
+   "id": "o07-01545/10",
+   "speaker": "Omar",
+   "text": "Let's open it together.",
+   "before": [
+    "Omar: Dim and dusty.",
+    "agent: A single chandelier hangs. You see a trapdoor."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Omar declares an in-game action in response to the game master's description of the trapdoor."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game and Omar's line carries on the adventure as an action responding to the agent's description of the trapdoor."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Omar is making a proposal to the other players to coordinate opening the trapdoor together, rather than declaring an action to the game master."
+    }
+   }
+  },
+  {
+   "id": "o07-02618/3",
+   "speaker": "Fatima",
+   "text": "Good. We move to the bridge.",
+   "before": [
+    "Fatima: Cracked. Sealing it now.",
+    "agent: The seal holds. Pressure stabilizes in ten seconds."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Fatima declares the party’s next action to Max, the game master."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game and Fatima continues the adventure with a player action, calling no one else."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Max is the game master leading the adventure, and Fatima is continuing her exchange with the agent by declaring the party's next in-game action."
+    }
+   }
+  },
+  {
+   "id": "o07-02774/6",
+   "speaker": "Chris",
+   "text": "We should focus on the alkali metals next then.",
+   "before": [
+    "Chris: Is that why it's in group one even though it's a gas?",
+    "agent: Yes, because of its single valence electron."
+   ],
+   "kind": "partner_to_people_after_agent",
+   "rule": "G6",
+   "guide": "ignore",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chris follows up on Kai’s answer by suggesting the next topic for the quiz Kai is leading."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 2,
+     "rule": "G6",
+     "reason": "Chris proposes a study focus to the group without asking the quiz-leading agent anything, though it touches the session's direction."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chris continues his own exchange with the agent and directs the quiz session that the agent leads."
+    }
+   }
+  },
+  {
+   "id": "a07-00026/11",
+   "speaker": "Chloe",
+   "text": "Is there a good way to remember which letter comes first?",
+   "before": [
+    "Chloe: I don't think so, but we can keep track ourselves.",
+    "Mira: Do you usually write down tricky words to remember them?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chloe is asking for a spelling tip during the quiz Rook is running."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the quiz as its tutor, and this question carries on the spelling business without calling anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Chloe asks an open question about a spelling mnemonic that either Mira or the AI tutor could answer."
+    }
+   }
+  },
+  {
+   "id": "a07-00092/10",
+   "speaker": "Theo",
+   "text": "How long have errors been dropping since the rollback?",
+   "before": [
+    "Rosa: Agreed, I'll stay on the incident through the handover.",
+    "Rosa: You can take over once I've walked everyone through the timeline."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Theo follows up on Frankie's update about the rollback and the drop in checkout errors."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Theo is the agent's recent exchange partner and follows up on the agent's rollback update without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "After turning to the group and hearing from Rosa, the incident lead, Theo's unaddressed question about the rollback could be meant for either Rosa or Frankie."
+    }
+   }
+  },
+  {
+   "id": "a07-00210/13",
+   "speaker": "Freya",
+   "text": "Why does hydrogen get put above the alkali metals anyway?",
+   "before": [
+    "Tariq: The actual alkali metals get more reactive as you go down the group.",
+    "Freya: Yeah, potassium's more reactive than sodium, if I remember right."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Freya asks a follow-up about hydrogen that continues the quiz led by the Assistant."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the quiz and Freya, its recent partner on hydrogen, asks a subject question that carries on that tutoring business without calling anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After several turns between the people, Freya asks an open question to the room that the tutor agent could answer if nobody else takes it."
+    }
+   }
+  },
+  {
+   "id": "a07-00220/7",
+   "speaker": "Rhys",
+   "text": "Actually, how long have we been recording?",
+   "before": [
+    "Olu: Should we ask Quinn later for some invoice-chasing tips?",
+    "Rhys: First, let's hear about your most spectacular late payment."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Rhys follows up on Quinn’s confirmation that the podcast is recording."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Rhys follows up his own earlier exchange with Quinn about the recording, which only the agent controls and can answer."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "The agent is no longer in play after the conversation moved on, and this is an open question to the room that Quinn could answer."
+    }
+   }
+  },
+  {
+   "id": "a07-00283/9",
+   "speaker": "Elif",
+   "text": "Does the Calvin cycle need light directly?",
+   "before": [
+    "Divya: Sage showed us that diagram earlier.",
+    "Elif: OK car, turn on the cabin lights."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Elif resumes her exchange with Sage about the Calvin cycle after a brief aside to the car."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Elif continues her own exchange with Sage, following up on its answer about the Calvin cycle after a brief device command."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Elif asks an open biology question to the study group after turning to another device, which the AI tutor could answer if nobody else does."
+    }
+   }
+  },
+  {
+   "id": "a07-00307/18",
+   "speaker": "Rhys",
+   "text": "Would a few wet crumbs be okay on the toothpick?",
+   "before": [
+    "Rhys: Can you get Dash to find out how many strawberries we'll need?",
+    "Anna: Should we ask Dash after we finish the batter?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Rhys follows up on Dash’s earlier advice to him about checking the cake with a toothpick."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Rhys follows up on the agent's own toothpick answer to him, continuing his exchange with Dash without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After talking with Anna for a few turns, Rhys asks an open baking question without calling anyone, which either the people present or the agent could answer."
+    }
+   }
+  },
+  {
+   "id": "a07-00617/14",
+   "speaker": "Wes",
+   "text": "Will we get a call before the delivery?",
+   "before": [
+    "Wes: They’re in the hall cupboard, plotting their escape.",
+    "Ottie: Are either of you home tomorrow afternoon?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Wes returns to his delivery inquiry with a follow-up about the provider’s notification process."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Wes asks about the delivery the agent has been handling, but the talk has moved to the people's own plans, so it could be for the agent or for the room and nothing settles it."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Otto is the AI support agent running the call, and Wes asks a question about the provider's delivery process that carries on the support business and that only the agent can answer."
+    }
+   }
+  },
+  {
+   "id": "a07-00617/19",
+   "speaker": "Wes",
+   "text": "Can we change that delivery window if we need to?",
+   "before": [
+    "Joy: And could you clear those shoes out of the hallway?",
+    "Joy: Unless you want the sofa to trip over them."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Wes is following up on Otto’s answer to his delivery question, and the intervening aside was directed at Ottie."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Wes continues his own exchange with the support agent about the delivery, which the agent as provider support can handle."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Otto is the support agent for the provider, and Wes is asking a support question about the delivery following up on Otto's previous answer."
+    }
+   }
+  },
+  {
+   "id": "a07-00649/16",
+   "speaker": "Jill",
+   "text": "Is the annual price locked in at renewal?",
+   "before": [
+    "Marta: Can we add seats midyear?",
+    "Jill: We'd probably need two more by October."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Jill is following up on her pricing exchange with Hugo by asking about the vendor’s renewal terms."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Jill has been in an exchange with Hugo about pricing, and this follow-up asks a pricing question only the vendor's assistant holds the information for, without turning to anyone else."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Jill continues her pricing exchange with Hugo, asking another question that only the vendor's assistant can answer."
+    }
+   }
+  },
+  {
+   "id": "a07-00779/16",
+   "speaker": "Malik",
+   "text": "Wait, if we added ten, would the median change?",
+   "before": [
+    "Malik: Okay, let's write down five and move on to the next question.",
+    "Wei: Yeah, I've got the next one open."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Malik follows up on Max’s median calculation by asking how adding ten would affect it."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Malik, the agent's last partner, follows up on its median answer without turning to anyone else, and the agent is the group's tutor."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After turning back to the group to move on, Malik asks an open math question to the room that the AI tutor could answer if nobody else does."
+    }
+   }
+  },
+  {
+   "id": "a07-00784/14",
+   "speaker": "Femi",
+   "text": "Um, would mulch help keep those pots from drying out so fast?",
+   "before": [
+    "Can: I like that it suggested spinach too, you know, not just lettuce.",
+    "Femi: Should we ask Pip later about herbs for the windowsill?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Femi follows up on Pip’s watering advice for the same pots."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Femi continues her own watering exchange with Pip with a follow-up question, turning to no one else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After talking with Can about Pip in the third person, Femi asks an open factual question to the room that the agent could answer."
+    }
+   }
+  },
+  {
+   "id": "a07-00940/14",
+   "speaker": "Paul",
+   "text": "Are those added seats billed immediately or at renewal?",
+   "before": [
+    "Dev: Wait, isn't there a higher rate for seats added midyear?",
+    "Paul: I thought so too, but maybe that was the old pricing."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Paul follows up on Penny’s answer to his own question about adding seats midyear."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Paul asked the seat question the agent answered, and this is his follow-up on that answer, which only the vendor's assistant can settle."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Paul asks an open question to the room about billing after a brief exchange with Dev, which the vendor's assistant could answer."
+    }
+   }
+  },
+  {
+   "id": "a07-00948/22",
+   "speaker": "Kate",
+   "text": "Does the swelling note say which knee it is?",
+   "before": [
+    "Kate: Is it recording everything we're saying?",
+    "Mac: I'm not sure, actually."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Kate is following up on the intake note Max added for her."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Kate is asking about the intake note the agent just made, which only the agent holds and which belongs to the intake session it leads."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Only the intake assistant holds and controls the intake notes it just created, and the agent leads the intake session."
+    }
+   }
+  },
+  {
+   "id": "a07-01070/16",
+   "speaker": "Mei",
+   "text": "Does the Retry-After value come back in seconds?",
+   "before": [
+    "Imran: We'll need an aider on our side to test the retry logic.",
+    "Divya: Ada, can you pull up the integration guide? Actually, never mind."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Mei follows up on Ada’s answer to her own question about rate-limit errors."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Mei follows up on her own exchange with Ada about the Retry-After header without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Mei already turned back to the group after Ada's earlier answer, so this unaddressed technical question is open to the room and Ada should wait in case someone else answers."
+    }
+   }
+  },
+  {
+   "id": "a07-01133/8",
+   "speaker": "Siobhan",
+   "text": "Where can we stream it?",
+   "before": [
+    "Jess: I'll bring marmalade sandwiches and my finest hard stare.",
+    "Marta: I think tess's pick might actually make me cry"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Siobhan follows up on her own exchange with Tess by asking where to stream the film Tess recommended."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Siobhan, who asked Tess for the film, follows up on its answer with a lookup only the agent is positioned to answer, without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After Siobhan turned back to the group for several lines, her unaddressed question is an open lookup for the room rather than a direct continuation with Tess."
+    }
+   }
+  },
+  {
+   "id": "a07-01217/12",
+   "speaker": "Eko",
+   "text": "For those five paragraphs, roughly how many words should the introduction get?",
+   "before": [
+    "Eko: Yeah, we could address that in the third body paragraph.",
+    "Mei: Mira, did Echo suggest any sources for the cost argument?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Eko follows up on Echo’s five-paragraph recommendation from their earlier exchange."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Eko continues their own exchange with Echo, following up on its five-paragraph answer with a question the tutor can answer."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After the people returned to talking among themselves, Eko asks an open question to no one in particular that the AI tutor could answer."
+    }
+   }
+  },
+  {
+   "id": "a07-01547/11",
+   "speaker": "Mira",
+   "text": "Would that 12-inch pot be deep enough for mint roots?",
+   "before": [
+    "Paul: The garden shop on Cedar has a pretty good selection.",
+    "Mira: Maybe I could squeeze one in by the door, although..."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Mira returns to her own exchange with Remy by asking about the 12-inch pot it recommended."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Mira follows up on the 12-inch pot answer Remy gave her, continuing her own exchange with the agent."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After talking with Paul, Mira poses an unaddressed factual question about the 12-inch pot that either Remy or Paul could answer."
+    }
+   }
+  },
+  {
+   "id": "a07-01770/13",
+   "speaker": "Lucia",
+   "text": "Um, does that du command count deleted files that are still open?",
+   "before": [
+    "Lucia: Let's check the filesystem with df first, then narrow it down from the mount point.",
+    "Jill: Yeah, that sounds safer. I'll run df now."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Lucia follows up on her own exchange with Wren about the du command."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Lucia is continuing her own exchange with Wren, which just answered her question about the du command, and this follow-up turns to no one else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Lucia asks a follow-up question about the du command suggested by Wren, after turning to Jill in the last two turns, making it unclear whether she is asking the agent or the room."
+    }
+   }
+  },
+  {
+   "id": "a07-01887/17",
+   "speaker": "Anna",
+   "text": "Should I mention that I stopped taking it?",
+   "before": [
+    "Anna: Good, let's stick with that timeline.",
+    "Petra: It also recorded penicillin as a medication allergy."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": null,
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Anna is asking what to report as part of the clinic intake Sage is leading."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Anna has been talking with Petra about what the agent recorded, so 'should I mention it' may be asking Petra's advice, but the intake agent could also answer it; nothing settles which."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Anna is continuing her side conversation with Petra to ask whether she should tell the intake assistant (or doctor) another detail."
+    }
+   }
+  },
+  {
+   "id": "b07-00026/14",
+   "speaker": "Jamal",
+   "text": "Does the A1C show whether it went down since December?",
+   "before": [
+    "Jamal: Agreed. We'll flag it before she joins.",
+    "Jess: Jamal, can Tess actually pull results from the outside lab, or just the clinic's?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Jamal follows up on his own exchange with Tess by asking what the A1C results in his chart show."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 4,
+     "rule": "G6",
+     "reason": "Jamal follows up on his own exchange with Tess about the chart results, and only the agent holds the A1C history, though the intervening talk with Jess leaves slight doubt."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Only the intake assistant has access to the patient's chart to check the A1C results it mentioned earlier."
+    }
+   }
+  },
+  {
+   "id": "b07-00057/12",
+   "speaker": "Ottie",
+   "text": "So is \"accommodation\" spelled the same way, double c, double m?",
+   "before": [
+    "Ottie: Jill, are you writing these down or just spelling out loud?",
+    "Jill: Writing. I'll check them against the list after."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ottie returns to the quiz with a spelling question for Otto, the tutor running it."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the spelling quiz and this spelling question carries on that business without calling anyone else, much like Ottie's earlier spelling question that the agent answered."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Ottie asks an open spelling question to the room without addressing anyone after talking with the other participants."
+    }
+   }
+  },
+  {
+   "id": "b07-00060/9",
+   "speaker": "Can",
+   "text": "So is Silence harder than Burden of Dreams, or can you even compare them?",
+   "before": [
+    "Can: Twenty minutes is generous, I watched you, it was more like eight.",
+    "Ren: Honestly, our co-host knows more grades than my entire gym combined. Slightly threatening."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Can returns to his exchange with Wren by asking it to compare the two climbs it described."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Can has been the agent's exchange partner, and this follows up on the agent's own answers about Silence and Burden of Dreams without turning to anyone else, despite the brief banter in between."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After a few turns of banter among the human hosts, Can asks an open question about climbing grades that nobody is specifically called to answer, though the AI co-host could take it."
+    }
+   }
+  },
+  {
+   "id": "b07-00082/11",
+   "speaker": "Abena",
+   "text": "How many of those powered spots are actually spoken for already?",
+   "before": [
+    "Abena: Omar, check with him today and get it confirmed in writing.",
+    "Omar: Will do, I'll catch him at lunch."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Abena returns to her exchange with Quinn about the floor map by asking about the powered spots Quinn just mapped."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 4,
+     "rule": "G6",
+     "reason": "Abena returns to the floor map Quinn drafted for her; the agent holds the assignment of powered spots, so it is the likely one to answer."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After an exchange with Omar, Abena asks an open question to the room about the powered spots that either Quinn or another teacher might know."
+    }
+   }
+  },
+  {
+   "id": "b07-00085/9",
+   "speaker": "Ben",
+   "text": "Was that two hours for orders with the indexes already built, or before?",
+   "before": [
+    "Ravi: Hana, are you okay being on call for the first half?",
+    "Hana: Yeah, I can take eight to midnight, then hand off."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ben follows up on the two-hour estimate Rook gave in response to his earlier question."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ben follows up on the agent's answer to his own earlier question about the dry run, and only the agent holds that detail."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Ben follows up on Rook's earlier statement about the two-hour orders copy, but after several human turns it could be aimed at Rook or the rest of the team."
+    }
+   }
+  },
+  {
+   "id": "b07-00102/13",
+   "speaker": "Sam",
+   "text": "Does that four hours include the time they spend stuck in traffic though?",
+   "before": [
+    "Sam: Do you need to tell the council you've moved for council tax?",
+    "Ines: Yeah, I think you have to, otherwise they bill you for both places."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Sam’s reference to ‘that four hours’ resumes his own exchange with Echo about van hire."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Sam follows up on the agent's own answer to Sam about the four-hour van hire, continuing his exchange with Echo."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Sam follows up on the four hours from Echo's earlier answer, but since Sam just had an exchange with Ines in between, it could be directed at Echo or the group."
+    }
+   }
+  },
+  {
+   "id": "b07-00117/16",
+   "speaker": "Ruth",
+   "text": "Wait, with questions at the end, like, does that push us past half an hour or are we still okay?",
+   "before": [
+    "Ruth: Yeah, I mean, someone should, the old one still says Wednesday.",
+    "Rémi: Remy, could you pull up last quarter's... actually, never mind, I've got it here."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Ruth asks the room for a timing estimate without directing the question to Remy or anyone else."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Ruth is asking the people about their own meeting timing plan, which only they can judge; nobody called the agent and it is not in the exchange."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Ruth is asking the group about their own meeting timing and agenda plans without addressing the agent."
+    }
+   }
+  },
+  {
+   "id": "b07-00135/8",
+   "speaker": "Wes",
+   "text": "So of those seven, how many actually have someone assigned?",
+   "before": [
+    "Aoife: Are the three blockers all on the payments side, or is any of that frontend?",
+    "Wes: Two are payments, one's the checkout banner. That one's small."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Wes returns to his exchange with Ada by asking about the seven tickets she counted."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Wes continues his own exchange with Ada about the seven open tickets she reported, asking for board information only the agent holds."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Wes asks a follow-up question about the seven tickets Ada mentioned earlier after briefly talking with Aoife, leaving it open whether Ada or another team member should answer."
+    }
+   }
+  },
+  {
+   "id": "b07-00172/14",
+   "speaker": "Femi",
+   "text": "Darts poisoned, though?",
+   "before": [
+    "Dana: So do we risk it or back out?",
+    "Finn: Risk it. Gold floor, come on."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Femi follows up with the game master about the darts it just described."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game and the question about the darts carries on game business only the game master can answer."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game session as game master, and Femi is asking a question about the trap it just described."
+    }
+   }
+  },
+  {
+   "id": "b07-00195/10",
+   "speaker": "Tariq",
+   "text": "Does that van need a special licence though?",
+   "before": [
+    "Tariq: Okay. Big van, early start. I'll come at eight.",
+    "Leo: Aisha, get it to make a packing checklist for me?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Tariq follows up on Nova’s van recommendation in his own exchange with it."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Tariq made the van request and Nova answered him, so his question about the van's licence is a follow-up to his own exchange with the agent."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Tariq asks an open factual question to the room about the 7.5-tonne van after the conversation had moved back to the people, which the agent could answer if nobody else does."
+    }
+   }
+  },
+  {
+   "id": "b07-00233/17",
+   "speaker": "Fatima",
+   "text": "Four copies... any ebook holds on it?",
+   "before": [
+    "Jess: So short one this month, big one in summer?",
+    "Fatima: Works for me. Summer's slower anyway."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Fatima picks up her earlier exchange with Tess by asking a follow-up about the book’s library availability."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Fatima follows up on the agent's answer to her own request about library availability, asking about ebook holds that the agent holds the information on."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Fatima follows up on her earlier exchange with Tess about library availability, which only the agent has been looking up."
+    }
+   }
+  },
+  {
+   "id": "b07-00237/15",
+   "speaker": "Zoe",
+   "text": "So then the subtract-from-thousand thing, does that work with, like, 10,000 too?",
+   "before": [
+    "Aisha: Wait, is that really true? That percent swap thing works every time?",
+    "Zoe: I think so, yeah, I mean, it's just multiplying the same two numbers, right?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Zoe asks a follow-up about a subtraction technique Ace explained during the quiz it leads."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ace runs the quiz and Zoe continues her own exchange with it, following up on the subtraction trick it explained to her."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the tutoring session and Zoe is asking a follow-up math question about the earlier trick without addressing anyone else."
+    }
+   }
+  },
+  {
+   "id": "b07-00259/11",
+   "speaker": "Tom",
+   "text": "Do they, um, do they need a deposit for that back room, or is it just free if we drink?",
+   "before": [
+    "Tom: Femi, did you already tell Sarah's sister, or is that still on us?",
+    "Femi: No, I— I messaged her but she hasn't, like, she hasn't seen it yet."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Tom returns to his exchange with Nova by asking about the back room it recommended."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Tom made the venue request the agent answered, and this follow-up about the back room it suggested continues his exchange with Nova."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After turning away to talk to Femi, Tom asks an open question about the venue Nova suggested without calling anyone, which either Nova or a person could answer."
+    }
+   }
+  },
+  {
+   "id": "b07-00267/6",
+   "speaker": "Ella",
+   "text": "So what does a wholesale account actually do for margin, like, how much does it move it?",
+   "before": [
+    "Tess: Honestly, we're at, like, three right now. Flour prices this year have just been brutal for us.",
+    "Ella: It's the thing nobody tells you starting out — revenue looks great and then, I mean, the margin's just gone."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ella follows up on Cleo’s answer to her own question by asking how much wholesale accounts improve margins."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ella called Cleo and got the answer mentioning wholesale accounts; this follows up on her own exchange with the agent without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Ella follows up on Cleo's earlier point about wholesale accounts after talking with Tess, so the question could be for Cleo or for the group."
+    }
+   }
+  },
+  {
+   "id": "b07-00267/16",
+   "speaker": "Ella",
+   "text": "Wait, the county thing — is that, is that usually a fee, or just paperwork?",
+   "before": [
+    "Victor: Let's take, like, a five-minute break after this segment, I need water.",
+    "Ella: Yeah, fine by me, my voice is going anyway."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ella resumes her exchange with Cleo by asking about the county permit Cleo just mentioned."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ella follows up on the agent's answer to her own licensing question, continuing her exchange with Cleo despite the brief break chatter."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ella follows up directly on the county health department detail from Cleo's answer to her earlier question."
+    }
+   }
+  },
+  {
+   "id": "b07-00321/7",
+   "speaker": "Paul",
+   "text": "Wait, so the toothpick thing, does it have to come out totally clean, or like a few crumbs?",
+   "before": [
+    "Tess: Now the frosting, do we even have enough butter for... hmm, maybe if I...",
+    "Paul: Should we just ask the assistant about the frosting later, once these are in?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Paul is following up on the toothpick advice the assistant gave him."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Paul is following up on the agent's own toothpick advice from his exchange with it, without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Paul asks a follow-up question about the agent's earlier toothpick tip after turning to talk with Tess, making it unsettled whether he is asking Tess or the agent."
+    }
+   }
+  },
+  {
+   "id": "b07-00335/11",
+   "speaker": "Theo",
+   "text": "Was the pool change the only thing in that push, or were there other settings?",
+   "before": [
+    "Theo: Fifty connections under peak load, that would explain the timeouts, unless something else is also...",
+    "Petra: It caught that diff faster than any of us did, honestly."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Theo follows up on Hugo's answer to his earlier question about the same config push."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Theo asked the earlier question the agent answered about the push, and this follows up on that answer, which only the agent has looked up."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After the people talked among themselves, Theo asks an open question to the room about the config push that either a colleague or the agent could answer."
+    }
+   }
+  },
+  {
+   "id": "b07-00348/10",
+   "speaker": "Lena",
+   "text": "How long does it sit there before going back?",
+   "before": [
+    "Lena: Locker it is. Whoever's free grabs it after work.",
+    "Kwame: Fine. I pass Fenwick anyway."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Lena follows up on Tess’s locker answer by asking how long the provider holds the parcel there."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Lena continues her own exchange with the agent about the locker, a question only the support agent holds the information for."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Tess is leading the support call and holds the delivery policy information that Lena is asking about."
+    }
+   }
+  },
+  {
+   "id": "b07-00381/6",
+   "speaker": "Fatima",
+   "text": "Wait, does the counterargument count as one of the three?",
+   "before": [
+    "Fatima: About that. Short thesis, done.",
+    "Victor: Can someone send me your outlines tonight? Need to compare."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Fatima follows up on Cleo’s answer to her own question about the three body paragraphs."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Fatima is following up on Cleo's answer to her own question about body paragraphs, continuing her exchange with the agent."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Fatima follows up on Cleo's earlier answer about three paragraphs after talking with the group, so it could be directed at Cleo or the study group."
+    }
+   }
+  },
+  {
+   "id": "b07-00383/14",
+   "speaker": "Ingrid",
+   "text": "Does that Tuesday estimate assume the SSO bug gets fixed this week?",
+   "before": [
+    "Dev: Alexa, set a timer for fifteen minutes.",
+    "Can: Mm-hm."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ingrid follows up on her exchange with Juno by asking about an assumption behind Juno’s release estimate."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ingrid was the agent's last exchange partner and this follows up on the agent's own Tuesday estimate, which only the agent can explain."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ingrid asks about the assumptions behind the Tuesday estimate that Juno provided earlier, which only Juno holds."
+    }
+   }
+  },
+  {
+   "id": "b07-00385/20",
+   "speaker": "Tariq",
+   "text": "So were those knights killed here, or just their stuff dumped?",
+   "before": [
+    "Zoe: Honestly, coins shifting means it's asleep on its hoard. That's our window.",
+    "Tariq: Or it's awake and just fidgety. Dragons have anxiety too."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Tariq asks about the scene in the adventure Hugo is running without addressing another player."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game, and this question about the game world, put to nobody else, is its business to answer."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game session as game master, and Tariq asks an in-game question about the scene without calling anyone else."
+    }
+   }
+  },
+  {
+   "id": "b07-00390/8",
+   "speaker": "Finn",
+   "text": "So what's the average across all four rounds then?",
+   "before": [
+    "Chen: Lucy, I think your coding round just went really differently from mine.",
+    "Lucy: Yeah, she was, she was way more relaxed by the afternoon, honestly."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Finn follows up on his scorecard exchange with Otto by asking for another calculation from the same data."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Finn is the agent's last partner and is asking a follow-up about the scorecard the agent put up and sorted, which the agent holds."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After the people turned to talking among themselves, Finn asks an open factual question to the room that either a person or the agent could answer."
+    }
+   }
+  },
+  {
+   "id": "b07-00395/14",
+   "speaker": "Jamal",
+   "text": "So, um, who took over after Augustus died in 14?",
+   "before": [
+    "Olga: Wait, are you guys, like, actually studying for the exam this weekend?",
+    "Jamal: Have either of you used it for, like, essay outlines yet?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Jamal returns to the Rome quiz Kai is running with a follow-up to Kai’s answer about Augustus."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Kai is running the Rome quiz and Jamal, its recent partner, follows up on its Augustus answer with a history question without calling anyone else."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the quiz session and Jamal is asking a direct follow-up question to the agent's earlier answer about Augustus."
+    }
+   }
+  },
+  {
+   "id": "c07-00264/4",
+   "speaker": "Hugo",
+   "text": "Is there a faster way around Route 9?",
+   "before": [
+    "Kit: How long's the delay?",
+    "Hugo: Looks like twenty minutes, maybe more."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hugo follows up on Penny’s traffic report by asking for an alternate route."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hugo continues his own exchange with Penny about the Route 9 accident, asking for a reroute that the in-car assistant handles."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hugo continues his exchange with the in-car assistant to ask for an alternative route around the accident it just reported."
+    }
+   }
+  },
+  {
+   "id": "c07-00350/11",
+   "speaker": "Ravi",
+   "text": "Wait, if we go with the two-year plan, what's the policy if they drop below fifty seats?",
+   "before": [
+    "Sam: Does that fifteen percent apply to the, uh, the onboarding fee as well?",
+    "Ravi: No, onboarding is a flat one-time charge, though we can sometimes waive half of it."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ravi follows up on Bolt’s two-year pricing answer by asking what happens if the seat count drops below fifty."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ravi, the agent's last partner, follows up his own two-year pricing question with a policy question that only the vendor's assistant would answer, since Ravi himself is the one asking."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ravi refers to the customers on the call as 'they' and asks about the vendor policy on the two-year fifty-seat plan Bolt just quoted him, continuing his exchange with the agent."
+    }
+   }
+  },
+  {
+   "id": "c07-00495/13",
+   "speaker": "Hugo",
+   "text": "Does that four-day setup include data migration?",
+   "before": [
+    "Raf: Ninety days is tight for a full rollout.",
+    "Dana: We only need the core module first."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hugo follows up on the four-day setup estimate Kai gave in response to his question."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hugo follows up on the agent's own answer to his question about the four-day setup, which only the vendor's assistant can clarify."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Hugo asks about the four-day setup mentioned by the vendor's AI assistant, which only the vendor's assistant can answer."
+    }
+   }
+  },
+  {
+   "id": "c07-00509/9",
+   "speaker": "Kwame",
+   "text": "How many guards on this floor?",
+   "before": [
+    "Kwame: Yeah, cutting it now.",
+    "Kwame: Just watch the hallway."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Kwame asks the game master for an in-game detail, following up on the patrol timing."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the game, and this is a game question only the GM can answer; Kwame doesn't call anyone else by name."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game session as game master, and Kwame asks a question about the game world that only the game master can answer."
+    }
+   }
+  },
+  {
+   "id": "o07-00112/7",
+   "speaker": "Chloe",
+   "text": "Was that the thread with the attached PDF or just text?",
+   "before": [
+    "Rosa: The customer seems pretty angry about the missing credit note.",
+    "Connor: Yeah, he mentioned it in the last call too."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chloe is following up with Ada about the email thread Ada shared in response to her request."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "direct",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Chloe asks about the thread the agent pulled up for her, but two intervening lines between Rosa and Connor make it unclear whether she's continuing with the agent or asking the people."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Chloe follows up on her own exchange with Ada about the email thread."
+    }
+   }
+  },
+  {
+   "id": "o07-00230/14",
+   "speaker": "Eli",
+   "text": "Can we run a test migration before the real one?",
+   "before": [
+    "Eli: Open the dashboard, then click the migration icon.",
+    "Eli: Raf, please make sure you have admin access."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Eli is proposing a trial run to the team after discussing migration steps and access."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "A proposal to the group about the people's own plans, with no question the agent is being asked to answer."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Eli asks an open question about how the product's migration works to nobody in particular, which the vendor's AI assistant can answer if no one else does."
+    }
+   }
+  },
+  {
+   "id": "o07-00238/8",
+   "speaker": "Ivan",
+   "text": "What is the maximum file size limit?",
+   "before": [
+    "Ivan: Has anyone here ever pulled logs from this system?",
+    "Abena: I used it last month for the API failures."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Ivan follows up on Abena’s experience pulling logs from the system."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "A factual question about the logging system that could be for the agent (which answered earlier) or for Abena, who just said she used it, and nothing settles which."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Ivan is asking a follow-up question to Abena, who just answered his previous question about using the logging system."
+    }
+   }
+  },
+  {
+   "id": "o07-00340/18",
+   "speaker": "Noah",
+   "text": "Does the doctor take insurance from Blue Cross?",
+   "before": [
+    "Noah: I think we should stick to the plan.",
+    "Chris: Okay, does anyone else have questions before we wait?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The insurance question continues the clinic intake that Nova is handling."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Nobody is called; Chris asked for questions and Noah poses a factual clinic question the intake assistant could answer, but it is open to the room."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Nova is the clinic intake assistant leading the session, and Noah asks an intake-related question without addressing anyone else."
+    }
+   }
+  },
+  {
+   "id": "o07-00362/13",
+   "speaker": "Abena",
+   "text": "Wait, how long does it take to provision the new API keys?",
+   "before": [
+    "Hiro: Quinn, wait, sorry, Malik, did you send the contract over yet?",
+    "Hiro: Quinn, can you actually, never mind, let's figure that out later."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Abena resumes her exchange with Quinn about the vendor’s API by asking a related follow-up."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Abena was the agent's last exchange partner on API limits and fees, and this follow-up about provisioning API keys carries on that exchange without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After the conversation moved away from the agent, Abena asks an unaddressed question about the product that the vendor's assistant could answer if nobody else takes it."
+    }
+   }
+  },
+  {
+   "id": "o07-00441/20",
+   "speaker": "Divya",
+   "text": "What does resignation mean here?",
+   "before": [
+    "Greg: I don't care about the poem right now.",
+    "Imran: Indy is too literal."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Divya is asking Indy to clarify a word it used in its answer to her."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Divya continues her own exchange with Indy, following up on the word 'resignation' from its answer to her."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Divya asks a direct follow-up question about a word the agent used in its previous answer to her."
+    }
+   }
+  },
+  {
+   "id": "o07-00841/12",
+   "speaker": "Pedro",
+   "text": "Does it have a higher atomic mass than sodium?",
+   "before": [
+    "Lucy: Wait, is it below sodium then?",
+    "Pedro: Yeah, it's directly under it in the same group."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Pedro asks a follow-up about potassium in the quiz Iris is running."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Iris runs the quiz and just answered Pedro's chemistry question; this is Pedro's follow-up on the same topic, carrying on his exchange with the agent."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the quiz session and Pedro asks a chemistry question carrying on the session's business without addressing anyone else."
+    }
+   }
+  },
+  {
+   "id": "o07-00961/13",
+   "speaker": "Leila",
+   "text": "Wait, does that mean it has a full outer shell?",
+   "before": [
+    "Leila: Great, I'll write that down before we move on to the next set of questions.",
+    "Jill: You should probably double-check the superscripts, I always mess those up."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Leila is asking Bolt a follow-up about the electron configuration it just gave her."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Leila follows up on the agent's answer to her own question about argon, and the agent runs the quiz, so the question carries on her exchange with it."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the quiz session and Leila asks a follow-up question to the agent's earlier answer about argon."
+    }
+   }
+  },
+  {
+   "id": "o07-00999/11",
+   "speaker": "Bea",
+   "text": "Wait, does the backup cluster have the latest schema version deployed?",
+   "before": [
+    "Greg: But the DNS propagation takes ten minutes, right? So we can't just flip it.",
+    "Bea: Correct. We'd need to lower the TTL manually or use a local resolver trick."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Bea returns to her exchange with Sage about the backup cluster and asks a follow-up about its deployed schema."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Bea is continuing her own exchange with Sage about the backup cluster status, which Sage holds the information on, without turning to anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After turning to discuss DNS with Greg, Bea asks an open question to the room about the backup cluster that either a teammate or Sage could answer."
+    }
+   }
+  },
+  {
+   "id": "o07-01000/13",
+   "speaker": "Ella",
+   "text": "So, do I need to isolate the gas before he arrives?",
+   "before": [
+    "Jon: I'll put a reminder in the diary right now.",
+    "Ella: I honestly don't know which valve needs closing off."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ella follows up on her booking exchange with Nova by asking what she needs to do before the engineer arrives."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Nova is the provider's support agent leading this support call, and Ella has been dealing with it about the booking, so her question about preparing for the engineer's visit carries on that business."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Nova is leading a support call, and Ella asks a direct support question about preparing for the engineer's visit without addressing anyone else."
+    }
+   }
+  },
+  {
+   "id": "o07-01070/12",
+   "speaker": "Sam",
+   "text": "is this ibuprofen or naproxen?",
+   "before": [
+    "Hana: you should have told us that sooner.",
+    "Sam: Hana, did Clover mention the dosage?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Sam asks a medication question that continues the clinic intake without calling anyone else."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 2,
+     "rule": "G7",
+     "reason": "Sam is continuing his exchange with Hana about the medication, and 'this' points to a physical item only the people can see."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Sam is continuing his exchange with Hana and asking about a physical pill in the room, which only Hana can identify."
+    }
+   }
+  },
+  {
+   "id": "o07-01161/7",
+   "speaker": "Cal",
+   "text": "How long does that usually take to fix?",
+   "before": [
+    "Cal: Has anyone used this feature before?",
+    "Cal: I did last month for the dryer."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Cal follows up on Indy's diagnosis by asking how long the fix usually takes."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "An unaddressed question after a person-to-person exchange; the support agent could answer how long a fix takes, but a person might too."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent is the support agent leading the troubleshooting session, and Cal asks a direct support question without calling anyone else."
+    }
+   }
+  },
+  {
+   "id": "o07-01272/8",
+   "speaker": "Amy",
+   "text": "Do those airlocks have electronic locks?",
+   "before": [
+    "Amy: Okay, let's split up. Two per airlock.",
+    "Amy: I'll take the port side."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Amy is asking the game master for another detail about the airlocks Frankie just described."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Amy follows up her own exchange with the game master about the airlocks, and the agent leads the session."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game session as game master, and Amy is asking a game-world question that only the agent can answer."
+    }
+   }
+  },
+  {
+   "id": "o07-01299/7",
+   "speaker": "Can",
+   "text": "How long does the rain last?",
+   "before": [
+    "Can: I guess we'd better bring the heavy-duty tent.",
+    "Tariq: It's definitely overthinking the precipitation levels."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Can is following up on the forecast Pip gave him."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Can was the agent's last partner on the weather question, and this follow-up asks for forecast detail that only the agent supplied."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "After turning to talk with Tariq, Can asks an unaddressed question about the weather that the agent could answer."
+    }
+   }
+  },
+  {
+   "id": "o07-01360/20",
+   "speaker": "Oskar",
+   "text": "What is that weekend surcharge actually, though?",
+   "before": [
+    "Finn: Oskar, is that enough time for all our stuff?",
+    "Oskar: Probably not. We have like ten big boxes already."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Oskar returns to his exchange with the assistant by asking it to quantify the weekend surcharge it just mentioned."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Oskar follows up on the agent's answer to his own request about weekend moves; only the agent holds that surcharge information."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Oskar asks a follow-up question about the weekend surcharge that the agent just looked up for him, holding information only the agent has."
+    }
+   }
+  },
+  {
+   "id": "o07-01373/16",
+   "speaker": "Ivan",
+   "text": "Is there a cheaper option nearby?",
+   "before": [
+    "Ingrid: Can you save that total for us?",
+    "Ivan: Yeah, let's do that."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ivan follows up on the hotel price Rook just gave him by asking about cheaper options nearby."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ivan continues his own exchange with the agent about the hotel cost, asking a travel lookup only the agent is handling."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Ivan follows up on Rook's answer to his hotel price question with a lookup only the travel assistant would know."
+    }
+   }
+  },
+  {
+   "id": "o07-01569/7",
+   "speaker": "Oskar",
+   "text": "How long has it been empty anyway?",
+   "before": [
+    "Fatima: Probably, but I'm keeping my gun ready.",
+    "Oskar: You guys remember it said the station was abandoned?"
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Oskar asks an in-world question about the station's history that Indy can answer as game master."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game and this question about the station's lore carries on that business without calling anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Oskar is addressing the group ('You guys' in his previous turn) with an open lore question that either the other players or the game master could answer."
+    }
+   }
+  },
+  {
+   "id": "o07-01740/13",
+   "speaker": "Pablo",
+   "text": "So does that mean I lose points for guessing wrong?",
+   "before": [
+    "Pablo: This spelling test is getting way harder than I expected.",
+    "Kate: Yeah, I'm just guessing on the last three."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Pablo asks about scoring in the quiz Frankie is running."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the quiz, and this question about its scoring carries on that business without calling anyone else."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the quiz session, and the speaker asks a question directly about the quiz's scoring rules without calling anyone else."
+    }
+   }
+  },
+  {
+   "id": "o07-01897/4",
+   "speaker": "Rhys",
+   "text": "How many of those fourteen actually passed the technical screen?",
+   "before": [
+    "Tariq: Is that enough to cover the backend roles specifically?",
+    "Rhys: Probably, but we might be short on the frontend side."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Rhys follows up on Quinn’s pipeline answer by asking about the fourteen candidates it reported."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Rhys called Quinn earlier and now follows up on the agent's pipeline answer with a question only its data can answer."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "After briefly replying to Tariq, Rhys asks a follow-up question about Quinn's figure without calling anyone, leaving it open whether he is asking Quinn or the team."
+    }
+   }
+  },
+  {
+   "id": "o07-01982/18",
+   "speaker": "Dana",
+   "text": "Wait, does the new router support mesh nodes?",
+   "before": [
+    "Ada: But won't that break all our other settings?",
+    "Dana: I guess we can just re-pair the phones quickly."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Dana continues the support session with a question about the new router’s capabilities."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Gus is leading this support session and Dana, its exchange partner, asks a support question that Gus could answer, without calling anyone else."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Gus is leading the support call and Dana asks a technical question about the provider's router without addressing anyone else."
+    }
+   }
+  },
+  {
+   "id": "o07-02014/10",
+   "speaker": "Victor",
+   "text": "Is the 'c' silent?",
+   "before": [
+    "Tess: Five. Psy-cho-lo-gy.",
+    "Tess: That one trips everyone up."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Victor asks about the current quiz word, and Frankie is running the quiz."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the quiz and Victor's question about the quiz word carries on that business without calling anyone else."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Victor has been asking Tess about the spelling word, so this follow-up question could be directed at Tess, the group, or the AI tutor running the quiz."
+    }
+   }
+  },
+  {
+   "id": "o07-02136/14",
+   "speaker": "Arjun",
+   "text": "Wait, can you actually send those logs to the dev team directly?",
+   "before": [
+    "Priya: I'm tired, so let's not go down another rabbit hole.",
+    "Oskar: It's amazing how much work Otto takes off our plates."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Arjun resumes his exchange with Otto by asking whether it can send the logs it offered to pull."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Arjun continues his own exchange with Otto, following up on its offer to pull the logs, which only the agent could do."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Arjun continues his earlier exchange with Otto about pulling the error logs, asking for an action that Otto just offered to perform."
+    }
+   }
+  },
+  {
+   "id": "o07-02156/17",
+   "speaker": "Ingrid",
+   "text": "How much melatonin are we talking about?",
+   "before": [
+    "Ingrid: Let us just get this done quickly then.",
+    "Jamal: Yeah, I am hungry too."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Ingrid is asking Jamal to clarify what he meant by a low dose."
+    },
+    "b": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Ingrid is asking Jamal about his own melatonin dose, which only he can answer, so the question is for him rather than the agent."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G6",
+     "reason": "Ingrid is asking Jamal about the specific dosage of melatonin that Jamal mentioned taking."
+    }
+   }
+  },
+  {
+   "id": "o07-02191/9",
+   "speaker": "Tess",
+   "text": "Wait, does the reserve recharge if we stay in the central hub?",
+   "before": [
+    "Tess: So are we rushing to the airlock, or do we take the long way?",
+    "Anna: I vote long way. That corridor is way too sketchy."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Tess asks the game master a follow-up about how the oxygen reserve works."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Tess follows up on the agent's own reserve answer to her, and the agent as game master holds the game-world information."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game session as game master, and Tess asks a game mechanics question without calling anyone else."
+    }
+   }
+  },
+  {
+   "id": "o07-02268/22",
+   "speaker": "Anna",
+   "text": "Is there a way to bypass the trap?",
+   "before": [
+    "Harold: Could you reroll that last check?",
+    "Pablo: I think that was against the rules."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Anna asks an in-game question without addressing another player, so it is for Indy as game master."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent runs the game, and asking about bypassing a trap carries on that business without calling anyone else."
+    },
+    "c": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "The agent leads the game session as game master, and Anna asks a question about the adventure environment without calling anyone else."
+    }
+   }
+  },
+  {
+   "id": "o07-02434/13",
+   "speaker": "Kit",
+   "text": "Wait, does the seven-thirty start include the electrical setup?",
+   "before": [
+    "Olu: Kit, are you sure the gym floor is clean enough?",
+    "Kit: Yeah, the janitors scrubbed it last night."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "respond",
+   "members": {
+    "a": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Kit follows up on the seven-thirty time Bea gave in response to Kit's own question."
+    },
+    "b": {
+     "decision": "respond",
+     "intent": "direct",
+     "speak": 5,
+     "rule": "G6",
+     "reason": "Kit, the agent's last partner, follows up on the agent's own seven-thirty answer without turning to anyone else, and the agent holds that information."
+    },
+    "c": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G6",
+     "reason": "Kit already turned away to speak with Olu for several turns, so this question about Bea's earlier answer could be addressed to either Bea or the room."
+    }
+   }
+  },
+  {
+   "id": "o07-02697/14",
+   "speaker": "Abena",
+   "text": "Wait, does the recipe specify which cut of chicken to use?",
+   "before": [
+    "Abena: So are we still sticking with the chicken, or are you too tired to cook?",
+    "Cal: I'm too tired to cook, but I can handle the mixing part."
+   ],
+   "kind": "follow_up_later",
+   "rule": "G6",
+   "guide": "wait",
+   "majority": "ignore",
+   "members": {
+    "a": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Abena has turned back to Cal, and the question continues their discussion about cooking the chicken."
+    },
+    "b": {
+     "decision": "wait",
+     "intent": "open",
+     "speak": 3,
+     "rule": "G7",
+     "reason": "Abena asks an unaddressed question about the recipe after the talk has moved on to people, so it could be for Cal or for the agent and nothing settles it."
+    },
+    "c": {
+     "decision": "ignore",
+     "intent": "other",
+     "speak": 1,
+     "rule": "G7",
+     "reason": "Abena has turned to talking with Cal about cooking the chicken, and asks about the recipe they are using."
+    }
+   }
+  }
+ ],
+ "graded_lines": []
+}

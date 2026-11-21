@@ -1,0 +1,48 @@
+experiment_id: exp-071-side-round10-students
+status: done (2026-11-21)
+track: sidechat (round 10, agent-1x)
+what: >
+  Two more round 10 students (two-tower Ettin-32M, seeds 2 and 3), distilled from exp-066's dev-picked
+  teacher side-r10-ettin-150m-s1 on the same corpus, with gen-0.5's two committee-failed kinds left
+  out. exp-066's students cut TCL's outright answers on people's lines beyond noise (51 and 49
+  against rc0.3 agent-1x's 75) but failed on Duplex-MPE's named requests (95.3% and 97.6% against
+  99.7%); students vary that much by seed (round 9: 96.5% and 99.7%).
+rule (fixed before training): >
+  The dev pick across all four seeds (exp-066's s0 and s1 and these) must pass exp-066's gate
+  (student_gate.gate_r10 against side-r9tt-ettin-32m-s1, plus beating Jev's speed on agent-1x). No
+  pick by test results: if the dev pick fails, nothing ships, whatever another seed scores.
+forecast block:
+  campaign: exp-071-side-round10-students
+  decision it enables: whether rc0.4's agent-1x build replaces rc0.3's (Jon's call to publish)
+  token forecast: none
+  Modal forecast: two H100 student runs of about 1.5 hours with scoring, two exports, one timing run;
+    about $15
+  retry cap: train_run 1; the launcher is non-preemptible and reattaches (SD-25)
+  spend cap: stop by hand past $30
+  stop condition: scorecard.json and report.md in runs/side/results/exp-071-side-round10-students/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $15
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round10::run --exp exp-071-side-round10-students
+  --steps students,export,latency --teacher side-r10-ettin-150m-s1 --student-seeds 2,3
+  --pick-among side-r10tt-ettin-32m-s0,side-r10tt-ettin-32m-s1 --drop-kinds follow_up_later,partner_to_people_after_agent
+results: uv run python -m sidechat.pipeline.results exp-071-side-round10-students
+actual_usd: about $16 (two H100s for about 1.75 hours, about $14; three exports, timing and the launcher about $2)
+result:
+  pick: "dev picks side-r10tt-ettin-32m-s2 among the four seeds"
+  gate: >
+    It does not ship. It passes every condition but one: Ambient Bench right 96.99% (15,317/15,793)
+    against rc0.3 agent-1x's 97.49% (15,396), 79 lines fewer where the 0.5-point margin allows 78.97.
+    By the rule above, nothing ships.
+  s2: >
+    TCL people's lines answered outright 1.40% (47/3,348) against 2.24% (75): paired -0.84 points
+    (-1.21 to -0.47). TCL unnamed follow-ups answered or held +4.3 points; named requests 157/158.
+    Duplex-MPE others answered outright 0.18% against 0.33%; named requests 98.8% against 99.7%
+    (-0.9, margin 1); unnamed requests answered 4.9% against 10.2%. Pilot +0.7 points. SLURP
+    unnamed held as heard with the keyterm 85.5% against 86.6%. SLURP named, written, 57 of 61
+    against 61 (not in the gate). Demo lines 47/48 against 48/48.
+  s3: "fails on Duplex-MPE right (-0.60 points); cuts TCL's outright answers as much (-0.75)"
+  seeds: "all four students cut TCL's outright answers beyond noise (-0.72 to -0.84 points); each fails one or two margins elsewhere"
+  int8: "the new recipe passes the export's gate for all three models exported here: the teacher 280/283 (dev +0.04 points, 210 ms a line on one thread against 346), students s2 282/283 and s3 277/283 (195 MB, about 8.5 ms against 13)"
+  speed: "full history on agent-1x: s2 12 ms, rc0.3 agent-1x 11 ms, Jev 58 ms in this run (exp-066's run measured 20 and 140: the shared CPU varies)"

@@ -1,0 +1,131 @@
+{
+ "exp": "exp-068-side-int8-probe-b",
+ "run_id": "side-r9-ettin-150m-s1",
+ "results": {
+  "fp32": {
+   "latency_1_thread": {
+    "p50": 315.6,
+    "mean": 303.1
+   }
+  },
+  "cpu": {
+   "model": "unknown",
+   "vnni": [],
+   "avx512": false
+  },
+  "graph": {
+   "matmuls_with_weights": 88,
+   "by_group": {
+    "attn_qkv": 22,
+    "attn_out": 22,
+    "mlp_in": 22,
+    "mlp_out": 22
+   },
+   "layers": 22,
+   "sample_names": [
+    "/m/enc/layers.0/attn/Wqkv/MatMul",
+    "/m/enc/layers.0/attn/Wo/MatMul",
+    "/m/enc/layers.0/mlp/Wi/MatMul",
+    "/m/enc/layers.0/mlp/Wo/MatMul",
+    "/m/enc/layers.1/attn/Wqkv/MatMul",
+    "/m/enc/layers.1/attn/Wo/MatMul"
+   ]
+  },
+  "per tensor": {
+   "excluded": 0,
+   "decisions_same": 266,
+   "rows": 283,
+   "max_respond_diff": 0.5656,
+   "mean_respond_diff": 0.0377,
+   "size_mb": 266.5,
+   "latency_1_thread": {
+    "p50": 181.4,
+    "mean": 172.4
+   }
+  },
+  "per tensor, reduce range": {
+   "excluded": 0,
+   "decisions_same": 261,
+   "rows": 283,
+   "max_respond_diff": 0.8524,
+   "mean_respond_diff": 0.0431,
+   "size_mb": 266.5,
+   "latency_1_thread": {
+    "p50": 183.1,
+    "mean": 175.6
+   }
+  },
+  "per tensor, no mlp_out": {
+   "excluded": 22,
+   "decisions_same": 280,
+   "rows": 283,
+   "max_respond_diff": 0.2197,
+   "mean_respond_diff": 0.0119,
+   "size_mb": 324.9,
+   "latency_1_thread": {
+    "p50": 197.7,
+    "mean": 187.7
+   }
+  },
+  "reduce range, no mlp_out": {
+   "excluded": 22,
+   "decisions_same": 281,
+   "rows": 283,
+   "max_respond_diff": 0.2804,
+   "mean_respond_diff": 0.0064,
+   "size_mb": 325.4,
+   "latency_1_thread": {
+    "p50": 193.6,
+    "mean": 182.1
+   }
+  },
+  "per tensor, reduce range, no mlp_out": {
+   "excluded": 22,
+   "decisions_same": 279,
+   "rows": 283,
+   "max_respond_diff": 0.2378,
+   "mean_respond_diff": 0.0096,
+   "size_mb": 324.9,
+   "latency_1_thread": {
+    "p50": 194.1,
+    "mean": 182.2
+   }
+  },
+  "reduce range, no mlp": {
+   "excluded": 44,
+   "decisions_same": 281,
+   "rows": 283,
+   "max_respond_diff": 0.1535,
+   "mean_respond_diff": 0.0051,
+   "size_mb": 442.0,
+   "latency_1_thread": {
+    "p50": 248.9,
+    "mean": 234.4
+   }
+  },
+  "uint8 weights, per channel": {
+   "excluded": 0,
+   "decisions_same": 268,
+   "rows": 283,
+   "max_respond_diff": 0.8198,
+   "mean_respond_diff": 0.0357,
+   "size_mb": 267.2,
+   "latency_1_thread": {
+    "p50": 217.2,
+    "mean": 204.1
+   }
+  },
+  "uint8 weights, per tensor": {
+   "excluded": 0,
+   "decisions_same": 269,
+   "rows": 283,
+   "max_respond_diff": 0.5446,
+   "mean_respond_diff": 0.0378,
+   "size_mb": 266.5,
+   "latency_1_thread": {
+    "p50": 214.7,
+    "mean": 201.0
+   }
+  }
+ }
+}

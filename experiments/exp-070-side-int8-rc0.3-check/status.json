@@ -1,0 +1,16 @@
+{
+ "exp": "exp-070-side-int8-rc0.3-check",
+ "app": "waystone-side-int8-probe",
+ "state": "running",
+ "stage": "checking ambient",
+ "started_at": "2026-11-20T20:50:30+00:00",
+ "args": {
+  "run_id": "side-r9-ettin-150m-s1",
+  "parity_rows": 300,
+  "combos": false,
+  "make": false,
+  "check": true
+ },
+ "updated_at": "2026-11-20T22:29:58+00:00",
+ "elapsed_s": 5967
+}

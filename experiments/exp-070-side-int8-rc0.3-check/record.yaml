@@ -1,0 +1,30 @@
+experiment_id: exp-070-side-int8-rc0.3-check
+status: done (2026-11-20; Duplex-MPE only, the other sets in -b)
+track: sidechat (default build speed)
+what: >
+  exp-069's int8 file for rc0.3's default build, at its own thresholds, on the test sets the gates
+  use (Duplex-MPE, Ambient Bench, AMI labelled, the AMI silence test, AMI as heard, the pilot, SLURP
+  heard with the keyterm, TCL anonymous), against fp32's stored predictions on the same lines: the
+  share of decisions that agree, decisions right, people's lines answered outright and held, and a
+  paired check on outright answers. It decides whether the int8 file is fit to offer with rc0.3.
+forecast block:
+  campaign: exp-070-side-int8-rc0.3-check
+  decision it enables: whether rc0.3's default build offers int8 again (Jon's call to publish)
+  token forecast: none
+  Modal forecast: one 8-CPU container for about 45 minutes (about 115,000 lines through int8), about $0.50
+  retry cap: 0
+  spend cap: n/a
+  stop condition: scorecard.json and report.md in runs/side/results/exp-070-side-int8-rc0.3-check/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $0.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.int8_probe::run --exp exp-070-side-int8-rc0.3-check --check
+results: uv run python -m sidechat.pipeline.results exp-070-side-int8-rc0.3-check
+incident: >
+  Slower than forecast: Duplex-MPE's 52,336 lines alone took about 90 minutes on 8 CPUs, so the
+  container's 2-hour limit cuts the later sets. The table is saved after each set; the other sets
+  run in parallel as exp-070-side-int8-rc0.3-check-b (`--check-sets`), about $0.50 more.
+actual_usd: about $0.80 (two hours of one 8-CPU container)
+result:
+  duplex: "52,364 lines; 99.44% of decisions the same as fp32. Right 96.56% against 96.37%. People's lines answered outright 0.24% (107/44,528) against 0.21% (93): 14 more, beyond noise in the paired check (-0.03 points, -0.06 to -0.01) but inside the 0.4% bar. Held wrongly 0.63% against 0.80%. Named requests answered now 81.95% against 81.43%, held 2.59% against 3.47%, missed 15.46% against 15.10%."

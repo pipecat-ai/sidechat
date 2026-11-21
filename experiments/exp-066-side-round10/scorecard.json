@@ -1,0 +1,1871 @@
+{
+ "exp": "exp-066-side-round10",
+ "teacher": "side-r10-ettin-150m-s1",
+ "student_pick": "side-r10tt-ettin-32m-s1",
+ "models": {
+  "side-r9-ettin-150m-s1": {
+   "generated": {
+    "value": 0.9895,
+    "k": 21009,
+    "n": 21233,
+    "ci95": [
+     0.988,
+     0.9907
+    ]
+   },
+   "duplex": {
+    "value": 0.9637,
+    "k": 50438,
+    "n": 52336,
+    "ci95": [
+     0.9621,
+     0.9653
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0021,
+    "k": 93,
+    "n": 44528,
+    "ci95": [
+     0.0017,
+     0.0026
+    ]
+   },
+   "duplex_held": {
+    "value": 0.008,
+    "k": 355,
+    "n": 44528,
+    "ci95": [
+     0.0072,
+     0.0088
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9955,
+    "k": 1991,
+    "n": 2000,
+    "ci95": [
+     0.9915,
+     0.9976
+    ]
+   },
+   "implicit_t": {
+    "value": 0.2935,
+    "k": 587,
+    "n": 2000,
+    "ci95": [
+     0.274,
+     0.3138
+    ]
+   },
+   "implicit_held": {
+    "value": 0.1325,
+    "k": 265,
+    "n": 2000,
+    "ci95": [
+     0.1183,
+     0.1481
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9689,
+    "k": 15302,
+    "n": 15793,
+    "ci95": [
+     0.9661,
+     0.9715
+    ]
+   },
+   "ami": {
+    "value": 0.9899,
+    "k": 8785,
+    "n": 8875,
+    "ci95": [
+     0.9876,
+     0.9917
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8778,
+    "k": 237,
+    "n": 270,
+    "ci95": [
+     0.8333,
+     0.9116
+    ]
+   },
+   "demo": {
+    "value": 1.0,
+    "k": 48,
+    "n": 48,
+    "ci95": [
+     0.9259,
+     1.0
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0112,
+    "k": 92,
+    "n": 8202,
+    "ci95": [
+     0.0092,
+     0.0137
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0001,
+    "k": 1,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0007
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9456561922365989,
+    "k": 2558,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0011090573012939,
+    "k": 3,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.08196721311475409,
+    "k": 5,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.9090236686390533,
+    "k": 2458,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0007396449704142012,
+    "k": 2,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7868852459016393,
+    "k": 48,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.9094269870609981,
+    "k": 2460,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0014787430683918669,
+    "k": 4,
+    "n": 2705
+   },
+   "tcl_outright": {
+    "value": 0.0194,
+    "k": 65,
+    "n": 3348,
+    "ci95": [
+     0.0153,
+     0.0247
+    ]
+   },
+   "tcl_held": {
+    "value": 0.0308,
+    "k": 103,
+    "n": 3348,
+    "ci95": [
+     0.0254,
+     0.0372
+    ]
+   },
+   "tcl_direct": {
+    "value": 0.9873,
+    "k": 156,
+    "n": 158,
+    "ci95": [
+     0.955,
+     0.9965
+    ]
+   },
+   "tcl_ctx_now": {
+    "value": 0.3617,
+    "k": 51,
+    "n": 141,
+    "ci95": [
+     0.287,
+     0.4437
+    ]
+   },
+   "tcl_ctx_held": {
+    "value": 0.2057,
+    "k": 29,
+    "n": 141,
+    "ci95": [
+     0.1472,
+     0.2798
+    ]
+   },
+   "g5_pq": {
+    "value": 0.6655737704918033,
+    "k": 203,
+    "n": 305
+   },
+   "g5_pp": {
+    "value": 0.8593155893536122,
+    "k": 226,
+    "n": 263
+   },
+   "g5_later": {
+    "value": 0.6930379746835443,
+    "k": 219,
+    "n": 316
+   },
+   "g5_follow_up": {
+    "value": 0.9916201117318436,
+    "k": 355,
+    "n": 358
+   }
+  },
+  "side-r10-ettin-150m-s0": {
+   "generated": {
+    "value": 0.9895,
+    "k": 21011,
+    "n": 21233,
+    "ci95": [
+     0.9881,
+     0.9908
+    ]
+   },
+   "duplex": {
+    "value": 0.9616,
+    "k": 50325,
+    "n": 52336,
+    "ci95": [
+     0.9599,
+     0.9632
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0039,
+    "k": 172,
+    "n": 44528,
+    "ci95": [
+     0.0033,
+     0.0045
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0119,
+    "k": 528,
+    "n": 44528,
+    "ci95": [
+     0.0109,
+     0.0129
+    ]
+   },
+   "explicit_t": {
+    "value": 0.996,
+    "k": 1992,
+    "n": 2000,
+    "ci95": [
+     0.9921,
+     0.998
+    ]
+   },
+   "implicit_t": {
+    "value": 0.364,
+    "k": 728,
+    "n": 2000,
+    "ci95": [
+     0.3432,
+     0.3853
+    ]
+   },
+   "implicit_held": {
+    "value": 0.1255,
+    "k": 251,
+    "n": 2000,
+    "ci95": [
+     0.1117,
+     0.1407
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9634,
+    "k": 15215,
+    "n": 15793,
+    "ci95": [
+     0.9604,
+     0.9662
+    ]
+   },
+   "ami": {
+    "value": 0.9861,
+    "k": 8752,
+    "n": 8875,
+    "ci95": [
+     0.9835,
+     0.9884
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0002,
+    "k": 2,
+    "n": 10434,
+    "ci95": [
+     0.0001,
+     0.0007
+    ]
+   },
+   "pilot": {
+    "value": 0.8889,
+    "k": 240,
+    "n": 270,
+    "ci95": [
+     0.8458,
+     0.9211
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0169,
+    "k": 139,
+    "n": 8202,
+    "ci95": [
+     0.0144,
+     0.02
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0001,
+    "k": 1,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0007
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9674676524953789,
+    "k": 2617,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0003696857670979667,
+    "k": 1,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.21311475409836064,
+    "k": 13,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.9356508875739645,
+    "k": 2530,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0011094674556213018,
+    "k": 3,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7868852459016393,
+    "k": 48,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.9353049907578558,
+    "k": 2530,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0018484288354898336,
+    "k": 5,
+    "n": 2705
+   },
+   "tcl_outright": {
+    "value": 0.0218,
+    "k": 73,
+    "n": 3348,
+    "ci95": [
+     0.0174,
+     0.0273
+    ]
+   },
+   "tcl_held": {
+    "value": 0.0317,
+    "k": 106,
+    "n": 3348,
+    "ci95": [
+     0.0262,
+     0.0381
+    ]
+   },
+   "tcl_direct": {
+    "value": 0.9873,
+    "k": 156,
+    "n": 158,
+    "ci95": [
+     0.955,
+     0.9965
+    ]
+   },
+   "tcl_ctx_now": {
+    "value": 0.3404,
+    "k": 48,
+    "n": 141,
+    "ci95": [
+     0.2674,
+     0.4219
+    ]
+   },
+   "tcl_ctx_held": {
+    "value": 0.2128,
+    "k": 30,
+    "n": 141,
+    "ci95": [
+     0.1533,
+     0.2875
+    ]
+   },
+   "g5_pq": {
+    "value": 0.980327868852459,
+    "k": 299,
+    "n": 305
+   },
+   "g5_pp": {
+    "value": 0.8859315589353612,
+    "k": 233,
+    "n": 263
+   },
+   "g5_later": {
+    "value": 0.689873417721519,
+    "k": 218,
+    "n": 316
+   },
+   "g5_follow_up": {
+    "value": 0.9916201117318436,
+    "k": 355,
+    "n": 358
+   }
+  },
+  "side-r10-ettin-150m-s1": {
+   "generated": {
+    "value": 0.9896,
+    "k": 21012,
+    "n": 21233,
+    "ci95": [
+     0.9881,
+     0.9909
+    ]
+   },
+   "duplex": {
+    "value": 0.959,
+    "k": 50189,
+    "n": 52336,
+    "ci95": [
+     0.9572,
+     0.9606
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0012,
+    "k": 53,
+    "n": 44528,
+    "ci95": [
+     0.0009,
+     0.0016
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0106,
+    "k": 470,
+    "n": 44528,
+    "ci95": [
+     0.0096,
+     0.0115
+    ]
+   },
+   "explicit_t": {
+    "value": 0.995,
+    "k": 1990,
+    "n": 2000,
+    "ci95": [
+     0.9908,
+     0.9973
+    ]
+   },
+   "implicit_t": {
+    "value": 0.2085,
+    "k": 417,
+    "n": 2000,
+    "ci95": [
+     0.1913,
+     0.2269
+    ]
+   },
+   "implicit_held": {
+    "value": 0.126,
+    "k": 252,
+    "n": 2000,
+    "ci95": [
+     0.1122,
+     0.1413
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9748,
+    "k": 15395,
+    "n": 15793,
+    "ci95": [
+     0.9722,
+     0.9771
+    ]
+   },
+   "ami": {
+    "value": 0.9908,
+    "k": 8793,
+    "n": 8875,
+    "ci95": [
+     0.9885,
+     0.9925
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8889,
+    "k": 240,
+    "n": 270,
+    "ci95": [
+     0.8458,
+     0.9211
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0109,
+    "k": 89,
+    "n": 8202,
+    "ci95": [
+     0.0088,
+     0.0133
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.944547134935305,
+    "k": 2555,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0007393715341959334,
+    "k": 2,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.21311475409836064,
+    "k": 13,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.9171597633136095,
+    "k": 2480,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0003698224852071006,
+    "k": 1,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7868852459016393,
+    "k": 48,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.9149722735674677,
+    "k": 2475,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0011090573012939,
+    "k": 3,
+    "n": 2705
+   },
+   "tcl_outright": {
+    "value": 0.0167,
+    "k": 56,
+    "n": 3348,
+    "ci95": [
+     0.0129,
+     0.0217
+    ]
+   },
+   "tcl_held": {
+    "value": 0.0352,
+    "k": 118,
+    "n": 3348,
+    "ci95": [
+     0.0295,
+     0.042
+    ]
+   },
+   "tcl_direct": {
+    "value": 0.981,
+    "k": 155,
+    "n": 158,
+    "ci95": [
+     0.9457,
+     0.9935
+    ]
+   },
+   "tcl_ctx_now": {
+    "value": 0.2908,
+    "k": 41,
+    "n": 141,
+    "ci95": [
+     0.2222,
+     0.3705
+    ]
+   },
+   "tcl_ctx_held": {
+    "value": 0.2411,
+    "k": 34,
+    "n": 141,
+    "ci95": [
+     0.178,
+     0.318
+    ]
+   },
+   "g5_pq": {
+    "value": 0.9704918032786886,
+    "k": 296,
+    "n": 305
+   },
+   "g5_pp": {
+    "value": 0.8973384030418251,
+    "k": 236,
+    "n": 263
+   },
+   "g5_later": {
+    "value": 0.6772151898734177,
+    "k": 214,
+    "n": 316
+   },
+   "g5_follow_up": {
+    "value": 0.9916201117318436,
+    "k": 355,
+    "n": 358
+   }
+  },
+  "side-r9tt-ettin-32m-s1": {
+   "generated": {
+    "value": 0.985,
+    "k": 20914,
+    "n": 21233,
+    "ci95": [
+     0.9833,
+     0.9865
+    ]
+   },
+   "duplex": {
+    "value": 0.9567,
+    "k": 50072,
+    "n": 52336,
+    "ci95": [
+     0.955,
+     0.9585
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0033,
+    "k": 146,
+    "n": 44528,
+    "ci95": [
+     0.0028,
+     0.0039
+    ]
+   },
+   "duplex_held": {
+    "value": 0.007,
+    "k": 312,
+    "n": 44528,
+    "ci95": [
+     0.0063,
+     0.0078
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9965,
+    "k": 1993,
+    "n": 2000,
+    "ci95": [
+     0.9928,
+     0.9983
+    ]
+   },
+   "implicit_t": {
+    "value": 0.1025,
+    "k": 205,
+    "n": 2000,
+    "ci95": [
+     0.09,
+     0.1166
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0755,
+    "k": 151,
+    "n": 2000,
+    "ci95": [
+     0.0647,
+     0.0879
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9749,
+    "k": 15396,
+    "n": 15793,
+    "ci95": [
+     0.9723,
+     0.9772
+    ]
+   },
+   "ami": {
+    "value": 0.9867,
+    "k": 8757,
+    "n": 8875,
+    "ci95": [
+     0.9841,
+     0.9889
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8667,
+    "k": 234,
+    "n": 270,
+    "ci95": [
+     0.8209,
+     0.9021
+    ]
+   },
+   "demo": {
+    "value": 1.0,
+    "k": 48,
+    "n": 48,
+    "ci95": [
+     0.9259,
+     1.0
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0143,
+    "k": 117,
+    "n": 8202,
+    "ci95": [
+     0.0119,
+     0.0171
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9101663585951941,
+    "k": 2462,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.009611829944547136,
+    "k": 26,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.09836065573770492,
+    "k": 6,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.8664940828402367,
+    "k": 2343,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.009245562130177515,
+    "k": 25,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7868852459016393,
+    "k": 48,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.8658040665434381,
+    "k": 2342,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.009981515711645102,
+    "k": 27,
+    "n": 2705
+   },
+   "tcl_outright": {
+    "value": 0.0224,
+    "k": 75,
+    "n": 3348,
+    "ci95": [
+     0.0179,
+     0.028
+    ]
+   },
+   "tcl_held": {
+    "value": 0.0266,
+    "k": 89,
+    "n": 3348,
+    "ci95": [
+     0.0217,
+     0.0326
+    ]
+   },
+   "tcl_direct": {
+    "value": 0.9873,
+    "k": 156,
+    "n": 158,
+    "ci95": [
+     0.955,
+     0.9965
+    ]
+   },
+   "tcl_ctx_now": {
+    "value": 0.3546,
+    "k": 50,
+    "n": 141,
+    "ci95": [
+     0.2805,
+     0.4365
+    ]
+   },
+   "tcl_ctx_held": {
+    "value": 0.1631,
+    "k": 23,
+    "n": 141,
+    "ci95": [
+     0.1112,
+     0.2329
+    ]
+   },
+   "g5_pq": {
+    "value": 0.7344262295081967,
+    "k": 224,
+    "n": 305
+   },
+   "g5_pp": {
+    "value": 0.8365019011406845,
+    "k": 220,
+    "n": 263
+   },
+   "g5_later": {
+    "value": 0.5917721518987342,
+    "k": 187,
+    "n": 316
+   },
+   "g5_follow_up": {
+    "value": 0.9916201117318436,
+    "k": 355,
+    "n": 358
+   }
+  },
+  "side-r10tt-ettin-32m-s0": {
+   "generated": {
+    "value": 0.9844,
+    "k": 20902,
+    "n": 21233,
+    "ci95": [
+     0.9827,
+     0.986
+    ]
+   },
+   "duplex": {
+    "value": 0.9548,
+    "k": 49971,
+    "n": 52336,
+    "ci95": [
+     0.953,
+     0.9566
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0014,
+    "k": 64,
+    "n": 44528,
+    "ci95": [
+     0.0011,
+     0.0018
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0065,
+    "k": 291,
+    "n": 44528,
+    "ci95": [
+     0.0058,
+     0.0073
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9535,
+    "k": 1907,
+    "n": 2000,
+    "ci95": [
+     0.9434,
+     0.9619
+    ]
+   },
+   "implicit_t": {
+    "value": 0.0495,
+    "k": 99,
+    "n": 2000,
+    "ci95": [
+     0.0408,
+     0.0599
+    ]
+   },
+   "implicit_held": {
+    "value": 0.075,
+    "k": 150,
+    "n": 2000,
+    "ci95": [
+     0.0643,
+     0.0874
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.971,
+    "k": 15335,
+    "n": 15793,
+    "ci95": [
+     0.9683,
+     0.9735
+    ]
+   },
+   "ami": {
+    "value": 0.9855,
+    "k": 8746,
+    "n": 8875,
+    "ci95": [
+     0.9828,
+     0.9878
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0004
+    ]
+   },
+   "pilot": {
+    "value": 0.8778,
+    "k": 237,
+    "n": 270,
+    "ci95": [
+     0.8333,
+     0.9116
+    ]
+   },
+   "demo": {
+    "value": 0.9792,
+    "k": 47,
+    "n": 48,
+    "ci95": [
+     0.891,
+     0.9963
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.0137,
+    "k": 112,
+    "n": 8202,
+    "ci95": [
+     0.0114,
+     0.0164
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9068391866913124,
+    "k": 2453,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0003696857670979667,
+    "k": 1,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.08196721311475409,
+    "k": 5,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.863905325443787,
+    "k": 2336,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0,
+    "k": 0,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7704918032786885,
+    "k": 47,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.8628465804066543,
+    "k": 2334,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0007393715341959334,
+    "k": 2,
+    "n": 2705
+   },
+   "tcl_outright": {
+    "value": 0.0152,
+    "k": 51,
+    "n": 3348,
+    "ci95": [
+     0.0116,
+     0.02
+    ]
+   },
+   "tcl_held": {
+    "value": 0.0266,
+    "k": 89,
+    "n": 3348,
+    "ci95": [
+     0.0217,
+     0.0326
+    ]
+   },
+   "tcl_direct": {
+    "value": 0.9873,
+    "k": 156,
+    "n": 158,
+    "ci95": [
+     0.955,
+     0.9965
+    ]
+   },
+   "tcl_ctx_now": {
+    "value": 0.3191,
+    "k": 45,
+    "n": 141,
+    "ci95": [
+     0.2479,
+     0.4
+    ]
+   },
+   "tcl_ctx_held": {
+    "value": 0.1986,
+    "k": 28,
+    "n": 141,
+    "ci95": [
+     0.1411,
+     0.272
+    ]
+   },
+   "g5_pq": {
+    "value": 0.9540983606557377,
+    "k": 291,
+    "n": 305
+   },
+   "g5_pp": {
+    "value": 0.8669201520912547,
+    "k": 228,
+    "n": 263
+   },
+   "g5_later": {
+    "value": 0.6170886075949367,
+    "k": 195,
+    "n": 316
+   },
+   "g5_follow_up": {
+    "value": 0.9916201117318436,
+    "k": 355,
+    "n": 358
+   }
+  },
+  "side-r10tt-ettin-32m-s1": {
+   "generated": {
+    "value": 0.9862,
+    "k": 20941,
+    "n": 21233,
+    "ci95": [
+     0.9846,
+     0.9877
+    ]
+   },
+   "duplex": {
+    "value": 0.952,
+    "k": 49825,
+    "n": 52336,
+    "ci95": [
+     0.9502,
+     0.9538
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0023,
+    "k": 104,
+    "n": 44528,
+    "ci95": [
+     0.0019,
+     0.0028
+    ]
+   },
+   "duplex_held": {
+    "value": 0.0117,
+    "k": 522,
+    "n": 44528,
+    "ci95": [
+     0.0108,
+     0.0128
+    ]
+   },
+   "explicit_t": {
+    "value": 0.976,
+    "k": 1952,
+    "n": 2000,
+    "ci95": [
+     0.9683,
+     0.9819
+    ]
+   },
+   "implicit_t": {
+    "value": 0.0835,
+    "k": 167,
+    "n": 2000,
+    "ci95": [
+     0.0722,
+     0.0964
+    ]
+   },
+   "implicit_held": {
+    "value": 0.0785,
+    "k": 157,
+    "n": 2000,
+    "ci95": [
+     0.0675,
+     0.0911
+    ]
+   },
+   "jev_implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "ambient": {
+    "value": 0.9697,
+    "k": 15314,
+    "n": 15793,
+    "ci95": [
+     0.9669,
+     0.9722
+    ]
+   },
+   "ami": {
+    "value": 0.9868,
+    "k": 8758,
+    "n": 8875,
+    "ci95": [
+     0.9842,
+     0.989
+    ]
+   },
+   "ami_silent_outright": {
+    "value": 0.0001,
+    "k": 1,
+    "n": 10434,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "pilot": {
+    "value": 0.8593,
+    "k": 232,
+    "n": 270,
+    "ci95": [
+     0.8127,
+     0.8957
+    ]
+   },
+   "demo": {
+    "value": 0.9583,
+    "k": 46,
+    "n": 48,
+    "ci95": [
+     0.8602,
+     0.9885
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.013,
+    "k": 107,
+    "n": 8202,
+    "ci95": [
+     0.0108,
+     0.0157
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 0.9836065573770492,
+    "k": 60,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.8824399260628466,
+    "k": 2387,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0033271719038817007,
+    "k": 9,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.08196721311475409,
+    "k": 5,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.8509615384615384,
+    "k": 2301,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0011094674556213018,
+    "k": 3,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7704918032786885,
+    "k": 47,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.8484288354898336,
+    "k": 2295,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0018484288354898336,
+    "k": 5,
+    "n": 2705
+   },
+   "tcl_outright": {
+    "value": 0.0146,
+    "k": 49,
+    "n": 3348,
+    "ci95": [
+     0.0111,
+     0.0193
+    ]
+   },
+   "tcl_held": {
+    "value": 0.0335,
+    "k": 112,
+    "n": 3348,
+    "ci95": [
+     0.0279,
+     0.0401
+    ]
+   },
+   "tcl_direct": {
+    "value": 0.981,
+    "k": 155,
+    "n": 158,
+    "ci95": [
+     0.9457,
+     0.9935
+    ]
+   },
+   "tcl_ctx_now": {
+    "value": 0.3121,
+    "k": 44,
+    "n": 141,
+    "ci95": [
+     0.2414,
+     0.3927
+    ]
+   },
+   "tcl_ctx_held": {
+    "value": 0.2482,
+    "k": 35,
+    "n": 141,
+    "ci95": [
+     0.1842,
+     0.3256
+    ]
+   },
+   "g5_pq": {
+    "value": 0.9573770491803278,
+    "k": 292,
+    "n": 305
+   },
+   "g5_pp": {
+    "value": 0.844106463878327,
+    "k": 222,
+    "n": 263
+   },
+   "g5_later": {
+    "value": 0.6265822784810127,
+    "k": 198,
+    "n": 316
+   },
+   "g5_follow_up": {
+    "value": 0.9860335195530726,
+    "k": 353,
+    "n": 358
+   }
+  },
+  "jev": {
+   "duplex": {
+    "value": 0.8311,
+    "k": 43495,
+    "n": 52336,
+    "ci95": [
+     0.8278,
+     0.8343
+    ]
+   },
+   "duplex_outright": {
+    "value": 0.0041,
+    "k": 182,
+    "n": 44528,
+    "ci95": [
+     0.0035,
+     0.0047
+    ]
+   },
+   "duplex_held": {
+    "value": 0.1601,
+    "k": 7131,
+    "n": 44528,
+    "ci95": [
+     0.1568,
+     0.1636
+    ]
+   },
+   "ambient": {
+    "value": 0.8535,
+    "k": 13479,
+    "n": 15793,
+    "ci95": [
+     0.8479,
+     0.8589
+    ]
+   },
+   "ami": {
+    "value": 0.8522,
+    "k": 7563,
+    "n": 8875,
+    "ci95": [
+     0.8446,
+     0.8594
+    ]
+   },
+   "pilot": {
+    "value": 0.7778,
+    "k": 210,
+    "n": 270,
+    "ci95": [
+     0.7245,
+     0.8233
+    ]
+   },
+   "explicit_t": {
+    "value": 0.9915,
+    "k": 1983,
+    "n": 2000,
+    "ci95": [
+     0.9864,
+     0.9947
+    ]
+   },
+   "implicit_t": {
+    "value": 0.2655,
+    "k": 531,
+    "n": 2000,
+    "ci95": [
+     0.2466,
+     0.2853
+    ]
+   },
+   "implicit_held": {
+    "value": 0.732,
+    "k": 1464,
+    "n": 2000,
+    "ci95": [
+     0.7122,
+     0.751
+    ]
+   },
+   "ami_heard_held": {
+    "value": 0.1348,
+    "k": 1106,
+    "n": 8202,
+    "ci95": [
+     0.1276,
+     0.1424
+    ]
+   },
+   "ami_heard_outright": {
+    "value": 0.0,
+    "k": 0,
+    "n": 8202,
+    "ci95": [
+     0.0,
+     0.0005
+    ]
+   },
+   "slurp_named_written": {
+    "value": 1.0,
+    "k": 61,
+    "n": 61
+   },
+   "slurp_unnamed_held_written": {
+    "value": 0.9012939001848429,
+    "k": 2438,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_written": {
+    "value": 0.0011090573012939,
+    "k": 3,
+    "n": 2705
+   },
+   "slurp_named_heard": {
+    "value": 0.4918032786885246,
+    "k": 30,
+    "n": 61
+   },
+   "slurp_unnamed_held_heard": {
+    "value": 0.8232248520710059,
+    "k": 2226,
+    "n": 2704
+   },
+   "slurp_unnamed_answered_heard": {
+    "value": 0.0003698224852071006,
+    "k": 1,
+    "n": 2704
+   },
+   "slurp_named_keyterm": {
+    "value": 0.7377049180327869,
+    "k": 45,
+    "n": 61
+   },
+   "slurp_unnamed_held_keyterm": {
+    "value": 0.8207024029574861,
+    "k": 2220,
+    "n": 2705
+   },
+   "slurp_unnamed_answered_keyterm": {
+    "value": 0.0011090573012939,
+    "k": 3,
+    "n": 2705
+   },
+   "tcl_outright": {
+    "value": 0.0155,
+    "k": 52,
+    "n": 3348,
+    "ci95": [
+     0.0119,
+     0.0203
+    ]
+   },
+   "tcl_held": {
+    "value": 0.3689,
+    "k": 1235,
+    "n": 3348,
+    "ci95": [
+     0.3527,
+     0.3854
+    ]
+   },
+   "tcl_direct": {
+    "value": 0.981,
+    "k": 155,
+    "n": 158,
+    "ci95": [
+     0.9457,
+     0.9935
+    ]
+   },
+   "tcl_ctx_now": {
+    "value": 0.2908,
+    "k": 41,
+    "n": 141,
+    "ci95": [
+     0.2222,
+     0.3705
+    ]
+   },
+   "tcl_ctx_held": {
+    "value": 0.5177,
+    "k": 73,
+    "n": 141,
+    "ci95": [
+     0.4359,
+     0.5986
+    ]
+   },
+   "g5_pq": {
+    "value": 0.0,
+    "k": 0,
+    "n": 305
+   },
+   "g5_pp": {
+    "value": 0.8517110266159695,
+    "k": 224,
+    "n": 263
+   },
+   "g5_later": {
+    "value": 0.930379746835443,
+    "k": 294,
+    "n": 316
+   },
+   "g5_follow_up": {
+    "value": 0.4441340782122905,
+    "k": 159,
+    "n": 358
+   }
+  }
+ },
+ "speed": {
+  "side-r9tt-ettin-32m-s1": {
+   "build": "fp32",
+   "memory": "488",
+   "full": "20",
+   "cold": "173",
+   "full_ms": 19.6
+  },
+  "side-r10tt-ettin-32m-s0": {
+   "build": "fp32",
+   "memory": "488",
+   "full": "17",
+   "cold": "130",
+   "full_ms": 17.0
+  },
+  "side-r10tt-ettin-32m-s1": {
+   "build": "fp32",
+   "memory": "487",
+   "full": "25",
+   "cold": "213",
+   "full_ms": 25.0
+  },
+  "jev": {
+   "build": "API",
+   "full": "140"
+  }
+ },
+ "gates": {
+  "side-r10-ettin-150m-s0": {
+   "ships": false,
+   "why": "**fails:** TCL people's lines answered outright +0.24 points, paired (-0.09 to +0.57); TCL unnamed follow-ups answered or held -1.42 points; TCL named requests answered +0.00 points; real unnamed requests held as heard +2.66 points; Duplex-MPE right -0.21 points; **fails:** Ambient Bench right -0.55 points; AMI right -0.38 points; generated test right +0.00 points; pilot right +1.11 points; named requests answered +0.05 points; SLURP named answered (keyterm) +0.00 points; **fails:** Duplex-MPE others answered outright +0.18 points; Duplex-MPE others held +0.39 points; AMI as heard, held +0.57 points; TCL people's lines held +0.09 points; Duplex-MPE others answered outright 0.39% (bar 0.4%)"
+  },
+  "side-r10-ettin-150m-s1": {
+   "ships": false,
+   "why": "**fails:** TCL people's lines answered outright -0.27 points, paired (-0.62 to +0.08); TCL unnamed follow-ups answered or held -3.55 points; TCL named requests answered -0.63 points; real unnamed requests held as heard +0.81 points; Duplex-MPE right -0.47 points; Ambient Bench right +0.59 points; AMI right +0.09 points; generated test right +0.01 points; pilot right +1.11 points; named requests answered -0.05 points; SLURP named answered (keyterm) +0.00 points; Duplex-MPE others answered outright -0.09 points; Duplex-MPE others held +0.26 points; AMI as heard, held -0.03 points; TCL people's lines held +0.44 points; Duplex-MPE others answered outright 0.12% (bar 0.4%)"
+  },
+  "side-r10tt-ettin-32m-s0": {
+   "ships": false,
+   "why": "TCL people's lines answered outright -0.72 points, paired (-1.09 to -0.35); TCL unnamed follow-ups answered or held +0.00 points; TCL named requests answered +0.00 points; real unnamed requests held as heard -0.26 points; Duplex-MPE right -0.19 points; Ambient Bench right -0.39 points; AMI right -0.12 points; generated test right -0.06 points; pilot right +1.11 points; **fails:** named requests answered -4.30 points; SLURP named answered (keyterm) -1.64 points; Duplex-MPE others answered outright -0.19 points; Duplex-MPE others held -0.05 points; AMI as heard, held -0.06 points; TCL people's lines held +0.00 points; Duplex-MPE others answered outright 0.14% (bar 0.4%); full history on agent-1x 17 ms (Jev 140)"
+  },
+  "side-r10tt-ettin-32m-s1": {
+   "ships": false,
+   "why": "TCL people's lines answered outright -0.78 points, paired (-1.14 to -0.42); TCL unnamed follow-ups answered or held +4.26 points; TCL named requests answered -0.63 points; real unnamed requests held as heard -1.55 points; Duplex-MPE right -0.47 points; **fails:** Ambient Bench right -0.52 points; AMI right +0.01 points; generated test right +0.12 points; pilot right -0.74 points; **fails:** named requests answered -2.05 points; SLURP named answered (keyterm) -1.64 points; Duplex-MPE others answered outright -0.10 points; Duplex-MPE others held +0.47 points; AMI as heard, held -0.13 points; TCL people's lines held +0.69 points; Duplex-MPE others answered outright 0.23% (bar 0.4%); full history on agent-1x 25 ms (Jev 140)"
+  }
+ },
+ "tcl_paired": {
+  "side-r10-ettin-150m-s0": {
+   "others_not_outright": {
+    "n": 3348,
+    "a_right": 3283,
+    "b_right": 3275,
+    "only_a": 20,
+    "only_b": 12,
+    "diff": -0.0024,
+    "ci95": [
+     -0.0057,
+     0.0009
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   },
+   "ctx_now_or_held": {
+    "n": 141,
+    "a_right": 80,
+    "b_right": 78,
+    "only_a": 10,
+    "only_b": 8,
+    "diff": -0.0142,
+    "ci95": [
+     -0.0731,
+     0.0447
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "side-r10-ettin-150m-s1": {
+   "others_not_outright": {
+    "n": 3348,
+    "a_right": 3283,
+    "b_right": 3292,
+    "only_a": 13,
+    "only_b": 22,
+    "diff": 0.0027,
+    "ci95": [
+     -0.0008,
+     0.0062
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   },
+   "ctx_now_or_held": {
+    "n": 141,
+    "a_right": 80,
+    "b_right": 75,
+    "only_a": 9,
+    "only_b": 4,
+    "diff": -0.0355,
+    "ci95": [
+     -0.0852,
+     0.0143
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "side-r10tt-ettin-32m-s0": {
+   "others_not_outright": {
+    "n": 3348,
+    "a_right": 3273,
+    "b_right": 3297,
+    "only_a": 8,
+    "only_b": 32,
+    "diff": 0.0072,
+    "ci95": [
+     0.0035,
+     0.0109
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": true
+   },
+   "ctx_now_or_held": {
+    "n": 141,
+    "a_right": 73,
+    "b_right": 73,
+    "only_a": 4,
+    "only_b": 4,
+    "diff": 0.0,
+    "ci95": [
+     -0.0393,
+     0.0393
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "side-r10tt-ettin-32m-s1": {
+   "others_not_outright": {
+    "n": 3348,
+    "a_right": 3273,
+    "b_right": 3299,
+    "only_a": 6,
+    "only_b": 32,
+    "diff": 0.0078,
+    "ci95": [
+     0.0042,
+     0.0114
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": true
+   },
+   "ctx_now_or_held": {
+    "n": 141,
+    "a_right": 73,
+    "b_right": 79,
+    "only_a": 1,
+    "only_b": 7,
+    "diff": 0.0426,
+    "ci95": [
+     0.0039,
+     0.0812
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": true
+   }
+  }
+ },
+ "notes": [
+  "Dev picks `side-r10-ettin-150m-s1` among the teachers and `side-r10tt-ettin-32m-s1` among the students."
+ ],
+ "finished_at": "2026-11-20T21:24:24+00:00"
+}

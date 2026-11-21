@@ -1,0 +1,41 @@
+experiment_id: exp-064-side-gen-0.5
+status: done (2026-11-20)
+track: sidechat (round 10 data)
+what: >
+  Corpus gen-0.5, a top-up aimed at the line after the agent answers, rc0.3's weak spot on TCL's
+  independent test (exp-063: AUROC 0.67 right after the agent when the other person speaks; half its
+  false accepts there, 21 of them questions). In our corpora, right after the agent answers, every
+  question is for the agent (follow_up) or a hold (follow_up_by_other), and comments to the others
+  always ask nothing, so a question after the agent reads as for it. Three kinds, under guide 0.4's
+  rules as written, outside the default mix (earlier plans replay unchanged; checked on 450 of
+  gen-0.4's plans):
+    people_question_after_agent   right after the agent's answer, someone asks the others about
+                                  their own plans or choices (G7, ignore)
+    partner_to_people_after_agent the person the agent answered turns to the others about it,
+                                  asking nothing (G6, ignore)
+    follow_up_later               that person comes back to the agent's answer a few lines later,
+                                  without its name (G6, unclear, wait)
+  Existing after-agent kinds are boosted a little. Writer b (held out) writes 400 test
+  conversations so the test split has wording no training writer produced.
+forecast block:
+  campaign: exp-064-side-gen-0.5
+  decision it enables: round 10's training data (exp-066), after the committee checks the new kinds (exp-065)
+  token forecast: writers a, c and b, about 3,000 tokens a conversation; from gen-0.4's rates a about
+    $5.50 (2,000), c about $8 (600), b about $5 (400)
+  Modal forecast: open-weights writer o on two H100s, about $2 (3,000), plus CPU about $0.40
+  retry cap: the writers' own
+  spend cap: $45 across the API writers (the job stops each writer at its share)
+  stop condition: rows.jsonl and conversations.jsonl in runs/side/corpus/gen-0.5/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $21
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.generate::run --exp exp-064-side-gen-0.5 --gen-id gen-0.5
+  --counts o:3000,a:2000,c:600,b:400 --seed 7 --spend-cap-usd 45 --o-shards 2
+  --boost follow_up_by_other:1.5,people_after_agent:1.3,you_to_person_after_agent:1.3,unclear_after_agent:1.3,follow_up:1.2
+  --add people_question_after_agent:7,partner_to_people_after_agent:6,follow_up_later:12,relay_agent_answer:2 --delayed 0.15
+results: uv run python -m sidechat.pipeline.results exp-064-side-gen-0.5
+actual_usd: about $23 (o $1.75 on two H100s, a $5.23, c $7.93, b $7.82, CPU about $0.40)
+result:
+  corpus: "5,997 conversations, 83,933 labelled lines (train 63,594, dev 5,919, test 14,420); 98.1% keep to their brief"
+  new_kinds: "people_question_after_agent 1,787 lines, partner_to_people_after_agent 1,523, follow_up_later 1,758; none flagged off brief"

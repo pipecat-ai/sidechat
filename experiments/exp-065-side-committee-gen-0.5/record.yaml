@@ -1,0 +1,36 @@
+experiment_id: exp-065-side-committee-gen-0.5
+status: done (2026-11-20)
+track: sidechat (round 10 data check)
+what: >
+  The committee (members a, b and c, guide 0.4 as written) labels samples of gen-0.5's three new
+  kinds from its dev and test splits, 120 lines each, to check that lines written to the new briefs
+  read the way the guide labels them (gen-0.4's new kinds: 98.8%). A kind the committee reads
+  otherwise (majority agreement under 90%) is left out of round 10's training with drop_kinds.
+forecast block:
+  campaign: exp-065-side-committee-gen-0.5
+  decision it enables: whether round 10 trains on all three new kinds
+  token forecast: 360 lines x 3 members; from exp-037 (330 lines, about $10), about $11
+  Modal forecast: one CPU container for under an hour, under $0.10
+  retry cap: the members' own
+  spend cap: $20
+  stop condition: agreement by kind in runs/side/results/exp-065-side-committee-gen-0.5/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $11
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.label::run --exp exp-065-side-committee-gen-0.5
+  --sets corpus:gen-0.5:dev+test:120:people_question_after_agent,corpus:gen-0.5:dev+test:120:partner_to_people_after_agent,corpus:gen-0.5:dev+test:120:follow_up_later
+  --spend-cap-usd 20
+results: uv run python -m sidechat.pipeline.results exp-065-side-committee-gen-0.5
+actual_usd: about $11.35 (a $1.25, b $2.41, c $7.65; Modal under $0.05)
+result:
+  agreement: "committee majority agrees with the construction labels on 73.3% (264/360; 68.5 to 77.6)"
+  by_kind: "people_question_after_agent 93.3% (112/120); partner_to_people_after_agent 87.5% (105/120); follow_up_later 39.2% (47/120)"
+  reading: >
+    follow_up_later: the majority reads it as an answer, not a hold (66 of the 73 lines it differs
+    on; member c mostly holds): a person coming back to the agent's answer after others talked
+    continues their exchange with it, as TCL's label has it. Guide 0.4 does not settle this; it is
+    a question for Jon (SQ-09). partner_to_people_after_agent: the differences are where the agent
+    leads the session or has just offered something, so the person's decision is for it; the kind
+    needs those settings excluded before it is used.
+  decision: "by the rule in this record, both kinds under 90% are left out of round 10's training (drop_kinds); people_question_after_agent stays"

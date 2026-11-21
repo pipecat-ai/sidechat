@@ -1,6 +1,6 @@
 # Where things stand
 
-Updated 2026-11-20, after the phase 8 checks (names as heard, an independent test). Earlier: 03:40 UTC, the end of the overnight run. Jon asked for autonomous work through the phases within $1,000
+Updated 2026-11-21, after phase 9 (round 10 and int8). Before that: 2026-11-20, after the phase 8 checks (names as heard, an independent test). Earlier: 03:40 UTC, the end of the overnight run. Jon asked for autonomous work through the phases within $1,000
 (SD-17), to have a model to test in the morning. Read the latest note in [notes/](notes/) first,
 then this, then [DECISIONS.md](DECISIONS.md). How to try a model: [TESTING.md](TESTING.md).
 
@@ -20,6 +20,8 @@ then this, then [DECISIONS.md](DECISIONS.md). How to try a model: [TESTING.md](T
 | 7, part 2 | Release rc0.2 on `pipecat-ai/sidechat` (tag `rc0.2`, commit `08c9b8c`): round 3's 150M at the root, unchanged, and the two-tower 32M as `agent-1x/` (10 to 15 ms a line on agent-1x; answers 10.7% of unnamed requests, Jev 26.6%). The label for unnamed requests stays (SD-21) | [phase-7-release-rc0.2.md](notes/phase-7-release-rc0.2.md) |
 | 7, part 3 | Release rc0.3 on `pipecat-ai/sidechat` (tag `rc0.3`): round 9's 150M at the root (fp32; int8 failed parity and round 3's was removed) and round 9's two-tower 32M as `agent-1x/`. Both hold most real unnamed requests (91% and 87%, Jev 82%) and hold about 1% of people's real meeting lines (rc0.2 about 0.1%) | [phase-7-release-rc0.3.md](notes/phase-7-release-rc0.3.md) |
 | 7, part 1 | Pipecat module `pipecat.models.labs.side_chat` (gate, listener, classifier, model), downloading `pipecat-ai/sidechat` at commit `c9b59be`, on pipecat branch `jpt/sidechat`; parity with this repo's runtime on 6,544 lines; a Labs docs page on pipecat-docs branch `jpt/labs-sidechat`. Neither committed | [phase-7-pipecat.md](notes/phase-7-pipecat.md) |
+| 8 | Ceiling checks (exp-062, exp-063): Duplex-MPE's unnamed requests are mostly the benchmark's style; the name as heard is at the text ceiling with the keyterm; on TCL's independent test rc0.3 ties Jev on answering now (F1 0.725 against 0.717) and holds a tenth as often, and its weak spot is the line right after the agent answers (AUROC 0.67) | [phase-8-ceiling-checks.md](notes/phase-8-ceiling-checks.md) |
+| 9 | Round 10 and rc0.3.1 (exp-064 to exp-075): gen-0.5's kinds for the line after the agent answers. The teacher learned the new kind (97% left alone, rc0.3 67%) but not TCL's distinction (AUROC 0.66, outright answers not down beyond noise); students cut TCL's outright answers but lose named requests. Nothing ships: the dev pick of four students misses one margin by one line (Ambient Bench). int8 fixed for both of rc0.3's builds and released as rc0.3.1 (opt-in): within a point of fp32 on every test set | [phase-9-round10.md](notes/phase-9-round10.md) |
 
 ## Next
 
@@ -64,6 +66,21 @@ then this, then [DECISIONS.md](DECISIONS.md). How to try a model: [TESTING.md](T
   data, reaches 0.890. The gap is the line right after the agent answers (AUROC 0.67), so timing
   input is the next real step. Generated follow-ups are the text-side option.
 
+- **Round 10 did not move TCL's weak spot** ([2026-11-20-side-round10.md](reports/2026-11-20-side-round10.md)).
+  Generated questions and comments to the others right after the agent were learned in
+  distribution, but TCL's lines there stayed as hard (AUROC 0.66). Stop generated kinds aimed at
+  TCL's errors: more would be tuning on a test set. Timing input is the next real step (Jon's design
+  call).
+- **rc0.3.1 is out** (SD-29, exp-075): rc0.3's builds unchanged, plus int8 files for both, opt in
+  with `int8=True`. Tag `rc0.3.1`; `rc0.3` and `rc0.2` stay. Within a point of fp32 on every test set;
+  on capped containers the default build is 1.5 times faster in int8 (303 ms against 465 at 1 vCPU)
+  with 0.3 GB less memory. The recipe is now in `export.py` for every later export. Pipecat's
+  download is still pinned at `c9b59be`.
+- **Round 10's student s2 missed by one line** (held for Jon): it fails only Ambient Bench's margin
+  (79 lines fewer right where 78.97 are allowed). It answers a third fewer of TCL's people's lines
+  outright, but half as many of Duplex-MPE's unnamed requests. Nothing ships unless Jon waives the
+  margin.
+
 ## The bar
 
 Jev answers 99.2% of named requests at once but only 26.6% of the same requests unnamed; on the
@@ -73,10 +90,14 @@ pilot it answers at once 47.1% of lines for the agent that carry no name. It hol
 
 ## Held for Jon
 
-- Commit: "we'll commit later". Everything is staged, nothing committed.
+- Commit: phase 8 is committed and pushed (`1c0f862`). Phase 9's work (gen-0.5, round 10, int8)
+  is in the working tree, not committed.
 - The opt-in call log in `daily-audience` (SD-08, SQ-05). Nothing in `daily-audience` has been
   edited; TESTING.md shows the one-line swap to try Sidechat there.
 - Open questions SQ-01 and SQ-03 to SQ-07 in DECISIONS.md, each with a default assumed.
+- SQ-09: does a person coming back to the agent's answer later, without its name, get an answer
+  (the committee's majority, TCL's label) or a hold (our label)? `follow_up_later` stays out of
+  training until settled. SD-28 (gen-0.5's kinds) is an agent default to confirm.
 - SD-18 (guide 0.4: a named thanks, stop or goodbye is answered briefly), SD-19 (AMI's unlabelled
   meetings in training) and SD-20 (a real-speech bar on thresholds) are agent defaults to confirm.
 

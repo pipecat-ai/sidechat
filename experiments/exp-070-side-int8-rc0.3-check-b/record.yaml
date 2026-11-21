@@ -1,0 +1,31 @@
+experiment_id: exp-070-side-int8-rc0.3-check-b
+status: done (2026-11-20)
+track: sidechat (default build speed)
+what: >
+  The rest of exp-070's check, in a container of its own because Duplex-MPE took most of the first
+  one's two hours: exp-069's int8 file for rc0.3's default build at its own thresholds against
+  fp32's stored predictions on Ambient Bench, AMI labelled, the AMI silence test, AMI as heard, the
+  pilot, SLURP heard with the keyterm and TCL anonymous.
+forecast block:
+  campaign: exp-070-side-int8-rc0.3-check
+  decision it enables: whether rc0.3's default build offers int8 again (Jon's call to publish)
+  token forecast: none
+  Modal forecast: one 8-CPU container for about an hour (about 50,000 lines through int8), about $0.50
+  retry cap: 0
+  spend cap: n/a
+  stop condition: scorecard.json and report.md in runs/side/results/exp-070-side-int8-rc0.3-check-b/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $0.50
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.int8_probe::run --exp exp-070-side-int8-rc0.3-check-b --check
+  --check-sets ambient,ami,ami-silent:test,ami-stt,pilot-0.4@anonymous,slurp-stt-keyterm,tcl@anonymous
+results: uv run python -m sidechat.pipeline.results exp-070-side-int8-rc0.3-check-b
+actual_usd: about $0.50 (76 minutes)
+result:
+  same_decisions: "98.5% (SLURP heard) to 99.9% (AMI) of decisions the same as fp32 on every set"
+  people_answered_outright: "no more beyond noise on any set: Ambient 0.30% against 0.28%, AMI none on either, TCL 2.06% against 1.94% (-0.12 points, -0.29 to +0.05)"
+  holds: "fewer on people's lines everywhere (int8's hold threshold is 0.45 against fp32's 0.4): Ambient 2.50% against 2.83%, AMI 0.96% against 1.01%, TCL 2.72% against 3.08%"
+  slurp_heard: "named requests answered now the same (48 of 61); unnamed requests held 90.09% (2,437/2,705) against 90.94% (2,460): 23 fewer, the cost of the higher hold threshold"
+  pilot: "one named request held instead of answered (87.04% right against 87.78%, 283 lines)"
+  verdict: "int8 is fit to offer beside fp32 at its own thresholds, about 1.6x faster on one CPU thread; within a point of fp32 on every test set, slightly fewer holds on both sides"

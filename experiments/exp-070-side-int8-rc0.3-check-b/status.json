@@ -1,0 +1,17 @@
+{
+ "exp": "exp-070-side-int8-rc0.3-check-b",
+ "app": "waystone-side-int8-probe",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-20T22:20:29+00:00",
+ "args": {
+  "run_id": "side-r9-ettin-150m-s1",
+  "parity_rows": 300,
+  "combos": false,
+  "make": false,
+  "check": true,
+  "check_sets": "ambient,ami,ami-silent:test,ami-stt,pilot-0.4@anonymous,slurp-stt-keyterm,tcl@anonymous"
+ },
+ "updated_at": "2026-11-20T23:35:04+00:00",
+ "elapsed_s": 4475
+}

@@ -1,0 +1,37 @@
+experiment_id: exp-075-side-publish-rc0.3.1
+status: done (2026-11-21)
+track: sidechat (release)
+what: >
+  Release rc0.3.1 on pipecat-ai/sidechat: rc0.3's two builds unchanged, plus their int8 files
+  (exp-069 and exp-072, checked on every test set in exp-070 and exp-073). The root gains
+  model-int8.onnx and agent-1x/ gains context-int8.onnx and line-int8.onnx. Each config.json gains
+  thresholds_int8 and int8_recipe; its other keys are unchanged, so fp32 behaves exactly as at rc0.3.
+  The card gains int8 in its files, use and speed sections (exp-074). The int8 files and configs were
+  copied in R2 from export-int8/ into each run's export/ (the rc0.3 config.json is kept in
+  export-rc0.3/). Two publish jobs, root first, then agent-1x with tag rc0.3.1. rc0.3 and rc0.2 stay at
+  their tags; Pipecat's download pinned at c9b59be is unaffected. Test-only sets are never uploaded.
+forecast block:
+  campaign: exp-075-side-publish-rc0.3.1
+  decision it enables: int8 can be tried from the Hub
+  token forecast: none
+  Modal forecast: two 4-core CPU containers, a few minutes each (about 0.5 GB of new files)
+  retry cap: 1
+  spend cap: $2
+  stop condition: tagged commit on the Hub, report in R2
+  approved by Jon on: 2026-11-21 ("Yes, publish rc0.3.1")
+forecast_usd: under $0.50
+step experiments: exp-075-side-publish-rc0.3.1-root, exp-075-side-publish-rc0.3.1-agent-1x
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.publish::run --exp exp-075-side-publish-rc0.3.1-root
+  --run-id side-r9-ettin-150m-s1 --no-private;
+  uv run modal run --detach -m sidechat.pipeline.publish::run --exp exp-075-side-publish-rc0.3.1-agent-1x
+  --run-id side-r9tt-ettin-32m-s1 --subdir agent-1x --tag rc0.3.1 --no-private
+results: uv run python -m sidechat.pipeline.results exp-075-side-publish-rc0.3.1-agent-1x
+actual_usd: under $0.05
+result:
+  hub: "pipecat-ai/sidechat: root at commit 0a0cbce3 (model-int8.onnx added, config.json with thresholds_int8, the card), agent-1x/ at dfa23793 (context-int8.onnx, line-int8.onnx, config.json); tag rc0.3.1 resolves to dfa23793, as does main. rc0.3 still resolves to dafacac7 and rc0.2 to 08c9b8ce"
+  unchanged: "model.onnx, agent-1x/context.onnx, agent-1x/line.onnx and tokenizer.json have rc0.3's sha256; each config.json has rc0.3's keys and values plus thresholds_int8 and int8_recipe"
+  rows: "root data: train 240,069, dev 26,631; agent-1x/data: train 425,828, dev 44,624 (as rc0.3; the gzip files are rebuilt, so their bytes differ)"
+  checked: "rc0.3.1 downloaded from the Hub: every graph, tokenizer and config matches its MANIFEST sha256; on the card's example the root answers 0.968 respond in fp32 and 0.967 in int8, agent-1x 0.976 and 0.973"
+  r2: "the int8 files and configs were copied from export-int8/ into each run's export/; rc0.3's config.json is kept at models/side/<run>/export-rc0.3/config.json"

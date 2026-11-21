@@ -119,7 +119,14 @@ WEIGHTS: dict[str, float] = {
 }
 # Kinds outside the default mix, planned only when `plan(add=...)` gives them a weight (gen-0.4), so
 # earlier corpora's plans replay unchanged.
-ADDED = {"relay_agent_answer"}
+ADDED = {
+    "relay_agent_answer",
+    # gen-0.5: right after the agent answers, people turn to each other; later, the person it
+    # answered comes back to it without its name.
+    "people_question_after_agent",
+    "partner_to_people_after_agent",
+    "follow_up_later",
+}
 # Kinds only reached through a forced next step.
 FORCED_ONLY = {
     "request_after_summon",
@@ -165,6 +172,7 @@ WAITING = {
     "about_question",
     "unclear_after_agent",
     "follow_up_by_other",
+    "follow_up_later",
 }
 CLOSING = {"thanks_named", "stop_named", "farewell_named", "thanks"}
 AFTER_ASK = {
@@ -246,6 +254,12 @@ def _allowed(kind: str, s: State, cast: Cast) -> bool:
         return agent_just and answered and n >= 2
     if kind in ("you_to_person_after_agent", "unclear_after_agent", "follow_up_by_other", "relay_agent_answer"):
         return agent_just and answered and n >= 2
+    if kind == "people_question_after_agent":
+        return agent_just and answered and n >= 2
+    if kind == "partner_to_people_after_agent":
+        return agent_just and answered and n >= 2 and s.partner is not None
+    if kind == "follow_up_later":
+        return answered and n >= 2 and s.partner is not None and 2 <= s.agent_ago <= 6
     if kind in ("follow_up", "correction", "command_no_name"):
         return agent_just and answered and s.partner is not None
     if kind in ("answer_to_agent_question", "reply_then_request"):
@@ -302,6 +316,13 @@ def _speaker_and_target(kind: str, rng: random.Random, cast: Cast, s: State) -> 
     """Who says a line of this kind, and whom it names or is for."""
     if kind in ("follow_up", "correction", "command_no_name", "reply_then_request"):
         return s.partner, []
+    if kind in ("partner_to_people_after_agent", "follow_up_later"):
+        return s.partner, []
+    if kind == "people_question_after_agent":
+        # Either the person the agent answered or someone else turns to the others.
+        if s.partner and rng.random() < 0.5:
+            return s.partner, []
+        return _pick_speaker(rng, cast, s, exclude=s.partner), []
     if kind in ("answer_to_agent_question", "answer_after_aside"):
         return (s.partner if (s.partner and not s.asked_room) else _pick_speaker(rng, cast, s)), []
     if kind == "imperative_to_person":
@@ -463,6 +484,8 @@ def plan(
                             "command_no_name",
                             "reply_then_request",
                             "relay_agent_answer",
+                            "people_question_after_agent",
+                            "partner_to_people_after_agent",
                         )
                         else 1
                     )
@@ -539,6 +562,11 @@ def plan(
             k in ("group_question_not_for_agent", "proposal_to_group", "request_to_people", "statement")
             and rng.random() < 0.5
         ):
+            queue.insert(0, Beat(_other(rng, cast, beat.who), kind="reply_to_person", target=[beat.who]))
+        elif k in ("people_question_after_agent", "partner_to_people_after_agent") and rng.random() < (
+            0.6 if k == "people_question_after_agent" else 0.4
+        ):
+            # The others answer or react, so people carry on among themselves after the agent (gen-0.5).
             queue.insert(0, Beat(_other(rng, cast, beat.who), kind="reply_to_person", target=[beat.who]))
         if k in ("reply_to_person",) and beat.target:
             s.exchange = (beat.who, beat.target[0])

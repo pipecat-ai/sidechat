@@ -1,0 +1,19 @@
+{
+ "exp": "exp-074-side-latency-int8",
+ "app": "waystone-side-latency",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-21T00:59:13+00:00",
+ "args": {
+  "run_ids": "side-r9-ettin-150m-s1,side-r9tt-ettin-32m-s1",
+  "profiles": "agent-1x,agent-2x",
+  "threads": "1",
+  "rounds": 3,
+  "jev": false
+ },
+ "variants": 8,
+ "updated_at": "2026-11-21T01:06:23+00:00",
+ "elapsed_s": 430,
+ "done": 8,
+ "failed": 0
+}

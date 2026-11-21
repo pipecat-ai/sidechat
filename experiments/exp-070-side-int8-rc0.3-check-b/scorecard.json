@@ -1,0 +1,1244 @@
+{
+ "exp": "exp-070-side-int8-rc0.3-check-b",
+ "run_id": "side-r9-ettin-150m-s1",
+ "table": {
+  "ambient-bench-0.1": {
+   "rows": 16222,
+   "int8": {
+    "n": 16222,
+    "decision_right": {
+     "value": 0.9719,
+     "k": 15350,
+     "n": 15793,
+     "ci95": [
+      0.9693,
+      0.9744
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9719,
+     "k": 15350,
+     "n": 15793,
+     "ci95": [
+      0.9693,
+      0.9744
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.003,
+     "k": 48,
+     "n": 15793,
+     "ci95": [
+      0.0023,
+      0.004
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.025,
+     "k": 395,
+     "n": 15793,
+     "ci95": [
+      0.0227,
+      0.0276
+     ]
+    },
+    "answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "held_instead": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "missed": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "fp32": {
+    "n": 16222,
+    "decision_right": {
+     "value": 0.9689,
+     "k": 15302,
+     "n": 15793,
+     "ci95": [
+      0.9661,
+      0.9715
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9689,
+     "k": 15302,
+     "n": 15793,
+     "ci95": [
+      0.9661,
+      0.9715
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0028,
+     "k": 44,
+     "n": 15793,
+     "ci95": [
+      0.0021,
+      0.0037
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0283,
+     "k": 447,
+     "n": 15793,
+     "ci95": [
+      0.0258,
+      0.031
+     ]
+    },
+    "answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "held_instead": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "missed": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "same_decision": 0.993835531993589,
+   "quiet_kept_paired": {
+    "n": 15793,
+    "a_right": 15749,
+    "b_right": 15745,
+    "only_a": 8,
+    "only_b": 4,
+    "diff": -0.0003,
+    "ci95": [
+     -0.0007,
+     0.0002
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "ami-addressee-0.1": {
+   "rows": 8875,
+   "int8": {
+    "n": 8875,
+    "decision_right": {
+     "value": 0.9904,
+     "k": 8790,
+     "n": 8875,
+     "ci95": [
+      0.9882,
+      0.9922
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9904,
+     "k": 8790,
+     "n": 8875,
+     "ci95": [
+      0.9882,
+      0.9922
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0,
+     "k": 0,
+     "n": 8875,
+     "ci95": [
+      0.0,
+      0.0004
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0096,
+     "k": 85,
+     "n": 8875,
+     "ci95": [
+      0.0078,
+      0.0118
+     ]
+    },
+    "answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "held_instead": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "missed": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "fp32": {
+    "n": 8875,
+    "decision_right": {
+     "value": 0.9899,
+     "k": 8785,
+     "n": 8875,
+     "ci95": [
+      0.9876,
+      0.9917
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9899,
+     "k": 8785,
+     "n": 8875,
+     "ci95": [
+      0.9876,
+      0.9917
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0,
+     "k": 0,
+     "n": 8875,
+     "ci95": [
+      0.0,
+      0.0004
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0101,
+     "k": 90,
+     "n": 8875,
+     "ci95": [
+      0.0083,
+      0.0124
+     ]
+    },
+    "answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "held_instead": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "missed": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "same_decision": 0.9992112676056338,
+   "quiet_kept_paired": {
+    "n": 8875,
+    "a_right": 8875,
+    "b_right": 8875,
+    "only_a": 0,
+    "only_b": 0,
+    "diff": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "ami-silent-0.1.test": {
+   "rows": 10434,
+   "int8": {
+    "n": 10434,
+    "decision_right": {
+     "value": 0.9953,
+     "k": 10385,
+     "n": 10434,
+     "ci95": [
+      0.9938,
+      0.9964
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9953,
+     "k": 10385,
+     "n": 10434,
+     "ci95": [
+      0.9938,
+      0.9964
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0,
+     "k": 0,
+     "n": 10434,
+     "ci95": [
+      0.0,
+      0.0004
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0047,
+     "k": 49,
+     "n": 10434,
+     "ci95": [
+      0.0036,
+      0.0062
+     ]
+    },
+    "answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "held_instead": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "missed": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "fp32": {
+    "n": 10434,
+    "decision_right": {
+     "value": 0.9945,
+     "k": 10377,
+     "n": 10434,
+     "ci95": [
+      0.9929,
+      0.9958
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9945,
+     "k": 10377,
+     "n": 10434,
+     "ci95": [
+      0.9929,
+      0.9958
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0,
+     "k": 0,
+     "n": 10434,
+     "ci95": [
+      0.0,
+      0.0004
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0055,
+     "k": 57,
+     "n": 10434,
+     "ci95": [
+      0.0042,
+      0.0071
+     ]
+    },
+    "answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "held_instead": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "missed": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "same_decision": 0.9992332758290206,
+   "quiet_kept_paired": {
+    "n": 10434,
+    "a_right": 10434,
+    "b_right": 10434,
+    "only_a": 0,
+    "only_b": 0,
+    "diff": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "ami-addressee-stt-0.1": {
+   "rows": 8202,
+   "int8": {
+    "n": 8202,
+    "decision_right": {
+     "value": 0.9893,
+     "k": 8114,
+     "n": 8202,
+     "ci95": [
+      0.9868,
+      0.9913
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9893,
+     "k": 8114,
+     "n": 8202,
+     "ci95": [
+      0.9868,
+      0.9913
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0001,
+     "k": 1,
+     "n": 8202,
+     "ci95": [
+      0.0,
+      0.0007
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0106,
+     "k": 87,
+     "n": 8202,
+     "ci95": [
+      0.0086,
+      0.0131
+     ]
+    },
+    "answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "held_instead": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "missed": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "fp32": {
+    "n": 8202,
+    "decision_right": {
+     "value": 0.9887,
+     "k": 8109,
+     "n": 8202,
+     "ci95": [
+      0.9861,
+      0.9907
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9887,
+     "k": 8109,
+     "n": 8202,
+     "ci95": [
+      0.9861,
+      0.9907
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0001,
+     "k": 1,
+     "n": 8202,
+     "ci95": [
+      0.0,
+      0.0007
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0112,
+     "k": 92,
+     "n": 8202,
+     "ci95": [
+      0.0092,
+      0.0137
+     ]
+    },
+    "answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "held_instead": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "missed": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "same_decision": 0.9986588636917825,
+   "quiet_kept_paired": {
+    "n": 8202,
+    "a_right": 8201,
+    "b_right": 8201,
+    "only_a": 0,
+    "only_b": 0,
+    "diff": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "pilot-0.4@anonymous": {
+   "rows": 283,
+   "int8": {
+    "n": 283,
+    "decision_right": {
+     "value": 0.8704,
+     "k": 235,
+     "n": 270,
+     "ci95": [
+      0.8251,
+      0.9053
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9202,
+     "k": 150,
+     "n": 163,
+     "ci95": [
+      0.8683,
+      0.9528
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0245,
+     "k": 4,
+     "n": 163,
+     "ci95": [
+      0.0096,
+      0.0614
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0552,
+     "k": 9,
+     "n": 163,
+     "ci95": [
+      0.0293,
+      0.1016
+     ]
+    },
+    "answered_now": {
+     "value": 0.8519,
+     "k": 69,
+     "n": 81,
+     "ci95": [
+      0.7587,
+      0.9132
+     ]
+    },
+    "held_instead": {
+     "value": 0.037,
+     "k": 3,
+     "n": 81,
+     "ci95": [
+      0.0127,
+      0.1033
+     ]
+    },
+    "missed": {
+     "value": 0.1111,
+     "k": 9,
+     "n": 81,
+     "ci95": [
+      0.0596,
+      0.1979
+     ]
+    },
+    "open_held": {
+     "value": 0.6154,
+     "k": 16,
+     "n": 26,
+     "ci95": [
+      0.4253,
+      0.7757
+     ]
+    },
+    "open_answered_now": {
+     "value": 0.1538,
+     "k": 4,
+     "n": 26,
+     "ci95": [
+      0.0615,
+      0.3353
+     ]
+    },
+    "open_ignored": {
+     "value": 0.2308,
+     "k": 6,
+     "n": 26,
+     "ci95": [
+      0.1103,
+      0.4205
+     ]
+    }
+   },
+   "fp32": {
+    "n": 283,
+    "decision_right": {
+     "value": 0.8778,
+     "k": 237,
+     "n": 270,
+     "ci95": [
+      0.8333,
+      0.9116
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9264,
+     "k": 151,
+     "n": 163,
+     "ci95": [
+      0.8757,
+      0.9574
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0245,
+     "k": 4,
+     "n": 163,
+     "ci95": [
+      0.0096,
+      0.0614
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0491,
+     "k": 8,
+     "n": 163,
+     "ci95": [
+      0.0251,
+      0.0938
+     ]
+    },
+    "answered_now": {
+     "value": 0.8642,
+     "k": 70,
+     "n": 81,
+     "ci95": [
+      0.773,
+      0.9224
+     ]
+    },
+    "held_instead": {
+     "value": 0.0247,
+     "k": 2,
+     "n": 81,
+     "ci95": [
+      0.0068,
+      0.0856
+     ]
+    },
+    "missed": {
+     "value": 0.1111,
+     "k": 9,
+     "n": 81,
+     "ci95": [
+      0.0596,
+      0.1979
+     ]
+    },
+    "open_held": {
+     "value": 0.6154,
+     "k": 16,
+     "n": 26,
+     "ci95": [
+      0.4253,
+      0.7757
+     ]
+    },
+    "open_answered_now": {
+     "value": 0.1538,
+     "k": 4,
+     "n": 26,
+     "ci95": [
+      0.0615,
+      0.3353
+     ]
+    },
+    "open_ignored": {
+     "value": 0.2308,
+     "k": 6,
+     "n": 26,
+     "ci95": [
+      0.1103,
+      0.4205
+     ]
+    }
+   },
+   "same_decision": 0.9929328621908127,
+   "quiet_kept_paired": {
+    "n": 163,
+    "a_right": 159,
+    "b_right": 159,
+    "only_a": 0,
+    "only_b": 0,
+    "diff": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  },
+  "slurp-in-ami-stt-keyterm-0.1": {
+   "rows": 2766,
+   "int8": {
+    "n": 2766,
+    "decision_right": {
+     "value": 0.8984,
+     "k": 2485,
+     "n": 2766,
+     "ci95": [
+      0.8866,
+      0.9091
+     ]
+    },
+    "quiet_kept": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "answers_now_wrongly": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "holds_wrongly": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "answered_now": {
+     "value": 0.7869,
+     "k": 48,
+     "n": 61,
+     "ci95": [
+      0.6688,
+      0.871
+     ]
+    },
+    "held_instead": {
+     "value": 0.1803,
+     "k": 11,
+     "n": 61,
+     "ci95": [
+      0.1038,
+      0.2947
+     ]
+    },
+    "missed": {
+     "value": 0.0328,
+     "k": 2,
+     "n": 61,
+     "ci95": [
+      0.009,
+      0.1119
+     ]
+    },
+    "open_held": {
+     "value": 0.9009,
+     "k": 2437,
+     "n": 2705,
+     "ci95": [
+      0.8891,
+      0.9116
+     ]
+    },
+    "open_answered_now": {
+     "value": 0.0022,
+     "k": 6,
+     "n": 2705,
+     "ci95": [
+      0.001,
+      0.0048
+     ]
+    },
+    "open_ignored": {
+     "value": 0.0969,
+     "k": 262,
+     "n": 2705,
+     "ci95": [
+      0.0863,
+      0.1086
+     ]
+    }
+   },
+   "fp32": {
+    "n": 2766,
+    "decision_right": {
+     "value": 0.9067,
+     "k": 2508,
+     "n": 2766,
+     "ci95": [
+      0.8953,
+      0.917
+     ]
+    },
+    "quiet_kept": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "answers_now_wrongly": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "holds_wrongly": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "answered_now": {
+     "value": 0.7869,
+     "k": 48,
+     "n": 61,
+     "ci95": [
+      0.6688,
+      0.871
+     ]
+    },
+    "held_instead": {
+     "value": 0.1803,
+     "k": 11,
+     "n": 61,
+     "ci95": [
+      0.1038,
+      0.2947
+     ]
+    },
+    "missed": {
+     "value": 0.0328,
+     "k": 2,
+     "n": 61,
+     "ci95": [
+      0.009,
+      0.1119
+     ]
+    },
+    "open_held": {
+     "value": 0.9094,
+     "k": 2460,
+     "n": 2705,
+     "ci95": [
+      0.898,
+      0.9197
+     ]
+    },
+    "open_answered_now": {
+     "value": 0.0015,
+     "k": 4,
+     "n": 2705,
+     "ci95": [
+      0.0006,
+      0.0038
+     ]
+    },
+    "open_ignored": {
+     "value": 0.0891,
+     "k": 241,
+     "n": 2705,
+     "ci95": [
+      0.0789,
+      0.1004
+     ]
+    }
+   },
+   "same_decision": 0.985177151120752,
+   "quiet_kept_paired": {
+    "n": 0,
+    "diff": null
+   }
+  },
+  "tcl-wakeup-0.1@anonymous": {
+   "rows": 3647,
+   "int8": {
+    "n": 3647,
+    "decision_right": {
+     "value": 0.9306,
+     "k": 3394,
+     "n": 3647,
+     "ci95": [
+      0.9219,
+      0.9384
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9522,
+     "k": 3188,
+     "n": 3348,
+     "ci95": [
+      0.9445,
+      0.9589
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0206,
+     "k": 69,
+     "n": 3348,
+     "ci95": [
+      0.0163,
+      0.026
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0272,
+     "k": 91,
+     "n": 3348,
+     "ci95": [
+      0.0222,
+      0.0333
+     ]
+    },
+    "answered_now": {
+     "value": 0.689,
+     "k": 206,
+     "n": 299,
+     "ci95": [
+      0.6344,
+      0.7388
+     ]
+    },
+    "held_instead": {
+     "value": 0.087,
+     "k": 26,
+     "n": 299,
+     "ci95": [
+      0.06,
+      0.1244
+     ]
+    },
+    "missed": {
+     "value": 0.2241,
+     "k": 67,
+     "n": 299,
+     "ci95": [
+      0.1805,
+      0.2747
+     ]
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "fp32": {
+    "n": 3647,
+    "decision_right": {
+     "value": 0.9287,
+     "k": 3387,
+     "n": 3647,
+     "ci95": [
+      0.9199,
+      0.9366
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9498,
+     "k": 3180,
+     "n": 3348,
+     "ci95": [
+      0.9419,
+      0.9567
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0194,
+     "k": 65,
+     "n": 3348,
+     "ci95": [
+      0.0153,
+      0.0247
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0308,
+     "k": 103,
+     "n": 3348,
+     "ci95": [
+      0.0254,
+      0.0372
+     ]
+    },
+    "answered_now": {
+     "value": 0.6923,
+     "k": 207,
+     "n": 299,
+     "ci95": [
+      0.6378,
+      0.7419
+     ]
+    },
+    "held_instead": {
+     "value": 0.097,
+     "k": 29,
+     "n": 299,
+     "ci95": [
+      0.0684,
+      0.1358
+     ]
+    },
+    "missed": {
+     "value": 0.2107,
+     "k": 63,
+     "n": 299,
+     "ci95": [
+      0.1683,
+      0.2604
+     ]
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "same_decision": 0.9928708527556896,
+   "quiet_kept_paired": {
+    "n": 3348,
+    "a_right": 3283,
+    "b_right": 3279,
+    "only_a": 6,
+    "only_b": 2,
+    "diff": -0.0012,
+    "ci95": [
+     -0.0029,
+     0.0005
+    ],
+    "worse_beyond_noise": false,
+    "better_beyond_noise": false
+   }
+  }
+ }
+}

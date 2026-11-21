@@ -1,0 +1,67 @@
+{
+ "exp": "exp-065-side-committee-gen-0.5",
+ "app": "waystone-side-label",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-20T19:05:49+00:00",
+ "args": {
+  "sets": "corpus:gen-0.5:dev+test:120:people_question_after_agent,corpus:gen-0.5:dev+test:120:partner_to_people_after_agent,corpus:gen-0.5:dev+test:120:follow_up_later",
+  "label_id": "corpus:gen-0.5:dev+test:120:people_question_after_agent-committee-0.4",
+  "members": "a,b,c",
+  "concurrency": 8,
+  "spend_cap_usd": 20.0,
+  "limit": 0
+ },
+ "updated_at": "2026-11-20T19:10:40+00:00",
+ "elapsed_s": 290,
+ "sets": {
+  "gen-0.5.dev-test120-ke08db5": 120,
+  "gen-0.5.dev-test120-kc64934": 120,
+  "gen-0.5.dev-test120-k8c1113": 120
+ },
+ "progress": {
+  "a": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "usd": 1.2506179999999993,
+   "of": 360
+  },
+  "b": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "usd": 2.4094072000000004,
+   "of": 360
+  },
+  "c": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "usd": 7.651223000000003,
+   "of": 360
+  }
+ },
+ "usd": 11.311,
+ "forecast": {
+  "usd": 19.93,
+  "by_member": {
+   "a": 2.06,
+   "b": 9.66,
+   "c": 8.21
+  },
+  "spend_cap_usd": 20.0
+ },
+ "headline": {
+  "majority_decision": {
+   "value": 0.7333,
+   "k": 264,
+   "n": 360,
+   "ci95": [
+    0.6854,
+    0.7764
+   ]
+  },
+  "meets_target": false
+ }
+}

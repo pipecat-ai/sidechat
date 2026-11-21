@@ -1,0 +1,33 @@
+experiment_id: exp-072-side-int8-rc0.3-agent1x
+status: done (2026-11-21)
+track: sidechat (agent-1x build speed and memory)
+what: >
+  An int8 build of rc0.3's agent-1x model (side-r9tt-ettin-32m-s1, two towers) with export.py's new
+  recipe (per channel, reduce_range, each layer's MLP output in fp32), through the export's own
+  gate: at least 95% of parity decisions the same, then dev decisions right at most 1 point below
+  fp32 at thresholds of its own, with the model's hold bar on AMI's real dev lines. The recipe
+  passed on a round 10 student (exp-071, side-r10tt-ettin-32m-s3: 277/283, dev +0.07 points, 8 ms a
+  line on one thread against 12.6). Written to models/side/side-r9tt-ettin-32m-s1/export-int8/
+  (context-int8.onnx, line-int8.onnx, config.json) beside the released export, which stays as it
+  is. Nothing is published.
+forecast block:
+  campaign: exp-072-side-int8-rc0.3-agent1x
+  decision it enables: whether rc0.3's agent-1x build can offer int8 (Jon's call to publish)
+  token forecast: none
+  Modal forecast: one 8-CPU container for about 30 minutes, about $0.30
+  retry cap: 0
+  spend cap: n/a
+  stop condition: scorecard.json and report.md in runs/side/results/exp-072-side-int8-rc0.3-agent1x/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $0.30
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.int8_probe::run --exp exp-072-side-int8-rc0.3-agent1x
+  --run-id side-r9tt-ettin-32m-s1 --make
+results: uv run python -m sidechat.pipeline.results exp-072-side-int8-rc0.3-agent1x
+actual_usd: about $0.10 (11 minutes of one 8-CPU container)
+result:
+  parity: "279/283 decisions the same as fp32; largest respond difference 0.27, mean 0.007"
+  dev: "98.55% right at its own thresholds (respond 0.55, wait 0.45) against fp32's 98.55%: gap 0.0 points (bar 1); real dev lines answered outright 0, held 6 of 4,186"
+  speed: "both towers cold, one thread (Modal CPU): 14.2 ms a line against fp32's 25.1; 195 MB"
+  passes: "yes; written to models/side/side-r9tt-ettin-32m-s1/export-int8/ (R2 only, not the Hub)"

@@ -1,0 +1,42 @@
+{
+ "exp": "exp-071-side-round10-students",
+ "app": "waystone-side-round10",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-20T21:35:48+00:00",
+ "args": {
+  "steps": "students,export,latency",
+  "teacher": "side-r10-ettin-150m-s1",
+  "tag": "r10",
+  "realreq": "realreq-0.2",
+  "max_held_real": 0.002,
+  "drop_kinds": "follow_up_later,partner_to_people_after_agent",
+  "student_seeds": "2,3",
+  "pick_among": "side-r10tt-ettin-32m-s0,side-r10tt-ettin-32m-s1"
+ },
+ "steps": {
+  "pick": "side-r10-ettin-150m-s1",
+  "students": {
+   "s2": "done",
+   "s3": "done"
+  },
+  "export": {
+   "side-r10-ettin-150m-s1": "done",
+   "side-r10tt-ettin-32m-s2": "done",
+   "side-r10tt-ettin-32m-s3": "done"
+  },
+  "latency": {
+   "latency": "done"
+  }
+ },
+ "calls": {
+  "students/s2": "fc-01M7XE667D89PP0F10Y3P3T70H",
+  "students/s3": "fc-01M7XE66S3E1VCHYD9B51P7VHN",
+  "export/side-r10-ettin-150m-s1": "fc-01M7XM77NF4B92KPQ5PBYD7A4E",
+  "export/side-r10tt-ettin-32m-s2": "fc-01M7XM78BF0BHHBW4J9WJDJAMP",
+  "export/side-r10tt-ettin-32m-s3": "fc-01M7XM78XGC7159KVMWPRGQNRH",
+  "latency": "fc-01M7XQZ3W90ATF3QYTW0V5YB34"
+ },
+ "updated_at": "2026-11-21T00:28:00+00:00",
+ "elapsed_s": 10332
+}

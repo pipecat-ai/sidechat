@@ -1,0 +1,192 @@
+{
+ "exp": "exp-070-side-int8-rc0.3-check",
+ "run_id": "side-r9-ettin-150m-s1",
+ "table": {
+  "duplex-mpe-0.1": {
+   "rows": 52364,
+   "int8": {
+    "n": 52336,
+    "decision_right": {
+     "value": 0.9656,
+     "k": 50538,
+     "n": 52336,
+     "ci95": [
+      0.9641,
+      0.9672
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9913,
+     "k": 44139,
+     "n": 44528,
+     "ci95": [
+      0.9904,
+      0.9921
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0024,
+     "k": 107,
+     "n": 44528,
+     "ci95": [
+      0.002,
+      0.0029
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.0063,
+     "k": 282,
+     "n": 44528,
+     "ci95": [
+      0.0056,
+      0.0071
+     ]
+    },
+    "answered_now": {
+     "value": 0.8195,
+     "k": 6399,
+     "n": 7808,
+     "ci95": [
+      0.8109,
+      0.8279
+     ]
+    },
+    "held_instead": {
+     "value": 0.0259,
+     "k": 202,
+     "n": 7808,
+     "ci95": [
+      0.0226,
+      0.0296
+     ]
+    },
+    "missed": {
+     "value": 0.1546,
+     "k": 1207,
+     "n": 7808,
+     "ci95": [
+      0.1467,
+      0.1628
+     ]
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "fp32": {
+    "n": 52336,
+    "decision_right": {
+     "value": 0.9637,
+     "k": 50438,
+     "n": 52336,
+     "ci95": [
+      0.9621,
+      0.9653
+     ]
+    },
+    "quiet_kept": {
+     "value": 0.9899,
+     "k": 44080,
+     "n": 44528,
+     "ci95": [
+      0.989,
+      0.9908
+     ]
+    },
+    "answers_now_wrongly": {
+     "value": 0.0021,
+     "k": 93,
+     "n": 44528,
+     "ci95": [
+      0.0017,
+      0.0026
+     ]
+    },
+    "holds_wrongly": {
+     "value": 0.008,
+     "k": 355,
+     "n": 44528,
+     "ci95": [
+      0.0072,
+      0.0088
+     ]
+    },
+    "answered_now": {
+     "value": 0.8143,
+     "k": 6358,
+     "n": 7808,
+     "ci95": [
+      0.8055,
+      0.8228
+     ]
+    },
+    "held_instead": {
+     "value": 0.0347,
+     "k": 271,
+     "n": 7808,
+     "ci95": [
+      0.0309,
+      0.039
+     ]
+    },
+    "missed": {
+     "value": 0.151,
+     "k": 1179,
+     "n": 7808,
+     "ci95": [
+      0.1432,
+      0.1591
+     ]
+    },
+    "open_held": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_answered_now": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    },
+    "open_ignored": {
+     "value": null,
+     "k": 0,
+     "n": 0,
+     "ci95": null
+    }
+   },
+   "same_decision": 0.9943854556565579,
+   "quiet_kept_paired": {
+    "n": 44542,
+    "a_right": 44441,
+    "b_right": 44427,
+    "only_a": 25,
+    "only_b": 11,
+    "diff": -0.0003,
+    "ci95": [
+     -0.0006,
+     -0.0001
+    ],
+    "worse_beyond_noise": true,
+    "better_beyond_noise": false
+   }
+  }
+ }
+}

@@ -1,0 +1,414 @@
+{
+ "exp": "exp-067-side-int8-probe",
+ "run_id": "side-r9-ettin-150m-s1",
+ "results": {
+  "fp32": {
+   "latency_1_thread": {
+    "p50": 304.8,
+    "mean": 293.3
+   }
+  },
+  "graph": {
+   "matmuls_with_weights": 88,
+   "by_group": {
+    "attn_qkv": 22,
+    "attn_out": 22,
+    "mlp_in": 22,
+    "mlp_out": 22
+   },
+   "layers": 22,
+   "sample_names": [
+    "/m/enc/layers.0/attn/Wqkv/MatMul",
+    "/m/enc/layers.0/attn/Wo/MatMul",
+    "/m/enc/layers.0/mlp/Wi/MatMul",
+    "/m/enc/layers.0/mlp/Wo/MatMul",
+    "/m/enc/layers.1/attn/Wqkv/MatMul",
+    "/m/enc/layers.1/attn/Wo/MatMul"
+   ]
+  },
+  "all (as shipped before)": {
+   "excluded": 0,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3168,
+   "size_mb": 267.2,
+   "latency_1_thread": {
+    "p50": 174.4,
+    "mean": 163.7
+   }
+  },
+  "all but the heads": {
+   "excluded": 0,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3168,
+   "size_mb": 267.2,
+   "latency_1_thread": {
+    "p50": 174.1,
+    "mean": 164.1
+   }
+  },
+  "no mlp_out": {
+   "excluded": 22,
+   "decisions_same": 230,
+   "rows": 283,
+   "max_respond_diff": 0.995,
+   "mean_respond_diff": 0.1635,
+   "size_mb": 325.4,
+   "latency_1_thread": {
+    "p50": 197.1,
+    "mean": 185.0
+   }
+  },
+  "no mlp": {
+   "excluded": 44,
+   "decisions_same": 230,
+   "rows": 283,
+   "max_respond_diff": 0.9936,
+   "mean_respond_diff": 0.1648,
+   "size_mb": 442.0,
+   "latency_1_thread": {
+    "p50": 246.1,
+    "mean": 229.9
+   }
+  },
+  "no attention": {
+   "excluded": 44,
+   "decisions_same": 182,
+   "rows": 283,
+   "max_respond_diff": 0.9983,
+   "mean_respond_diff": 0.3068,
+   "size_mb": 422.5,
+   "latency_1_thread": {
+    "p50": 232.2,
+    "mean": 218.8
+   }
+  },
+  "no first and last two layers": {
+   "excluded": 12,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9994,
+   "mean_respond_diff": 0.3162,
+   "size_mb": 312.2,
+   "latency_1_thread": {
+    "p50": 199.8,
+    "mean": 188.4
+   }
+  },
+  "no mlp_out, no heads": {
+   "excluded": 22,
+   "decisions_same": 230,
+   "rows": 283,
+   "max_respond_diff": 0.995,
+   "mean_respond_diff": 0.1635,
+   "size_mb": 325.4,
+   "latency_1_thread": {
+    "p50": 201.3,
+    "mean": 190.2
+   }
+  },
+  "per tensor": {
+   "excluded": 0,
+   "decisions_same": 266,
+   "rows": 283,
+   "max_respond_diff": 0.5656,
+   "mean_respond_diff": 0.0377,
+   "size_mb": 266.5,
+   "latency_1_thread": {
+    "p50": 173.7,
+    "mean": 163.2
+   }
+  },
+  "reduce range": {
+   "excluded": 0,
+   "decisions_same": 264,
+   "rows": 283,
+   "max_respond_diff": 0.5281,
+   "mean_respond_diff": 0.0353,
+   "size_mb": 267.2,
+   "latency_1_thread": {
+    "p50": 173.0,
+    "mean": 164.1
+   }
+  },
+  "uint8 weights, reduce range": {
+   "excluded": 0,
+   "decisions_same": 266,
+   "rows": 283,
+   "max_respond_diff": 0.6422,
+   "mean_respond_diff": 0.0357,
+   "size_mb": 267.2,
+   "latency_1_thread": {
+    "p50": 222.7,
+    "mean": 211.5
+   }
+  },
+  "no mlp_out in layer 0": {
+   "excluded": 1,
+   "decisions_same": 173,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3271,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 183.7,
+    "mean": 171.4
+   }
+  },
+  "no mlp_out in layer 1": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9993,
+   "mean_respond_diff": 0.3101,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 183.8,
+    "mean": 172.7
+   }
+  },
+  "no mlp_out in layer 2": {
+   "excluded": 1,
+   "decisions_same": 173,
+   "rows": 283,
+   "max_respond_diff": 0.9996,
+   "mean_respond_diff": 0.322,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 183.3,
+    "mean": 174.9
+   }
+  },
+  "no mlp_out in layer 3": {
+   "excluded": 1,
+   "decisions_same": 177,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3178,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 180.2,
+    "mean": 172.4
+   }
+  },
+  "no mlp_out in layer 4": {
+   "excluded": 1,
+   "decisions_same": 183,
+   "rows": 283,
+   "max_respond_diff": 0.9992,
+   "mean_respond_diff": 0.302,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 183.8,
+    "mean": 170.3
+   }
+  },
+  "no mlp_out in layer 5": {
+   "excluded": 1,
+   "decisions_same": 175,
+   "rows": 283,
+   "max_respond_diff": 0.9996,
+   "mean_respond_diff": 0.3205,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 185.9,
+    "mean": 175.6
+   }
+  },
+  "no mlp_out in layer 6": {
+   "excluded": 1,
+   "decisions_same": 173,
+   "rows": 283,
+   "max_respond_diff": 0.9998,
+   "mean_respond_diff": 0.323,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 184.2,
+    "mean": 172.3
+   }
+  },
+  "no mlp_out in layer 7": {
+   "excluded": 1,
+   "decisions_same": 177,
+   "rows": 283,
+   "max_respond_diff": 0.9986,
+   "mean_respond_diff": 0.3108,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 175.5,
+    "mean": 165.2
+   }
+  },
+  "no mlp_out in layer 8": {
+   "excluded": 1,
+   "decisions_same": 175,
+   "rows": 283,
+   "max_respond_diff": 0.9996,
+   "mean_respond_diff": 0.3217,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 183.9,
+    "mean": 173.0
+   }
+  },
+  "no mlp_out in layer 9": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3177,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 175.9,
+    "mean": 166.8
+   }
+  },
+  "no mlp_out in layer 10": {
+   "excluded": 1,
+   "decisions_same": 175,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3193,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 177.2,
+    "mean": 166.2
+   }
+  },
+  "no mlp_out in layer 11": {
+   "excluded": 1,
+   "decisions_same": 186,
+   "rows": 283,
+   "max_respond_diff": 0.9982,
+   "mean_respond_diff": 0.2886,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 179.9,
+    "mean": 171.2
+   }
+  },
+  "no mlp_out in layer 12": {
+   "excluded": 1,
+   "decisions_same": 174,
+   "rows": 283,
+   "max_respond_diff": 0.9998,
+   "mean_respond_diff": 0.3236,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 178.2,
+    "mean": 167.5
+   }
+  },
+  "no mlp_out in layer 13": {
+   "excluded": 1,
+   "decisions_same": 177,
+   "rows": 283,
+   "max_respond_diff": 0.9995,
+   "mean_respond_diff": 0.3153,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 178.2,
+    "mean": 169.0
+   }
+  },
+  "no mlp_out in layer 14": {
+   "excluded": 1,
+   "decisions_same": 177,
+   "rows": 283,
+   "max_respond_diff": 0.9993,
+   "mean_respond_diff": 0.3125,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 181.8,
+    "mean": 169.8
+   }
+  },
+  "no mlp_out in layer 15": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9998,
+   "mean_respond_diff": 0.3201,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 180.3,
+    "mean": 170.3
+   }
+  },
+  "no mlp_out in layer 16": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3162,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 181.8,
+    "mean": 172.1
+   }
+  },
+  "no mlp_out in layer 17": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3175,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 186.7,
+    "mean": 173.5
+   }
+  },
+  "no mlp_out in layer 18": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3166,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 182.3,
+    "mean": 171.5
+   }
+  },
+  "no mlp_out in layer 19": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3167,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 182.5,
+    "mean": 171.2
+   }
+  },
+  "no mlp_out in layer 20": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3167,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 180.4,
+    "mean": 169.7
+   }
+  },
+  "no mlp_out in layer 21": {
+   "excluded": 1,
+   "decisions_same": 176,
+   "rows": 283,
+   "max_respond_diff": 0.9997,
+   "mean_respond_diff": 0.3169,
+   "size_mb": 269.8,
+   "latency_1_thread": {
+    "p50": 179.1,
+    "mean": 167.4
+   }
+  }
+ }
+}

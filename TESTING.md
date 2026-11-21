@@ -30,8 +30,9 @@ uv run python scripts/try_sidechat.py models/<run_id>
 It prints Sidechat's `respond` probability, its intents and its decision for each of the
 daily-audience demo's sample lines, beside Jev's decision from the stored baseline. Add
 `--anonymous` to give speakers as "Speaker 1" with no names, as a diarizer would. Add `--int8` to
-use the int8 build (2.2 times smaller, about 20% faster; it differs from fp32 on about 1 decision
-in 30, so fp32 is the default).
+use the int8 build, if the export has one. rc0.3.1's are about half the size and 1.6 to 1.8 times
+faster on one thread, and at their own thresholds make the same decision as fp32 on 98.5% to 99.9%
+of test lines; fp32 is the default.
 
 Try your own line, with the turns before it:
 

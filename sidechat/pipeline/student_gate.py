@@ -162,3 +162,103 @@ def gate_default(m: dict, base: dict) -> dict:
         "ships": all(ok for ok, _ in checks),
         "why": "; ".join(("" if ok else "**fails:** ") + w for ok, w in checks),
     }
+
+
+TCL_SET = "tcl-wakeup-0.1@anonymous"
+GEN05_SET = "gen-0.5.test@anonymous"
+
+
+def metrics_r10(card: dict, who: str = "sidechat") -> dict:
+    """`metrics_r8` plus round 10's targets: TCL's independent test (SD-27; read for the report and
+    the gate, never for picks) and gen-0.5's new kinds on its test split."""
+    out = metrics_r8(card, who)
+    sets = card.get("sets") or {}
+    tcl = sets.get(TCL_SET) or {}
+    by = tcl.get("by_kind") or {}
+
+    def k(kind: str, key: str) -> dict | None:
+        return ((by.get(kind) or {}).get(who) or {}).get(key)
+
+    out["tcl_outright"] = (tcl.get(who) or {}).get("answers_now_wrongly")
+    out["tcl_held"] = (tcl.get(who) or {}).get("holds_wrongly")
+    out["tcl_direct"] = k("direct", "answered_now")
+    out["tcl_ctx_now"] = k("contextual", "answered_now")
+    out["tcl_ctx_held"] = k("contextual", "held_instead")
+    g5 = sets.get(GEN05_SET) or {}
+    out["g5_pq"] = _sum_kinds(g5, ("people_question_after_agent",), "quiet_kept", who)
+    out["g5_pp"] = _sum_kinds(g5, ("partner_to_people_after_agent",), "quiet_kept", who)
+    out["g5_later"] = _sum_kinds(g5, ("follow_up_later",), "open_held", who)
+    out["g5_follow_up"] = _sum_kinds(g5, ("follow_up",), "answered_now", who)
+    return out
+
+
+def tcl_paired(new: dict[str, str], base: dict[str, str], rows: list[dict]) -> dict:
+    """Paired comparisons on TCL's test, from each model's decisions (row_id -> respond, wait or
+    ignore): people's lines answered outright, and unnamed follow-ups answered or held."""
+    from sidechat.lib.score import paired
+
+    others = [r["row_id"] for r in rows if r["tags"]["kind"] not in ("direct", "contextual")]
+    ctx = [r["row_id"] for r in rows if r["tags"]["kind"] == "contextual"]
+    both = [i for i in others if i in new and i in base]
+    cb = [i for i in ctx if i in new and i in base]
+    return {
+        # "right" is not answering outright, so a positive difference is fewer outright answers
+        "others_not_outright": paired([base[i] != "respond" for i in both], [new[i] != "respond" for i in both]),
+        "ctx_now_or_held": paired([base[i] != "ignore" for i in cb], [new[i] != "ignore" for i in cb]),
+    }
+
+
+def gate_r10(m: dict, base: dict, tcl: dict | None) -> dict:
+    """Round 10's gate, fixed before training (exp-066): a new build against rc0.3's (`base`).
+    It must answer fewer of TCL's people's lines outright, beyond noise (paired), hold on to unnamed
+    follow-ups there and to round 9's real unnamed requests, and keep everything else within a
+    small margin."""
+    checks = []
+
+    def cmp(key: str, label: str, margin: float, higher_is_better: bool = True) -> None:
+        a, b = m.get(key), base.get(key)
+        if not a or not b or a.get("value") is None or b.get("value") is None:
+            checks.append((False, f"{label} not scored"))
+            return
+        d = 100 * (a["value"] - b["value"])
+        ok = d >= -margin if higher_is_better else d <= margin
+        checks.append((ok, f"{label} {d:+.2f} points"))
+
+    o = (tcl or {}).get("others_not_outright") or {}
+    if o.get("diff") is not None:
+        lo, hi = o["ci95"]
+        why = f"TCL people's lines answered outright {-100 * o['diff']:+.2f} points, paired"
+        checks.append((lo > 0, f"{why} ({-100 * hi:+.2f} to {-100 * lo:+.2f})"))
+    else:
+        checks.append((False, "TCL not scored"))
+    c = (tcl or {}).get("ctx_now_or_held") or {}
+    if c.get("diff") is not None:
+        checks.append(
+            (100 * c["diff"] >= -5.0, f"TCL unnamed follow-ups answered or held {100 * c['diff']:+.2f} points")
+        )
+    for key, label, margin in (
+        ("tcl_direct", "TCL named requests answered", 1.0),
+        ("slurp_unnamed_held_heard", "real unnamed requests held as heard", 3.0),
+        ("duplex", "Duplex-MPE right", 0.5),
+        ("ambient", "Ambient Bench right", 0.5),
+        ("ami", "AMI right", 0.5),
+        ("generated", "generated test right", 0.5),
+        ("pilot", "pilot right", 1.0),
+        ("explicit_t", "named requests answered", 1.0),
+        ("slurp_named_keyterm", "SLURP named answered (keyterm)", 5.0),
+    ):
+        cmp(key, label, margin)
+    for key, label, margin in (
+        ("duplex_outright", "Duplex-MPE others answered outright", 0.1),
+        ("duplex_held", "Duplex-MPE others held", 1.0),
+        ("ami_heard_held", "AMI as heard, held", 1.0),
+        ("tcl_held", "TCL people's lines held", 1.0),
+    ):
+        cmp(key, label, margin, higher_is_better=False)
+    d = m.get("duplex_outright")
+    if d and d.get("value") is not None:
+        checks.append((d["value"] <= 0.004, f"Duplex-MPE others answered outright {100 * d['value']:.2f}% (bar 0.4%)"))
+    return {
+        "ships": all(ok for ok, _ in checks),
+        "why": "; ".join(("" if ok else "**fails:** ") + w for ok, w in checks),
+    }

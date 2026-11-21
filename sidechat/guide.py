@@ -17,6 +17,8 @@ from sidechat.schema import SidechatLabel
 
 GUIDE_VERSION = "sidechat-guide-0.4"
 GUIDE_FILE = "contracts/sidechat-guide-0.4.md"
+# gen-0.5 added `people_question_after_agent` (G7), `partner_to_people_after_agent` (G6) and
+# `follow_up_later` (G6, the unsettled case) under 0.4's rules as written; no existing kind changed.
 # gen-0.4 added `follow_up_after_reaction` (G6) and `relay_agent_answer` (G4) under 0.4's rules as
 # written; no existing kind changed, so the version stays.
 # 0.3 added how to read anonymous speaker labels; no kind changed.
@@ -155,6 +157,23 @@ KINDS: dict[str, KindRule] = {
     "unclear_after_agent": _k(
         "G6", "unclear", None, "wait", 3, "reacts to the agent's answer; could be for the agent or a person"
     ),
+    # gen-0.5
+    "partner_to_people_after_agent": _k(
+        "G6",
+        "group",
+        "other",
+        "ignore",
+        1,
+        "the person the agent answered turns to the others about it, asking nothing",
+    ),
+    "follow_up_later": _k(
+        "G6",
+        "unclear",
+        None,
+        "wait",
+        3,
+        "comes back to the agent's earlier answer after others talked; could be for the agent or a person",
+    ),
     # G7: nobody is called, the agent is not in play
     "open_question": _k("G7", "group", "open", "wait", 3, "a question to the room the agent could answer"),
     "open_factual": _k("G7", "group", "open", "wait", 3, "a factual question to nobody in particular"),
@@ -177,6 +196,9 @@ KINDS: dict[str, KindRule] = {
     "host_to_group": _k("G7", "group", "other", "ignore", 1, "the person running the meeting manages it"),
     "people_after_agent": _k(
         "G7", "group", "other", "ignore", 1, "people react to the agent's answer among themselves"
+    ),
+    "people_question_after_agent": _k(
+        "G7", "group", "other", "ignore", 1, "right after the agent's answer, asks the others about their own plans"
     ),
     "answer_to_relayed_question": _k(
         "G7", "group", "other", "ignore", 1, "a person answers a question the agent relayed"

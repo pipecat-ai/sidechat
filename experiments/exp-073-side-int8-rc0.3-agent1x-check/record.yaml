@@ -1,0 +1,34 @@
+experiment_id: exp-073-side-int8-rc0.3-agent1x-check
+status: done (2026-11-21)
+track: sidechat (agent-1x build speed and memory)
+what: >
+  exp-072's int8 build of rc0.3's agent-1x model (side-r9tt-ettin-32m-s1), at its own thresholds,
+  on the test sets the gates use, against fp32's stored predictions on the same lines, as exp-070
+  did for the default build. Two containers: Duplex-MPE alone (exp-073-...-check) and the other
+  seven sets (exp-073-...-check-b).
+forecast block:
+  campaign: exp-073-side-int8-rc0.3-agent1x-check
+  decision it enables: whether rc0.3's agent-1x build offers int8 (Jon's call to publish)
+  token forecast: none
+  Modal forecast: two 8-CPU containers, about 45 minutes each (the 32M runs about three times the 150M's speed), about $0.70
+  retry cap: 0
+  spend cap: n/a
+  stop condition: scorecard.json and report.md in runs/side/results/exp-073-side-int8-rc0.3-agent1x-check{,-b}/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $0.70
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.int8_probe::run --exp exp-073-side-int8-rc0.3-agent1x-check
+  --run-id side-r9tt-ettin-32m-s1 --check --check-sets duplex;
+  uv run modal run --detach -m sidechat.pipeline.int8_probe::run --exp exp-073-side-int8-rc0.3-agent1x-check-b
+  --run-id side-r9tt-ettin-32m-s1 --check --check-sets ambient,ami,ami-silent:test,ami-stt,pilot-0.4@anonymous,slurp-stt-keyterm,tcl@anonymous
+results: uv run python -m sidechat.pipeline.results exp-073-side-int8-rc0.3-agent1x-check
+actual_usd: about $0.35 (30 and 21 minutes of two 8-CPU containers)
+result:
+  same_decisions: "98.6% (pilot, SLURP heard) to 99.9% (AMI silence test) of decisions the same as fp32; Duplex-MPE 99.72%"
+  people_answered_outright: "no more beyond noise on any set: Duplex-MPE 149 against 146 of 44,528 (paired -0.00 points, -0.03 to +0.02), Ambient Bench 0.45% against 0.42%, AMI none on either, TCL 74 against 75 of 3,348"
+  holds: "slightly fewer on people's lines: Ambient 1.87% against 2.10%, AMI 1.24% against 1.33%, AMI as heard 1.30% against 1.43%, TCL 2.42% against 2.66%"
+  named_requests: "the same on SLURP heard with the keyterm (48 of 61) and TCL (206 of 299 for Sigma answered now); Duplex-MPE 5,998 against 6,002 of 7,808 answered now"
+  slurp_unnamed_held: "86.51% (2,340/2,705) against 86.58% (2,342)"
+  pilot: "233 of 270 right against 234"
+  verdict: "rc0.3's agent-1x int8 build is fit to offer beside fp32 at its own thresholds: the same decisions within a fraction of a point everywhere, 14 ms against 25 ms a line with both towers cold on one thread, 195 MB"

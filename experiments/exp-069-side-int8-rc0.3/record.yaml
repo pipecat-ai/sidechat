@@ -1,0 +1,30 @@
+experiment_id: exp-069-side-int8-rc0.3
+status: done (2026-11-20)
+track: sidechat (default build speed)
+what: >
+  An int8 file for rc0.3's default build (side-r9-ettin-150m-s1) with the recipe exp-068 found
+  (per channel, reduce_range, each layer's MLP output product in fp32), through the export's own
+  gate: at least 95% of parity decisions the same, then dev decisions right at most 1 point below
+  fp32 at thresholds of its own, with round 9's hold bar on AMI's real dev lines. Written to
+  models/side/side-r9-ettin-150m-s1/export-int8/ beside the released export, which stays as it is.
+  Nothing is published; adding it to the Hub is Jon's call.
+forecast block:
+  campaign: exp-069-side-int8-rc0.3
+  decision it enables: whether rc0.3's default build can offer int8 again (about 1.6x faster on one thread)
+  token forecast: none
+  Modal forecast: one 8-CPU container for about 40 minutes (dev is about 31,000 lines through int8), about $0.40
+  retry cap: 0
+  spend cap: n/a
+  stop condition: scorecard.json and report.md in runs/side/results/exp-069-side-int8-rc0.3/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $0.40
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.int8_probe::run --exp exp-069-side-int8-rc0.3 --make
+results: uv run python -m sidechat.pipeline.results exp-069-side-int8-rc0.3
+actual_usd: about $0.40
+result:
+  parity: "281/283 decisions the same as fp32; largest respond difference 0.28, mean 0.006"
+  dev: "98.95% right at its own thresholds (respond 0.6, wait 0.45) against fp32's 98.97%: 0.02 points (bar 1); real dev lines answered outright 0, held 5 of 4,186"
+  speed: "191 ms a line on one thread against fp32's 298 (Modal CPU); 325 MB against 598"
+  passes: "yes; written to models/side/side-r9-ettin-150m-s1/export-int8/ (R2 only, not the Hub)"

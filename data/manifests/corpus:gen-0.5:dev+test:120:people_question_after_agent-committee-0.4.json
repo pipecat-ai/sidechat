@@ -1,0 +1,68 @@
+{
+ "label_id": "corpus:gen-0.5:dev+test:120:people_question_after_agent-committee-0.4",
+ "guide": "sidechat-guide-0.4",
+ "prompt_sha": "5b71303e8551",
+ "members": [
+  "a",
+  "b",
+  "c"
+ ],
+ "member_model_env": {
+  "a": "LABELLER_A_MODEL",
+  "b": "LABELLER_B_MODEL",
+  "c": "LABELLER_C_MODEL"
+ },
+ "member_model_sha": {
+  "a": "495a09eb2c",
+  "b": "005912bee6",
+  "c": "06dfe89ec3"
+ },
+ "effort": "low",
+ "sets": [
+  "corpus:gen-0.5:dev+test:120:people_question_after_agent",
+  "corpus:gen-0.5:dev+test:120:partner_to_people_after_agent",
+  "corpus:gen-0.5:dev+test:120:follow_up_later"
+ ],
+ "rows": 360,
+ "labels_sha256": "9ab00f8619deaff05dbf0f5fae0289bb5a75bb5da3210aa0b814b7e78302964f",
+ "exp": "exp-065-side-committee-gen-0.5",
+ "usage": {
+  "a": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 1754016,
+   "cached": 1662876,
+   "cache_write": 0,
+   "output": 23690,
+   "errors": [],
+   "usd": 1.251
+  },
+  "b": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 2627619,
+   "cached": 2460128,
+   "cache_write": 55912,
+   "output": 34974,
+   "errors": [],
+   "usd": 2.409
+  },
+  "c": {
+   "answered": 360,
+   "reused": 0,
+   "failed": 0,
+   "fallback": 0,
+   "input": 1928711,
+   "cached": 248307,
+   "cache_write": 0,
+   "output": 34065,
+   "errors": [],
+   "usd": 7.651
+  }
+ },
+ "built_at": "2026-11-20T19:10:39+00:00"
+}

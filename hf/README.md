@@ -16,7 +16,7 @@ tags:
   - turn-taking
 ---
 
-# Pipecat Sidechat (experimental, rc0.3)
+# Pipecat Sidechat (experimental, rc0.3.1)
 
 > **⚠️ Experimental.** Outputs, names and calibration may change between releases.
 
@@ -41,6 +41,11 @@ A request without the agent's name ("set a timer for ten minutes"), said before 
 for a pause about nine times in ten. In rc0.2 it was mostly ignored. The cost is more holds on people's own talk;
 see Limitations. rc0.2 stays at tag `rc0.2`.
 
+**New in rc0.3.1:** int8 files for both builds, opt in with `int8=True`. The fp32 files are rc0.3's, unchanged,
+and stay the default; rc0.3 stays at tag `rc0.3`. On every test set below, int8 at its own thresholds makes the
+same decision as fp32 on 98.5% to 99.9% of lines and is within a point of it. It is smaller and faster; see Files
+and Speed.
+
 ## Use
 
 ```bash
@@ -62,12 +67,18 @@ a = model.answer(SidechatRequest(
 print(a.respond, model.decide(a))  # 0.97 respond
 ```
 
+For int8, download its file and pass `int8=True`; the thresholds in `config.json`'s `thresholds_int8` are used:
+
+```python
+model = load(snapshot_download("pipecat-ai/sidechat", allow_patterns=["*.json", "model-int8.onnx"]), int8=True)
+```
+
 For `agent-1x`, load the folder and call `prepare` with the next line's request (its history is what counts)
 as soon as the previous line ends; `answer` then encodes only the new line:
 
 ```python
 path = snapshot_download("pipecat-ai/sidechat", allow_patterns=["agent-1x/*.json", "agent-1x/*.onnx"])
-model = load(f"{path}/agent-1x", threads=1)
+model = load(f"{path}/agent-1x", threads=1)  # or int8=True, with "agent-1x/*-int8.onnx"
 model.prepare(request)          # while the person talks
 a = model.answer(request)       # when they stop
 ```
@@ -87,9 +98,11 @@ misheard otherwise ("Olly" as "Oli"), and a request that names the agent is then
 
 | File | |
 |---|---|
-| `model.onnx` | default build, fp32, 598 MB (rc0.3 has no int8 build: it failed its quality check) |
+| `model.onnx` | default build, fp32, 598 MB |
+| `model-int8.onnx` | default build, int8, 325 MB |
 | `agent-1x/context.onnx`, `agent-1x/line.onnx` | `agent-1x` build, fp32, 128 + 131 MB |
-| `tokenizer.json`, `config.json` (each folder) | tokenizer, calibration and thresholds |
+| `agent-1x/context-int8.onnx`, `agent-1x/line-int8.onnx` | `agent-1x` build, int8, 97 + 98 MB |
+| `tokenizer.json`, `config.json` (each folder) | tokenizer, calibration, and thresholds for fp32 and int8 |
 | `data/`, `agent-1x/data/` | the rows each build was trained on (train and dev) |
 | `MANIFEST.json` (each folder) | sha256 of every file, row counts |
 
@@ -119,18 +132,23 @@ trained on.
 
 ## Speed
 
-Median ms per line with 8 earlier lines, one thread, on containers capped like Pipecat Cloud's profiles. Jev is
-an API call from the same container, so its time is mostly the network.
+Median ms per line with 8 earlier lines, one thread, on containers capped like Pipecat Cloud's profiles, fp32 and
+int8 in the same run. Jev is an API call from the same container, so its time is mostly the network; its row is
+from earlier runs.
 
 | | 0.5 vCPU, 1 GiB | 1 vCPU, 2 GiB | Memory |
 |---|---|---|---|
-| `agent-1x`, earlier lines encoded ahead | 14 | 14 | 487 MB |
-| `agent-1x`, earlier lines not ready | 108 | 68 | |
-| Default, fp32 | does not fit well (648, tail to 21 s) | 253 | about 0.9 GB |
+| `agent-1x` int8, earlier lines encoded ahead | 10 | 7 | 428 MB |
+| `agent-1x` fp32, earlier lines encoded ahead | 11 | 16 | 487 MB |
+| `agent-1x` int8, earlier lines not ready | 95 | 32 | |
+| `agent-1x` fp32, earlier lines not ready | 104 | 77 | |
+| Default, int8 | 672 | 303 | 628 MB |
+| Default, fp32 | 991 (near the memory limit; it took 3 minutes to load) | 465 | about 0.9 GB |
 | Jev | 49 to 163 | 49 to 149 | |
 
-Encoding the earlier lines takes about 97 ms on `agent-1x`, well inside the time anyone takes to say a line. The
-default build's times were measured on rc0.2's default build, which has the same size and graph. On an M5 Max it
+Times move with the host's CPU between runs: an earlier run on another host measured the default fp32 build at
+253 ms on 1 vCPU. Compare rows within the table. Encoding the earlier lines on `agent-1x` takes 86 ms in int8 and
+93 ms in fp32 at 0.5 vCPU, well inside the time anyone takes to say a line. On an M5 Max the default fp32 build
 takes 10 ms with a short history and 52 ms with 8 earlier lines.
 
 ## Limitations
@@ -157,6 +175,9 @@ unclear heads.
 - **`agent-1x`:** Ettin-32M as one shared encoder for the earlier lines and the new line, joined by a
   cross-attention layer. 3 epochs on 425,828 lines, with the default build's probabilities as 80% of each
   target.
+- **int8 (rc0.3.1):** dynamic int8 weights, per channel with reduced range, with each layer's MLP output kept in
+  fp32. Without reduced range, int8 lost about a third of its decisions on CPUs without VNNI. Each build's int8
+  thresholds were chosen on dev, where it is within 0.1 points of fp32.
 
 The lines come from three sources:
 

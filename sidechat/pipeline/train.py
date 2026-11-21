@@ -405,7 +405,7 @@ def score(run_id: str, corpus: str, test_corpus: str = "", extra_sets: str = "",
         entry = E.set_card(rows, preds, t, jev_scores(manifest["rows_id"]) or None)
         if which.startswith("pilot"):
             entry["by_kind"] = E.sliced(rows, preds, t, "kind", jev_scores(manifest["rows_id"]) or None, min_n=4)
-        elif which.startswith(("slurp", "corpus:")):  # named against unnamed requests; name-as-a-word lines
+        elif which.startswith(("slurp", "corpus:", "tcl")):  # named against unnamed requests; TCL's kinds
             entry["by_kind"] = E.sliced(rows, preds, t, "kind", jev_scores(manifest["rows_id"]) or None, min_n=1)
         if which == "duplex":
             entry["by_condition_event"] = E.sliced(

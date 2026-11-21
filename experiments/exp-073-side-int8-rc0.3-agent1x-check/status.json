@@ -1,0 +1,17 @@
+{
+ "exp": "exp-073-side-int8-rc0.3-agent1x-check",
+ "app": "waystone-side-int8-probe",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-20T23:59:36+00:00",
+ "args": {
+  "run_id": "side-r9tt-ettin-32m-s1",
+  "parity_rows": 300,
+  "combos": false,
+  "make": false,
+  "check": true,
+  "check_sets": "duplex"
+ },
+ "updated_at": "2026-11-21T00:29:33+00:00",
+ "elapsed_s": 1797
+}

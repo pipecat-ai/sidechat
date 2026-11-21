@@ -1,0 +1,15 @@
+{
+ "exp": "exp-069-side-int8-rc0.3",
+ "app": "waystone-side-int8-probe",
+ "state": "done",
+ "stage": "done",
+ "started_at": "2026-11-20T20:11:31+00:00",
+ "args": {
+  "run_id": "side-r9-ettin-150m-s1",
+  "parity_rows": 300,
+  "combos": false,
+  "make": true
+ },
+ "updated_at": "2026-11-20T20:49:25+00:00",
+ "elapsed_s": 2274
+}

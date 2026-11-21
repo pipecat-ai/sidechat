@@ -1,0 +1,35 @@
+experiment_id: exp-068-side-int8-probe-b
+status: done (2026-11-20)
+track: sidechat (default build speed)
+what: >
+  Second set of exp-067: per-tensor and reduced-range quantisation (each kept about 94% of decisions
+  where per-channel kept 62%), together and with the MLP output left in fp32; uint8 weights; and the
+  container's CPU features.
+  First set:
+  rc0.3's default build ships fp32 only: round 9's int8 kept 178 of 283 pilot decisions (round 8's
+  failed too; round 3's passed). On cloud CPUs fp32 150M is about 250 ms a line on 1 vCPU (exp-033),
+  so an int8 build that keeps parity matters for deployment. This probe takes side-r9-ettin-150m-s1's
+  exported fp32 graph and builds int8 variants (all matrix products; leaving the heads, the MLP
+  output, the MLP, attention, or the first and last layers in fp32; per tensor; reduced range; and
+  each layer's MLP output alone), measuring each against fp32 on the export's own parity lines and
+  its speed on one thread. A recipe that keeps parity goes into export.py for round 10's export.
+forecast block:
+  campaign: exp-068-side-int8-probe-b
+  decision it enables: whether the default build can ship int8 again, and how
+  token forecast: none
+  Modal forecast: one 8-CPU container for about 15 minutes, about $0.15
+  retry cap: 0
+  spend cap: n/a
+  stop condition: scorecard.json and report.md in runs/side/results/exp-068-side-int8-probe-b/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $0.15
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.int8_probe::run --exp exp-068-side-int8-probe-b --combos
+results: uv run python -m sidechat.pipeline.results exp-068-side-int8-probe-b
+actual_usd: about $0.15
+result:
+  best: "per channel, reduce_range, each layer's MLP output product in fp32: 281/283 decisions the same, mean respond difference 0.006, 194 ms a line on one thread (fp32 316), 325 MB"
+  others: "per tensor with the MLP output in fp32 280/283; reduce range with the whole MLP in fp32 281/283 but 249 ms; per tensor alone 266/283; per tensor with reduce range 261/283"
+  cpu: "the container hides its model; no VNNI or AVX-512 flags visible, consistent with u8 x s8 saturation"
+  recipe_in: sidechat/pipeline/export.py (int8_excluded, reduce_range)

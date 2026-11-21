@@ -1,0 +1,28 @@
+experiment_id: exp-074-side-latency-int8
+status: done (2026-11-21)
+track: sidechat (release)
+what: >
+  Speed and memory of rc0.3's two builds in fp32 and int8 (exp-069, exp-072), on containers capped
+  like Pipecat Cloud's agent-1x (0.5 vCPU, 1 GiB) and agent-2x (1 vCPU, 2 GiB), one thread, through
+  the demo's own gate (sidechat.pipeline.latency, as exp-033 and the round jobs). For rc0.3.1's card:
+  its speed table is measured this way. Jev is left out; the card keeps its earlier Jev row.
+forecast block:
+  campaign: exp-074-side-latency-int8
+  decision it enables: the speed table on rc0.3.1's card
+  token forecast: none
+  Modal forecast: eight capped containers (two builds, fp32 and int8, two profiles) of about 10 minutes, about $0.20
+  retry cap: 0
+  spend cap: n/a
+  stop condition: scorecard.json and report.md in runs/side/results/exp-074-side-latency-int8/
+  approved by Jon on: 2026-11-21 ("Yes, publish rc0.3.1")
+forecast_usd: about $0.20
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.latency::run --exp exp-074-side-latency-int8
+  --run-ids side-r9-ettin-150m-s1,side-r9tt-ettin-32m-s1 --profiles agent-1x,agent-2x --threads 1 --no-jev
+results: uv run python -m sidechat.pipeline.results exp-074-side-latency-int8
+actual_usd: under $0.10
+result:
+  agent_1x_profile: "0.5 vCPU, 1 GiB. agent-1x build, history encoded ahead: int8 10 ms against fp32 11; history not ready 95 against 104; 428 MB against 487. Default build: int8 672 ms against fp32 991 (fp32 took 172 s to load, at 911 MB of 1,024); 628 MB against 911"
+  agent_2x_profile: "1 vCPU, 2 GiB. agent-1x build, encoded ahead: int8 7 ms against fp32 16; not ready 32 against 77. Default build: int8 303 ms against fp32 465"
+  host: "Modal us-east (Azure). This host is slower than rc0.2's run, which measured the default fp32 at 253 ms on 1 vCPU; the card now gives this run's numbers for both builds"

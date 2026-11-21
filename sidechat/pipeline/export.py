@@ -24,6 +24,14 @@ APP_NAME = "waystone-side-export"
 app = modal.App(APP_NAME)
 
 
+def int8_excluded(path) -> list[str]:
+    """The matrix products int8 leaves in fp32: each encoder layer's MLP output (exp-068)."""
+    import onnx
+
+    graph = onnx.load(str(path), load_external_data=False).graph
+    return [n.name for n in graph.node if n.op_type == "MatMul" and "mlp" in n.name and "Wo" in n.name]
+
+
 @app.function(name="export_run", image=image, cpu=8.0, memory=16384, timeout=2 * 3600, secrets=_secrets(), volumes={"/cache": hf_cache})
 def run(exp: str, run_id: str, parity_rows: int = 300) -> dict:
     import pathlib
@@ -266,7 +274,10 @@ def run(exp: str, run_id: str, parity_rows: int = 300) -> dict:
         optimized = {"error": f"{type(e).__name__}: {e}"[:500], "shipped": False}
 
     # int8: weights only, per channel, and only matrix products with a constant side. Quantizing
-    # every MatMul (attention scores included) wrecked round 1's model (exp-018).
+    # every MatMul (attention scores included) wrecked round 1's model (exp-018). Weights in 7 bits
+    # (`reduce_range`), so u8 x s8 products cannot saturate on CPUs without VNNI, and each layer's
+    # MLP output product left in fp32: together they keep 281 of 283 parity decisions where the
+    # earlier recipe kept 176 (exp-067, exp-068).
     int8_error = None
     try:
         from onnxruntime.quantization import QuantType, quantize_dynamic
@@ -277,7 +288,9 @@ def run(exp: str, run_id: str, parity_rows: int = 300) -> dict:
                 str(d / f"{g}-int8.onnx"),
                 weight_type=QuantType.QInt8,
                 per_channel=True,
+                reduce_range=True,
                 op_types_to_quantize=["MatMul"],
+                nodes_to_exclude=int8_excluded(d / f"{g}.onnx"),
                 extra_options={"MatMulConstBOnly": True},
             )
     except Exception as e:  # noqa: BLE001 - the fp32 export stands on its own

@@ -81,6 +81,29 @@ estimates from run time, not read from billing.
 - 2026-11-20 · exp-063-side-tcl-wakeup · An independent test: TCL's Intelligent Wakeup, test split,
   text only; Jev and rc0.3's and rc0.2's builds, speakers named and anonymous · about $1 · about
   $0.40 (Jev $0.25 for 7,293 requests, 5,921,211 input tokens; Modal about $0.15)
+- 2026-11-20 · exp-064-side-gen-0.5 · Corpus gen-0.5, 5,997 conversations aimed at the line after the agent
+  answers (round 10 data) · about $21 · about $23 (o $1.75, a $5.23, c $7.93, b $7.82, CPU about $0.40)
+- 2026-11-20 · exp-065-side-committee-gen-0.5 · Committee on 360 lines of gen-0.5's three new kinds · about
+  $11 · about $11.35 (a $1.25, b $2.41, c $7.65)
+- 2026-11-20 · exp-066-side-round10 · Round 10: two teachers and two students with gen-0.5, exports, timing;
+  Jev on gen-0.5's test · about $35 · about $23 (H100 about $20, CPU about $1.50, Jev $0.48)
+- 2026-11-20 · exp-067, exp-068 · Why the default build's int8 fails parity, two probe sets · about $0.55 ·
+  about $0.50
+- 2026-11-20 · exp-069-side-int8-rc0.3 · rc0.3's default build in int8 with the new recipe, through the
+  export's gate · about $0.40 · about $0.40
+- 2026-11-20 · exp-070-side-int8-rc0.3-check, -b · That int8 file on the test sets against fp32's stored
+  predictions, in two 8-CPU containers (Duplex-MPE took the first one's two hours) · about $0.50, then
+  $0.50 more · about $1.30
+- 2026-11-21 · exp-071-side-round10-students · Two more round 10 students (seeds 2 and 3), three
+  exports, agent-1x timing · about $15 · about $16 (two H100s about 1.75 hours, about $14; CPU about $2)
+- 2026-11-21 · exp-072-side-int8-rc0.3-agent1x · rc0.3's agent-1x build (two towers) in int8 with the
+  new recipe, through the export's gate · about $0.30 · about $0.10
+- 2026-11-21 · exp-073-side-int8-rc0.3-agent1x-check, -b · That int8 build on the test sets against fp32's
+  stored predictions, in two 8-CPU containers · about $0.70 · about $0.35
+- 2026-11-21 · exp-074-side-latency-int8 · rc0.3's two builds in fp32 and int8 on containers capped like
+  agent-1x and agent-2x, for rc0.3.1's card · about $0.20 · under $0.10
+- 2026-11-21 · exp-075-side-publish-rc0.3.1 · Release rc0.3.1 (int8 files for both builds), two publish
+  jobs · under $0.50 · under $0.05
 
 Note for Phase 3: member c costs 6 to 7 times member a, because its provider cached almost none of
 the shared prompt (about 7% of input tokens against 95% for a and b). At the plan's ~5,500
@@ -88,4 +111,4 @@ committee lines that is about $100 for c alone. Its batch API is half price.
 
 ## Total
 
-About $386 spent of the $1,000 cap. Nothing in flight.
+About $462 spent of the $1,000 cap. Nothing in flight.

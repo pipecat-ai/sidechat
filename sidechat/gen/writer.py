@@ -95,6 +95,10 @@ BRIEFS: dict[str, str] = {
     # gen-0.4
     "follow_up_after_reaction": "after the other person's quick reaction, carries on with {agent}: a related question, request or short command about its answer to them, without its name; plainly for {agent}, not a reply to the reaction",
     "relay_agent_answer": "tells {target} what {agent} just said or did, naming {agent} in the third person ('{agent} says ...', 'so {agent} reckons ...'); asks {agent} nothing",
+    # gen-0.5
+    "people_question_after_agent": "right after {agent}'s answer, turns to the others and asks them something about their own plans, choices or feelings in light of it, that only they can answer ('So are we still going, then?', 'Do we want the early one?'); no name, no 'you' to one person, and never a question {agent} could answer",
+    "partner_to_people_after_agent": "turns from {agent} to the others after its answer to them: a comment, a decision or a plan for the group about what it said, asking {agent} nothing, without any name",
+    "follow_up_later": "comes back to what {agent} told them a few lines ago with a related question {agent} could answer, without any name and without saying whom it is for, so it could be for {agent} or for the others",
 }
 
 AGENT_BRIEFS = {

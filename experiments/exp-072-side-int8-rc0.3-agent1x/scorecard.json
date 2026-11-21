@@ -1,0 +1,260 @@
+{
+ "exp": "exp-072-side-int8-rc0.3-agent1x",
+ "run_id": "side-r9tt-ettin-32m-s1",
+ "results": {
+  "fp32": {
+   "latency_1_thread": {
+    "p50": 25.1,
+    "mean": 24.4
+   }
+  },
+  "cpu": {
+   "model": "unknown",
+   "vnni": [
+    "avx512_vnni",
+    "avx_vnni"
+   ],
+   "avx512": true
+  },
+  "graph": {
+   "matmuls_with_weights": 44,
+   "by_group": {
+    "attn_qkv": 10,
+    "attn_out": 10,
+    "mlp_in": 10,
+    "mlp_out": 10,
+    "other": 4
+   },
+   "layers": 10,
+   "sample_names": [
+    "/enc/layers.0/attn/Wqkv/MatMul",
+    "/enc/layers.0/attn/Wo/MatMul",
+    "/enc/layers.0/mlp/Wi/MatMul",
+    "/enc/layers.0/mlp/Wo/MatMul",
+    "/enc/layers.1/attn/Wqkv/MatMul",
+    "/enc/layers.1/attn/Wo/MatMul"
+   ]
+  },
+  "int8": {
+   "recipe": "per channel, reduce_range, MatMul with constant B only, each layer's mlp.Wo left in fp32",
+   "excluded": 20,
+   "parity_vs_fp32_onnx": {
+    "rows": 283,
+    "decisions_same": 279,
+    "max_respond_diff": 0.2732,
+    "mean_respond_diff": 0.0069
+   },
+   "dev": {
+    "int8": {
+     "n": 40438,
+     "decision_right": {
+      "value": 0.9855,
+      "k": 38794,
+      "n": 39366,
+      "ci95": [
+       0.9842,
+       0.9866
+      ]
+     },
+     "quiet_kept": {
+      "value": 0.9957,
+      "k": 23209,
+      "n": 23309,
+      "ci95": [
+       0.9948,
+       0.9965
+      ]
+     },
+     "answers_now_wrongly": {
+      "value": 0.0017,
+      "k": 40,
+      "n": 23309,
+      "ci95": [
+       0.0013,
+       0.0023
+      ]
+     },
+     "holds_wrongly": {
+      "value": 0.0026,
+      "k": 60,
+      "n": 23309,
+      "ci95": [
+       0.002,
+       0.0033
+      ]
+     },
+     "answered_now": {
+      "value": 0.9885,
+      "k": 11083,
+      "n": 11212,
+      "ci95": [
+       0.9863,
+       0.9903
+      ]
+     },
+     "held_instead": {
+      "value": 0.0053,
+      "k": 59,
+      "n": 11212,
+      "ci95": [
+       0.0041,
+       0.0068
+      ]
+     },
+     "missed": {
+      "value": 0.0062,
+      "k": 70,
+      "n": 11212,
+      "ci95": [
+       0.0049,
+       0.0079
+      ]
+     },
+     "open_held": {
+      "value": 0.9292,
+      "k": 4502,
+      "n": 4845,
+      "ci95": [
+       0.9216,
+       0.9361
+      ]
+     },
+     "open_answered_now": {
+      "value": 0.0405,
+      "k": 196,
+      "n": 4845,
+      "ci95": [
+       0.0353,
+       0.0464
+      ]
+     },
+     "open_ignored": {
+      "value": 0.0303,
+      "k": 147,
+      "n": 4845,
+      "ci95": [
+       0.0259,
+       0.0356
+      ]
+     }
+    },
+    "fp32": {
+     "n": 40438,
+     "decision_right": {
+      "value": 0.9855,
+      "k": 38795,
+      "n": 39366,
+      "ci95": [
+       0.9843,
+       0.9866
+      ]
+     },
+     "quiet_kept": {
+      "value": 0.9952,
+      "k": 23198,
+      "n": 23309,
+      "ci95": [
+       0.9943,
+       0.996
+      ]
+     },
+     "answers_now_wrongly": {
+      "value": 0.0018,
+      "k": 41,
+      "n": 23309,
+      "ci95": [
+       0.0013,
+       0.0024
+      ]
+     },
+     "holds_wrongly": {
+      "value": 0.003,
+      "k": 70,
+      "n": 23309,
+      "ci95": [
+       0.0024,
+       0.0038
+      ]
+     },
+     "answered_now": {
+      "value": 0.9885,
+      "k": 11083,
+      "n": 11212,
+      "ci95": [
+       0.9863,
+       0.9903
+      ]
+     },
+     "held_instead": {
+      "value": 0.0054,
+      "k": 60,
+      "n": 11212,
+      "ci95": [
+       0.0042,
+       0.0069
+      ]
+     },
+     "missed": {
+      "value": 0.0062,
+      "k": 69,
+      "n": 11212,
+      "ci95": [
+       0.0049,
+       0.0078
+      ]
+     },
+     "open_held": {
+      "value": 0.9317,
+      "k": 4514,
+      "n": 4845,
+      "ci95": [
+       0.9242,
+       0.9384
+      ]
+     },
+     "open_answered_now": {
+      "value": 0.0409,
+      "k": 198,
+      "n": 4845,
+      "ci95": [
+       0.0356,
+       0.0468
+      ]
+     },
+     "open_ignored": {
+      "value": 0.0275,
+      "k": 133,
+      "n": 4845,
+      "ci95": [
+       0.0232,
+       0.0324
+      ]
+     }
+    },
+    "gap_points": 0.0,
+    "thresholds_int8": {
+     "respond": 0.55,
+     "wait": 0.45,
+     "open": 0.6,
+     "dev_right": 38794,
+     "dev_n": 39366,
+     "dev_wrong_now": 40,
+     "dev_quiet": 23309,
+     "max_wrong_now": 0.01,
+     "real_wrong_now": 0,
+     "real_held": 6,
+     "real_quiet": 4186,
+     "max_wrong_now_real": 0.004,
+     "max_held_real": 0.002
+    }
+   },
+   "size_mb": 195.1,
+   "latency_1_thread": {
+    "p50": 14.2,
+    "mean": 13.9
+   },
+   "passes": true,
+   "uploaded_to": "models/side/side-r9tt-ettin-32m-s1/export-int8"
+  }
+ }
+}

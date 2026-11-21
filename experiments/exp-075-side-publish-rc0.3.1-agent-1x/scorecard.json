@@ -1,0 +1,85 @@
+{
+ "exp": "exp-075-side-publish-rc0.3.1-agent-1x",
+ "run_id": "side-r9tt-ettin-32m-s1",
+ "repo": "pipecat-ai/sidechat",
+ "private": false,
+ "subdir": "agent-1x",
+ "tag": "rc0.3.1",
+ "commit": "dfa23793043f0e7da44768dd9e8daa0e61d5a193",
+ "removed": [],
+ "files": {
+  "config.json": {
+   "bytes": 1026,
+   "sha256": "2d5f6336d8f712745d038a7915d38f324605da2a83345d9da34ad11ccacc7710"
+  },
+  "context-int8.onnx": {
+   "bytes": 97061532,
+   "sha256": "b1b49b618e5f744727808c8f0bed87f7d185452d4095669bbb6d6f915729afcb"
+  },
+  "context.onnx": {
+   "bytes": 127762396,
+   "sha256": "c14fcfff844af53b5fe6d18301ff2f7dbb2ffc92b72a8c53a5e813786e8e0bfe"
+  },
+  "data/dev.jsonl.gz": {
+   "bytes": 3268004,
+   "sha256": "67e82e8ca91411fcbe34379fe9c3d5cf1a7e706c408814fb5134c2a1e57c0ef7"
+  },
+  "data/train.jsonl.gz": {
+   "bytes": 32377064,
+   "sha256": "4d6227338836f66829103c71eabc51c83a73be3924c7712c6121104da84075fc"
+  },
+  "line-int8.onnx": {
+   "bytes": 98006991,
+   "sha256": "2214091259048019a78772021cfee849f57c305499db9162e1f70e9d49919635"
+  },
+  "line.onnx": {
+   "bytes": 131400350,
+   "sha256": "243ae214fe0d1cc0ff3da9d0b24f2c483c5419ae8d171178dd52929d89c4ea6e"
+  },
+  "tokenizer.json": {
+   "bytes": 3583228,
+   "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30"
+  }
+ },
+ "rows": {
+  "train": {
+   "rows": 425828,
+   "by_set": {
+    "gen-0.1": 83732,
+    "gen-pilot": 6263,
+    "gen-0.2": 129798,
+    "gen-0.3": 102924,
+    "gen-0.4": 82835,
+    "ami-silent-0.1": 15276,
+    "realreq-0.2": 5000
+   },
+   "by_respond": {
+    "0.0": 250938,
+    "1.0": 103240,
+    "0.75": 9640,
+    "0.5": 59240,
+    "0.25": 2770
+   }
+  },
+  "dev": {
+   "rows": 44624,
+   "by_set": {
+    "gen-0.1": 8346,
+    "gen-pilot": 656,
+    "gen-0.2": 12443,
+    "gen-0.3": 9629,
+    "gen-0.4": 8364,
+    "ami-silent-0.1": 4186,
+    "realreq-0.2": 1000
+   },
+   "by_respond": {
+    "0.0": 27236,
+    "0.5": 5917,
+    "1.0": 10295,
+    "0.75": 917,
+    "0.25": 259
+   }
+  }
+ },
+ "finished_at": "2026-11-21T01:13:47+00:00"
+}

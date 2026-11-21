@@ -1,0 +1,58 @@
+experiment_id: exp-066-side-round10
+status: done (2026-11-20)
+track: sidechat (round 10)
+what: >
+  Round 10: round 9's recipe (realreq-0.2, the hold bar on AMI's real dev lines, dev picks counting
+  real lines) plus gen-0.5 (exp-064), for both builds. Teachers Ettin-150M, 2 epochs, seeds 0 and 1;
+  two-tower Ettin-32M students distilled from the dev pick, seeds 0 and 1; exports; agent-1x timing.
+  Each build is judged against rc0.3's (side-r9-ettin-150m-s1, side-r9tt-ettin-32m-s1).
+  sidechat/pipeline/round10.py.
+gate (fixed before training, student_gate.gate_r10): >
+  A build passes only if all of these hold against rc0.3's build of the same size.
+  (1) TCL's people's lines (3,348, speakers anonymous) answered outright fewer, paired, the whole
+  95% interval below zero. (2) TCL's unnamed follow-ups answered or held at most 5 points fewer
+  (paired). (3) TCL named requests answered at most 1 point fewer. (4) Real unnamed requests held
+  as heard (SLURP in AMI) at most 3 points fewer. (5) Duplex-MPE, Ambient Bench, AMI and the
+  generated test right at most 0.5 points fewer; pilot 1 point; Duplex named requests 1 point;
+  SLURP named with keyterm 5 points. (6) Duplex-MPE others answered outright at most 0.1 points more
+  and under 0.4%; Duplex-MPE others held, AMI as heard held and TCL people's lines held at most 1
+  point more. Students must also beat Jev's speed on agent-1x.
+  TCL's test is read for this gate and the report only; teachers and students are picked on dev
+  (SD-27).
+forecast block:
+  campaign: exp-066-side-round10
+  decision it enables: whether rc0.4 replaces rc0.3's builds (Jon's call; nothing is published without him)
+  token forecast: none
+  Modal forecast: from exp-060 (about $35 with a restart), about $30 to $40; gen-0.5 adds about 15%
+    to the training rows
+  retry cap: train_run 1; the launcher is non-preemptible and reattaches (SD-25)
+  spend cap: none set in code; stop by hand past $60
+  stop condition: scorecard.json and report.md in runs/side/results/exp-066-side-round10/
+  approved by Jon on: 2026-11-20 ("run all we can so things can run overnight and we arrive at the best possible model")
+forecast_usd: about $35
+training_note: >
+  The committee (exp-065) read two of gen-0.5's three new kinds otherwise, so by its record's rule
+  they are left out of training and dev: follow_up_later and partner_to_people_after_agent. Their
+  test lines are still scored and reported.
+command: >
+  set -a; . ./.env; set +a;
+  uv run modal run --detach -m sidechat.pipeline.round10::run --exp exp-066-side-round10
+  --drop-kinds follow_up_later,partner_to_people_after_agent
+results: uv run python -m sidechat.pipeline.results exp-066-side-round10
+actual_usd: about $23 (H100 about 5 hours across two teachers, two students and scoring, about $20; exports, timing and launcher about $1.50; Jev on gen-0.5's test $0.48)
+result:
+  teachers: >
+    Dev pick side-r10-ettin-150m-s1. It learned the new kind (questions to the others right after
+    the agent left alone 97.0%, rc0.3 66.6%) but it barely moves TCL: people's lines answered
+    outright 1.67% against 1.94% (paired -0.27 points, -0.62 to +0.08), so it does not ship. Its
+    other measures hold or improve: Duplex-MPE others answered outright 0.12% (rc0.3 0.21%),
+    Ambient Bench +0.59 points, pilot +1.1, AMI as heard held 1.09% (1.12%). Seed 0 fails on Ambient
+    Bench and Duplex-MPE outright answers.
+  students: >
+    Both cut TCL's outright answers beyond noise (51 and 49 of 3,348 against rc0.3 agent-1x's 75;
+    paired -0.72 and -0.78 points) but answer fewer of Duplex-MPE's named requests (95.3% and 97.6%
+    against 99.7%; margin 1 point) at stricter dev thresholds (respond 0.65 against 0.55). Neither
+    ships. Two more seeds (exp-071): the dev pick across four, s2, misses Ambient Bench's margin by
+    one line, so nothing ships.
+  where_on_tcl: "right after Sigma when the other person speaks, ranking is unchanged (AUROC 0.66 against 0.67)"
+  report: experiments/exp-066-side-round10/report.md

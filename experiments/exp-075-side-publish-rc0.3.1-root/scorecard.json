@@ -1,0 +1,77 @@
+{
+ "exp": "exp-075-side-publish-rc0.3.1-root",
+ "run_id": "side-r9-ettin-150m-s1",
+ "repo": "pipecat-ai/sidechat",
+ "private": false,
+ "subdir": "",
+ "tag": "",
+ "commit": "0a0cbce38d71bdbf79ab9c6ba1ac4836a8c97f25",
+ "removed": [],
+ "files": {
+  "README.md": {
+   "bytes": 9704,
+   "sha256": "d962f78c592ee75579e22a4824a1a1df523b7a2e046a79c097eeab58e426dcf5"
+  },
+  "config.json": {
+   "bytes": 1027,
+   "sha256": "f12b2850bda3876d089d6376ca0998a3fa82d83704bd9bfc3f8125849ca1c23b"
+  },
+  "data/dev.jsonl.gz": {
+   "bytes": 1937924,
+   "sha256": "d9db0aa09f9756f8aa26c888ec62caa5253391552c3efc4d4471b37a8a5db872"
+  },
+  "data/train.jsonl.gz": {
+   "bytes": 18648841,
+   "sha256": "bb8c77d10fe57456d9146ff81b0adff887527a80d19812555dbd581929b8f0dd"
+  },
+  "model-int8.onnx": {
+   "bytes": 325445917,
+   "sha256": "91920b9ed982c5d2a7e1302d95c1f9f651fa53af36e5a1cac56290064e895929"
+  },
+  "model.onnx": {
+   "bytes": 598295149,
+   "sha256": "4d81ebb03eea4e3d83baedcdbe848b5033f7612a739c94614bfce03f79513799"
+  },
+  "tokenizer.json": {
+   "bytes": 3583228,
+   "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30"
+  }
+ },
+ "rows": {
+  "train": {
+   "rows": 240069,
+   "by_set": {
+    "gen-0.1": 83732,
+    "gen-pilot": 6263,
+    "gen-0.2": 129798,
+    "ami-silent-0.1": 15276,
+    "realreq-0.2": 5000
+   },
+   "by_respond": {
+    "0.0": 145047,
+    "1.0": 56419,
+    "0.75": 5519,
+    "0.5": 31520,
+    "0.25": 1564
+   }
+  },
+  "dev": {
+   "rows": 26631,
+   "by_set": {
+    "gen-0.1": 8346,
+    "gen-pilot": 656,
+    "gen-0.2": 12443,
+    "ami-silent-0.1": 4186,
+    "realreq-0.2": 1000
+   },
+   "by_respond": {
+    "0.0": 17116,
+    "0.5": 3214,
+    "1.0": 5631,
+    "0.75": 526,
+    "0.25": 144
+   }
+  }
+ },
+ "finished_at": "2026-11-21T01:10:35+00:00"
+}

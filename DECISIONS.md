@@ -3,6 +3,27 @@
 Newest first. `date · id · who · decision · why · reversible?`. "Agent default" means the agent
 chose it and Jon has not yet confirmed. Open questions are at the bottom.
 
+- 2026-11-21 · SD-29 · Jon · Release rc0.3.1 on `pipecat-ai/sidechat`: rc0.3's builds unchanged,
+  plus int8 files for both (`model-int8.onnx`; `agent-1x/context-int8.onnx`, `line-int8.onnx`). Each
+  `config.json` gains `thresholds_int8` and `int8_recipe` and is otherwise rc0.3's. fp32 stays the
+  default; int8 is opt-in (`int8=True`). The recipe: per channel, reduced range, each layer's MLP
+  output in fp32 (exp-067, exp-068). On every test set int8 makes the same decision as fp32 on 98.5%
+  to 99.9% of lines (exp-070, exp-073). On capped containers the default build is 1.5 times faster
+  with 0.3 GB less memory. agent-1x is 2.3 times faster at 1 vCPU but gains little at 0.5 vCPU
+  (exp-074). · Jon: "Yes, publish rc0.3.1", after phase
+  9's report. · Reversible: tag `rc0.3` keeps the fp32-only release.
+
+- 2026-11-20 · SD-28 · Agent default · gen-0.5 adds three kinds under guide 0.4's rules as
+  written, outside the default mix: `people_question_after_agent` (right after the agent's answer,
+  someone asks the others about their own plans or choices: G7, ignore),
+  `partner_to_people_after_agent` (the person the agent answered turns to the others about it,
+  asking nothing: G6, ignore) and `follow_up_later` (that person comes back to the agent's answer a
+  few lines later, without its name: G6's unsettled case, `wait`). The last reads G6's "could be
+  for the agent or a person, and nothing settles it" past its example of someone other than the
+  partner; TCL's own label would answer these. · TCL's test (exp-063) showed every question right
+  after the agent reads as for it, because our corpora had no other kind there. The committee
+  checks the new kinds (exp-065). · Reversible: train without them (`drop_kinds`).
+
 - 2026-11-20 · SD-27 · Jon ("Yes, test it") · TCL Research Europe's Intelligent Wakeup
   (`TCLResearchEurope/intelligent_wakeup`, v1.0.1, CC BY-NC 4.0) is an independent test set, used
   for evaluation only, as its licence allows. Only the test split's text is read; it is kept in R2
@@ -179,3 +200,4 @@ Each has the default the work assumes. From PLAN.md section 12.
 | SQ-06 | Share-alike and non-commercial datasets in training? | No |
 | SQ-07 | Release name and licence | `pipecat-ai/sidechat`, Apache-2.0, English only for rc1 |
 | SQ-08 | Spend cap | Settled: $1,000 (SD-17) |
+| SQ-09 | A person comes back to the agent's earlier answer after the others talked, without its name: answer it (G6, continuing their exchange) or hold it (G6, unsettled)? | Unsettled. The committee's majority answers it (exp-065, 66 of 73 differing lines), TCL's label answers it, member c holds it. Not trained on until settled (round 10 leaves `follow_up_later` out) |
