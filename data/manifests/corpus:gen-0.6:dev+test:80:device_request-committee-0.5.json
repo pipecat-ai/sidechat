@@ -1,0 +1,70 @@
+{
+ "label_id": "corpus:gen-0.6:dev+test:80:device_request-committee-0.5",
+ "guide": "sidechat-guide-0.5",
+ "prompt_sha": "91231a2ccc3e",
+ "members": [
+  "a",
+  "b",
+  "c"
+ ],
+ "member_model_env": {
+  "a": "LABELLER_A_MODEL",
+  "b": "LABELLER_B_MODEL",
+  "c": "LABELLER_C_MODEL"
+ },
+ "member_model_sha": {
+  "a": "495a09eb2c",
+  "b": "005912bee6",
+  "c": "06dfe89ec3"
+ },
+ "effort": "low",
+ "sets": [
+  "corpus:gen-0.6:dev+test:80:device_request",
+  "corpus:gen-0.6:dev+test:80:device_feedback",
+  "corpus:gen-0.6:dev+test:80:room_talk_after_device",
+  "corpus:gen-0.6:dev+test:55:device_repair",
+  "corpus:gen-0.6:dev+test:55:room_request_physical"
+ ],
+ "rows": 350,
+ "labels_sha256": "56788b76f25f9f2184e7a9689610d42acdb1029a29ae29499db176c3d15c423d",
+ "exp": "exp-081-side-committee-gen-0.6",
+ "usage": {
+  "a": {
+   "answered": 350,
+   "reused": 8,
+   "failed": 0,
+   "fallback": 0,
+   "input": 1932598,
+   "cached": 1865611,
+   "cache_write": 0,
+   "output": 21374,
+   "errors": [],
+   "usd": 1.281
+  },
+  "b": {
+   "answered": 350,
+   "reused": 8,
+   "failed": 0,
+   "fallback": 0,
+   "input": 2851611,
+   "cached": 2757204,
+   "cache_write": 0,
+   "output": 29057,
+   "errors": [],
+   "usd": 2.062
+  },
+  "c": {
+   "answered": 350,
+   "reused": 8,
+   "failed": 0,
+   "fallback": 0,
+   "input": 2112960,
+   "cached": 217965,
+   "cache_write": 0,
+   "output": 24946,
+   "errors": [],
+   "usd": 8.297
+  }
+ },
+ "built_at": "2026-11-21T20:11:41+00:00"
+}

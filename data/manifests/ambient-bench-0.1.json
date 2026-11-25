@@ -1,0 +1,27 @@
+{
+ "rows_id": "ambient-bench-0.1",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-18T21:41:51+00:00",
+ "source": {
+  "kind": "Hugging Face dataset",
+  "repo": "text-ai/social-ai-ambient-bench",
+  "revision": "5efda0b267d6bd5ecae74cbe1141a66f64495661",
+  "files": {
+   "data/test.jsonl": "44d477ab5874cdc3e082d95787cb78f26e0a894e8a0056b56caca74058f66cd1"
+  },
+  "licence": "Apache-2.0",
+  "use": "test only; the dataset forbids training on it"
+ },
+ "limit": null,
+ "rows": 16222,
+ "conversations": 1212,
+ "by_expect": {
+  "ignore": 15793,
+  "None": 429
+ },
+ "by_to": {
+  "unknown": 16222
+ },
+ "sha256": "a6d1ff97c0098117ea1ba2b853271041c2171cc6f0219ad38c04b4670f2a70cc",
+ "r2_key": "runs/side/rows/ambient-bench-0.1/rows.jsonl"
+}

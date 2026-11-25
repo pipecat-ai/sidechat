@@ -1,0 +1,34 @@
+{
+ "rows_id": "gen-pilot.dev-test450",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-18T23:43:05+00:00",
+ "source": {
+  "kind": "generated corpus",
+  "gen_id": "gen-pilot",
+  "splits": "dev+test",
+  "sample": "450",
+  "corpus_rows_sha256": "e67e415e5a033f903ee28b8968d489af1ac851ee94a7fcef7a8a90237c646998",
+  "guide": "sidechat-guide-0.3",
+  "use": "per split"
+ },
+ "limit": null,
+ "condition": "as written",
+ "rows": 450,
+ "conversations": 143,
+ "by_expect": {
+  "ignore": 233,
+  "respond": 143,
+  "None": 20,
+  "wait": 54
+ },
+ "by_to": {
+  "nobody": 20,
+  "person": 130,
+  "agent": 155,
+  "group": 111,
+  "device": 9,
+  "unknown": 25
+ },
+ "sha256": "cb0a4706f814b7aa0d79e073419527ff701660cb7a9ca42b6214109ea7c86e08",
+ "r2_key": "runs/side/rows/gen-pilot.dev-test450/rows.jsonl"
+}

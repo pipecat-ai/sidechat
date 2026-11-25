@@ -1,0 +1,507 @@
+# Sidechat pilot 0.4: the pilot's conversations, labelled by guide 0.2.
+#
+# pilot-0.3 with 3 more kinds corrected after the committee ran on guide 0.2 (exp-004), each where
+# the guide's own text decides: a follow-up asked on the speaker's behalf, a correction to music
+# the agent is playing (only the agent can do it), and a command whose context (the agent setting
+# the timer) is 11 turns back, outside the 8-turn window, so on what is visible it is unclear.
+# Two lines the committee splits on stay as the guide labels them: game-09/12 and meeting-21/11.
+# Earlier corrections are described in pilot-0.3.yaml. Labels come from sidechat/guide.py.
+suite: pilot-0.4
+about: The pilot conversations labelled by guide 0.2 from each line's kind
+label_from: guide
+use: test
+agent: {name: Atlas, role: AI assistant on the call}
+conversations:
+  - id: standup-01
+    setting: work standup on a video call
+    people: [Jon, Sam, Priya]
+    turns:
+      - [Jon, "Okay, let's get going. Sam, where are we on the release?", question_to_named_person, [Sam]]
+      - [Sam, "Build's green, we're just waiting on the security review.", reply_to_person, [Jon]]
+      - [Priya, "I can chase that this afternoon.", statement]
+      - [Jon, "Great. Atlas, can you note that Priya's chasing the security review?", named_after_aside]
+      - [Atlas, "Noted: Priya is following up on the security review this afternoon."]
+      - [Jon, "And put a reminder on it for tomorrow morning.", follow_up]
+      - [Atlas, "Done. Reminder set for nine tomorrow."]
+      - [Sam, "Nine's a bit early for Priya.", unclear_after_agent]
+      - [Priya, "Ha. Nine is fine.", reply_to_person, [Sam]]
+      - [Jon, "Anything else before we wrap?", group_question_not_for_agent]
+  - id: planning-02
+    setting: sprint planning on a video call
+    people: [Maya, Tom, Lena]
+    turns:
+      - [Maya, "So the big one is the billing migration. Tom, how many points did we say?", question_to_named_person, [Tom]]
+      - [Tom, "Thirteen, I think. Might be more.", reply_to_person, [Maya]]
+      - [Lena, "Does anyone remember what we shipped last sprint?", group_question_not_for_agent]
+      - [Maya, "Not off the top of my head.", reply_to_person, [Lena]]
+      - [Lena, "Atlas would know, it's got the board.", invite]
+      - [Tom, "Atlas, what did we close last sprint?", name_first]
+      - [Atlas, "Last sprint you closed eleven tickets, thirty-four points. The largest was the invoice export."]
+      - [Tom, "Thirty-four. Okay, so thirteen for billing is a third of it.", people_after_agent]
+      - [Maya, "Is that counting the bug fixes?", unclear_after_agent]
+      - [Atlas, "Yes, three of the eleven were bug fixes."]
+      - [Maya, "Fine. Let's call billing thirteen and move on.", statement]
+  - id: sales-03
+    setting: sales call, one rep and two customers
+    agent: {name: Nova, role: the vendor's AI assistant on the call}
+    people: [Dana, Chris, Mei]
+    turns:
+      - [Dana, "Thanks both for joining. Chris, you mentioned you had questions on pricing?", question_to_named_person, [Chris]]
+      - [Chris, "Yeah. Mei, do you want to start with the seat count thing?", question_to_named_person, [Mei]]
+      - [Mei, "Sure. We've got about two hundred people, but only sixty would use it daily.", reply_to_person, [Dana]]
+      - [Dana, "That's a common setup. Nova, what's the price for sixty full seats and a hundred forty light ones?", named_after_aside]
+      - [Nova, "Sixty full seats and one hundred forty light seats come to four thousand two hundred a month on the annual plan."]
+      - [Chris, "And what does that look like monthly instead of annual?", follow_up_by_other]
+      - [Nova, "Month to month, the same seats are four thousand nine hundred."]
+      - [Mei, "Chris, that's under what we budgeted.", to_named_person_after_agent, [Chris]]
+      - [Chris, "It is. Dana, can you send that over in writing?", question_to_named_person, [Dana]]
+      - [Dana, "Of course, I'll email it right after this.", reply_to_person, [Chris]]
+  - id: support-04
+    setting: support call, a couple and an AI support agent
+    agent: {name: Nova, role: AI support agent for the broadband provider}
+    people: [Raj, Anita]
+    turns:
+      - [Raj, "Hi, we're calling about the router, it keeps dropping.", opener_to_agent]
+      - [Nova, "Sorry to hear that. Is the light on the front solid or blinking?"]
+      - [Raj, "Anita, is it blinking? I'm not at home.", question_to_named_person, [Anita]]
+      - [Anita, "Hang on, let me look.", reply_to_person, [Raj]]
+      - [Anita, "It's blinking orange.", answer_to_agent_question]
+      - [Nova, "Blinking orange means it's lost the line. Could one of you unplug it for thirty seconds?"]
+      - [Raj, "Can you do that, love?", you_to_person_after_agent, [Anita]]
+      - [Anita, "Doing it now.", reply_to_person, [Raj]]
+      - [Raj, "While she does that, is there an outage in our area?", addressed_by_exclusion]
+      - [Nova, "No outage is reported for your postcode."]
+      - [Anita, "Okay, it's back on. Solid green.", answer_to_agent_question]
+      - [Raj, "Brilliant. Thanks for your help.", thanks]
+  - id: kitchen-05
+    setting: family kitchen with a smart speaker
+    agent: {name: Max, role: smart speaker in the kitchen}
+    people: [Paul, Karen, Ella]
+    turns:
+      - [Karen, "Paul, did you take the chicken out of the freezer?", question_to_named_person, [Paul]]
+      - [Paul, "I thought you did.", reply_to_person, [Karen]]
+      - [Ella, "Max, set a timer for twelve minutes.", name_first]
+      - [Max, "Twelve minutes, starting now."]
+      - [Karen, "What's that for?", you_to_person_after_agent, [Ella]]
+      - [Ella, "Pasta.", reply_to_person, [Karen]]
+      - [Paul, "How long does chicken take to defrost in the microwave?", open_factual]
+      - [Karen, "No idea. Ask Max.", invite]
+      - [Paul, "Max, how long to defrost chicken in the microwave?", name_first]
+      - [Max, "About eight to ten minutes per pound on the defrost setting."]
+      - [Paul, "Per pound. Right.", thinking_aloud]
+      - [Ella, "Max is always right about food.", about_judged]
+      - [Karen, "Max was wrong about the rice last week.", about_judged]
+      - [Ella, "Okay, stop the timer, I'm draining it now.", unclear_you]
+  - id: car-06
+    setting: family car with an in-car assistant
+    agent: {name: Echo, role: in-car voice assistant}
+    people: [Leo, Nina, Theo]
+    turns:
+      - [Leo, "Are we nearly out of petrol?", open_factual]
+      - [Nina, "The light's not on yet.", reply_to_person, [Leo]]
+      - [Theo, "Can we stop for chips?", request_to_people]
+      - [Leo, "Echo, find a petrol station on the way.", name_first]
+      - [Echo, "There's one in four miles on the left, and it has a shop."]
+      - [Theo, "Does it have chips?", unclear_after_agent]
+      - [Nina, "There's an echo on this call, hang on, I'm on with Mum.", name_word_sense]
+      - [Nina, "No, Mum, we're in the car. I'll ring you back.", off_call]
+      - [Leo, "Turn the heating down a bit.", unclear_you]
+      - [Nina, "I've got it.", reply_to_person, [Leo]]
+      - [Leo, "Echo, how long till we're there?", name_first]
+      - [Echo, "Forty minutes with current traffic."]
+      - [Leo, "Okay, thanks.", thanks]
+  - id: class-07
+    setting: study group with an AI tutor
+    agent: {name: Sage, role: AI maths tutor for the study group}
+    people: [Amy, Ben, Chloe]
+    turns:
+      - [Amy, "I still don't get why the derivative of x squared is two x.", statement_of_need]
+      - [Ben, "It's the power rule, you bring the two down.", reply_to_person, [Amy]]
+      - [Amy, "But why does that work?", reply_to_person, [Ben]]
+      - [Ben, "Honestly, I just memorised it.", reply_to_person, [Amy]]
+      - [Chloe, "Sage, can you explain why the power rule works?", name_first]
+      - [Sage, "Sure. Think of x squared as the area of a square with side x. If the side grows by a tiny amount, the area grows by two thin strips, each x long."]
+      - [Amy, "Oh, so the two is the two strips?", follow_up]
+      - [Sage, "Exactly, two strips of length x."]
+      - [Ben, "That's actually a good way to see it.", people_after_agent]
+      - [Chloe, "Did you write that down?", you_to_person_after_agent]
+      - [Amy, "Yeah. Can you do one for x cubed?", reply_then_request]
+      - [Sage, "For x cubed, picture a cube: three thin slabs, each x by x."]
+      - [Ben, "I wonder if sage would go with the pasta I'm making later.", name_word_sense]
+  - id: podcast-08
+    setting: podcast recording with an AI co-host
+    agent: {name: Juno, role: AI co-host of the podcast}
+    people: [Marco, Tess]
+    turns:
+      - [Marco, "Welcome back to the show. Today I'm joined by Tess, who runs a bakery in Leeds.", statement]
+      - [Tess, "Thanks for having me.", reply_to_person, [Marco]]
+      - [Marco, "Juno, give us the one-line history of sourdough.", name_first]
+      - [Juno, "Sourdough is the oldest leavened bread we know of, going back at least five thousand years to Egypt."]
+      - [Tess, "Five thousand years and people still get it wrong.", people_after_agent]
+      - [Marco, "Ha. What's the most common mistake you see?", you_to_person_after_agent, [Tess]]
+      - [Tess, "Impatience. People bake before the starter's ready.", reply_to_person, [Marco]]
+      - [Marco, "How long does a starter take, roughly?", continuing_with_person, [Tess]]
+      - [Tess, "A week if your kitchen's warm. Juno might have the science on that.", invite]
+      - [Juno, "Wild yeast and bacteria need about five to seven days to stabilise."]
+      - [Marco, "There you go. And Juno, what temperature is ideal?", name_mid]
+      - [Juno, "Around twenty-four to twenty-six degrees Celsius."]
+      - [Tess, "That matches what I tell my staff.", reply_to_person, [Marco]]
+      - [Marco, "We'll take a quick break here.", statement]
+  - id: game-09
+    setting: tabletop role-playing game with an AI game master
+    agent: {name: Rook, role: AI game master running the adventure}
+    people: [Kit, Zoe, Finn]
+    turns:
+      - [Kit, "I want to check the door for traps.", action_to_game_master]
+      - [Rook, "Roll perception."]
+      - [Kit, "Fourteen.", answer_to_agent_question]
+      - [Rook, "You find a thin wire across the threshold."]
+      - [Zoe, "Don't touch it, let me do it, I've got the tools.", you_to_person_after_agent, [Kit]]
+      - [Kit, "Fine, go on then.", reply_to_person, [Zoe]]
+      - [Zoe, "I try to disarm it.", action_to_game_master]
+      - [Rook, "Roll for it, with advantage for the tools."]
+      - [Finn, "Wait, do we even need to go through this door?", table_talk]
+      - [Zoe, "The map says the vault's behind it.", reply_to_person, [Finn]]
+      - [Finn, "Rook, is there another way round?", name_first]
+      - [Rook, "There's a narrow window above, big enough for one of you."]
+      - [Finn, "Who's the smallest?", table_talk]
+      - [Zoe, "Seventeen.", answer_to_agent_question]
+  - id: telehealth-10
+    setting: telehealth intake, a patient and his daughter with an AI intake assistant
+    agent: {name: Ivy, role: AI intake assistant for the clinic}
+    people: [Harold, Kate]
+    turns:
+      - [Ivy, "Before the doctor joins, can I check which medications you're taking?"]
+      - [Harold, "Kate, what's the white one called?", question_to_named_person, [Kate]]
+      - [Kate, "Amlodipine, Dad. Five milligrams.", reply_to_person, [Harold]]
+      - [Harold, "Amlodipine, five milligrams, once a day.", answer_to_agent_question]
+      - [Ivy, "Thank you. Anything else?"]
+      - [Harold, "And the water tablet.", answer_to_agent_question]
+      - [Kate, "He means furosemide.", addressed_by_exclusion]
+      - [Ivy, "Got it: furosemide. Any allergies?"]
+      - [Kate, "Dad, you had that reaction to penicillin, remember?", question_to_named_person, [Harold]]
+      - [Harold, "Oh yes. Penicillin.", reply_then_request]
+      - [Kate, "Is the doctor running late?", question_only_agent_can_answer]
+  - id: standup-11
+    setting: work standup, as speech-to-text writes it
+    style: stt
+    agent: {name: Atlas, aliases: ["at last"], role: AI assistant on the call}
+    people: [Jon, Sam, Priya]
+    turns:
+      - [Jon, "okay so sam did you get the numbers", question_to_named_person, [Sam]]
+      - [Sam, "yeah sent them this morning", reply_to_person, [Jon]]
+      - [Priya, "atlas what was the total for october", name_first]
+      - [Atlas, "October's total was forty-two thousand."]
+      - [Jon, "at last a number that makes sense", alias_false_match]
+      - [Sam, "ha yeah", backchannel]
+      - [Priya, "and what about september", follow_up]
+      - [Atlas, "September was thirty-eight thousand."]
+      - [Jon, "i asked at last about that yesterday and it said thirty nine", about_reported]
+      - [Sam, "hey at last can you check that again", name_misheard]
+      - [Atlas, "Checking: September was thirty-eight thousand four hundred."]
+      - [Jon, "mm okay", backchannel]
+  - id: about-12
+    setting: work call where people talk about the assistant
+    people: [Omar, Jill, Wes]
+    turns:
+      - [Omar, "Did anyone try the new assistant in the design review?", about_question_to_group]
+      - [Jill, "I did. I asked Atlas to summarise the thread and it missed half of it.", about_reported]
+      - [Wes, "Atlas is fine for notes. I wouldn't trust it with numbers.", about_judged]
+      - [Omar, "Should we ask Atlas to take minutes today?", about_hypothetical]
+      - [Jill, "Sure, why not.", reply_to_person, [Omar]]
+      - [Omar, "Atlas, please take minutes for this meeting.", name_first]
+      - [Atlas, "Will do. I'll send them when the call ends."]
+      - [Wes, "Then I said to it, 'Atlas, give me the Q3 total,' and it gave me Q2.", about_quoted]
+      - [Jill, "Classic.", backchannel]
+      - [Omar, "Wes, can you forward me what Atlas sent you?", about_to_named_person, [Wes]]
+      - [Wes, "Yep, after this.", reply_to_person, [Omar]]
+      - [Jill, "Maybe Atlas can tell us which quarter it thinks we're in.", invite]
+  - id: roles-13
+    setting: two people and an assistant that has no name
+    agent: {name: Assistant, aliases: ["the assistant", "the AI", "the bot"], role: AI assistant on the call}
+    people: [Grace, Hugo]
+    turns:
+      - [Grace, "Can the assistant pull up last month's invoice?", role_request]
+      - [Assistant, "Last month's invoice was for two thousand one hundred."]
+      - [Hugo, "Assistant, who signed it off?", role_address]
+      - [Assistant, "It was approved by Grace on the third."]
+      - [Hugo, "Grace, you signed it without me?", to_named_person_after_agent, [Grace]]
+      - [Grace, "You were on holiday.", reply_to_person, [Hugo]]
+      - [Hugo, "Fair. Hey AI, set a reminder to review invoices together next month.", role_address]
+      - [Assistant, "Reminder set for the first of next month."]
+      - [Grace, "My assistant used to do all of this by hand, you know.", name_word_sense, [Hugo]]
+      - [Hugo, "Is the bot recording this?", about_question]
+      - [Grace, "I think so. Ask it.", invite]
+      - [Hugo, "Are you recording this?", you_after_invite]
+  - id: open-14
+    setting: friends on a video call doing a quiz
+    people: [Bea, Cal, Dev]
+    turns:
+      - [Bea, "Does anyone know what time the match starts?", open_question]
+      - [Cal, "Eight, I think.", reply_to_person, [Bea]]
+      - [Dev, "What's the capital of Peru? It's for the quiz.", open_factual]
+      - [Bea, "Lima.", reply_to_person, [Dev]]
+      - [Dev, "And who won the World Cup in 2010?", open_factual]
+      - [Cal, "Ooh. Spain?", reply_to_person, [Dev]]
+      - [Dev, "Can somebody check?", open_request]
+      - [Atlas, "Spain won the 2010 World Cup."]
+      - [Cal, "Told you.", reply_to_person, [Dev]]
+      - [Bea, "Could you send me the quiz link?", unclear_you_person_task]
+      - [Dev, "Yeah, one sec.", reply_to_person, [Bea]]
+      - [Cal, "How do you spell Reykjavik?", open_factual]
+      - [Bea, "Is anyone else's video frozen?", group_question_not_for_agent]
+  - id: interrupt-15
+    setting: work call, people talk over the assistant
+    people: [Jon, Sam]
+    turns:
+      - [Jon, "Atlas, give me a summary of the last three meetings."]
+      - [Atlas, "In the first meeting you agreed the launch date. In the second"]
+      - [Sam, "Sorry Jon, quick one, are you free at three?", aside_over_agent, [Jon]]
+      - [Jon, "Yeah, three's fine.", reply_to_person, [Sam]]
+      - [Jon, "Go on.", resume_no_name]
+      - [Atlas, "In the second you assigned owners. In the third"]
+      - [Sam, "Mm-hm.", backchannel]
+      - [Jon, "Atlas, stop. Just the third one.", name_first]
+      - [Atlas, "In the third meeting you moved the launch to the fourteenth."]
+      - [Sam, "Wait, the fourteenth?", unclear_after_agent]
+      - [Jon, "Yeah, we moved it. Didn't I tell you?", reply_to_person, [Sam]]
+      - [Sam, "No! Okay. That's enough, Atlas, thanks.", stop_named]
+  - id: dismiss-16
+    setting: kitchen, thanks and never-minds
+    agent: {name: Max, role: smart speaker in the kitchen}
+    people: [Paul, Karen]
+    turns:
+      - [Paul, "Max, what's the weather tomorrow?", name_first]
+      - [Max, "Tomorrow will be dry, with a high of fourteen."]
+      - [Paul, "Thanks, Max.", thanks_named]
+      - [Karen, "Max, play some... actually, never mind.", never_mind]
+      - [Karen, "Paul, did you move my keys?", question_to_named_person, [Paul]]
+      - [Paul, "They're on the hook.", reply_to_person, [Karen]]
+      - [Karen, "Hey Max.", name_alone]
+      - [Max, "Yes?"]
+      - [Karen, "Remind me to call the dentist at ten.", request_after_summon]
+      - [Max, "I'll remind you at ten."]
+      - [Paul, "Okay Max, that's enough for now.", stop_named]
+      - [Karen, "Two biscuits max, Paul.", name_word_sense, [Paul]]
+  - id: devices-17
+    setting: living room with several voice devices
+    agent: {name: Juno, role: voice assistant in the living room}
+    people: [Ana, Rob, Lily]
+    turns:
+      - [Rob, "Hey Siri, call Mum.", other_device]
+      - [Ana, "Alexa, turn the lights down.", other_device]
+      - [Lily, "Juno, what sound does a whale make?", name_first]
+      - [Juno, "Whales sing in long, low moans and clicks."]
+      - [Lily, "Do it again!", follow_up]
+      - [Rob, "Hey Google, what's on my calendar?", other_device]
+      - [Ana, "Rob, your phone's listening to everything again.", statement_to_named_person, [Rob]]
+      - [Rob, "Siri, stop.", other_device]
+      - [Ana, "Juno, ignore all that.", never_mind]
+      - [Juno, "No problem."]
+      - [Lily, "Juno is funny.", about_judged]
+      - [Ana, "Lily, say goodnight to Juno.", about_to_named_person, [Lily]]
+      - [Lily, "Goodnight Juno!", farewell_named]
+  - id: names-18
+    setting: work call where a person's name sounds like the assistant's
+    agent: {name: Nova, role: AI assistant on the call}
+    people: [Noah, Vera, Ines]
+    turns:
+      - [Vera, "Noah, can you share your screen?", question_to_named_person, [Noah]]
+      - [Noah, "Sure, give me a second.", reply_to_person, [Vera]]
+      - [Ines, "Nova, can you start the recording?", name_first]
+      - [Nova, "Recording started."]
+      - [Vera, "No, uh, Noah, the other window.", similar_name_person, [Noah]]
+      - [Noah, "This one?", reply_to_person, [Vera]]
+      - [Vera, "Yeah. Nova, sorry, Noah, scroll down.", name_slip_corrected, [Noah]]
+      - [Ines, "We bought a Nova for my dad last year, the little hatchback.", name_word_sense]
+      - [Noah, "Is this the slide you meant?", reply_to_person, [Vera]]
+      - [Vera, "That's it. Nova, what's the date on that slide?", named_after_aside]
+      - [Nova, "The slide is dated the twelfth of March."]
+      - [Ines, "Noah, did Nova get that right?", about_to_named_person, [Noah]]
+  - id: relay-19
+    setting: work call, requests passed along
+    people: [Kim, Lou, Pat]
+    turns:
+      - [Kim, "Lou wants to know if the room's free at four. Atlas?", name_last]
+      - [Atlas, "The room is free from four to five."]
+      - [Lou, "Book it, please.", follow_up]
+      - [Atlas, "Booked for four."]
+      - [Pat, "Could someone ask the assistant to add me to that?", relayed_invite]
+      - [Kim, "Atlas, add Pat to the four o'clock.", name_first]
+      - [Atlas, "Pat's added."]
+      - [Pat, "Cheers.", thanks]
+      - [Lou, "I'd like the AI to send the invite as well.", role_request]
+      - [Atlas, "Invite sent to all three of you."]
+      - [Kim, "Lovely. Right, back to the budget.", statement]
+  - id: corrections-20
+    setting: car, corrections and commands with no name
+    agent: {name: Echo, role: in-car voice assistant}
+    people: [Leo, Nina]
+    turns:
+      - [Leo, "Echo, call Daniel.", name_first]
+      - [Echo, "Calling Danielle."]
+      - [Leo, "No, Daniel. Daniel Marsh.", correction]
+      - [Echo, "Calling Daniel Marsh."]
+      - [Nina, "Not now, Leo, we're about to go into the tunnel.", to_named_person_after_agent, [Leo]]
+      - [Leo, "Oh. Cancel that.", command_no_name]
+      - [Echo, "Call cancelled."]
+      - [Nina, "Play something quiet.", unclear_you]
+      - [Leo, "Echo, play some jazz, low volume.", name_first]
+      - [Echo, "Playing jazz."]
+      - [Nina, "Not that low.", only_agent_can_do]
+      - [Leo, "Volume up two.", command_no_name]
+  - id: meeting-21
+    setting: planning call, a long stretch between people
+    people: [Ruth, Olu, Jack, Mira]
+    turns:
+      - [Ruth, "So the venue fell through.", statement]
+      - [Olu, "Again? That's the second one.", reply_to_person, [Ruth]]
+      - [Jack, "What do you want to do?", you_to_person, [Ruth]]
+      - [Ruth, "I think we push the date. Mira, what do you think?", question_to_named_person, [Mira]]
+      - [Mira, "I'd rather find somewhere smaller and keep the date.", reply_to_person, [Ruth]]
+      - [Olu, "Can you look into the place on Mill Street?", unclear_you]
+      - [Mira, "I can call them tomorrow.", reply_to_person, [Olu]]
+      - [Jack, "How many people does it hold?", open_factual]
+      - [Mira, "Sixty, maybe seventy.", reply_to_person, [Jack]]
+      - [Ruth, "That's tight. We've got eighty on the list.", statement]
+      - [Olu, "Right.", backchannel]
+      - [Jack, "Hmm, what was the name of that other place, the one by the canal...", thinking_aloud]
+      - [Ruth, "The Wharf.", reply_to_person, [Jack]]
+      - [Jack, "The Wharf, yes. Atlas, is The Wharf free on the ninth?", named_after_aside]
+      - [Atlas, "The Wharf has no bookings on the ninth."]
+      - [Ruth, "Oh, nice.", backchannel]
+      - [Olu, "Book it before someone else does.", unclear_after_agent]
+  - id: tutor-22
+    setting: quiz led by an AI tutor
+    agent: {name: Sage, role: AI tutor running a geography quiz}
+    people: [Amy, Ben]
+    turns:
+      - [Sage, "Next question. What is the capital of Australia?"]
+      - [Amy, "Sydney?", answer_to_agent_question]
+      - [Sage, "Not quite. Ben, do you want to try?"]
+      - [Ben, "Is it Canberra?", answer_to_agent_question]
+      - [Sage, "Yes, Canberra. Well done."]
+      - [Amy, "I always get that wrong.", people_after_agent]
+      - [Ben, "Everyone does.", reply_to_person, [Amy]]
+      - [Amy, "Can we have a hint on the next one?", question_only_agent_can_answer]
+      - [Sage, "Sure. The next answer is a river."]
+      - [Ben, "Amy, you take this one.", statement_to_named_person, [Amy]]
+      - [Amy, "Okay. Go ahead, Sage.", name_last]
+  - id: kitchen-23
+    setting: family kitchen, as speech-to-text writes it
+    style: stt
+    agent: {name: Max, role: smart speaker in the kitchen}
+    people: [Paul, Karen, Ella]
+    turns:
+      - [Ella, "max whats seven times eight", name_first]
+      - [Max, "Seven times eight is fifty-six."]
+      - [Paul, "you should know that one", you_to_person_after_agent, [Ella]]
+      - [Ella, "i do i was just checking", reply_to_person, [Paul]]
+      - [Karen, "whats for dinner", group_question_not_for_agent]
+      - [Paul, "the oven only goes to two fifty max", name_word_sense]
+      - [Karen, "hey max how long for roast potatoes", wake_phrase]
+      - [Max, "About forty-five minutes at two hundred degrees."]
+      - [Karen, "okay", backchannel]
+      - [Ella, "and what about parsnips", follow_up_by_other]
+      - [Max, "Parsnips take about thirty-five minutes."]
+      - [Paul, "ella can you set the table", question_to_named_person, [Ella]]
+  - id: offcall-24
+    setting: two people on a work call, with interruptions at home
+    people: [Greg, Hana]
+    turns:
+      - [Greg, "Sorry, one sec. No, not now, Daddy's on a call.", off_call]
+      - [Hana, "No worries.", reply_to_person, [Greg]]
+      - [Greg, "Where did I put that file...", thinking_aloud]
+      - [Hana, "Is it in the shared drive?", reply_to_person, [Greg]]
+      - [Greg, "Should be. Ah, here it is.", reply_to_person, [Hana]]
+      - [Hana, "What's the deadline again?", continuing_with_person, [Greg]]
+      - [Greg, "Friday.", reply_to_person, [Hana]]
+      - [Hana, "Okay. Um, let me just write that down.", thinking_aloud]
+      - [Greg, "Come in! Sorry, delivery.", off_call]
+      - [Hana, "Atlas, what's on my calendar Friday?", name_first]
+      - [Atlas, "Friday you have the client review at two."]
+      - [Hana, "Right, right.", backchannel]
+  - id: sales-25
+    setting: sales call, requests that go through the rep
+    agent: {name: Nova, role: the vendor's AI assistant on the call}
+    people: [Dana, Chris]
+    turns:
+      - [Chris, "Do you integrate with Salesforce?", unclear_you]
+      - [Dana, "We do. Nova can walk you through the details.", invite]
+      - [Nova, "The Salesforce integration syncs contacts and deals both ways, every five minutes."]
+      - [Chris, "Both ways, good. What about HubSpot?", follow_up]
+      - [Nova, "HubSpot is supported one way, from HubSpot into our system."]
+      - [Chris, "Dana, is two-way on the roadmap?", question_to_named_person, [Dana]]
+      - [Dana, "It's planned for next quarter.", reply_to_person, [Chris]]
+      - [Chris, "I'd want to see what the assistant makes of our data volume.", indirect_wish]
+      - [Dana, "Go ahead and ask it.", invite]
+      - [Chris, "We push about two million records a month. Is that a problem?", you_after_invite]
+  - id: panel-26
+    setting: webinar with a host, two guests and an AI co-host
+    agent: {name: Juno, role: AI co-host of the webinar}
+    people: [Marco, Tess, Ivo]
+    turns:
+      - [Marco, "We've got a question from the chat: what's the best flour for beginners?", open_question]
+      - [Tess, "Strong white bread flour, every time.", reply_to_person, [Marco]]
+      - [Ivo, "I'd say start with a blend.", statement]
+      - [Marco, "Juno, what does the research say?", name_first]
+      - [Juno, "Higher-protein flours give more forgiving doughs for beginners."]
+      - [Ivo, "See, that supports Tess.", people_after_agent]
+      - [Tess, "I'll take it.", backchannel]
+      - [Marco, "Juno, next question from the chat, please.", name_first]
+      - [Juno, "Next: how do you store a starter when you go on holiday?"]
+      - [Tess, "Fridge. Feed it before you go.", answer_to_relayed_question]
+      - [Ivo, "Or dry it out, that works too.", statement]
+      - [Marco, "Great. Can you repeat that last one for the recording?", unclear_after_agent]
+  - id: hybrid-27
+    setting: meeting room device with one person joining remotely
+    people: [Sue, Raf, Ken]
+    turns:
+      - [Sue, "Hey Atlas, start the meeting.", wake_phrase]
+      - [Atlas, "Meeting started. Ken is joining remotely."]
+      - [Raf, "Ken, can you hear us?", question_to_named_person, [Ken]]
+      - [Ken, "Loud and clear.", reply_to_person, [Raf]]
+      - [Sue, "OK Atlas, share the agenda.", wake_phrase]
+      - [Atlas, "The agenda is on screen."]
+      - [Raf, "Atlas,", name_alone]
+      - [Raf, "what's the first item?", request_after_summon]
+      - [Atlas, "First item: budget approval."]
+      - [Ken, "Sorry, I missed that, what's first?", unclear_after_agent]
+      - [Sue, "Budget approval.", reply_to_person, [Ken]]
+      - [Ken, "Thanks. Sue, do you have the numbers?", question_to_named_person, [Sue]]
+      - [Sue, "Atlas has them. Atlas, put the budget sheet up.", named_after_aside]
+  - id: homework-28
+    setting: homework at home with an AI tutor
+    agent: {name: Sage, role: AI homework tutor}
+    people: [Karen, Ella]
+    turns:
+      - [Ella, "Sage, what's photosynthesis?", name_first]
+      - [Sage, "Photosynthesis is how plants turn light, water and carbon dioxide into sugar and oxygen."]
+      - [Karen, "Is that right? I thought it was just sunlight.", unclear_after_agent]
+      - [Ella, "No, Mum, it needs water too.", reply_to_person, [Karen]]
+      - [Karen, "Well, write down what it said.", you_to_person_after_agent, [Ella]]
+      - [Ella, "Can you say it again slower?", follow_up]
+      - [Sage, "Plants use light, water, and carbon dioxide. They make sugar and oxygen."]
+      - [Karen, "It's clever, isn't it.", about_pronoun]
+      - [Ella, "It gets maths wrong sometimes.", about_pronoun]
+      - [Karen, "Ask it what seven eights are.", invite]
+      - [Ella, "What's seven times eight?", you_after_invite]
+  - id: incident-29
+    setting: incident call
+    people: [Ines, Omar, Wes]
+    turns:
+      - [Ines, "Okay, who's on call?", group_question_not_for_agent]
+      - [Omar, "Me. I got paged at six.", reply_to_person, [Ines]]
+      - [Ines, "What's the error rate now?", continuing_with_person, [Omar]]
+      - [Wes, "Dashboard says four percent.", reply_to_person, [Ines]]
+      - [Ines, "Atlas, when did it start climbing?", name_first]
+      - [Atlas, "The error rate started rising at five forty-two."]
+      - [Omar, "That's right after the deploy.", people_after_agent]
+      - [Wes, "Roll it back?", proposal_to_group]
+      - [Ines, "Do it. Omar, you drive.", statement_to_named_person, [Omar]]
+      - [Omar, "Rolling back now.", statement]
+      - [Ines, "And can we get a timeline written up?", open_request]
+      - [Wes, "I'll ask Atlas for one after.", about_hypothetical]
+      - [Ines, "Atlas, draft a timeline from five thirty onwards.", name_first]
+      - [Atlas, "Drafting now."]
+      - [Omar, "Thanks, Atlas, that's handy.", thanks_named]

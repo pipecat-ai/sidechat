@@ -1,0 +1,27 @@
+{
+ "rows_id": "ami-silent-0.1.test",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-19T00:50:09+00:00",
+ "source": {
+  "kind": "Hugging Face dataset",
+  "repo": "ACloudCenter/ami-addressee",
+  "revision": "4bab33cda7800e616f429da1be956f9ff4075511",
+  "files": {
+   "data/records_all.jsonl": "35840749494099ad74ba35d6fec2319766485b1655c8ddff9692e2f0f643574e"
+  },
+  "licence": "CC BY 4.0",
+  "use": "train, dev and test by meeting series; the 22 labelled meetings are never trained on"
+ },
+ "limit": null,
+ "condition": "as written",
+ "rows": 10434,
+ "conversations": 12,
+ "by_expect": {
+  "ignore": 10434
+ },
+ "by_to": {
+  "group": 10434
+ },
+ "sha256": "6276351999d28045c1b7c02724764bbd4802752a9910fc0bde678ac72f606df6",
+ "r2_key": "runs/side/rows/ami-silent-0.1.test/rows.jsonl"
+}

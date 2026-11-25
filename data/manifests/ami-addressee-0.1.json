@@ -1,0 +1,28 @@
+{
+ "rows_id": "ami-addressee-0.1",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-19T00:03:58+00:00",
+ "source": {
+  "kind": "Hugging Face dataset",
+  "repo": "ACloudCenter/ami-addressee",
+  "revision": "4bab33cda7800e616f429da1be956f9ff4075511",
+  "files": {
+   "data/records_all.jsonl": "35840749494099ad74ba35d6fec2319766485b1655c8ddff9692e2f0f643574e"
+  },
+  "licence": "CC BY 4.0",
+  "use": "test only for now"
+ },
+ "limit": null,
+ "condition": "as written",
+ "rows": 8875,
+ "conversations": 22,
+ "by_expect": {
+  "ignore": 8875
+ },
+ "by_to": {
+  "group": 5250,
+  "person": 3625
+ },
+ "sha256": "efd60052b7f2d85f53c75fb648a0bc3bac99080f27d8899885024798d57c0707",
+ "r2_key": "runs/side/rows/ami-addressee-0.1/rows.jsonl"
+}

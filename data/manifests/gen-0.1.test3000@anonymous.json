@@ -1,0 +1,34 @@
+{
+ "rows_id": "gen-0.1.test3000@anonymous",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-19T00:17:25+00:00",
+ "source": {
+  "kind": "generated corpus",
+  "gen_id": "gen-0.1",
+  "splits": "test",
+  "sample": "3000",
+  "corpus_rows_sha256": "3d19824092abe4ff775f0b95e3eb8b924eabf4ceec9281e932aa6de5560808c1",
+  "guide": "sidechat-guide-0.3",
+  "use": "per split"
+ },
+ "limit": null,
+ "condition": "anonymous",
+ "rows": 3000,
+ "conversations": 1294,
+ "by_expect": {
+  "ignore": 1595,
+  "respond": 934,
+  "wait": 342,
+  "None": 129
+ },
+ "by_to": {
+  "group": 808,
+  "nobody": 73,
+  "agent": 989,
+  "person": 941,
+  "device": 36,
+  "unknown": 153
+ },
+ "sha256": "5fd658834515c1950af71dc67cb21553eb2267f26f83c4e090b7573b03d6e3b2",
+ "r2_key": "runs/side/rows/gen-0.1.test3000@anonymous/rows.jsonl"
+}

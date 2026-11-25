@@ -1,0 +1,30 @@
+{
+ "rows_id": "demo-lines-0.1",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-18T22:31:05+00:00",
+ "source": {
+  "kind": "hand-written suite",
+  "file": "data/suites/demo-lines-0.1.yaml",
+  "sha256": "15e9fa1ff4c3e2f5da5706f45e971471001d2a5b30e8d604d319791df2a202b8",
+  "about": "The demo's own sample and eval lines with the outcomes its author expects",
+  "label_source": "demo",
+  "use": "test"
+ },
+ "limit": null,
+ "rows": 52,
+ "conversations": 45,
+ "by_expect": {
+  "ignore": 26,
+  "wait": 3,
+  "None": 4,
+  "respond": 19
+ },
+ "by_to": {
+  "person": 15,
+  "group": 14,
+  "unknown": 4,
+  "agent": 19
+ },
+ "sha256": "adea3fac99d03ab9bbf10213b98a8274bca4f962f72cce01822591d4e9881095",
+ "r2_key": "runs/side/rows/demo-lines-0.1/rows.jsonl"
+}

@@ -1,0 +1,29 @@
+{
+ "rows_id": "gen-0.6.dev-test80-kff2565",
+ "schema_version": "sidechat-0.1",
+ "built_at": "2026-11-21T20:05:53+00:00",
+ "source": {
+  "kind": "generated corpus",
+  "gen_id": "gen-0.6",
+  "splits": "dev+test",
+  "sample": "80",
+  "kinds": [
+   "device_feedback"
+  ],
+  "corpus_rows_sha256": "815f3e4bf0cc65dee0bf63a5ccd64495d0fb659d099e61d96479db6e2112dfa6",
+  "guide": "sidechat-guide-0.5",
+  "use": "per split"
+ },
+ "limit": null,
+ "condition": "as written",
+ "rows": 80,
+ "conversations": 72,
+ "by_expect": {
+  "respond": 80
+ },
+ "by_to": {
+  "agent": 80
+ },
+ "sha256": "d1f23880c4ebfee4f57bd9248277db28dd138fb67a2cb7c70287903315f470f5",
+ "r2_key": "runs/side/rows/gen-0.6.dev-test80-kff2565/rows.jsonl"
+}
